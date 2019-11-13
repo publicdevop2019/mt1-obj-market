@@ -1,0 +1,75 @@
+<div [formGroup]="addressForm" class="form-container">
+    <mat-form-field class="form-field">
+        <input
+            matInput
+            placeholder="Enter Full name"
+            formControlName="fullname"
+        />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <input
+            matInput
+            placeholder="Enter Street and number, P.O. box,c/o."
+            formControlName="line1"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <input
+            matInput
+            placeholder="Apartment, suite, unit, building, floor, etc."
+            formControlName="line2"
+        />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <input matInput placeholder="Enter City" formControlName="city" />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <input
+            matInput
+            placeholder="Enter Postal Code"
+            formControlName="postalCode"
+        />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <input
+            matInput
+            placeholder="Enter Phone number"
+            formControlName="phone"
+        />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <mat-label>Select Country</mat-label>
+        <mat-select formControlName="country">
+            <mat-option value="client_credentials"
+                >Client Credentials</mat-option
+            >
+            <mat-option value="password">Password</mat-option>
+            <mat-option value="authorization_code"
+                >Authorization Code</mat-option
+            >
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <mat-label>Select Province</mat-label>
+        <mat-select formControlName="province">
+            <mat-option value="client_credentials"
+                >Client Credentials</mat-option
+            >
+            <mat-option value="password">Password</mat-option>
+            <mat-option value="authorization_code"
+                >Authorization Code</mat-option
+            >
+        </mat-select>
+    </mat-form-field>
+    <app-btn
+        *ngIf="addAddress"
+        [lable]="'Create'"
+        (click)="doCreate()"
+    ></app-btn>
+    <app-btn
+        *ngIf="!addAddress"
+        [lable]="'Update'"
+        (click)="doUpdate()"
+    ></app-btn>
+</div>

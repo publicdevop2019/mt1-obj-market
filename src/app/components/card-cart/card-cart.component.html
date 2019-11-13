@@ -1,0 +1,34 @@
+<div class="cart-item-container">
+    <div class="cart-item-brief">
+        <mat-icon
+            *ngIf="editable"
+            class="cart-item-brief-icon"
+            (click)="emitEvent()"
+            >delete_outline</mat-icon
+        >
+        <img class="cart-item-image" [src]="cartItemDetails.imageUrlSmall" />
+        <div class="cart-item-brief-container">
+            <div class="cart-item-brief-name">
+                {{ cartItemDetails.name | titlecase }}
+            </div>
+            <div
+                [ngClass]="{
+                    'cart-item-brief-options-container-editable': editable,
+                    'cart-item-brief-options-container': !editable
+                }"
+            >
+                <span
+                    *ngFor="let e of cartItemDetails.selectedOptions"
+                    class="cart-item-brief-option"
+                >
+                    <span *ngIf="e.options[0]"
+                        >{{ e.title | titlecase }}:{{
+                            e.options[0].option | titlecase
+                        }}</span
+                    >
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="cart-item-price">{{ cartItemDetails.finalPrice }}</div>
+</div>

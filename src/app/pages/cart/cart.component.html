@@ -1,0 +1,21 @@
+<ng-container *ngIf="!retrieveInProgress">
+    <div *ngIf="cartSvc.cart.length !== 0" class="cart-container">
+        <app-card-cart
+            class="animation-delete"
+            *ngFor="let el of cartSvc.cart"
+            [@shrinkOut]="'in'"
+            [cartItemDetails]="el"
+            [editable]="true"
+            (deleted)="doDelete(el.id)"
+        >
+        </app-card-cart>
+    </div>
+    <div *ngIf="cartSvc.cart.length === 0" class="empty-item-container-create">
+        <span>Your shopping cart is empty</span>
+    </div>
+    <app-btn
+        [lable]="'Processed to checkout'"
+        *ngIf="cartSvc.cart.length !== 0"
+        (click)="checkout()"
+    ></app-btn>
+</ng-container>

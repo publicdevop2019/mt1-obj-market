@@ -1,0 +1,21 @@
+<ng-container *ngIf="!payment">
+    <div>
+        Loading
+    </div>
+</ng-container>
+<div *ngIf="payment && payment.length == 0">
+    <app-btn
+        [lable]="'Add new payment'"
+        [routerLink]="'/payment'"
+        [queryParams]="{ callbackUrl: 'order' }"
+        (click)="dismiss()"
+    ></app-btn>
+</div>
+<ng-container *ngIf="payment && payment.length != 0">
+    <app-card-payment
+        *ngFor="let el of payment"
+        [payment]="el"
+        (click)="paymentPicked($event, el)"
+    >
+    </app-card-payment>
+</ng-container>

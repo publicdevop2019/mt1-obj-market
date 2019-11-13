@@ -1,0 +1,44 @@
+$bodyFont: 12px;
+$bodyPadding:8px;
+$listContainerPadding:8px;
+@mixin card-body-font{
+    font-size: $bodyFont;
+  }
+@mixin card-container{
+    margin-bottom: 16px;
+  }
+.card-desc{
+    @include card-body-font;
+    margin-bottom: $bodyPadding;
+}
+.card-title{
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: $bodyPadding;
+}
+.card-btn{
+    width: 100%;
+}   
+.modify-card-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}   
+.card-container{
+    @include card-container;
+}
+.card-container-action{
+    @include card-container;
+    padding-bottom: 4px !important;
+}
+app-card-address:last-child>mat-card,app-card-payment:last-child>mat-card,app-card-order:last-child>mat-card{
+    margin-bottom: 0px;
+}
+
+.order-item-container{
+    max-height: calc((#{$bodyFont} + 2px + #{$bodyPadding}) * 2);
+    overflow-y: hidden;
+}
+.card-list{
+    padding:$listContainerPadding ;
+}

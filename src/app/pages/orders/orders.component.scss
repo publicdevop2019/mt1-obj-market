@@ -1,0 +1,4 @@
+@import '../../../styles.scss';
+:host{
+    @include list-flex-container;
+}

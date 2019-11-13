@@ -1,0 +1,27 @@
+.mat-list-base .mat-list-item {
+    color: black;
+}
+.account-head-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.account-head-icon{
+    font-size: 96px;
+    width: 96px;
+    height: 96px;
+}
+.account-head-username{
+    margin-top: 16px;
+}
+.mat-divider{
+    border-top-color: #616161;
+    margin-top: 24px;
+}
+.account-login-page{
+    min-height: calc(100vh - 36px - 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

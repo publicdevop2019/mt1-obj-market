@@ -1,0 +1,13 @@
+.cart-container{
+    padding: 24px 8px 0px 8px;
+}
+app-card-cart{
+    margin-bottom: 24px;
+}
+app-card-cart:last-child{
+    margin-bottom: 0px;
+}
+@import '../../../styles.scss';
+:host{
+    @include list-flex-container;
+}

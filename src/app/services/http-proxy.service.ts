@@ -1,0 +1,23 @@
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { INet } from '../classes/net.interface';
+import { OfflineNetImpl } from '../classes/offline-net.impl';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class HttpProxyService {
+    public netImpl: INet;
+    public inProgress = false;
+    constructor(private http: HttpClient) {
+        if (environment.mode === 'offline') {
+            this.netImpl = new OfflineNetImpl(this.http);
+        } else {
+            // this.netImpl = new OfflineNetImpl(this.http);
+            /**
+             * @todo add online impl
+             */
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<div [formGroup]="paymentForm" class="form-container">
+    <mat-form-field class="form-field">
+        <input
+            matInput
+            placeholder="Enter Account Number"
+            formControlName="accountNumber"
+        />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <input
+            matInput
+            placeholder="Enter Account Holder Name"
+            formControlName="accountHolderName"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <input
+            matInput
+            placeholder="Enter Expire Date"
+            formControlName="expireDate"
+        />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+        <input matInput placeholder="Enter CVV" formControlName="cvv" />
+    </mat-form-field>
+    <app-btn
+        *ngIf="addPayment"
+        [lable]="'Create'"
+        (click)="doCreate()"
+    ></app-btn>
+    <app-btn
+        *ngIf="!addPayment"
+        [lable]="'Update'"
+        (click)="doUpdate()"
+    ></app-btn>
+</div>

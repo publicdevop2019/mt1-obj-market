@@ -1,0 +1,24 @@
+<ng-container *ngIf="isHomePage">
+    <div class="category-mobile-container">
+        <div
+            *ngFor="let el of categoriesConfig"
+            [routerLink]="el.routerUrl"
+            class="category-mobile-item"
+        >
+            <img [src]="el.url" [alt]="el.title" class="category-mobile-icon" />
+            <div class="category-mobile-title">{{ el.title }}</div>
+        </div>
+    </div>
+</ng-container>
+<mat-nav-list *ngIf="isCategories">
+    <mat-list>
+        <mat-list-item
+            *ngFor="let el of categoriesConfig"
+            [routerLink]="el.routerUrl"
+            class="category-list-item"
+        >
+            <!-- <img [src]="el.url" [alt]=" el.title" mat-list-icon class="category-mobile-icon"> -->
+            <p mat-line>{{ el.title | titlecase }}</p>
+        </mat-list-item>
+    </mat-list>
+</mat-nav-list>

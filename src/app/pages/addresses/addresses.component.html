@@ -1,0 +1,18 @@
+<div class="card-list">
+    <app-card-address
+        class="animation-delete"
+        *ngFor="let el of address"
+        [@shrinkOut]="'in'"
+        [address]="el"
+        [editable]="true"
+        (deleted)="doDelete(el.id)"
+    >
+    </app-card-address>
+</div>
+<div
+    *ngIf="address && address.length === 0"
+    class="empty-item-container-create"
+>
+    <span>No item to display</span>
+</div>
+<app-btn [lable]="'Add new address'" [routerLink]="'/address'"></app-btn>

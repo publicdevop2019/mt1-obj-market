@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="footer-mobile-container">
+    <button
+        *ngFor="let el of footerConfig"
+        class="footer-mobile-item"
+        mat-button
+        color="primary"
+        [routerLink]="el.routerUrl"
+        style="flex: 1; line-height: 0px;"
+    >
+        <mat-icon class="footer-mobile-icon">{{ el.icon }} </mat-icon>
+        <div class="footer-mobile-title">{{ el.title }}</div>
+    </button>
+</mat-toolbar>

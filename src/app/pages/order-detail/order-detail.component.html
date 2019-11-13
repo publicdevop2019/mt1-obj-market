@@ -1,0 +1,85 @@
+<div *ngIf="order" class="order-detail-container">
+    <div *ngIf="order.cart.length !== 0" class="cart-list">
+        <app-card-cart *ngFor="let el of order.cart" [cartItemDetails]="el">
+        </app-card-cart>
+    </div>
+    <mat-divider></mat-divider>
+    <div role="list" class="order-detail-price-container">
+        <div
+            role="listitem"
+            class="order-detail-price-item"
+            style="font-weight: 400;"
+        >
+            <span>Subtotal</span> <span>{{ calcSubtotal() }}</span>
+        </div>
+        <div
+            role="listitem"
+            class="order-detail-price-item"
+            style="font-weight: 400;"
+        >
+            <span>Shipping</span>
+            <span>{{ order.shippingCost }}</span>
+        </div>
+        <div
+            role="listitem"
+            class="order-detail-price-item"
+            style="font-weight: 400;"
+        >
+            <span>Tax</span>
+            <span>{{ order.taxCost }}</span>
+        </div>
+        <div
+            role="listitem"
+            class="order-detail-price-item"
+            style="font-weight: 600;"
+        >
+            <span>TOTAL</span> <span>{{ calcTotal() | currency: 'CAD' }}</span>
+        </div>
+    </div>
+
+    <div class="order-address-container">
+        <div class="order-address-title">Shipping Details</div>
+        <app-card-address
+            *ngIf="editable && orderSvc.currentShippingAddress"
+            [address]="orderSvc.currentShippingAddress"
+            [editable]="false"
+        >
+        </app-card-address>
+        <app-card-address
+            *ngIf="!editable"
+            [address]="order.shippingAddress"
+            [editable]="false"
+        >
+        </app-card-address>
+        <app-btn
+            *ngIf="editable"
+            (click)="openAddressPicker()"
+            [lable]="'Pick Address'"
+        ></app-btn>
+    </div>
+
+    <div class="order-payment-container">
+        <div class="order-payment-title">Payment Details</div>
+        <app-card-payment
+            *ngIf="editable && orderSvc.currentPayment"
+            [payment]="orderSvc.currentPayment"
+            [editable]="false"
+        >
+        </app-card-payment>
+        <app-card-payment
+            *ngIf="!editable"
+            [payment]="order.payment"
+            [editable]="false"
+        >
+        </app-card-payment>
+        <app-btn
+            *ngIf="editable"
+            (click)="openPaymentPicker()"
+            [lable]="'Pick Payment'"
+        ></app-btn>
+    </div>
+    <ng-container *ngIf="editable">
+        <mat-divider></mat-divider>
+        <app-btn (click)="placeOrder()" [lable]="'Place order'"></app-btn>
+    </ng-container>
+</div>

@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+/* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
+/* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
+@import './card.scss';
+@import './form.scss';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cdk-overlay-pane.mat-snack-bar-handset{
+    margin-top: 36px !important;
+}
+.mat-radio-outer-circle {
+    border-width: 0px !important;
+    height: 24px !important;
+    width: 24px !important;
+}
+.mat-radio-inner-circle {
+    height: 24px !important;
+    width: 24px !important;
+}
+.mat-radio-container {
+    height: 24px !important;
+    width: 24px !important;
+    
+}
+.mat-card-actions, .mat-card-content, .mat-card-subtitle {
+    margin-bottom: 0px !important;
+}
+.mat-progress-bar {
+    position: fixed !important;
+    z-index: 9999;
+}
+.animation-delete{
+    display: block;
+}
+@mixin list-flex-no-item{
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+.empty-item-container{
+    @include list-flex-no-item;
+    text-align: center;
+    min-height: calc(100vh - 36px - 48px);
+}
+.empty-item-container-create{
+    @include list-flex-no-item;
+    flex: 1;
+    text-align: center;
+}
+
+@mixin list-flex-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

@@ -1,0 +1,129 @@
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { ICategory } from '../components/category-list/category-list.component';
+import { IOrder } from '../components/card-order/card-order.component';
+import { IAddress } from '../pages/addresses/addresses.component';
+import { ICartItem } from '../pages/cart/cart.component';
+import { IPayment } from '../pages/payments/payments.component';
+import {
+    IProductDetail,
+    IProductSimple
+} from '../pages/product-detail/product-detail.component';
+import { INet, ITokenResponse } from './net.interface';
+import { RandomUtility } from './random';
+
+export class OfflineNetImpl implements INet {
+    currentUserAuthInfo: ITokenResponse;
+    private defaultDelay = 1000;
+    constructor(public httpClient: HttpClient) {}
+    calcShipptingCost(
+        product: IProductDetail,
+        address: IAddress
+    ): Observable<number> {
+        return of(RandomUtility.randomPrice(0, 999)).pipe(
+            delay(this.defaultDelay)
+        );
+    }
+    calcTax(product: IProductDetail, address: IAddress): Observable<number> {
+        return of(RandomUtility.randomPrice(0, 999)).pipe(
+            delay(this.defaultDelay)
+        );
+    }
+    deletePayment(id: string): Observable<any> {
+        return this.httpClient.delete(
+            'http://localhost:8080/api/payments/' + id
+        );
+    }
+    deleteAddress(id: string): Observable<any> {
+        return this.httpClient.delete(
+            'http://localhost:8080/api/addresses/' + id
+        );
+    }
+    removeFromCart(id: string): Observable<any> {
+        return this.httpClient.delete('http://localhost:8080/api/carts/' + id);
+    }
+    getCategory(): Observable<ICategory[]> {
+        return this.httpClient.get<ICategory[]>(
+            'http://localhost:8080/api/categories'
+        );
+    }
+    createOrder(order: IOrder): Observable<any> {
+        return this.httpClient.post('http://localhost:8080/api/orders', order);
+    }
+    getOrderById(id: string): Observable<IOrder> {
+        return this.httpClient.get<IOrder>(
+            'http://localhost:8080/api/orders/' + id
+        );
+    }
+    addToCart(item: ICartItem): Observable<any> {
+        return this.httpClient.post('http://localhost:8080/api/carts', item);
+    }
+    createPayment(payment: IPayment): Observable<any> {
+        return this.httpClient.post(
+            'http://localhost:8080/api/payments',
+            payment
+        );
+    }
+    updatePayment(payment: IPayment): Observable<any> {
+        return this.httpClient.put(
+            'http://localhost:8080/api/payments/' + payment.id,
+            payment
+        );
+    }
+    getPayments(): Observable<IPayment[]> {
+        return this.httpClient.get<IPayment[]>(
+            'http://localhost:8080/api/payments'
+        );
+    }
+
+    getOrders(): Observable<IOrder[]> {
+        return this.httpClient.get<IOrder[]>(
+            'http://localhost:8080/api/orders'
+        );
+    }
+    updateAddress(address: IAddress): Observable<any> {
+        return this.httpClient.put(
+            'http://localhost:8080/api/addresses/' + address.id,
+            address
+        );
+    }
+    createAddress(address: IAddress): Observable<any> {
+        return this.httpClient.post(
+            'http://localhost:8080/api/addresses',
+            address
+        );
+    }
+    getAddresses(): Observable<IAddress[]> {
+        return this.httpClient.get<IAddress[]>(
+            'http://localhost:8080/api/addresses'
+        );
+    }
+    getCartItems(): Observable<ICartItem[]> {
+        return this.httpClient.get<ICartItem[]>(
+            'http://localhost:8080/api/carts'
+        );
+    }
+    getTopProducts(): Observable<IProductSimple[]> {
+        return this.httpClient.get<IProductSimple[]>(
+            'http://localhost:8080/api/productTop'
+        );
+    }
+    /**
+     * @temp this should be replaced by real api
+     */
+    searchByCategory(category: string): Observable<IProductSimple[]> {
+        return new Observable<IProductSimple[]>(el => {
+            this.httpClient
+                .get<IProductSimple[]>('http://localhost:8080/api/productTotal')
+                .subscribe(next => {
+                    el.next(next.filter(e => e.category === category));
+                });
+        });
+    }
+    getProductDetailsById(productId: string): Observable<IProductDetail> {
+        return this.httpClient.get<IProductDetail>(
+            'http://localhost:8080/api/productTotalDetails/' + productId
+        );
+    }
+}

@@ -1,0 +1,22 @@
+<mat-sidenav-container class="outer-container" (backdropClick)="close()">
+    <mat-sidenav #sidenav [position]="'end'">
+        <app-form-filter (closeClick)="close()"></app-form-filter>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content-container">
+        <app-header (filterClick)="sidenav.open()"></app-header>
+        <mat-progress-bar
+            *ngIf="httpProxy.inProgress"
+            mode="indeterminate"
+        ></mat-progress-bar>
+        <!-- router parent should not has class due to animation issue -->
+        <div
+            [@routeAnimations]="prepareRoute(outlet)"
+            style="flex-grow: 1;overflow: auto;"
+        >
+            <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

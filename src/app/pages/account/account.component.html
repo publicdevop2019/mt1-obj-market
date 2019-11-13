@@ -1,0 +1,24 @@
+<ng-container *ngIf="authSvc.currentUserAuthInfo">
+    <div class="account-head-container">
+        <mat-icon class="account-head-icon">account_circle</mat-icon
+        ><span class="account-head-username">{{ getUsername() }}</span>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-list>
+        <mat-list-item
+            *ngFor="let el of accountConfig"
+            [routerLink]="el.routerUrl"
+        >
+            <mat-icon mat-list-icon>{{ el.icon }} </mat-icon>
+            <p mat-line>{{ el.title }}</p>
+        </mat-list-item>
+    </mat-list>
+    <app-btn [lable]="'Log Out'" (click)="logout()"></app-btn>
+</ng-container>
+<div *ngIf="!authSvc.currentUserAuthInfo" class="account-login-page">
+    <app-btn
+        *ngIf="!authSvc.currentUserAuthInfo"
+        [lable]="'Login'"
+        (click)="login()"
+    ></app-btn>
+</div>

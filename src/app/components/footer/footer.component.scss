@@ -1,0 +1,26 @@
+.footer-mobile-item{
+    padding: 0px 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: inherit;
+    color: white;
+}
+.footer-mobile-icon{
+    padding-top: 4px;
+}
+.footer-mobile-title{
+    line-height: 16px;
+    font-size: 12px;
+}
+.footer-mobile-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+@media (max-width: 599px){
+    .mat-toolbar-row, .mat-toolbar-single-row {
+        height: 48px;
+    }
+}

@@ -1,0 +1,7 @@
+.filter-btn{
+    width: 100%;
+}
+:host{
+    display: block;
+    padding: 8px;
+}

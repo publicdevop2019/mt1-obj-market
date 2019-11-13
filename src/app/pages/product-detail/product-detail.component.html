@@ -1,0 +1,11 @@
+<ng-container *ngIf="productDetail">
+    <app-product-basic
+        #productBasic
+        [productDetail]="productDetail"
+    ></app-product-basic>
+    <app-btn
+        [lable]="'ADD TO CART'"
+        *ngIf="productBasic.productDetail"
+        (click)="addToCart()"
+    ></app-btn>
+</ng-container>

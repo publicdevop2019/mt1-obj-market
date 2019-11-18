@@ -8,7 +8,7 @@ export interface ITokenResponse {
     token_type?: string;
     expires_in?: string;
     scope?: string;
-    user_name?: string;
+    uid?: string;
 }
 @Injectable({
     providedIn: 'root'

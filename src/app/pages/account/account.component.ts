@@ -57,7 +57,7 @@ export class AccountComponent implements OnInit {
     ngOnInit() {}
     getUsername(): string {
         return safelyGetValue<string>(
-            () => this.authSvc.currentUserAuthInfo.user_name,
+            () => this.authSvc.currentUserAuthInfo.uid,
             ''
         );
     }

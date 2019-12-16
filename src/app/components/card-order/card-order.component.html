@@ -1,14 +1,14 @@
 <mat-card class="card-container-action">
     <div class="card-title">
-        {{ order.cart.length }} item will be shipped to
-        {{ order.shippingAddress.fullname }}
+        {{ order.productList.length }} item will be shipped to
+        {{ order.address.fullName }}
     </div>
     <div class="order-item-container">
-        <div *ngFor="let el of order.cart" class="card-desc">
+        <div *ngFor="let el of order.productList" class="card-desc">
             {{ el.name }}
         </div>
     </div>
-    <div *ngIf="order.cart.length >= 3" class="card-desc">
+    <div *ngIf="order.productList.length >= 3" class="card-desc">
         ...
     </div>
     <div class="card-desc">Total {{ calcTotal() | currency: 'CAD' }}</div>

@@ -19,7 +19,7 @@ export interface IProductOptions {
     options: IProductOption[];
 }
 export interface IProductOption {
-    option: string;
+    optionValue: string;
     priceVar?: string;
 }
 export interface IProductDetail extends IProductSimple {

@@ -1,22 +1,13 @@
 import { Observable } from 'rxjs';
-import {
-    IProductDetail,
-    IProductSimple
-} from '../pages/product-detail/product-detail.component';
-import { ICartItem } from '../pages/cart/cart.component';
-import { IAddress } from '../pages/addresses/addresses.component';
-import { IPayment } from '../pages/payments/payments.component';
 import { IOrder } from '../components/card-order/card-order.component';
 import { ICategory } from '../components/category-list/category-list.component';
-export interface ITokenResponse {
-    access_token: string;
-    refresh_token?: string;
-    token_type?: string;
-    expires_in?: string;
-    scope?: string;
-}
+import { IAddress } from '../pages/addresses/addresses.component';
+import { ICartItem } from '../pages/cart/cart.component';
+import { IPayment } from '../pages/payments/payments.component';
+import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 export interface INet {
-    currentUserAuthInfo: ITokenResponse;
+    searchProfile:() =>Observable<string>;
+    createProfile:()=>Observable<any>;
     getCategory: () => Observable<ICategory[]>;
     searchByCategory: (category: string) => Observable<IProductSimple[]>;
     getTopProducts: () => Observable<IProductSimple[]>;
@@ -28,7 +19,7 @@ export interface INet {
 
     getOrders: () => Observable<IOrder[]>;
     getOrderById: (id: string) => Observable<IOrder>;
-    createOrder: (order: IOrder) => Observable<IOrder>;
+    createOrder: (order: IOrder) => Observable<any>;
 
     getPayments: () => Observable<IPayment[]>;
     createPayment: (payment: IPayment) => Observable<IPayment>;

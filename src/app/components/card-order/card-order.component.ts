@@ -4,11 +4,14 @@ import { ICartItem } from 'src/app/pages/cart/cart.component';
 import { IPayment } from 'src/app/pages/payments/payments.component';
 export interface IOrder {
     id: string;
-    cart: ICartItem[];
-    shippingAddress: IAddress;
+    productList: ICartItem[];
+    address: IAddress;
+    payment: IPayment;
     shippingCost: string;
     taxCost: string;
-    payment: IPayment;
+    additionalFees:any
+    finalPrice:string;
+    totalProductPrice:string;
 }
 @Component({
     selector: 'app-card-order',
@@ -35,7 +38,7 @@ export class CardOrderComponent implements OnInit {
      */
     public calcSubtotal(): number {
         let sum = 0;
-        this.order.cart.forEach(e => {
+        this.order.productList.forEach(e => {
             sum = sum + +e.finalPrice;
         });
         return sum;

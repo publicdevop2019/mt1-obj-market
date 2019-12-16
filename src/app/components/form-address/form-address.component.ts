@@ -17,11 +17,11 @@ export class FormAddressComponent implements OnInit {
         country: new FormControl('', []),
         province: new FormControl('', []),
         city: new FormControl('', []),
-        fullname: new FormControl('', []),
+        fullName: new FormControl('', []),
         line1: new FormControl('', []),
         line2: new FormControl('', []),
         postalCode: new FormControl('', []),
-        phone: new FormControl('', [])
+        phoneNumber: new FormControl('', [])
     });
     constructor(
         private activatedRoute: ActivatedRoute,

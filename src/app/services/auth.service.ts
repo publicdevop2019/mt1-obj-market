@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 export interface ITokenResponse {
     access_token: string;
     refresh_token?: string;
@@ -15,7 +16,19 @@ export interface ITokenResponse {
 })
 export class AuthService {
     public currentUserAuthInfo: ITokenResponse;
-    constructor(private httpClient: HttpClient) {}
+    private _userProfileId: string;
+    get userProfileId(){
+        if(this._userProfileId===null|| this._userProfileId===undefined){
+            this.router.navigate(['/account']);
+            throw new Error('invalid value')
+        }else{
+            return this._userProfileId;
+        }
+    };
+    set userProfileId(id:string){
+        this._userProfileId=id;
+    };
+    constructor(private httpClient: HttpClient,private router:Router) {}
     getToken(code: string): Observable<ITokenResponse> {
         const header = new HttpHeaders().append(
             'Authorization',

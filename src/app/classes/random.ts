@@ -181,23 +181,23 @@ export class RandomUtility {
             title: 'Qty',
             options: [
                 {
-                    option: '1',
+                    optionValue: '1',
                     priceVar: 'x1'
                 },
                 {
-                    option: '2',
+                    optionValue: '2',
                     priceVar: 'x2'
                 },
                 {
-                    option: '3',
+                    optionValue: '3',
                     priceVar: 'x3'
                 },
                 {
-                    option: '4',
+                    optionValue: '4',
                     priceVar: 'x4'
                 },
                 {
-                    option: '5',
+                    optionValue: '5',
                     priceVar: 'x5'
                 }
             ]
@@ -219,7 +219,7 @@ export class RandomUtility {
         const output: IProductOption[] = [];
         while (length > 0) {
             const item = {
-                option: RandomUtility.randomLengthString(1, 10),
+                optionValue: RandomUtility.randomLengthString(1, 10),
                 priceVar:
                     RandomUtility.randomFromArray(['-', '+']) +
                     RandomUtility.randomPrice(0, 10.99).toString()
@@ -240,7 +240,7 @@ export class RandomUtility {
         return output;
     }
     public static randomAddress(): IAddress {
-        const country = ['Canada', 'China', 'US', 'Europ'];
+        const country = ['Canada', 'China', 'US', 'Europe'];
         const province = [
             'Ontario',
             'Quebec',
@@ -260,11 +260,11 @@ export class RandomUtility {
                 RandomUtility.randomLengthString(1, 1) +
                 RandomUtility.randomInt(0, 9) +
                 RandomUtility.randomLengthString(1, 1),
-            fullname: RandomUtility.randomLengthStringWithSpace(0, 20),
+            fullName: RandomUtility.randomLengthStringWithSpace(0, 20),
             line1: RandomUtility.randomLengthString(0, 50),
             line2: RandomUtility.randomLengthString(0, 50),
             city: RandomUtility.randomLengthString(0, 10),
-            phone: RandomUtility.randomInt(0, 9999999999).toString()
+            phoneNumber: RandomUtility.randomInt(0, 9999999999).toString()
         } as IAddress;
     }
     public static randomCartOrders(min: number): ICartItem[] {
@@ -276,7 +276,7 @@ export class RandomUtility {
                 productId: RandomUtility.randomInt(0, 9999).toString(),
                 finalPrice: RandomUtility.randomPrice(0, 9999).toString(),
                 selectedOptions: RandomUtility.randomProductOptions(),
-                name: RandomUtility.randomLengthString(0, 20),
+                name: RandomUtility.randomLengthString(1, 20),
                 imageUrlSmall: RandomUtility.randomImageUrl()
             } as ICartItem;
             output.push(item);
@@ -315,8 +315,8 @@ export class RandomUtility {
     public static randomSuccessOrder(): IOrder {
         return {
             id: RandomUtility.randomInt(0, 9999).toString(),
-            cart: RandomUtility.randomCartOrders(1),
-            shippingAddress: RandomUtility.randomAddress(),
+            productList: RandomUtility.randomCartOrders(1),
+            address: RandomUtility.randomAddress(),
             shippingCost: RandomUtility.randomPrice(0, 9999).toString(),
             taxCost: RandomUtility.randomPrice(0, 9999).toString(),
             payment: RandomUtility.randomPaymentList()[0]

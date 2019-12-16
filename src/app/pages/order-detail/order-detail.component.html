@@ -1,6 +1,6 @@
 <div *ngIf="order" class="order-detail-container">
-    <div *ngIf="order.cart.length !== 0" class="cart-list">
-        <app-card-cart *ngFor="let el of order.cart" [cartItemDetails]="el">
+    <div *ngIf="order.productList.length !== 0" class="cart-list">
+        <app-card-cart *ngFor="let el of order.productList" [cartItemDetails]="el">
         </app-card-cart>
     </div>
     <mat-divider></mat-divider>
@@ -47,7 +47,7 @@
         </app-card-address>
         <app-card-address
             *ngIf="!editable"
-            [address]="order.shippingAddress"
+            [address]="order.address"
             [editable]="false"
         >
         </app-card-address>

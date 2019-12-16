@@ -7,11 +7,11 @@ export interface IAddress {
     country: string;
     province: string;
     postalCode: string;
-    fullname: string;
+    fullName: string;
     line1: string;
     line2: string;
     city: string;
-    phone: string;
+    phoneNumber: string;
 }
 @Component({
     selector: 'app-addresses',

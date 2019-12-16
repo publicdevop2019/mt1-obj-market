@@ -116,10 +116,10 @@ import { FilterService } from './services/filter.service';
         MatBadgeModule,
         MatProgressBarModule,
         MatSidenavModule,
-        InMemoryWebApiModule.forRoot(InmemoryDataService, {
-            delay: 2000,
-            passThruUnknownUrl: true
-        }),
+        // InMemoryWebApiModule.forRoot(InmemoryDataService, {
+        //     delay: 2000,
+        //     passThruUnknownUrl: true
+        // }),
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production
         })

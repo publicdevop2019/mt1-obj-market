@@ -16,7 +16,7 @@ export class PaymentService {
     public getPaymentById(id: string): Observable<IPayment> {
         return this.http.netImpl.getPayments().pipe(
             switchMap(payments => {
-                return of(payments.find(el => el.id === id));
+                return of(payments.find(el => el.id.toString() === id));
             })
         );
     }

@@ -1,7 +1,7 @@
 
 export const environment = {
   production: false,
-  mode: 'offline' as 'online' | 'offline',
+  mode: 'online' as 'online' | 'offline',
   getTokenUri: 'https://www.ngform.com/oauth/token',
   oauthRedirectUri: 'http://localhost:4200/account',
   APP_ID: 'obj-market',

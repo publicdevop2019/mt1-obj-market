@@ -32,8 +32,8 @@ export class OrderDetailComponent implements OnInit {
                         /** create a new order */
                         this.editable = true;
                         return of({
-                            cart: this.cartSvc.cart,
-                            shippingAddress: this.orderSvc
+                            productList: this.cartSvc.cart,
+                            address: this.orderSvc
                                 .currentShippingAddress,
                             payment: this.orderSvc.currentPayment,
                             shippingCost: '0',
@@ -55,18 +55,20 @@ export class OrderDetailComponent implements OnInit {
 
     ngOnInit() {}
     public calcTotal(): number {
-        return +(
+        this.order.finalPrice = (
             this.calcSubtotal() +
             +this.order.shippingCost +
             +this.order.taxCost
         ).toFixed(2);
+        return +this.order.finalPrice;
     }
     public calcSubtotal(): number {
         let sum = 0;
-        this.order.cart.forEach(e => {
+        this.order.productList.forEach(e => {
             sum = sum + +e.finalPrice;
         });
-        return +sum.toFixed(2);
+        this.order.totalProductPrice=sum.toFixed(2)
+        return +this.order.totalProductPrice;
     }
     public openAddressPicker() {
         this.bottomSheet.open(BottomSheetAddressPickerComponent);
@@ -78,14 +80,14 @@ export class OrderDetailComponent implements OnInit {
         /**
          * update order info
          */
-        this.order.shippingAddress = this.orderSvc.currentShippingAddress;
+        this.order.address = this.orderSvc.currentShippingAddress;
         this.order.payment = this.orderSvc.currentPayment;
         this.orderSvc.httpProxy.netImpl
             .createOrder(this.order)
             .subscribe(next => {
                 this.cartSvc.cart = [];
                 this.orderSvc.justCompletedOrder = this.order;
-                this.orderSvc.justCompletedOrder.id = next.id;
+                this.orderSvc.justCompletedOrder.id = next.headers.get('location');
                 this.router.navigate(['/order-complete']);
             });
     }

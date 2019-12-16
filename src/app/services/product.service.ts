@@ -33,7 +33,7 @@ export class ProductService {
                 title: ctrlKey,
                 options: [
                     {
-                        option: this.formProduct.get(ctrlKey).value
+                        optionValue: this.formProduct.get(ctrlKey).value
                     }
                 ]
             } as IProductOptions;

@@ -14,18 +14,14 @@ import { INet} from './net.interface';
 import { RandomUtility } from './random';
 import { ITokenResponse, AuthService } from '../services/auth.service';
 
-export class OfflineNetImpl implements INet {
-    createProfile() : Observable<any>{
-        return of('100').pipe(
-            delay(this.defaultDelay)
-        );
-    }
+export class OnlineNetImpl implements INet {
     private defaultDelay = 1000;
     constructor(public httpClient: HttpClient,public authSvc:AuthService) {}
+    createProfile() : Observable<any>{
+        return this.httpClient.post('http://localhost:8083/v1/api/profiles',null,{observe:'response'});
+    };
     searchProfile():Observable<string>{
-        return of('100').pipe(
-            delay(this.defaultDelay)
-        );
+        return this.httpClient.get<string>(            'http://localhost:8083/v1/api/profiles/search'        );
     };
     calcShipptingCost(
         product: IProductDetail,
@@ -40,83 +36,83 @@ export class OfflineNetImpl implements INet {
             delay(this.defaultDelay)
         );
     }
-    deletePayment(id: string): Observable<any> {
-        return this.httpClient.delete(
-            'http://localhost:8080/api/payments/' + id
-        );
-    }
-    deleteAddress(id: string): Observable<any> {
-        return this.httpClient.delete(
-            'http://localhost:8080/api/addresses/' + id
-        );
-    }
-    removeFromCart(id: string): Observable<any> {
-        return this.httpClient.delete('http://localhost:8080/api/carts/' + id);
-    }
     getCategory(): Observable<ICategory[]> {
         return this.httpClient.get<ICategory[]>(
-            'http://localhost:8080/api/categories'
-        );
+            'http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/categories'
+            );
+        }
+    removeFromCart(id: string): Observable<any> {
+        return this.httpClient.delete('http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/carts/' + id);
     }
-    createOrder(order: IOrder): Observable<any> {
-        return this.httpClient.post('http://localhost:8080/api/orders', order);
-    }
-    getOrderById(id: string): Observable<IOrder> {
-        return this.httpClient.get<IOrder>(
-            'http://localhost:8080/api/orders/' + id
-        );
+    getCartItems(): Observable<ICartItem[]> {
+        return of(RandomUtility.randomCartOrders(5))
+        // return this.httpClient.get<ICartItem[]>(
+        //     'http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/carts'
+        // );
     }
     addToCart(item: ICartItem): Observable<any> {
-        return this.httpClient.post('http://localhost:8080/api/carts', item);
+        return this.httpClient.post('http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/carts', item);
     }
     createPayment(payment: IPayment): Observable<any> {
         return this.httpClient.post(
-            'http://localhost:8080/api/payments',
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/payments',
             payment
         );
     }
     updatePayment(payment: IPayment): Observable<any> {
         return this.httpClient.put(
-            'http://localhost:8080/api/payments/' + payment.id,
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/payments/' + payment.id,
             payment
         );
     }
     getPayments(): Observable<IPayment[]> {
         return this.httpClient.get<IPayment[]>(
-            'http://localhost:8080/api/payments'
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/payments'
         );
     }
-
+    deletePayment(id: string): Observable<any> {
+        return this.httpClient.delete(
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/payments/' + id
+        );
+    }
+    createOrder(order: IOrder): Observable<any> {
+        return this.httpClient.post('http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/orders', order,{observe:'response'});
+    }
+    getOrderById(id: string): Observable<IOrder> {
+        return this.httpClient.get<IOrder>(
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/orders/' + id
+        );
+    }
     getOrders(): Observable<IOrder[]> {
         return this.httpClient.get<IOrder[]>(
-            'http://localhost:8080/api/orders'
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/orders'
         );
     }
     updateAddress(address: IAddress): Observable<any> {
         return this.httpClient.put(
-            'http://localhost:8080/api/addresses/' + address.id,
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/addresses/' + address.id,
             address
         );
     }
     createAddress(address: IAddress): Observable<any> {
         return this.httpClient.post(
-            'http://localhost:8080/api/addresses',
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/addresses',
             address
         );
     }
     getAddresses(): Observable<IAddress[]> {
         return this.httpClient.get<IAddress[]>(
-            'http://localhost:8080/api/addresses'
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/addresses'
         );
     }
-    getCartItems(): Observable<ICartItem[]> {
-        return this.httpClient.get<ICartItem[]>(
-            'http://localhost:8080/api/carts'
+    deleteAddress(id: string): Observable<any> {
+        return this.httpClient.delete(
+            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/addresses/' + id
         );
     }
     getTopProducts(): Observable<IProductSimple[]> {
         return this.httpClient.get<IProductSimple[]>(
-            'http://localhost:8080/api/productTop'
+            'http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/productTop'
         );
     }
     /**
@@ -125,7 +121,7 @@ export class OfflineNetImpl implements INet {
     searchByCategory(category: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient
-                .get<IProductSimple[]>('http://localhost:8080/api/productTotal')
+                .get<IProductSimple[]>('http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/productTotal')
                 .subscribe(next => {
                     el.next(next.filter(e => e.category === category));
                 });
@@ -133,7 +129,7 @@ export class OfflineNetImpl implements INet {
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(
-            'http://localhost:8080/api/productTotalDetails/' + productId
+            'http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/productTotalDetails/' + productId
         );
     }
 }

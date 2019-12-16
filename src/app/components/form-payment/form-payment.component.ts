@@ -14,7 +14,6 @@ export class PaymentFormComponent implements OnInit {
     public addPayment = false;
     public paymentForm: FormGroup = new FormGroup({
         id: new FormControl('', []),
-        type: new FormControl('', []),
         accountNumber: new FormControl('', []),
         accountHolderName: new FormControl('', []),
         expireDate: new FormControl('', []),

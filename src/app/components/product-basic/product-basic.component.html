@@ -40,10 +40,10 @@
                         <mat-chip *ngFor="let ee of el.options">
                             <mat-radio-button
                                 [color]="'primary'"
-                                [value]="ee.option"
+                                [value]="ee.optionValue"
                                 [labelPosition]="'before'"
                             >
-                                {{ ee.option }}
+                                {{ ee.optionValue }}
                             </mat-radio-button>
                         </mat-chip>
                     </mat-radio-group>

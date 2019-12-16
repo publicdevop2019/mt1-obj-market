@@ -16,7 +16,7 @@ export class AddressService {
     public getAddressById(id: string): Observable<IAddress> {
         return this.http.netImpl.getAddresses().pipe(
             switchMap(addresses => {
-                return of(addresses.find(el => el.id === id));
+                return of(addresses.find(el => el.id.toString() === id));
             })
         );
     }

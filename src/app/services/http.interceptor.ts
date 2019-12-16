@@ -10,6 +10,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpProxyService } from './http-proxy.service';
 import { SnackbarService } from './snackbar.service';
+import { AuthService } from './auth.service';
 /**
  * use refresh token if call failed
  */
@@ -19,16 +20,17 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     constructor(
         private router: Router,
         private httpProxy: HttpProxyService,
+        private authSvc:AuthService,
         private snackBarSvc: SnackbarService
     ) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
         if (
-            this.httpProxy.netImpl.currentUserAuthInfo &&
-            this.httpProxy.netImpl.currentUserAuthInfo.access_token
+            this.authSvc.currentUserAuthInfo &&
+            this.authSvc.currentUserAuthInfo.access_token
         ) {
             req = req.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${this.httpProxy.netImpl.currentUserAuthInfo.access_token}`
+                    Authorization: `Bearer ${this.authSvc.currentUserAuthInfo.access_token}`
                 }
             });
         }
@@ -50,7 +52,16 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                         this.openSnackbar('Access is not allowed');
                         return throwError(error);
                     } else if (httpError.status === 400) {
-                        this.openSnackbar('Bad request');
+                        if(req.url.indexOf('profiles/search')>-1){
+                            /**
+                             * create profile
+                             */
+                            this.httpProxy.netImpl.createProfile().subscribe(next=>{
+                                this.authSvc.userProfileId=next.headers.get('location')
+                            })
+                        }else{
+                            this.openSnackbar('Bad request');
+                        }
                         return throwError(error);
                     } else if (httpError.status === 0) {
                         this.openSnackbar('Network connection failed');

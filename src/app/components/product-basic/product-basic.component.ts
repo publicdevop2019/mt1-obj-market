@@ -40,7 +40,7 @@ export class ProductBasicComponent implements OnInit {
                     .filter(e => e.title === title)[0]
                     .options.filter(
                         e =>
-                            e.option ===
+                            e.optionValue ===
                             this.productSvc.formProduct.get(title).value
                     )[0].priceVar;
                 if (var1.indexOf('+') > -1) {

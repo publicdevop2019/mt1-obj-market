@@ -6,10 +6,9 @@ export interface ICategory {
     title: string;
     routerUrl: string;
 }
-export interface ICategory {
+export interface ICategoryNet {
     url: string;
     title: string;
-    routerUrl: string;
 }
 @Component({
     selector: 'app-category-list',
@@ -35,7 +34,7 @@ export class CategoryListComponent implements OnInit {
         });
         this.httpProxy.netImpl
             .getCategory()
-            .subscribe(next => (this.categoriesConfig = next));
+            .subscribe(next => (this.categoriesConfig = next.map(e=><ICategory>{title:e.title,url:e.url,routerUrl: '/categories/' + e.title})));
     }
 
     ngOnInit() {}

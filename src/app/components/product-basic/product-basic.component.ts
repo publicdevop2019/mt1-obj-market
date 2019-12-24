@@ -16,7 +16,7 @@ export class ProductBasicComponent implements OnInit {
 
     ngOnInit() {
         const optionCtrls: any = {};
-        this.productDetail.optionsList.forEach(e => {
+        this.productDetail.selectedOptions.forEach(e => {
             optionCtrls[e.title] = new FormControl('', []);
         });
         this.productSvc.formProduct = new FormGroup(optionCtrls);
@@ -36,7 +36,7 @@ export class ProductBasicComponent implements OnInit {
                     this.productSvc.formProduct.get(title).value
                 )
             ) {
-                const var1: string = this.productDetail.optionsList
+                const var1: string = this.productDetail.selectedOptions
                     .filter(e => e.title === title)[0]
                     .options.filter(
                         e =>

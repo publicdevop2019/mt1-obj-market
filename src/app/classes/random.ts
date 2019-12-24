@@ -172,7 +172,7 @@ export class RandomUtility {
                 5,
                 simple.imageUrlSmall
             ),
-            optionsList: RandomUtility.randomProductOptions()
+            selectedOptions: RandomUtility.randomProductOptions()
         } as IProductDetail;
     }
     public static randomProductOptions(): IProductOptions[] {

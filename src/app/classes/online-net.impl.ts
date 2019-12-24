@@ -21,7 +21,7 @@ export class OnlineNetImpl implements INet {
         return this.httpClient.post('http://localhost:8083/v1/api/profiles',null,{observe:'response'});
     };
     searchProfile():Observable<string>{
-        return this.httpClient.get<string>(            'http://localhost:8083/v1/api/profiles/search'        );
+        return this.httpClient.get<string>('http://localhost:8083/v1/api/profiles/search');
     };
     calcShipptingCost(
         product: IProductDetail,
@@ -38,7 +38,7 @@ export class OnlineNetImpl implements INet {
     }
     getCategory(): Observable<ICategory[]> {
         return this.httpClient.get<ICategory[]>(
-            'http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/categories'
+            'http://localhost:8084/v1/api/categories'
             );
         }
     removeFromCart(id: string): Observable<any> {
@@ -112,7 +112,7 @@ export class OnlineNetImpl implements INet {
     }
     getTopProducts(): Observable<IProductSimple[]> {
         return this.httpClient.get<IProductSimple[]>(
-            'http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/productTop'
+            'http://localhost:8084/v1/api/categories/string'
         );
     }
     /**
@@ -121,7 +121,7 @@ export class OnlineNetImpl implements INet {
     searchByCategory(category: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient
-                .get<IProductSimple[]>('http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/productTotal')
+                .get<IProductSimple[]>('http://localhost:8084/v1/api/categories/'+category)
                 .subscribe(next => {
                     el.next(next.filter(e => e.category === category));
                 });
@@ -129,7 +129,7 @@ export class OnlineNetImpl implements INet {
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(
-            'http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/productTotalDetails/' + productId
+            'http://localhost:8084/v1/api/productDetails/' + productId
         );
     }
 }

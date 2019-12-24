@@ -24,7 +24,7 @@ export interface IProductOption {
 }
 export interface IProductDetail extends IProductSimple {
     imageUrlLarge?: string[];
-    optionsList?: IProductOptions[];
+    selectedOptions?: IProductOptions[];
     specification?: string[];
 }
 @Component({

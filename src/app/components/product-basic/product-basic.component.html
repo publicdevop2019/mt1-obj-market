@@ -29,7 +29,7 @@
         <mat-divider></mat-divider>
         <div [formGroup]="productSvc.formProduct">
             <div
-                *ngFor="let el of productDetail.optionsList; let last = last"
+                *ngFor="let el of productDetail.selectedOptions; let last = last"
                 class="product-basic-option-container"
             >
                 <div class="product-basic-option-title">

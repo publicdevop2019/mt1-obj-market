@@ -13,15 +13,16 @@ import {
 import { INet} from './net.interface';
 import { RandomUtility } from './random';
 import { ITokenResponse, AuthService } from '../services/auth.service';
+import { environment } from 'src/environments/environment';
 
 export class OnlineNetImpl implements INet {
     private defaultDelay = 1000;
     constructor(public httpClient: HttpClient,public authSvc:AuthService) {}
     createProfile() : Observable<any>{
-        return this.httpClient.post('http://localhost:8083/v1/api/profiles',null,{observe:'response'});
+        return this.httpClient.post(environment.profileUrl+'/api/profiles',null,{observe:'response'});
     };
     searchProfile():Observable<string>{
-        return this.httpClient.get<string>('http://localhost:8083/v1/api/profiles/search');
+        return this.httpClient.get<string>(environment.profileUrl+'/api/profiles/search');
     };
     calcShipptingCost(
         product: IProductDetail,
@@ -42,72 +43,72 @@ export class OnlineNetImpl implements INet {
             );
         }
     removeFromCart(id: string): Observable<any> {
-        return this.httpClient.delete('http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/carts/' + id);
+        return this.httpClient.delete(environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/cart/' + id);
     }
     getCartItems(): Observable<ICartItem[]> {
-        return of(RandomUtility.randomCartOrders(5))
-        // return this.httpClient.get<ICartItem[]>(
-        //     'http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/carts'
-        // );
+        // return of(RandomUtility.randomCartOrders(5))
+        return this.httpClient.get<ICartItem[]>(
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/cart'
+        );
     }
     addToCart(item: ICartItem): Observable<any> {
-        return this.httpClient.post('http://localhost:8080/v1/api/profiles/'+this.authSvc.userProfileId+'/carts', item);
+        return this.httpClient.post(environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/cart', item);
     }
     createPayment(payment: IPayment): Observable<any> {
         return this.httpClient.post(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/payments',
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/payments',
             payment
         );
     }
     updatePayment(payment: IPayment): Observable<any> {
         return this.httpClient.put(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/payments/' + payment.id,
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/payments/' + payment.id,
             payment
         );
     }
     getPayments(): Observable<IPayment[]> {
         return this.httpClient.get<IPayment[]>(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/payments'
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/payments'
         );
     }
     deletePayment(id: string): Observable<any> {
         return this.httpClient.delete(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/payments/' + id
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/payments/' + id
         );
     }
     createOrder(order: IOrder): Observable<any> {
-        return this.httpClient.post('http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/orders', order,{observe:'response'});
+        return this.httpClient.post(environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/orders', order,{observe:'response'});
     }
     getOrderById(id: string): Observable<IOrder> {
         return this.httpClient.get<IOrder>(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/orders/' + id
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/orders/' + id
         );
     }
     getOrders(): Observable<IOrder[]> {
         return this.httpClient.get<IOrder[]>(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/orders'
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/orders'
         );
     }
     updateAddress(address: IAddress): Observable<any> {
         return this.httpClient.put(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/addresses/' + address.id,
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/addresses/' + address.id,
             address
         );
     }
     createAddress(address: IAddress): Observable<any> {
         return this.httpClient.post(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/addresses',
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/addresses',
             address
         );
     }
     getAddresses(): Observable<IAddress[]> {
         return this.httpClient.get<IAddress[]>(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/addresses'
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/addresses'
         );
     }
     deleteAddress(id: string): Observable<any> {
         return this.httpClient.delete(
-            'http://localhost:8083/v1/api/profiles/'+this.authSvc.userProfileId+'/addresses/' + id
+            environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/addresses/' + id
         );
     }
     getTopProducts(): Observable<IProductSimple[]> {

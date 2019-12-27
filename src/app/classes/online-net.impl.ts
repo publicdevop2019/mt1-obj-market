@@ -39,7 +39,7 @@ export class OnlineNetImpl implements INet {
     }
     getCategory(): Observable<ICategory[]> {
         return this.httpClient.get<ICategory[]>(
-            'http://localhost:8084/v1/api/categories'
+            environment.productUrl+'/api/categories'
             );
         }
     removeFromCart(id: string): Observable<any> {
@@ -113,7 +113,7 @@ export class OnlineNetImpl implements INet {
     }
     getTopProducts(): Observable<IProductSimple[]> {
         return this.httpClient.get<IProductSimple[]>(
-            'http://localhost:8084/v1/api/categories/string'
+            environment.productUrl+'/api/categories/string'
         );
     }
     /**
@@ -122,7 +122,7 @@ export class OnlineNetImpl implements INet {
     searchByCategory(category: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient
-                .get<IProductSimple[]>('http://localhost:8084/v1/api/categories/'+category)
+                .get<IProductSimple[]>(environment.productUrl+'/api/categories/'+category)
                 .subscribe(next => {
                     el.next(next.filter(e => e.category === category));
                 });
@@ -130,7 +130,7 @@ export class OnlineNetImpl implements INet {
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(
-            'http://localhost:8084/v1/api/productDetails/' + productId
+            environment.productUrl+'/api/productDetails/' + productId
         );
     }
 }

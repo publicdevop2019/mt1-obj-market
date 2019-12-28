@@ -113,7 +113,7 @@ export class OnlineNetImpl implements INet {
     }
     getTopProducts(): Observable<IProductSimple[]> {
         return this.httpClient.get<IProductSimple[]>(
-            environment.productUrl+'/api/categories/string'
+            environment.productUrl+'/api/categories/demo1'
         );
     }
     /**

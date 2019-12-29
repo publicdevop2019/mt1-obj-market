@@ -28,6 +28,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
             this.authSvc.currentUserAuthInfo &&
             this.authSvc.currentUserAuthInfo.access_token
         ) {
+            if(req.url.indexOf('profiles')>-1)
             req = req.clone({
                 setHeaders: {
                     Authorization: `Bearer ${this.authSvc.currentUserAuthInfo.access_token}`

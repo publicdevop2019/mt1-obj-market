@@ -11,7 +11,7 @@
             <div class="cart-item-brief-name">
                 {{ cartItemDetails.name | titlecase }}
             </div>
-            <div
+            <div *ngIf="cartItemDetails.selectedOptions"
                 [ngClass]="{
                     'cart-item-brief-options-container-editable': editable,
                     'cart-item-brief-options-container': !editable

@@ -1,15 +1,9 @@
 <ng-container *ngIf="productDetail">
     <div class="product-basic-image-container">
-        <img
-            *ngIf="productDetail.imageUrlLarge.length !== 0"
-            class="product-basic-image"
-            [src]="productDetail.imageUrlLarge[0]"
-        />
-        <img
-            *ngIf="productDetail.imageUrlLarge.length === 0"
-            class="product-basic-image"
-            [src]="productDetail.imageUrlSmall"
-        />
+        <img *ngIf="productDetail.imageUrlLarge && productDetail.imageUrlLarge.length !== 0" class="product-basic-image"
+            [src]="productDetail.imageUrlLarge[0]" />
+        <img *ngIf="!productDetail.imageUrlLarge" class="product-basic-image"
+            [src]="productDetail.imageUrlSmall" />
     </div>
     <div class="product-basic-detail-container">
         <div class="product-basic-title-container">
@@ -17,32 +11,26 @@
                 productDetail.name | titlecase
             }}</span>
             <span class="product-basic-title">{{
-                finalPrice | currency: 'CAD'
+                productSvc.finalPrice | currency: 'CAD'
             }}</span>
         </div>
         <div class="product-basic-desc">
             {{ productDetail.description }}
         </div>
         <div class="product-basic-sale">
-            {{ productDetail.sales }} &nbsp; sold
+            {{ productDetail.sales===null ||productDetail.sales===undefined? 0 : productDetail.sales }} &nbsp; sold
         </div>
-        <mat-divider></mat-divider>
+        <mat-divider *ngIf="productDetail.selectedOptions"></mat-divider>
         <div [formGroup]="productSvc.formProduct">
-            <div
-                *ngFor="let el of productDetail.selectedOptions; let last = last"
-                class="product-basic-option-container"
-            >
+            <div *ngFor="let el of productDetail.selectedOptions; let last = last"
+                class="product-basic-option-container">
                 <div class="product-basic-option-title">
                     {{ el.title | titlecase }}
                 </div>
                 <mat-chip-list>
                     <mat-radio-group [formControlName]="el.title">
                         <mat-chip *ngFor="let ee of el.options">
-                            <mat-radio-button
-                                [color]="'primary'"
-                                [value]="ee.optionValue"
-                                [labelPosition]="'before'"
-                            >
+                            <mat-radio-button [color]="'primary'" [value]="ee.optionValue" [labelPosition]="'before'">
                                 {{ ee.optionValue }}
                             </mat-radio-button>
                         </mat-chip>

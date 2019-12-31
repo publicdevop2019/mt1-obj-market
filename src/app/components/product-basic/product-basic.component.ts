@@ -11,19 +11,18 @@ import { IProductDetail } from '../../pages/product-detail/product-detail.compon
 })
 export class ProductBasicComponent implements OnInit {
     @Input() productDetail: IProductDetail;
-    public finalPrice: number;
     constructor(public productSvc: ProductService) {}
 
     ngOnInit() {
         const optionCtrls: any = {};
+        if(this.productDetail.selectedOptions)
         this.productDetail.selectedOptions.forEach(e => {
             optionCtrls[e.title] = new FormControl('', []);
         });
         this.productSvc.formProduct = new FormGroup(optionCtrls);
-        this.finalPrice = +this.productDetail.price;
+        this.productSvc.finalPrice=+this.productDetail.price;
         this.productSvc.formProduct.valueChanges.subscribe(next => {
-            this.finalPrice = this.calcTotal();
-            this.productSvc.finalPrice = this.finalPrice;
+            this.productSvc.finalPrice = this.calcTotal();
         });
     }
 

@@ -1,9 +1,6 @@
-<mat-card
-    class="custom-card"
-    [routerLink]="
+<mat-card class="custom-card" [routerLink]="
         '/categories/' + productSimple.category + '/' + productSimple.id
-    "
->
+    ">
     <img mat-card-image [src]="productSimple.imageUrlSmall" />
     <mat-card-content>
         <div class="product-simple-desc">
@@ -13,7 +10,7 @@
             <span>CAD $</span>{{ productSimple.price }}
         </div>
         <div class="product-simple-sale">
-            {{ productSimple.sales }} &nbsp; sold
+            {{ productSimple.sales===null ||productSimple.sales===undefined? 0 : productSimple.sales }} &nbsp; sold
         </div>
     </mat-card-content>
 </mat-card>

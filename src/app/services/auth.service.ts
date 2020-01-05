@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { SnackbarService } from './snackbar.service';
 export interface ITokenResponse {
     access_token: string;
     refresh_token?: string;
@@ -15,25 +16,41 @@ export interface ITokenResponse {
     providedIn: 'root'
 })
 export class AuthService {
-    public currentUserAuthInfo: ITokenResponse;
-    private _userProfileId: string;
-    get userProfileId(){
-        if(this._userProfileId===null|| this._userProfileId===undefined){
+    get currentUserAuthInfo() {
+        if (localStorage.getItem('jwt') === null)
+            return undefined;
+        return JSON.parse(localStorage.getItem('jwt')) as ITokenResponse;
+    }
+    set currentUserAuthInfo(token: ITokenResponse) {
+        if (token === null || token === undefined) {
+            localStorage.clear()
+        } else {
+            localStorage.setItem('jwt', JSON.stringify(token))
+        }
+    }
+    get userProfileId() {
+        if (localStorage.getItem('userProfileId') === null) {
             this.router.navigate(['/account']);
-            throw new Error('invalid value')
-        }else{
-            return this._userProfileId;
+            this._snackBarSvc.openSnackBar('Please login first')
+            /**
+             * @note below msg will not get printed out, 
+             * { return undefined } can not present here otherwise undefined will be added to url
+             */
+            throw new Error('userProfileId not exist')
+            // return undefined;
+        } else {
+            return localStorage.getItem('userProfileId')
         }
     };
-    set userProfileId(id:string){
-        this._userProfileId=id;
+    set userProfileId(id: string) {
+        localStorage.setItem('userProfileId', id)
     };
-    constructor(private httpClient: HttpClient,private router:Router) {}
+    constructor(private httpClient: HttpClient, private router: Router, private _snackBarSvc: SnackbarService) { }
     getToken(code: string): Observable<ITokenResponse> {
         const header = new HttpHeaders().append(
             'Authorization',
             'Basic ' +
-                btoa(environment.APP_ID + ':' + environment.APPP_SECRET_PUBLIC)
+            btoa(environment.APP_ID + ':' + environment.APPP_SECRET_PUBLIC)
         );
         const formData = new FormData();
         formData.append('grant_type', 'authorization_code');

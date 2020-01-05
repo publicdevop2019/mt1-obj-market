@@ -46,7 +46,6 @@ export class OnlineNetImpl implements INet {
         return this.httpClient.delete(environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/cart/' + id);
     }
     getCartItems(): Observable<ICartItem[]> {
-        // return of(RandomUtility.randomCartOrders(5))
         return this.httpClient.get<ICartItem[]>(
             environment.profileUrl+'/api/profiles/'+this.authSvc.userProfileId+'/cart'
         );

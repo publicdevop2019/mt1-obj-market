@@ -20,52 +20,53 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     constructor(
         private router: Router,
         private httpProxy: HttpProxyService,
-        private authSvc:AuthService,
+        private authSvc: AuthService,
         private snackBarSvc: SnackbarService
-    ) {}
+    ) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
         if (
             this.authSvc.currentUserAuthInfo &&
             this.authSvc.currentUserAuthInfo.access_token
         ) {
-            if(req.url.indexOf('profiles')>-1)
-            req = req.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${this.authSvc.currentUserAuthInfo.access_token}`
-                }
-            });
+            if (req.url.indexOf('profiles') > -1)
+                req = req.clone({
+                    setHeaders: {
+                        Authorization: `Bearer ${this.authSvc.currentUserAuthInfo.access_token}`
+                    }
+                });
         }
         return next.handle(req).pipe(
             catchError(error => {
                 if (error instanceof HttpErrorResponse) {
                     const httpError = error as HttpErrorResponse;
                     if (httpError.status === 401) {
-                        this.openSnackbar('Please login first');
+                        this.snackBarSvc.openSnackBar('Please login first');
+                        this.router.navigate(['/account']);
                         return throwError(error);
                     } else if (
                         this.errorStatus.indexOf(httpError.status) > -1
                     ) {
-                        this.openSnackbar('Server returns 5xx');
+                        this.snackBarSvc.openSnackBar('Server returns 5xx');
                     } else if (httpError.status === 404) {
-                        this.openSnackbar('Product or category not found');
+                        this.snackBarSvc.openSnackBar('Product or category not found');
                         return throwError(error);
                     } else if (httpError.status === 403) {
-                        this.openSnackbar('Access is not allowed');
+                        this.snackBarSvc.openSnackBar('Access is not allowed');
                         return throwError(error);
                     } else if (httpError.status === 400) {
-                        if(req.url.indexOf('profiles/search')>-1){
+                        if (req.url.indexOf('profiles/search') > -1) {
                             /**
                              * create profile
                              */
-                            this.httpProxy.netImpl.createProfile().subscribe(next=>{
-                                this.authSvc.userProfileId=next.headers.get('location')
+                            this.httpProxy.netImpl.createProfile().subscribe(next => {
+                                this.authSvc.userProfileId = next.headers.get('location')
                             })
-                        }else{
-                            this.openSnackbar('Bad request');
+                        } else {
+                            this.snackBarSvc.openSnackBar('Bad request');
                         }
                         return throwError(error);
                     } else if (httpError.status === 0) {
-                        this.openSnackbar('Network connection failed');
+                        this.snackBarSvc.openSnackBar('Network connection failed');
                         return throwError(error);
                     } else {
                         return throwError(error);
@@ -78,8 +79,5 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                 }
             })
         );
-    }
-    openSnackbar(message: string) {
-        this.snackBarSvc.openSnackBar(message);
     }
 }

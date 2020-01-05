@@ -49,6 +49,13 @@ export class AccountComponent implements OnInit {
                 .subscribe(next => {
                     if (next) {
                         this.authSvc.currentUserAuthInfo = next;
+                        /** remove one time code to prevent refresh issue */
+                        this.router.navigate([], {
+                            queryParams: {
+                              code: null,
+                            },
+                            queryParamsHandling: 'merge'
+                          })
                         /**
                          * search profile 
                          */

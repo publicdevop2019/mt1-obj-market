@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, mergeMap } from 'rxjs/operators';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -54,12 +54,15 @@ export class ProductDetailComponent implements OnInit {
             });
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
     public addToCart() {
         this.cartSvc.httpProxy.netImpl
-            .addToCart(this.productSvc.extractCartItem())
-            .subscribe(next => {
+            .addToCart(this.productSvc.extractCartItem()).pipe(mergeMap(next => {
                 this.snackBarSvc.openSnackBar('Item added');
+                return this.cartSvc.httpProxy.netImpl.getCartItems()
+            }))
+            .subscribe(next => {
+                this.cartSvc.cart = next;
             });
     }
 }

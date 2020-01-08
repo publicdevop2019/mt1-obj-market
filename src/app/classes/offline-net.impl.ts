@@ -10,19 +10,29 @@ import {
     IProductDetail,
     IProductSimple
 } from '../pages/product-detail/product-detail.component';
-import { INet} from './net.interface';
+import { INet } from './net.interface';
 import { RandomUtility } from './random';
 import { ITokenResponse, AuthService } from '../services/auth.service';
 
 export class OfflineNetImpl implements INet {
-    createProfile() : Observable<any>{
+    createProfile(): Observable<any> {
         return of('100').pipe(
             delay(this.defaultDelay)
         );
     }
     private defaultDelay = 1000;
-    constructor(public httpClient: HttpClient,public authSvc:AuthService) {}
-    searchProfile():Observable<string>{
+    constructor(public httpClient: HttpClient, public authSvc: AuthService) {
+        /** add mock auth info */
+        localStorage.setItem('jwt', JSON.stringify(<ITokenResponse>{
+            'access_token': 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwIiwiYXVkIjpbImVkZ2UtcHJveHkiLCJvYXV0aDItaWQiXSwidXNlcl9uYW1lIjoicm9vdEBnbWFpbC5jb20iLCJzY29wZSI6WyJ0cnVzdCIsInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1NzU5NTM1MzQsImlhdCI6MTU3NTk1MzQxNCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9ST09UIiwiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiI4OGVjYWRiYi1jN2EwLTRlYzMtYTNmOC01YjA3MTk3NDhhYzkiLCJjbGllbnRfaWQiOiJsb2dpbi1pZCJ9.lf19Ii1TcpWyVvaCBSJqijN2TA7HB5g7fMULjrAjgx0Ew2qdvlmb-unvRg3tOBarRu57GThWCVnEBGXXKKZ38VnZV1I14JDHDJxuOODnrPMDVUMdP0dMxtvGZ0AatHe6HQvWlzsGKMpGSHYLa2eX-3SGUNjWTRKIWFwdtQUnaYU4Tga4dOnRQYf7zd8kJmgRZE70fSY3hXzy3huqcemNuCZBW6nuEqHDnv-GbHaL8MXzPDaI8wt3QPAFPpYF4nGBdgoujHpSRFBZDDtR18pzHOBhwkke2FuTdRIoQBVCR5-mIQ5tYAD8psRASFrKlFxGsIKki5kDwzSMDCzQXWSuw',
+            'refresh_token': 'string',
+            'token_type': 'bearer',
+            'expires_in': 'string',
+            'scope': 'string',
+            'uid': 'root'
+        }))
+    }
+    searchProfile(): Observable<string> {
         return of('100').pipe(
             delay(this.defaultDelay)
         );

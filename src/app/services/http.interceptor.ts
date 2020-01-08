@@ -41,6 +41,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                     const httpError = error as HttpErrorResponse;
                     if (httpError.status === 401) {
                         this.snackBarSvc.openSnackBar('Please login first');
+                        localStorage.clear();
                         this.router.navigate(['/account']);
                         return throwError(error);
                     } else if (

@@ -1,24 +1,17 @@
 <ng-container *ngIf="isHomePage">
     <div class="category-mobile-container">
-        <div
-            *ngFor="let el of categoriesConfig"
-            [routerLink]="el.routerUrl"
-            class="category-mobile-item"
-        >
+        <div *ngFor="let el of categoriesConfig" [routerLink]="el.routerUrl" class="category-mobile-item">
             <img [src]="el.url" [alt]="el.title" class="category-mobile-icon" />
             <div class="category-mobile-title">{{ el.title }}</div>
         </div>
     </div>
 </ng-container>
-<mat-nav-list *ngIf="isCategories">
-    <mat-list>
-        <mat-list-item
-            *ngFor="let el of categoriesConfig"
-            [routerLink]="el.routerUrl"
-            class="category-list-item"
-        >
-            <!-- <img [src]="el.url" [alt]=" el.title" mat-list-icon class="category-mobile-icon"> -->
-            <p mat-line>{{ el.title | titlecase }}</p>
+<mat-nav-list *ngIf="isCategories" style="padding-top: 0px;">
+    <mat-list style="padding-top: 0px;">
+        <mat-list-item *ngFor="let el of categoriesConfig" [routerLink]="el.routerUrl" class="category-list-item">
+            <div style="display: flex;flex-direction: row; justify-content:space-between;align-items:center;width: 100%;"><p mat-line>{{ el.title | titlecase }}</p><mat-icon>keyboard_arrow_right</mat-icon></div>
+            
+            <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
 </mat-nav-list>

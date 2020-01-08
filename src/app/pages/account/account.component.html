@@ -1,9 +1,4 @@
 <ng-container *ngIf="authSvc.currentUserAuthInfo">
-    <div class="account-head-container">
-        <mat-icon class="account-head-icon">account_circle</mat-icon
-        ><span class="account-head-username">{{ getUsername() }}</span>
-    </div>
-    <mat-divider></mat-divider>
     <mat-list>
         <mat-list-item
             *ngFor="let el of accountConfig"

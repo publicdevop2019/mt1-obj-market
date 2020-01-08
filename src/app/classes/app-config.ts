@@ -22,81 +22,20 @@ export const CONFIG_FOOTER: IList[] = [
         routerUrl: 'account'
     }
 ];
-export const CONFIG_CATEGORIES: IList[] = [
-    {
-        icon: 'movie',
-        title: 'Automobiles & Motorcycles',
-        routerUrl: '/categories/Automobiles & Motorcycles'
-    },
-    {
-        icon: 'local_dining',
-        title: 'Cloth',
-        routerUrl: '/categories/cloth'
-    },
-    {
-        icon: 'looks_3',
-        title: 'Movies',
-        routerUrl: '/categories/movies'
-    },
-    {
-        icon: 'looks_4',
-        title: 'Games',
-        routerUrl: '/categories/games'
-    },
-    {
-        icon: 'looks_one',
-        title: 'Automobiles & Motorcycles',
-        routerUrl: '/categories/Automobiles & Motorcycles'
-    },
-    {
-        icon: 'looks_two',
-        title: 'Cloth',
-        routerUrl: '/categories/cloth'
-    },
-    {
-        icon: 'looks_3',
-        title: 'Movies',
-        routerUrl: '/categories/movies'
-    },
-    {
-        icon: 'looks_4',
-        title: 'Games',
-        routerUrl: '/categories/games'
-    },
-    {
-        icon: 'looks_one',
-        title: 'Automobiles & Motorcycles',
-        routerUrl: '/categories/Automobiles & Motorcycles'
-    },
-    {
-        icon: 'looks_two',
-        title: 'Cloth',
-        routerUrl: '/categories/cloth'
-    },
-    {
-        icon: 'looks_3',
-        title: 'Movies',
-        routerUrl: '/categories/movies'
-    },
-    {
-        icon: 'looks_4',
-        title: 'Games',
-        routerUrl: '/categories/games'
-    }
-];
+
 export const CONFIG_ACCOUNT: IList[] = [
     {
-        icon: 'looks_4',
+        icon: 'local_shipping_outline',
         title: 'Shipping Address',
         routerUrl: '/addresses'
     },
     {
-        icon: 'looks_4',
+        icon: 'assignment_outline',
         title: 'Orders',
         routerUrl: '/orders'
     },
     {
-        icon: 'looks_two',
+        icon: 'account_balance_wallet_outline',
         title: 'Payment Methods',
         routerUrl: '/payments'
     }

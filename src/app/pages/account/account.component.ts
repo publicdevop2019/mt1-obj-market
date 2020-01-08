@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, mergeMap } from 'rxjs/operators';
 import { CONFIG_ACCOUNT } from 'src/app/classes/app-config';
 import { safelyGetValue } from 'src/app/classes/utility';
 import { IList } from 'src/app/components/footer/footer.component';
 import { AuthService, ITokenResponse } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { HttpProxyService } from 'src/app/services/http-proxy.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
     selector: 'app-account',
@@ -19,62 +20,59 @@ export class AccountComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         public authSvc: AuthService,
-        private httpProxy:HttpProxyService,
-        private router: Router
+        private httpProxy: HttpProxyService,
+        private router: Router,
+        private cartSvc: CartService
     ) {
         if (!this.authSvc.currentUserAuthInfo) {
             this.route.queryParams
                 .pipe(
-                    switchMap(output => {
-                        // if(environment.mode==='online'){
-                        //     return of(<ITokenResponse>{
-                        //         'access_token': 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwIiwiYXVkIjpbImVkZ2UtcHJveHkiLCJvYXV0aDItaWQiXSwidXNlcl9uYW1lIjoicm9vdEBnbWFpbC5jb20iLCJzY29wZSI6WyJ0cnVzdCIsInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1NzU5NTM1MzQsImlhdCI6MTU3NTk1MzQxNCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9ST09UIiwiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiI4OGVjYWRiYi1jN2EwLTRlYzMtYTNmOC01YjA3MTk3NDhhYzkiLCJjbGllbnRfaWQiOiJsb2dpbi1pZCJ9.lf19Ii1TcpWyVvaCBSJqijN2TA7HB5g7fMULjrAjgx0Ew2qdvlmb-unvRg3tOBarRu57GThWCVnEBGXXKKZ38VnZV1I14JDHDJxuOODnrPMDVUMdP0dMxtvGZ0AatHe6HQvWlzsGKMpGSHYLa2eX-3SGUNjWTRKIWFwdtQUnaYU4Tga4dOnRQYf7zd8kJmgRZE70fSY3hXzy3huqcemNuCZBW6nuEqHDnv-GbHaL8MXzPDaI8wt3QPAFPpYF4nGBdgoujHpSRFBZDDtR18pzHOBhwkke2FuTdRIoQBVCR5-mIQ5tYAD8psRASFrKlFxGsIKki5kDwzSMDCzQXWSuw',
-                        //         'refresh_token': 'string',
-                        //         'token_type': 'bearer',
-                        //         'expires_in': 'string',
-                        //         'scope': 'string',
-                        //         'uid': 'root'
-                        //     })
-                        // }
+                    mergeMap(output => {
                         if (output.code === undefined || output.code === null) {
-                            /**
-                             * do nothing, wait for user trigger login
-                             */
+                            /** do nothing, wait for user trigger login */
                             return of(undefined);
                         } else {
                             return this.authSvc.getToken(output.code);
                         }
                     })
+                ).pipe(
+                    mergeMap(authInfo => {
+                        if (authInfo) {
+                            this.authSvc.currentUserAuthInfo = authInfo;
+                            /** remove one time code to prevent refresh issue */
+                            this.router.navigate([], {
+                                queryParams: {
+                                    code: null,
+                                },
+                                queryParamsHandling: 'merge'
+                            })
+                            return this.httpProxy.netImpl.searchProfile()
+                        } else {
+                            return of(undefined);
+                            /** purposely do nothing */
+                        }
+                    })
+                ).pipe(
+                    mergeMap(profileId => {
+                        if (profileId) {
+                            this.authSvc.userProfileId = profileId;
+                            return this.httpProxy.netImpl.getCartItems()
+                        } else {
+                            return of(undefined);
+                        }
+                    })
                 )
-                .subscribe(next => {
-                    if (next) {
-                        this.authSvc.currentUserAuthInfo = next;
-                        /** remove one time code to prevent refresh issue */
-                        this.router.navigate([], {
-                            queryParams: {
-                              code: null,
-                            },
-                            queryParamsHandling: 'merge'
-                          })
-                        /**
-                         * search profile 
-                         */
-                        this.httpProxy.netImpl.searchProfile().subscribe(
-                            next=>{
-                                this.authSvc.userProfileId=next;
-                            }
-                        )
-
+                .subscribe(
+                    carts => {
+                        this.cartSvc.cart = carts || [];
                         if (sessionStorage.getItem('nextUrl')) {
-                            this.router.navigateByUrl(
-                                sessionStorage.getItem('nextUrl')
-                            );
+                            this.router.navigateByUrl(sessionStorage.getItem('nextUrl'));
                             sessionStorage.removeItem('nextUrl');
                         }
-                    } else {
-                        /** purposely do nothing */
                     }
-                });
+                )
+
+
         } else {
             /**
              * do nothing
@@ -82,7 +80,7 @@ export class AccountComponent implements OnInit {
         }
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
     getUsername(): string {
         return safelyGetValue<string>(
             () => this.authSvc.currentUserAuthInfo.uid,
@@ -96,5 +94,6 @@ export class AccountComponent implements OnInit {
     }
     logout() {
         this.authSvc.currentUserAuthInfo = undefined;
+        this.cartSvc.cart = [];
     }
 }

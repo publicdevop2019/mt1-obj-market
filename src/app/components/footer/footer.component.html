@@ -7,7 +7,8 @@
         [routerLink]="el.routerUrl"
         style="flex: 1; line-height: 0px;"
     >
-        <mat-icon class="footer-mobile-icon">{{ el.icon }} </mat-icon>
+        <mat-icon *ngIf="el.title==='Cart'" class="footer-mobile-icon" matBadge="{{cartSvc.cart.length}}" matBadgePosition="above after" matBadgeColor="accent">{{ el.icon }} </mat-icon>
+        <mat-icon *ngIf="el.title!=='Cart'" class="footer-mobile-icon" >{{ el.icon }} </mat-icon>
         <div class="footer-mobile-title">{{ el.title }}</div>
     </button>
 </mat-toolbar>

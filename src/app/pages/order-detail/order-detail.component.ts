@@ -87,7 +87,7 @@ export class OrderDetailComponent implements OnInit {
             .subscribe(next => {
                 this.cartSvc.cart = [];
                 this.orderSvc.justCompletedOrder = this.order;
-                this.orderSvc.justCompletedOrder.id = next.headers.get('location');
+                this.orderSvc.justCompletedOrder.id = next.headers?next.headers.get('location'):'';
                 this.router.navigate(['/order-complete']);
             });
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CONFIG_FOOTER } from 'src/app/classes/app-config';
+import { CartService } from 'src/app/services/cart.service';
 export interface IList {
     icon: string;
     title: string;
@@ -12,7 +13,7 @@ export interface IList {
 })
 export class FooterComponent implements OnInit {
     footerConfig: IList[] = CONFIG_FOOTER;
-    constructor() {}
+    constructor(public cartSvc:CartService) {}
 
     ngOnInit() {}
 }

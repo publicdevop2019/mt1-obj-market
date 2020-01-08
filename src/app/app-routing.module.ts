@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormAddressComponent } from './components/form-address/form-address.component';
-import { PaymentFormComponent } from './components/form-payment/form-payment.component';
+import { FormPaymentComponent } from './components/form-payment/form-payment.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AccountComponent } from './pages/account/account.component';
 import { AddressesComponent } from './pages/addresses/addresses.component';
@@ -49,9 +49,9 @@ const routes: Routes = [
     { path: 'orders', component: OrdersComponent },
     { path: 'orders/:orderId', component: OrderDetailComponent },
     { path: 'order-complete', component: OrderCompleteComponent },
-    { path: 'payment', component: PaymentFormComponent },
+    { path: 'payment', component: FormPaymentComponent },
     { path: 'payments', component: PaymentsComponent },
-    { path: 'payments/:paymentId', component: PaymentFormComponent },
+    { path: 'payments/:paymentId', component: FormPaymentComponent },
     { path: 'address', component: FormAddressComponent },
     { path: 'addresses', component: AddressesComponent },
     { path: 'addresses/:addressId', component: FormAddressComponent },

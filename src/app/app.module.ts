@@ -35,7 +35,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CardOrderComponent } from './components/card-order/card-order.component';
 import { CardPaymentComponent } from './components/card-payment/card-payment.component';
-import { PaymentFormComponent } from './components/form-payment/form-payment.component';
+import { FormPaymentComponent } from './components/form-payment/form-payment.component';
 import { ProductBasicComponent } from './components/product-basic/product-basic.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
@@ -82,7 +82,7 @@ import { FilterService } from './services/filter.service';
         BottomSheetAddressPickerComponent,
         FabComponent,
         PaymentsComponent,
-        PaymentFormComponent,
+        FormPaymentComponent,
         CardAddressComponent,
         OrderDetailComponent,
         ProductBasicComponent,

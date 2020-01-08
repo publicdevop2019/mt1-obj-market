@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
     templateUrl: './form-payment.component.html',
     styleUrls: ['./form-payment.component.scss']
 })
-export class PaymentFormComponent implements OnInit {
+export class FormPaymentComponent implements OnInit {
     public addPayment = false;
     public paymentForm: FormGroup = new FormGroup({
         id: new FormControl('', []),

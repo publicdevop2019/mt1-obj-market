@@ -16,7 +16,8 @@ import {
     MatSelectModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatRippleModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -116,6 +117,7 @@ import { FilterService } from './services/filter.service';
         MatBadgeModule,
         MatProgressBarModule,
         MatSidenavModule,
+        MatRippleModule,
         // InMemoryWebApiModule.forRoot(InmemoryDataService, {
         //     delay: 2000,
         //     passThruUnknownUrl: true

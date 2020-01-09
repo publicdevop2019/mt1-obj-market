@@ -1,6 +1,8 @@
 <mat-card class="custom-card" [routerLink]="
         '/categories/' + productSimple.category + '/' + productSimple.id
-    ">
+    "
+    matRipple 
+    >
     <img mat-card-image [src]="productSimple.imageUrlSmall" />
     <mat-card-content>
         <div class="product-simple-desc">

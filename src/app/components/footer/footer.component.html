@@ -1,14 +1,14 @@
-<mat-toolbar color="primary" class="footer-mobile-container">
+<mat-toolbar color="accent" class="footer-mobile-container">
     <button
         *ngFor="let el of footerConfig"
         class="footer-mobile-item"
         mat-button
-        color="primary"
+        color="accent"
         [routerLink]="el.routerUrl"
         style="flex: 1; line-height: 0px;"
     >
-        <mat-icon *ngIf="el.title==='Cart'" class="footer-mobile-icon" matBadge="{{cartSvc.cart.length}}" matBadgePosition="above after" matBadgeColor="accent">{{ el.icon }} </mat-icon>
-        <mat-icon *ngIf="el.title!=='Cart'" class="footer-mobile-icon" >{{ el.icon }} </mat-icon>
+        <mat-icon *ngIf="el.title==='Cart'" class="footer-mobile-icon" fontSet="material-icons-outlined" matBadge="{{cartSvc.cart.length}}" matBadgePosition="above after" matBadgeColor="primary">{{ el.icon }} </mat-icon>
+        <mat-icon *ngIf="el.title!=='Cart'" class="footer-mobile-icon" fontSet="material-icons-outlined">{{ el.icon }} </mat-icon>
         <div class="footer-mobile-title">{{ el.title }}</div>
     </button>
 </mat-toolbar>

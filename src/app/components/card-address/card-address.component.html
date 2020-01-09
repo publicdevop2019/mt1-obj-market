@@ -1,8 +1,9 @@
-<mat-card
+<mat-card  
     [ngClass]="{
         'card-container': !editable,
         'card-container-action': editable
     }"
+    matRipple 
 >
     <div class="card-title">
         {{ address.fullName }}

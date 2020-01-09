@@ -1,6 +1,2 @@
-<ng-container *ngFor="let el of productSvc.productSimpleList">
-    <app-card-product
-        [productSimple]="el"
-        class="product-simple-mobile-container"
-    ></app-card-product>
-</ng-container>
+<app-card-product *ngFor="let el of productSvc.productSimpleList" [productSimple]="el"
+    class="product-simple-mobile-container"></app-card-product>

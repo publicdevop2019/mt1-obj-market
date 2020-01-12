@@ -13,6 +13,8 @@ import { OrderDetailComponent } from './pages/order-detail/order-detail.componen
 import { OrdersComponent } from './pages/orders/orders.component';
 import { PaymentsComponent } from './pages/payments/payments.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { SearchComponent } from './pages/search/search.component';
+import { OrderService } from './services/order.service';
 /**
  * @note remember to add animation in data {} to for new router mapping
  */
@@ -40,7 +42,7 @@ const routes: Routes = [
     {
         path: 'categories/:category/:productId',
         component: ProductDetailComponent,
-        data: { fab: 'goBack', animation: 'productDetail' }
+        data: { animation: 'productDetail' }
     },
     { path: 'cart', component: CartComponent, data: { animation: 'cart' } },
     {
@@ -48,7 +50,8 @@ const routes: Routes = [
         component: AccountComponent,
         data: { animation: 'AccountPage' }
     },
-    { path: 'order', component: OrderDetailComponent, data: { animation: 'order' } },
+    { path: 'order', component: OrderDetailComponent, data: { animation: 'order' } ,canActivate:[OrderService]},
+    { path: 'search', component: SearchComponent, data: { productListCategory: 'search', animation: 'search' } },
     { path: 'orders', component: OrdersComponent, data: { animation: 'orders' } },
     { path: 'orders/:orderId', component: OrderDetailComponent, data: { animation: 'orderDetail' } },
     { path: 'order-complete', component: OrderCompleteComponent, data: { animation: 'orderComplete' } },

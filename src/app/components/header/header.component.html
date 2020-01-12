@@ -1,14 +1,7 @@
 <mat-toolbar color="accent" class="header-mobile-container">
-    <mat-icon *ngIf="!onHomePage" (click)="navBack()"
-        >keyboard_backspace</mat-icon
-    >
-    <div class="search-mobile-container">
-        <mat-icon>search</mat-icon>
-        <!-- <mat-form-field class="search-mobile-input">
-            <input matInput placeholder="type to search" formControlName="searchInput">
-        </mat-form-field> -->
+    <mat-icon *ngIf="!onHomePage" (click)="navBack()">keyboard_backspace</mat-icon>
+    <div *ngIf="!onSearchPage" class="search-mobile-container">
+        <mat-icon [routerLink]="'search'" color="primary">search</mat-icon>
     </div>
-    <mat-icon *ngIf="onCategoriesPage" (click)="emitEvent()"
-        >filter_list</mat-icon
-    >
+    <mat-icon *ngIf="onCategoriesPage" (click)="emitEvent()">filter_list</mat-icon>
 </mat-toolbar>

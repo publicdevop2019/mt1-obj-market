@@ -1,10 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { onCategoriesPageHeader, onHomeHeader } from 'src/app/classes/utility';
-import { Location } from '@angular/common';
+import { onCategoriesPageHeader, onHomeHeader, onSearchHeader } from 'src/app/classes/utility';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -13,7 +12,7 @@ import { Location } from '@angular/common';
 export class HeaderComponent implements OnInit {
     public onCategoriesPage: boolean;
     public onHomePage: boolean;
-    public searchInput: AbstractControl = new FormControl('', []);
+    public onSearchPage: boolean;
     @Output() filterClick = new EventEmitter<void>();
     constructor(
         public activatedRoute: ActivatedRoute,
@@ -25,10 +24,11 @@ export class HeaderComponent implements OnInit {
         ) as Observable<NavigationEnd>).subscribe(next => {
             this.onCategoriesPage = onCategoriesPageHeader();
             this.onHomePage = onHomeHeader();
+            this.onSearchPage = onSearchHeader();
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
     navBack() {
         this.location.back();
     }

@@ -9,6 +9,10 @@ export function onHomeHeader(): boolean {
     const regex2 = new RegExp('/home');
     return regex2.test(location.pathname);
 }
+export function onSearchHeader(): boolean {
+    const regex2 = new RegExp('/search');
+    return regex2.test(location.pathname);
+}
 export function notNullAndUndefined(input: any): boolean {
     return !(input === null || input === undefined);
 }

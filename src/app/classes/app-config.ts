@@ -25,17 +25,17 @@ export const CONFIG_FOOTER: IList[] = [
 
 export const CONFIG_ACCOUNT: IList[] = [
     {
-        icon: 'local_shipping_outline',
+        icon: 'local_shipping',
         title: 'Shipping Address',
         routerUrl: '/addresses'
     },
     {
-        icon: 'assignment_outline',
+        icon: 'assignment',
         title: 'Orders',
         routerUrl: '/orders'
     },
     {
-        icon: 'account_balance_wallet_outline',
+        icon: 'account_balance_wallet',
         title: 'Payment Methods',
         routerUrl: '/payments'
     }

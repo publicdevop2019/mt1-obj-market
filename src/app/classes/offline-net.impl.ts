@@ -15,6 +15,15 @@ import { RandomUtility } from './random';
 import { ITokenResponse, AuthService } from '../services/auth.service';
 
 export class OfflineNetImpl implements INet {
+    searchProduct(key: string): Observable<IProductSimple[]> {
+        return new Observable<IProductSimple[]>(el => {
+            this.httpClient
+                .get<IProductSimple[]>('http://localhost:8080/api/productTotal')
+                .subscribe(next => {
+                    el.next(next.filter(e => e.name === key));
+                });
+        });
+    };
     createProfile(): Observable<any> {
         return of('100').pipe(
             delay(this.defaultDelay)

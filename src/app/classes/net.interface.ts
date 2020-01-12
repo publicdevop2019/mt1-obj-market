@@ -6,8 +6,10 @@ import { ICartItem } from '../pages/cart/cart.component';
 import { IPayment } from '../pages/payments/payments.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 export interface INet {
-    searchProfile:() =>Observable<string>;
-    createProfile:()=>Observable<any>;
+    searchProduct: (key: string) => Observable<IProductSimple[]>;
+
+    searchProfile: () => Observable<string>;
+    createProfile: () => Observable<any>;
     getCategory: () => Observable<ICategoryNet[]>;
     searchByCategory: (category: string) => Observable<IProductSimple[]>;
     getTopProducts: () => Observable<IProductSimple[]>;

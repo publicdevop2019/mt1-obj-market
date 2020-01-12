@@ -1,11 +1,12 @@
 <mat-nav-list *ngIf="authSvc.currentUserAuthInfo">
     <mat-list>
         <mat-list-item
-            *ngFor="let el of accountConfig"
+            *ngFor="let el of accountConfig let last = last"
             [routerLink]="el.routerUrl"
         >
             <mat-icon fontSet="material-icons-outlined" mat-list-icon>{{ el.icon }}</mat-icon>
             <p mat-line>{{ el.title }}</p>
+            <mat-divider *ngIf="!last"></mat-divider>
         </mat-list-item>
     </mat-list>
     <app-btn [lable]="'Log Out'" (click)="logout()"></app-btn>

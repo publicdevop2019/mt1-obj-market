@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { notNullAndUndefinedAndEmptyString } from 'src/app/classes/utility';
 import { ProductService } from 'src/app/services/product.service';
 import { IProductDetail } from '../../pages/product-detail/product-detail.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-product-basic',
@@ -11,6 +12,7 @@ import { IProductDetail } from '../../pages/product-detail/product-detail.compon
 })
 export class ProductBasicComponent implements OnInit {
     @Input() productDetail: IProductDetail;
+    public imageUrlPrefix: string = environment.imageUrl + '/'
     constructor(public productSvc: ProductService) {}
 
     ngOnInit() {

@@ -13,6 +13,7 @@ export const environment = {
   authorzieUrl: 'http://localhost:4300/authorize?response_type=code&',
   profileUrl:'http://localhost:8111',
   productUrl:'http://localhost:8111',
+  imageUrl:'http://localhost:8111/api/files',
   // profileUrl:'http://localhost:8083/v1',
   // productUrl:'http://localhost:8084/v1',
 };

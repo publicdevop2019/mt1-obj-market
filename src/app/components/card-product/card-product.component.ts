@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IProductSimple } from '../../pages/product-detail/product-detail.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-card-product',
@@ -8,6 +9,7 @@ import { IProductSimple } from '../../pages/product-detail/product-detail.compon
 })
 export class CardProductComponent implements OnInit {
     @Input() public productSimple: IProductSimple;
+    public imageUrlPrefix: string = environment.imageUrl + '/'
     constructor() {}
 
     ngOnInit() {}

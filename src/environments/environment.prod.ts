@@ -8,4 +8,5 @@ export const environment = {
   authorzieUrl: 'https://oauth2service-c00b3.firebaseapp.com/authorize?response_type=code&',
   profileUrl:'https://www.ngform.com',
   productUrl:'https://www.ngform.com',
+  imageUrl:'https://www.ngform.com/files',
 };

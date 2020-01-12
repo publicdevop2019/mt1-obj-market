@@ -1,9 +1,9 @@
 <ng-container *ngIf="productDetail">
     <div class="product-basic-image-container">
         <img *ngIf="productDetail.imageUrlLarge && productDetail.imageUrlLarge.length !== 0" class="product-basic-image"
-            [src]="productDetail.imageUrlLarge[0]" />
+            [src]="imageUrlPrefix+productDetail.imageUrlLarge[0]" />
         <img *ngIf="!productDetail.imageUrlLarge" class="product-basic-image"
-            [src]="productDetail.imageUrlSmall" />
+            [src]="imageUrlPrefix+productDetail.imageUrlSmall" />
     </div>
     <div class="product-basic-detail-container">
         <div class="product-basic-title-container">

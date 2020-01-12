@@ -6,7 +6,7 @@
             (click)="emitEvent()"
             >delete_outline</mat-icon
         >
-        <img class="cart-item-image" [src]="cartItemDetails.imageUrlSmall" />
+        <img class="cart-item-image" [src]="imageUrlPrefix+cartItemDetails.imageUrlSmall" />
         <div class="cart-item-brief-container">
             <div class="cart-item-brief-name">
                 {{ cartItemDetails.name | titlecase }}

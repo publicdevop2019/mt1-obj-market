@@ -7,7 +7,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start-pwa": "http-server -p 8080 -c-1 dist/mt1-obj-market",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint --fix",
     "e2e": "ng e2e",

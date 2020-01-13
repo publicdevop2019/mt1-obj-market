@@ -6,7 +6,7 @@ COPY . .
 
 RUN npm install
 
-RUN npm run ng build 
+RUN npm run build 
 
 FROM nginx:latest
 

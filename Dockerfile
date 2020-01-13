@@ -8,10 +8,6 @@ RUN npm install
 
 RUN npm run ng build --prod
 
-RUN ls
-
-RUN ls ./dist
-
 FROM nginx:latest
 
 WORKDIR /usr/share/nginx/html

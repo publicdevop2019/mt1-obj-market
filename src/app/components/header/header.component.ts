@@ -10,21 +10,21 @@ import { onCategoriesPageHeader, onHomeHeader, onSearchHeader } from 'src/app/cl
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    public onCategoriesPage: boolean;
-    public onHomePage: boolean;
-    public onSearchPage: boolean;
+    public onCategoriesPage: boolean = onCategoriesPageHeader();
+    public onHomePage: boolean = onHomeHeader();
+    public onSearchPage: boolean = onSearchHeader();
     @Output() filterClick = new EventEmitter<void>();
     constructor(
         public activatedRoute: ActivatedRoute,
         public router: Router,
         private location: Location
-    ) {
-        (router.events.pipe(
-            filter(evt => evt instanceof NavigationEnd)
-        ) as Observable<NavigationEnd>).subscribe(next => {
-            this.onCategoriesPage = onCategoriesPageHeader();
-            this.onHomePage = onHomeHeader();
-            this.onSearchPage = onSearchHeader();
+        ) {
+            (router.events.pipe(
+                filter(evt => evt instanceof NavigationEnd)
+                ) as Observable<NavigationEnd>).subscribe(next => {
+                    this.onCategoriesPage = onCategoriesPageHeader();
+                    this.onHomePage = onHomeHeader();
+                    this.onSearchPage = onSearchHeader();
         });
     }
 

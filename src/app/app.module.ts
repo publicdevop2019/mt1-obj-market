@@ -45,6 +45,9 @@ import { CustomHttpInterceptor } from './services/http.interceptor';
 import { LoadingInterceptor } from './services/loading.interceptor';
 import { ProductService } from './services/product.service';
 import { SnackbarService } from './services/snackbar.service';
+import { LazyImageComponent } from './components/lazy-image/lazy-image.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InmemoryDataService } from './services/in-memory-data.service';
 @NgModule({
     declarations: [
         AppComponent,
@@ -75,7 +78,8 @@ import { SnackbarService } from './services/snackbar.service';
         BtnComponent,
         FormFilterComponent,
         SearchComponent,
-        FormSearchComponent
+        FormSearchComponent,
+        LazyImageComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),

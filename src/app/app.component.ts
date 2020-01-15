@@ -45,7 +45,7 @@ export class AppComponent implements AfterViewInit {
     ngAfterViewInit(): void {
         this.prevScrollpos = this.scrollBody.nativeElement.scrollTop;
         this.scrollOb = fromEvent(this.scrollBody.nativeElement, 'scroll');
-        this.scrollOb.pipe(throttleTime(100)).subscribe(next => {
+        this.scrollOb.pipe(throttleTime(500, undefined, { leading: true, trailing: true })).subscribe(next => {
             let currentScrollPos = this.scrollBody.nativeElement.scrollTop;
             if (this.prevScrollpos > currentScrollPos) {
                 this.scrollDown = false;

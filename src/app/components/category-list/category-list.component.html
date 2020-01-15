@@ -1,7 +1,7 @@
 <ng-container *ngIf="isHomePage">
     <div class="category-mobile-container">
         <div *ngFor="let el of categoriesConfig" [routerLink]="el.routerUrl" class="category-mobile-item">
-            <img [src]="imageUrlPrefix+el.url" [alt]="el.title" class="category-mobile-icon" />
+            <app-lazy-image [lazySrc]="imageUrlPrefix+el.url" [iconView]=true></app-lazy-image>
             <div class="category-mobile-title">{{ el.title }}</div>
         </div>
     </div>

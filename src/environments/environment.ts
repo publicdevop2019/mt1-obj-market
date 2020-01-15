@@ -5,7 +5,7 @@ export const environment = {
   APP_ID: 'obj-market',
   APPP_SECRET_PUBLIC: '',
   getTokenUri: 'http://www.ngform.com:8111/oauth/token',
-  oauthRedirectUri: 'http://www.ngform.com/account',
+  oauthRedirectUri: 'http://localhost:4200/account',
   authorzieUrl: 'http://www.ngform.com:8081/authorize?response_type=code&',
   profileUrl:'http://www.ngform.com:8111',
   productUrl:'http://www.ngform.com:8111',

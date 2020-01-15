@@ -1,9 +1,11 @@
 <ng-container *ngIf="productDetail">
     <div class="product-basic-image-container">
-        <img *ngIf="productDetail.imageUrlLarge && productDetail.imageUrlLarge.length !== 0" class="product-basic-image"
-            [src]="imageUrlPrefix+productDetail.imageUrlLarge[0]" />
-        <img *ngIf="!productDetail.imageUrlLarge" class="product-basic-image"
-            [src]="imageUrlPrefix+productDetail.imageUrlSmall" />
+        <app-lazy-image *ngIf="productDetail.imageUrlLarge && productDetail.imageUrlLarge.length !== 0" class="product-basic-image"
+            [lazySrc]="imageUrlPrefix+productDetail.imageUrlLarge[0]"></app-lazy-image>
+        <app-lazy-image *ngIf="!productDetail.imageUrlLarge" class="product-basic-image"
+            [lazySrc]="imageUrlPrefix+productDetail.imageUrlSmall"></app-lazy-image>
+        <!-- <img *ngIf="!productDetail.imageUrlLarge" class="product-basic-image"
+            [src]="imageUrlPrefix+productDetail.imageUrlSmall" /> -->
     </div>
     <div class="product-basic-detail-container">
         <div class="product-basic-title-container">

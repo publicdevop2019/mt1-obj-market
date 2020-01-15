@@ -14,6 +14,6 @@ WORKDIR /usr/share/nginx/html
 
 COPY --from=node /usr/src/app/dist/mt1-obj-market .
 
-COPY app.config /etc/nginx/conf.d/default.conf
+COPY nginx.config /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

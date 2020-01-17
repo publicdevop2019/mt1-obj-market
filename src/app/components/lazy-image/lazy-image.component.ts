@@ -18,13 +18,16 @@ export class LazyImageComponent implements OnInit, AfterViewInit {
   constructor() { }
   ngAfterViewInit(): void {
     let erroOb = fromEvent(this.imgRef.nativeElement, "error");
+    let loadOb = fromEvent(this.imgRef.nativeElement, "load");
+    loadOb.pipe(take(1)).subscribe(() => {
+      this.loading = true;
+    })
     erroOb.pipe(take(1)).subscribe(() => {
       (this.imgRef.nativeElement as HTMLImageElement).src = '../../../assets/imgs/img-404.svg';
     })
     let observer = new IntersectionObserver((entries, self) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          this.loading = true;
           (entry.target as HTMLImageElement).src = this.lazySrc;
           self.unobserve(entry.target);
         }

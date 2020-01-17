@@ -8,5 +8,5 @@ export const environment = {
   authorzieUrl: 'http://www.ngform.com:8081/',
   profileUrl:'http://www.ngform.com:8111',
   productUrl:'http://www.ngform.com:8111',
-  imageUrl:'http://www.ngform.com:8111/files',
+  imageUrl:'http://www.ngform.com:8111/api/files',
 };

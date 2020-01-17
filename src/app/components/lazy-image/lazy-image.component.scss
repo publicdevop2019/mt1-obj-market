@@ -1,5 +1,9 @@
+@import '~@angular/material/_theming';
+@import '../../../styles.scss';
+@include mat-core();
 .img-animation{
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.8s ease-in-out;
+    object-fit: cover;
 }
 .icon-frame{
     width: 48px;
@@ -7,4 +11,10 @@
 }
 .card-frame{
     height: 150px;
+}
+:host{
+  background-color:  mat-color($app-accent,A400);
+  display: flex;   
+  justify-content: center;
+  overflow: hidden;
 }

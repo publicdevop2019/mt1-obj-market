@@ -9,7 +9,7 @@ export const environment = {
   authorzieUrl: 'http://www.ngform.com:8081/authorize?response_type=code&',
   profileUrl:'http://www.ngform.com:8111',
   productUrl:'http://www.ngform.com:8111',
-  imageUrl:'http://www.ngform.com:8111/files',
+  imageUrl:'http://www.ngform.com:8111/api/files',
   // authorzieUrl: 'http://oauth2service-c00b3.firebaseapp.com/authorize?response_type=code&',
   // getTokenUri: 'http://localhost:8111/oauth/token',
   // profileUrl:'http://localhost:8111',

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { RouterOutlet } from '@angular/router';
 import { fromEvent, Observable } from 'rxjs';
-import { throttleTime } from 'rxjs/operators';
+import { throttleTime, debounceTime } from 'rxjs/operators';
 import { slideInAnimation, shrinkOutAnimation } from './classes/animation';
 import { HttpProxyService } from './services/http-proxy.service';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -45,13 +45,15 @@ export class AppComponent implements AfterViewInit {
     ngAfterViewInit(): void {
         this.prevScrollpos = this.scrollBody.nativeElement.scrollTop;
         this.scrollOb = fromEvent(this.scrollBody.nativeElement, 'scroll');
-        this.scrollOb.pipe(throttleTime(500, undefined, { leading: true, trailing: true })).subscribe(next => {
+        this.scrollOb.pipe(throttleTime(500, undefined, { leading: true, trailing: true })).pipe(debounceTime(100)).subscribe(next => {
             let currentScrollPos = this.scrollBody.nativeElement.scrollTop;
-            if (this.prevScrollpos > currentScrollPos) {
+            if (currentScrollPos === 0) {
+                this.scrollDown = false;
+            }
+            else if (this.prevScrollpos > currentScrollPos) {
                 this.scrollDown = false;
             } else {
                 this.scrollDown = true;
-                // this.scrollBody.nativeElement.style.top="-50px"
 
             }
             this.prevScrollpos = currentScrollPos;

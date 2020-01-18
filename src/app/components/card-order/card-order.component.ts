@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IAddress } from 'src/app/pages/addresses/addresses.component';
 import { ICartItem } from 'src/app/pages/cart/cart.component';
-import { IPayment } from 'src/app/pages/payments/payments.component';
 export interface IOrder {
     id: string;
     productList: ICartItem[];
     address: IAddress;
-    payment: IPayment;
+    paymentType: string; // wechat pay or ali pay
     shippingCost: string;
     taxCost: string;
     additionalFees:any

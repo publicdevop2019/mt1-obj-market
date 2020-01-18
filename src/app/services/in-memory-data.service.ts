@@ -3,7 +3,6 @@ import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
 import { RandomUtility } from '../classes/random';
 import { IProductSimple } from '../pages/product-detail/product-detail.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import { IPayment } from '../pages/payments/payments.component';
 import { IAddress } from '../pages/addresses/addresses.component';
 import { IOrder } from '../components/card-order/card-order.component';
 
@@ -16,7 +15,6 @@ export class InmemoryDataService implements InMemoryDbService {
         const productTotal: IProductSimple[] = [];
         let productTotalDetails: IProductSimple[] = [];
         const carts: ICartItem[] = RandomUtility.randomCartOrders(0);
-        const payments: IPayment[] = RandomUtility.randomPaymentList();
         const categories = RandomUtility.randomCategories();
         const addresses: IAddress[] = RandomUtility.randomAddressList();
         const orders: IOrder[] = RandomUtility.randomSuccessOrderList();
@@ -42,7 +40,6 @@ export class InmemoryDataService implements InMemoryDbService {
             productTotal,
             productTotalDetails,
             carts,
-            payments,
             addresses,
             orders
         };

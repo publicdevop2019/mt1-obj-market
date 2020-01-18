@@ -7,7 +7,6 @@ import {
 } from '../pages/product-detail/product-detail.component';
 import { IAddress } from '../pages/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import { IPayment } from '../pages/payments/payments.component';
 import { IOrder } from '../components/card-order/card-order.component';
 
 export class RandomUtility {
@@ -72,7 +71,7 @@ export class RandomUtility {
         }
     }
     public static randomCategories(): ICategory[] {
-        let iCount = RandomUtility.randomInt(1, 20);
+        let iCount = RandomUtility.randomInt(1, 1);
         const output: ICategory[] = [];
         while (iCount > 0) {
             output.push(RandomUtility.randomCategorieItem());
@@ -284,42 +283,13 @@ export class RandomUtility {
         }
         return output;
     }
-    public static randomPaymentList(): IPayment[] {
-        let length = RandomUtility.randomInt(0, 10);
-        const output: IPayment[] = [];
-        while (length > 0) {
-            const item = RandomUtility.randomPayment();
-            output.push(item);
-            length--;
-        }
-        return output;
-    }
-    public static randomPayment(): IPayment {
-        const type = ['Mastercard', 'Visa', 'AmeX', 'Union Pay'];
-        return {
-            id: RandomUtility.randomInt(0, 9999).toString(),
-            type: RandomUtility.randomFromArray(type),
-            accountNumber:
-                RandomUtility.randomInt(1000, 9999).toString() +
-                RandomUtility.randomInt(1000, 9999).toString() +
-                RandomUtility.randomInt(1000, 9999).toString() +
-                RandomUtility.randomInt(1000, 9999).toString(),
-            accountHolderName: RandomUtility.randomLengthString(1, 50),
-            expireDate:
-                RandomUtility.randomInt(1, 13).toString() +
-                '/' +
-                RandomUtility.randomInt(2020, 2050),
-            cvv: RandomUtility.randomInt(100, 999).toString()
-        } as IPayment;
-    }
     public static randomSuccessOrder(): IOrder {
         return {
             id: RandomUtility.randomInt(0, 9999).toString(),
-            productList: RandomUtility.randomCartOrders(1),
+            productList: RandomUtility.randomCartOrders(10),
             address: RandomUtility.randomAddress(),
             shippingCost: RandomUtility.randomPrice(0, 9999).toString(),
             taxCost: RandomUtility.randomPrice(0, 9999).toString(),
-            payment: RandomUtility.randomPaymentList()[0]
         } as IOrder;
     }
     public static randomSuccessOrderList(): IOrder[] {

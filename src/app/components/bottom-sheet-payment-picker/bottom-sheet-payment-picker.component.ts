@@ -1,6 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { IPayment } from 'src/app/pages/payments/payments.component';
-import { PaymentService } from 'src/app/services/payment.service';
 import { MatBottomSheetRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
@@ -11,9 +9,7 @@ import { OrderService } from 'src/app/services/order.service';
     styleUrls: ['./bottom-sheet-payment-picker.component.scss']
 })
 export class BottomSheetPaymentPickerComponent implements OnInit {
-    public payment: IPayment[];
     constructor(
-        public paymentSvc: PaymentService,
         private change: ChangeDetectorRef,
         private bottomSheetRef: MatBottomSheetRef<
             BottomSheetPaymentPickerComponent
@@ -21,20 +17,11 @@ export class BottomSheetPaymentPickerComponent implements OnInit {
         private router: Router,
         private orderSvc: OrderService
     ) {
-        this.paymentSvc.getPayments().subscribe(next => {
-            this.payment = next;
-            this.change.detectChanges();
-        });
     }
-    public paymentPicked(event: MouseEvent, address: IPayment): void {
-        this.orderSvc.currentPayment = address;
+    public paymentPicked( paymentType: string): void {
         this.router.navigate(['/order']);
         this.bottomSheetRef.dismiss();
-        event.preventDefault();
+        this.orderSvc.currentPaymentType = paymentType;
     }
-    public dismiss(): void {
-        this.bottomSheetRef.dismiss();
-        event.preventDefault();
-    }
-    ngOnInit() {}
+    ngOnInit() { }
 }

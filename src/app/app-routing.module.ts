@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormAddressComponent } from './components/form-address/form-address.component';
-import { FormPaymentComponent } from './components/form-payment/form-payment.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AccountComponent } from './pages/account/account.component';
 import { AddressesComponent } from './pages/addresses/addresses.component';
@@ -11,7 +10,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 import { OrdersComponent } from './pages/orders/orders.component';
-import { PaymentsComponent } from './pages/payments/payments.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { SearchComponent } from './pages/search/search.component';
 import { OrderService } from './services/order.service';
@@ -55,9 +53,6 @@ const routes: Routes = [
     { path: 'orders', component: OrdersComponent, data: { animation: 'orders' } },
     { path: 'orders/:orderId', component: OrderDetailComponent, data: { animation: 'orderDetail' } },
     { path: 'order-complete', component: OrderCompleteComponent, data: { animation: 'orderComplete' } },
-    { path: 'payment', component: FormPaymentComponent, data: { animation: 'payment' } },
-    { path: 'payments', component: PaymentsComponent, data: { animation: 'payments' } },
-    { path: 'payments/:paymentId', component: FormPaymentComponent, data: { animation: 'paymentDetail' } },
     { path: 'address', component: FormAddressComponent, data: { animation: 'address' } },
     { path: 'addresses', component: AddressesComponent, data: { animation: 'addresses' } },
     { path: 'addresses/:addressId', component: FormAddressComponent, data: { animation: 'addressDetail' } },

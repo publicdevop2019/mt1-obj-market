@@ -35,7 +35,7 @@ export class OrderDetailComponent implements OnInit {
                             productList: this.cartSvc.cart,
                             address: this.orderSvc
                                 .currentShippingAddress,
-                            payment: this.orderSvc.currentPayment,
+                            paymentType: this.orderSvc.currentPaymentType,
                             shippingCost: '0',
                             taxCost: '0'
                         } as IOrder);
@@ -53,7 +53,7 @@ export class OrderDetailComponent implements OnInit {
             });
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
     public calcTotal(): number {
         this.order.finalPrice = (
             this.calcSubtotal() +
@@ -67,7 +67,7 @@ export class OrderDetailComponent implements OnInit {
         this.order.productList.forEach(e => {
             sum = sum + +e.finalPrice;
         });
-        this.order.totalProductPrice=sum.toFixed(2)
+        this.order.totalProductPrice = sum.toFixed(2)
         return +this.order.totalProductPrice;
     }
     public openAddressPicker() {
@@ -81,13 +81,13 @@ export class OrderDetailComponent implements OnInit {
          * update order info
          */
         this.order.address = this.orderSvc.currentShippingAddress;
-        this.order.payment = this.orderSvc.currentPayment;
+        this.order.paymentType = this.orderSvc.currentPaymentType;
         this.orderSvc.httpProxy.netImpl
             .createOrder(this.order)
             .subscribe(next => {
                 this.cartSvc.cart = [];
                 this.orderSvc.justCompletedOrder = this.order;
-                this.orderSvc.justCompletedOrder.id = next.headers?next.headers.get('location'):'';
+                this.orderSvc.justCompletedOrder.id = next.headers ? next.headers.get('location') : '';
                 this.router.navigate(['/order-complete']);
             });
     }

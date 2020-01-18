@@ -33,10 +33,5 @@ export const CONFIG_ACCOUNT: IList[] = [
         icon: 'assignment',
         title: 'Orders',
         routerUrl: '/orders'
-    },
-    {
-        icon: 'account_balance_wallet',
-        title: 'Payment Methods',
-        routerUrl: '/payments'
     }
 ];

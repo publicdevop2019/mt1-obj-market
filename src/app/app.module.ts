@@ -15,13 +15,11 @@ import { BtnComponent } from './components/btn/btn.component';
 import { CardAddressComponent } from './components/card-address/card-address.component';
 import { CardCartComponent } from './components/card-cart/card-cart.component';
 import { CardOrderComponent } from './components/card-order/card-order.component';
-import { CardPaymentComponent } from './components/card-payment/card-payment.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormAddressComponent } from './components/form-address/form-address.component';
 import { FormFilterComponent } from './components/form-filter/form-filter.component';
-import { FormPaymentComponent } from './components/form-payment/form-payment.component';
 import { FormSearchComponent } from './components/form-search/form-search.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductBasicComponent } from './components/product-basic/product-basic.component';
@@ -34,7 +32,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 import { OrdersComponent } from './pages/orders/orders.component';
-import { PaymentsComponent } from './pages/payments/payments.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { SearchComponent } from './pages/search/search.component';
 import { AuthService } from './services/auth.service';
@@ -66,12 +63,9 @@ import { InmemoryDataService } from './services/in-memory-data.service';
         OrdersComponent,
         FormAddressComponent,
         BottomSheetAddressPickerComponent,
-        PaymentsComponent,
-        FormPaymentComponent,
         CardAddressComponent,
         OrderDetailComponent,
         ProductBasicComponent,
-        CardPaymentComponent,
         BottomSheetPaymentPickerComponent,
         OrderCompleteComponent,
         CardOrderComponent,

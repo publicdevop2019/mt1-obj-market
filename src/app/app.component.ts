@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { RouterOutlet } from '@angular/router';
-import { fromEvent, Observable } from 'rxjs';
-import { throttleTime, debounceTime } from 'rxjs/operators';
+import { fromEvent, Observable, Subject } from 'rxjs';
+import { throttleTime, debounceTime, elementAt, debounce } from 'rxjs/operators';
 import { slideInAnimation, shrinkOutAnimation } from './classes/animation';
 import { HttpProxyService } from './services/http-proxy.service';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -24,10 +24,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
                 style({ height: '*' }),
                 animate('250ms', style({ height: 0 }))
             ])
-            // transition('* => void', [
-            //     style({ height: '*' }),
-            //     animate(250, style({ height: 0 }))
-            // ])
         ]
         )
         // animation triggers go here
@@ -45,18 +41,27 @@ export class AppComponent implements AfterViewInit {
     ngAfterViewInit(): void {
         this.prevScrollpos = this.scrollBody.nativeElement.scrollTop;
         this.scrollOb = fromEvent(this.scrollBody.nativeElement, 'scroll');
-        this.scrollOb.pipe(throttleTime(500, undefined, { leading: true, trailing: true })).pipe(debounceTime(100)).subscribe(next => {
-            let currentScrollPos = this.scrollBody.nativeElement.scrollTop;
-            if (currentScrollPos === 0) {
-                this.scrollDown = false;
-            }
-            else if (this.prevScrollpos > currentScrollPos) {
+        let sub = this.scrollOb.pipe(throttleTime(500, undefined, { leading: true, trailing: true })).pipe(debounceTime(100)).subscribe(next => {
+            let el: HTMLDivElement = this.scrollBody.nativeElement;
+            let currentScrollPos = el.scrollTop;
+            if (el.scrollHeight - el.scrollTop < el.clientHeight + 100) {
+                /**
+                 * stop scrolling to when near bottom to prevent infinite scroll
+                 * e.g. scroll up --> show header --> scroll down --> hide header --> scroll up
+                 */
                 this.scrollDown = false;
             } else {
-                this.scrollDown = true;
+                if (currentScrollPos === 0) {
+                    this.scrollDown = false;
+                }
+                else if (this.prevScrollpos > currentScrollPos) {
+                    this.scrollDown = false;
+                } else {
+                    this.scrollDown = true;
 
+                }
+                this.prevScrollpos = currentScrollPos;
             }
-            this.prevScrollpos = currentScrollPos;
         })
     }
     prepareRoute(outlet: RouterOutlet) {

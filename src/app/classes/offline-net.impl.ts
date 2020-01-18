@@ -5,7 +5,6 @@ import { ICategory } from '../components/category-list/category-list.component';
 import { IOrder } from '../components/card-order/card-order.component';
 import { IAddress } from '../pages/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import { IPayment } from '../pages/payments/payments.component';
 import {
     IProductDetail,
     IProductSimple
@@ -87,23 +86,6 @@ export class OfflineNetImpl implements INet {
     }
     addToCart(item: ICartItem): Observable<any> {
         return this.httpClient.post('http://localhost:8080/api/carts', item);
-    }
-    createPayment(payment: IPayment): Observable<any> {
-        return this.httpClient.post(
-            'http://localhost:8080/api/payments',
-            payment
-        );
-    }
-    updatePayment(payment: IPayment): Observable<any> {
-        return this.httpClient.put(
-            'http://localhost:8080/api/payments/' + payment.id,
-            payment
-        );
-    }
-    getPayments(): Observable<IPayment[]> {
-        return this.httpClient.get<IPayment[]>(
-            'http://localhost:8080/api/payments'
-        );
     }
 
     getOrders(): Observable<IOrder[]> {

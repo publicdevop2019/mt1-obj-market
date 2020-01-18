@@ -5,7 +5,6 @@ import { ICategory } from '../components/category-list/category-list.component';
 import { IOrder } from '../components/card-order/card-order.component';
 import { IAddress } from '../pages/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import { IPayment } from '../pages/payments/payments.component';
 import {
     IProductDetail,
     IProductSimple
@@ -55,28 +54,6 @@ export class OnlineNetImpl implements INet {
     }
     addToCart(item: ICartItem): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/cart', item);
-    }
-    createPayment(payment: IPayment): Observable<any> {
-        return this.httpClient.post(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/payments',
-            payment
-        );
-    }
-    updatePayment(payment: IPayment): Observable<any> {
-        return this.httpClient.put(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/payments/' + payment.id,
-            payment
-        );
-    }
-    getPayments(): Observable<IPayment[]> {
-        return this.httpClient.get<IPayment[]>(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/payments'
-        );
-    }
-    deletePayment(id: string): Observable<any> {
-        return this.httpClient.delete(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/payments/' + id
-        );
     }
     createOrder(order: IOrder): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders', order, { observe: 'response' });

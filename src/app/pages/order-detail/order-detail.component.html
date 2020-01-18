@@ -5,14 +5,14 @@
     </div>
     <mat-divider></mat-divider>
     <div role="list" class="order-detail-price-container">
-        <div
+        <!-- <div
             role="listitem"
             class="order-detail-price-item"
             style="font-weight: 400;"
         >
             <span>Subtotal</span> <span>{{ calcSubtotal() }}</span>
-        </div>
-        <div
+        </div> -->
+        <!-- <div
             role="listitem"
             class="order-detail-price-item"
             style="font-weight: 400;"
@@ -27,59 +27,40 @@
         >
             <span>Tax</span>
             <span>{{ order.taxCost }}</span>
-        </div>
-        <div
-            role="listitem"
-            class="order-detail-price-item"
-            style="font-weight: 600;"
-        >
+        </div> -->
+        <div role="listitem" class="order-detail-price-item" style="font-weight: 600;">
             <span>TOTAL</span> <span>{{ calcTotal() | currency: 'CAD' }}</span>
         </div>
     </div>
 
-    <div class="order-address-container">
+    <div >
         <div class="order-address-title">Shipping Details</div>
-        <app-card-address
-            *ngIf="editable && orderSvc.currentShippingAddress"
-            [address]="orderSvc.currentShippingAddress"
-            [editable]="false"
-        >
+        <app-card-address *ngIf="editable && orderSvc.currentShippingAddress"
+            [address]="orderSvc.currentShippingAddress" [editable]="false">
         </app-card-address>
-        <app-card-address
-            *ngIf="!editable"
-            [address]="order.address"
-            [editable]="false"
-        >
+        <app-card-address *ngIf="!editable" [address]="order.address" [editable]="false">
         </app-card-address>
-        <app-btn
-            *ngIf="editable"
-            (click)="openAddressPicker()"
-            [lable]="'Pick Address'"
-        ></app-btn>
+        <app-btn *ngIf="editable" (click)="openAddressPicker()" [lable]="'Pick Address'"></app-btn>
     </div>
 
-    <div class="order-payment-container">
+    <div>
         <div class="order-payment-title">Payment Details</div>
-        <app-card-payment
-            *ngIf="editable && orderSvc.currentPayment"
-            [payment]="orderSvc.currentPayment"
-            [editable]="false"
-        >
-        </app-card-payment>
-        <app-card-payment
+        <mat-card *ngIf="editable && orderSvc.currentPaymentType==='wechat_pay'" class="card-container-action"
+            matRipple>
+            <img src="../../../assets/imgs/wechat_pay.png" 
+                style="max-width: 100%;">
+        </mat-card>
+
+        <!-- <app-card-payment
             *ngIf="!editable"
             [payment]="order.payment"
             [editable]="false"
         >
-        </app-card-payment>
-        <app-btn
-            *ngIf="editable"
-            (click)="openPaymentPicker()"
-            [lable]="'Pick Payment'"
-        ></app-btn>
+        </app-card-payment> -->
+        <app-btn *ngIf="editable" (click)="openPaymentPicker()" [lable]="'Pick Payment'"></app-btn>
     </div>
     <ng-container *ngIf="editable">
         <mat-divider></mat-divider>
-        <app-btn (click)="placeOrder()" [lable]="'Place order'"></app-btn>
+        <app-btn (click)="placeOrder()" [lable]="'Pay & Place order'"></app-btn>
     </ng-container>
 </div>

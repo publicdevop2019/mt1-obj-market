@@ -1,8 +1,4 @@
-<mat-card class="card-container-action" matRipple >
-    <div class="card-title">
-        {{ order.productList.length }} item will be shipped to
-        {{ order.address.fullName }}
-    </div>
+<mat-card class="card-container-action" matRipple>
     <div class="order-item-container">
         <div *ngFor="let el of order.productList" class="card-desc">
             {{ el.name }}
@@ -11,15 +7,10 @@
     <div *ngIf="order.productList.length >= 3" class="card-desc">
         ...
     </div>
-    <div class="card-desc">Total {{ calcTotal() | currency: 'CAD' }}</div>
+    <div class="card-desc">Total {{ order.paymentAmt }}</div>
     <div class="modify-card-btn">
-        <button
-            mat-button
-            color="primary"
-            class="card-btn"
-            [routerLink]="'/orders/' + order.id"
-        >
-            View details
+        <button mat-button color="primary" class="card-btn" [routerLink]="'/orders/' + order.id">
+            {{order.paymentStatus==='paid'?'View details':'Pay now'}}
         </button>
     </div>
 </mat-card>

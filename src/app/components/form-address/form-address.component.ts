@@ -14,7 +14,7 @@ export class FormAddressComponent implements OnInit {
     public addAddress = false;
     public addressForm: FormGroup = new FormGroup({
         id: new FormControl('', []),
-        country: new FormControl('', []),
+        country: new FormControl({value:'Canada',disabled:true}, []),
         province: new FormControl('', []),
         city: new FormControl('', []),
         fullName: new FormControl('', []),

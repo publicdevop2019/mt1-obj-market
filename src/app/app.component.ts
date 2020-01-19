@@ -48,6 +48,7 @@ export class AppComponent implements AfterViewInit {
                 /**
                  * stop scrolling to when near bottom to prevent infinite scroll
                  * e.g. scroll up --> show header --> scroll down --> hide header --> scroll up
+                 * set to false to make sure top bar always present 
                  */
                 this.scrollDown = false;
             } else {

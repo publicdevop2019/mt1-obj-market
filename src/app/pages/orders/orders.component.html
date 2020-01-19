@@ -1,6 +1,19 @@
-<div class="card-list">
-    <app-card-order *ngFor="let el of orders" [order]="el"></app-card-order>
-</div>
-<div *ngIf="orders && orders.length === 0" class="empty-item-container-create">
-    <span>No item to display</span>
-</div>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Paid" >
+        <div class="card-list">
+            <app-card-order *ngFor="let el of paiedOrders" [order]="el"></app-card-order>
+        </div>
+
+        <div *ngIf="paiedOrders && paiedOrders.length === 0" class="empty-item-container-create">
+            <span>No item to display</span>
+        </div>
+    </mat-tab>
+    <mat-tab label="Unpaid">
+        <div class="card-list">
+            <app-card-order *ngFor="let el of unpaiedOrders" [order]="el"></app-card-order>
+        </div>
+    </mat-tab>
+    <div *ngIf="unpaiedOrders && unpaiedOrders.length === 0" class="empty-item-container-create">
+        <span>No item to display</span>
+    </div>
+</mat-tab-group>

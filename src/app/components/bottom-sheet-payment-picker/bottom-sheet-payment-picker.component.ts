@@ -10,18 +10,15 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class BottomSheetPaymentPickerComponent implements OnInit {
     constructor(
-        private change: ChangeDetectorRef,
         private bottomSheetRef: MatBottomSheetRef<
             BottomSheetPaymentPickerComponent
         >,
-        private router: Router,
         private orderSvc: OrderService
     ) {
     }
-    public paymentPicked( paymentType: string): void {
-        this.router.navigate(['/order']);
+    public paymentPicked(paymentType: string): void {
         this.bottomSheetRef.dismiss();
-        this.orderSvc.currentPaymentType = paymentType;
+        this.orderSvc.order.paymentType = paymentType;
     }
     ngOnInit() { }
 }

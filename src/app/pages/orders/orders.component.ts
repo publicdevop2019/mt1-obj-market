@@ -8,12 +8,16 @@ import { HttpProxyService } from 'src/app/services/http-proxy.service';
     styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-    public orders: IOrder[];
+    public orderTotal: IOrder[];
+    public paiedOrders: IOrder[];
+    public unpaiedOrders: IOrder[];
     constructor(public httpProxy: HttpProxyService) {
         this.httpProxy.netImpl.getOrders().subscribe(next => {
-            this.orders = next;
+            this.orderTotal = next;
+            this.paiedOrders = this.orderTotal.filter(e => e.paymentStatus === 'paid');
+            this.unpaiedOrders = this.orderTotal.filter(e => e.paymentStatus === 'unpaid');
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 }

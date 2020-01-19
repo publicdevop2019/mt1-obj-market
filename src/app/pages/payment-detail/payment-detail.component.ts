@@ -10,7 +10,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class PaymentDetailComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
-    toDataURL(this.qrFrame.nativeElement as HTMLCanvasElement, this.orderSvc.pendingPaymentLink)
+    toDataURL(this.qrFrame.nativeElement as HTMLCanvasElement, this.orderSvc.paymentLink)
   }
   @ViewChild("qrCodeFrame", { static: false }) qrFrame: ElementRef;
   constructor(private orderSvc: OrderService, private router: Router, private bar: SnackbarService) {
@@ -19,10 +19,10 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
   confirmPayment() {
-    let orderId = this.extractOrderIdFromPaymentLink(this.orderSvc.pendingPaymentLink);
-    this.orderSvc.pendingPaymentOrder.id = orderId;
+    let orderId = this.extractOrderIdFromPaymentLink(this.orderSvc.paymentLink);
+    this.orderSvc.order.id = orderId;
     this.orderSvc.httpProxy.netImpl.confirmOrder(orderId).subscribe(next => {
-      if (next.paymentStatus) {
+      if (next.paymentStatus === true) {
         this.router.navigate(['/order-complete']);
       } else {
         this.bar.openSnackBar('looks like we did not receieve your payment')

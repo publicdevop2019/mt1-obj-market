@@ -16,7 +16,7 @@ import { OrderService } from 'src/app/services/order.service';
     styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
-    public order: IOrder;
+    // public order: IOrder;
     public editable = false;
     constructor(
         private cartSvc: CartService,
@@ -33,13 +33,12 @@ export class OrderDetailComponent implements OnInit {
                         this.editable = true;
                         return of({
                             productList: this.cartSvc.cart,
-                            address: this.orderSvc
-                                .currentShippingAddress,
-                            paymentType: this.orderSvc.currentPaymentType,
+                            address: this.orderSvc.order.address,
+                            paymentType: this.orderSvc.order.paymentType,
+                            paymentStatus: 'unpaid'
                         } as IOrder);
                     } else {
-                        /** read an existing order */
-                        this.editable = false;
+                        /** read an existing paid or unpaid order */
                         return this.orderSvc.httpProxy.netImpl.getOrderById(
                             next.get('orderId')
                         );
@@ -47,17 +46,19 @@ export class OrderDetailComponent implements OnInit {
                 })
             )
             .subscribe(next => {
-                this.order = next;
+                this.orderSvc.order = next;
+                if (this.orderSvc.order.paymentStatus === 'unpaid')
+                    this.editable = true;
             });
     }
 
     ngOnInit() { }
     public calcTotal(): number {
         let sum = 0;
-        this.order.productList.forEach(e => {
+        this.orderSvc.order.productList.forEach(e => {
             sum = sum + +e.finalPrice;
         });
-        this.order.paymentAmt = sum.toFixed(2);
+        this.orderSvc.order.paymentAmt = sum.toFixed(2);
         return +sum.toFixed(2);
     }
     public openAddressPicker() {
@@ -67,14 +68,11 @@ export class OrderDetailComponent implements OnInit {
         this.bottomSheet.open(BottomSheetPaymentPickerComponent);
     }
     public reserveOrder() {
-        this.order.address = this.orderSvc.currentShippingAddress;
-        this.order.paymentType = this.orderSvc.currentPaymentType;
         this.orderSvc.httpProxy.netImpl
-            .reserveOrder(this.order)
+            .reserveOrder(this.orderSvc.order)
             .subscribe(next => {
                 this.cartSvc.cart = [];
-                this.orderSvc.pendingPaymentOrder = this.order;
-                this.orderSvc.pendingPaymentLink = next.headers.get('location');
+                this.orderSvc.paymentLink = next.headers.get('location');
                 this.router.navigate(['/payment']);
             });
     }

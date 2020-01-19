@@ -10,7 +10,7 @@ export class QRService {
 
   constructor(private router: Router, private orderSvc: OrderService) { }
   canActivate(): boolean {
-    if (isNullOrUndefined(this.orderSvc.pendingPaymentLink) || this.orderSvc.pendingPaymentLink == '') {
+    if (isNullOrUndefined(this.orderSvc.paymentLink) || this.orderSvc.paymentLink == '') {
       this.router.navigate(['/home']);
     } else {
       return true

@@ -1,8 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatBottomSheetRef } from '@angular/material';
 import { IAddress } from 'src/app/pages/addresses/addresses.component';
 import { AddressService } from 'src/app/services/address.service';
-import { MatBottomSheetRef } from '@angular/material';
-import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -18,7 +17,6 @@ export class BottomSheetAddressPickerComponent implements OnInit {
         private bottomSheetRef: MatBottomSheetRef<
             BottomSheetAddressPickerComponent
         >,
-        private router: Router,
         private orderSvc: OrderService
     ) {
         this.addressSvc.getShippingAddress().subscribe(next => {
@@ -27,8 +25,7 @@ export class BottomSheetAddressPickerComponent implements OnInit {
         });
     }
     public addressPicked(event: MouseEvent, address: IAddress): void {
-        this.orderSvc.currentShippingAddress = address;
-        this.router.navigate(['/order']);
+        this.orderSvc.order.address = address;
         this.bottomSheetRef.dismiss();
         event.preventDefault();
     }
@@ -36,5 +33,5 @@ export class BottomSheetAddressPickerComponent implements OnInit {
         this.bottomSheetRef.dismiss();
         event.preventDefault();
     }
-    ngOnInit() {}
+    ngOnInit() { }
 }

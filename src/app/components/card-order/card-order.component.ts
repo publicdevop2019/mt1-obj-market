@@ -7,6 +7,7 @@ export interface IOrder {
     address: IAddress;
     paymentType: string; // wechat pay or ali pay
     paymentAmt:string;
+    paymentStatus?:string;
 }
 @Component({
     selector: 'app-card-order',
@@ -19,23 +20,4 @@ export class CardOrderComponent implements OnInit {
 
     ngOnInit() {}
 
-    /**
-     * @todo @copied from order-details
-     */
-    public calcTotal(): number {
-        return (
-            this.calcSubtotal() 
-        );
-    }
-
-    /**
-     * @todo @copied from order-details
-     */
-    public calcSubtotal(): number {
-        let sum = 0;
-        this.order.productList.forEach(e => {
-            sum = sum + +e.finalPrice;
-        });
-        return sum;
-    }
 }

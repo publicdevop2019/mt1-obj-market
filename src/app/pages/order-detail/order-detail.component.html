@@ -1,6 +1,6 @@
-<div *ngIf="order" class="order-detail-container">
-    <div *ngIf="order.productList.length !== 0" class="cart-list">
-        <app-card-cart *ngFor="let el of order.productList" [cartItemDetails]="el">
+<div *ngIf="orderSvc.order.productList" class="order-detail-container">
+    <div *ngIf="orderSvc.order.productList.length !== 0" class="cart-list">
+        <app-card-cart *ngFor="let el of orderSvc.order.productList" [cartItemDetails]="el">
         </app-card-cart>
     </div>
     <mat-divider></mat-divider>
@@ -12,22 +12,16 @@
 
     <div >
         <div class="order-address-title">Shipping Details</div>
-        <app-card-address *ngIf="editable && orderSvc.currentShippingAddress"
-            [address]="orderSvc.currentShippingAddress" [editable]="false">
-        </app-card-address>
-        <app-card-address *ngIf="!editable" [address]="order.address" [editable]="false">
-        </app-card-address>
+        <ng-container>
+            <app-card-address *ngIf="orderSvc.order.address" [address]="orderSvc.order.address" [editable]="false">
+            </app-card-address>
+        </ng-container>
         <app-btn *ngIf="editable" (click)="openAddressPicker()" [lable]="'Pick Address'"></app-btn>
     </div>
 
     <div>
         <div class="order-payment-title">Payment Details</div>
-        <mat-card *ngIf="editable && orderSvc.currentPaymentType==='wechat_pay'" class="card-container-action"
-            matRipple>
-            <img src="../../../assets/imgs/wechat_pay.png" 
-                style="max-width: 100%;">
-        </mat-card>
-        <mat-card *ngIf="!editable && order.paymentType==='wechat_pay'" class="card-container-action"
+        <mat-card *ngIf="orderSvc.order.paymentType==='wechat_pay'" class="card-container-action"
             matRipple>
             <img src="../../../assets/imgs/wechat_pay.png" 
                 style="max-width: 100%;">

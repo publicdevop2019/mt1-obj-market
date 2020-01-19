@@ -1,7 +1,7 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatBadgeModule, MatBottomSheetModule, MatButtonModule, MatCardModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatProgressBarModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule } from '@angular/material';
+import { MatBadgeModule, MatBottomSheetModule, MatButtonModule, MatCardModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatProgressBarModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatTabsModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -101,6 +101,7 @@ import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.co
         MatProgressBarModule,
         MatSidenavModule,
         MatRippleModule,
+        MatTabsModule,
         // InMemoryWebApiModule.forRoot(InmemoryDataService, {
         //     delay: 2000,
         //     passThruUnknownUrl: true

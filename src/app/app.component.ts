@@ -44,7 +44,7 @@ export class AppComponent implements AfterViewInit {
         let sub = this.scrollOb.pipe(throttleTime(500, undefined, { leading: true, trailing: true })).pipe(debounceTime(100)).subscribe(next => {
             let el: HTMLDivElement = this.scrollBody.nativeElement;
             let currentScrollPos = el.scrollTop;
-            if (el.scrollHeight - el.scrollTop < el.clientHeight + 100) {
+            if (el.scrollHeight - el.scrollTop < el.clientHeight) {
                 /**
                  * stop scrolling to when near bottom to prevent infinite scroll
                  * e.g. scroll up --> show header --> scroll down --> hide header --> scroll up

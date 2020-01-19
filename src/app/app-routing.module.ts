@@ -13,6 +13,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { SearchComponent } from './pages/search/search.component';
 import { OrderService } from './services/order.service';
+import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
+import { QRService } from './services/qr.service';
 /**
  * @note remember to add animation in data {} to for new router mapping
  */
@@ -54,6 +56,7 @@ const routes: Routes = [
     { path: 'orders/:orderId', component: OrderDetailComponent, data: { animation: 'orderDetail' } },
     { path: 'order-complete', component: OrderCompleteComponent, data: { animation: 'orderComplete' } },
     { path: 'address', component: FormAddressComponent, data: { animation: 'address' } },
+    { path: 'payment', component: PaymentDetailComponent, data: { animation: 'payment' } ,canActivate:[QRService]},
     { path: 'addresses', component: AddressesComponent, data: { animation: 'addresses' } },
     { path: 'addresses/:addressId', component: FormAddressComponent, data: { animation: 'addressDetail' } },
     { path: '', redirectTo: 'home', pathMatch: 'full' },

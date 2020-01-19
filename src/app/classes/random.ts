@@ -288,8 +288,6 @@ export class RandomUtility {
             id: RandomUtility.randomInt(0, 9999).toString(),
             productList: RandomUtility.randomCartOrders(10),
             address: RandomUtility.randomAddress(),
-            shippingCost: RandomUtility.randomPrice(0, 9999).toString(),
-            taxCost: RandomUtility.randomPrice(0, 9999).toString(),
         } as IOrder;
     }
     public static randomSuccessOrderList(): IOrder[] {

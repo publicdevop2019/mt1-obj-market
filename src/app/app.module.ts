@@ -45,6 +45,7 @@ import { SnackbarService } from './services/snackbar.service';
 import { LazyImageComponent } from './components/lazy-image/lazy-image.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InmemoryDataService } from './services/in-memory-data.service';
+import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -73,7 +74,8 @@ import { InmemoryDataService } from './services/in-memory-data.service';
         FormFilterComponent,
         SearchComponent,
         FormSearchComponent,
-        LazyImageComponent
+        LazyImageComponent,
+        PaymentDetailComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),

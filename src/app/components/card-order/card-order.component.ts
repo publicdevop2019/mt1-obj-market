@@ -6,11 +6,7 @@ export interface IOrder {
     productList: ICartItem[];
     address: IAddress;
     paymentType: string; // wechat pay or ali pay
-    shippingCost: string;
-    taxCost: string;
-    additionalFees:any
-    finalPrice:string;
-    totalProductPrice:string;
+    paymentAmt:string;
 }
 @Component({
     selector: 'app-card-order',
@@ -28,7 +24,7 @@ export class CardOrderComponent implements OnInit {
      */
     public calcTotal(): number {
         return (
-            this.calcSubtotal() + +this.order.shippingCost + +this.order.taxCost
+            this.calcSubtotal() 
         );
     }
 

@@ -11,7 +11,8 @@ import { HttpProxyService } from './http-proxy.service';
 export class OrderService {
     public currentShippingAddress: IAddress;
     public currentPaymentType: string;
-    public justCompletedOrder: IOrder;
+    public pendingPaymentOrder: IOrder;
+    public pendingPaymentLink: string;
     constructor(public httpProxy: HttpProxyService, private router: Router, private cartSvc: CartService) { }
     canActivate(): boolean {
         if (this.cartSvc.cart.length > 0) {
@@ -20,4 +21,5 @@ export class OrderService {
             this.router.navigate(['/home']);
         }
     }
+    
 }

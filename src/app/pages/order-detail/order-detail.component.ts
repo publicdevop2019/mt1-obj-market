@@ -36,8 +36,6 @@ export class OrderDetailComponent implements OnInit {
                             address: this.orderSvc
                                 .currentShippingAddress,
                             paymentType: this.orderSvc.currentPaymentType,
-                            shippingCost: '0',
-                            taxCost: '0'
                         } as IOrder);
                     } else {
                         /** read an existing order */
@@ -55,20 +53,12 @@ export class OrderDetailComponent implements OnInit {
 
     ngOnInit() { }
     public calcTotal(): number {
-        this.order.finalPrice = (
-            this.calcSubtotal() +
-            +this.order.shippingCost +
-            +this.order.taxCost
-        ).toFixed(2);
-        return +this.order.finalPrice;
-    }
-    public calcSubtotal(): number {
         let sum = 0;
         this.order.productList.forEach(e => {
             sum = sum + +e.finalPrice;
         });
-        this.order.totalProductPrice = sum.toFixed(2)
-        return +this.order.totalProductPrice;
+        this.order.paymentAmt = sum.toFixed(2);
+        return +sum.toFixed(2);
     }
     public openAddressPicker() {
         this.bottomSheet.open(BottomSheetAddressPickerComponent);
@@ -76,19 +66,16 @@ export class OrderDetailComponent implements OnInit {
     public openPaymentPicker() {
         this.bottomSheet.open(BottomSheetPaymentPickerComponent);
     }
-    public placeOrder() {
-        /**
-         * update order info
-         */
+    public reserveOrder() {
         this.order.address = this.orderSvc.currentShippingAddress;
         this.order.paymentType = this.orderSvc.currentPaymentType;
         this.orderSvc.httpProxy.netImpl
-            .createOrder(this.order)
+            .reserveOrder(this.order)
             .subscribe(next => {
                 this.cartSvc.cart = [];
-                this.orderSvc.justCompletedOrder = this.order;
-                this.orderSvc.justCompletedOrder.id = next.headers ? next.headers.get('location') : '';
-                this.router.navigate(['/order-complete']);
+                this.orderSvc.pendingPaymentOrder = this.order;
+                this.orderSvc.pendingPaymentLink = next.headers.get('location');
+                this.router.navigate(['/payment']);
             });
     }
 }

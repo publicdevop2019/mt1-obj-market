@@ -1,0 +1,6 @@
+<section style="display: flex;flex-direction: column;align-items: center;">
+    <canvas #qrCodeFrame></canvas>
+    <div>Have you completed payment?</div>
+    <app-btn [lable]="'Yes'" (click)="confirmPayment()"></app-btn>
+    <app-btn [lable]="'No'"></app-btn>
+</section>

@@ -1,20 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { ICategory } from '../components/category-list/category-list.component';
+import { environment } from 'src/environments/environment';
 import { IOrder } from '../components/card-order/card-order.component';
+import { ICategory } from '../components/category-list/category-list.component';
 import { IAddress } from '../pages/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import {
-    IProductDetail,
-    IProductSimple
-} from '../pages/product-detail/product-detail.component';
+import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
+import { AuthService } from '../services/auth.service';
 import { INet } from './net.interface';
 import { RandomUtility } from './random';
-import { ITokenResponse, AuthService } from '../services/auth.service';
-import { environment } from 'src/environments/environment';
-
 export class OnlineNetImpl implements INet {
+    confirmOrder(orderId: string): Observable<any> {
+        return this.httpClient.get(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders/' + orderId + '/confirm');
+    };
     private defaultDelay = 1000;
     constructor(public httpClient: HttpClient, public authSvc: AuthService) { }
     searchProduct(key: string): Observable<IProductSimple[]> {
@@ -55,7 +54,7 @@ export class OnlineNetImpl implements INet {
     addToCart(item: ICartItem): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/cart', item);
     }
-    createOrder(order: IOrder): Observable<any> {
+    reserveOrder(order: IOrder): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders', order, { observe: 'response' });
     }
     getOrderById(id: string): Observable<IOrder> {

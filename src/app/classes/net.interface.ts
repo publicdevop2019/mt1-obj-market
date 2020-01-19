@@ -5,6 +5,7 @@ import { IAddress } from '../pages/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 export interface INet {
+
     searchProduct: (key: string) => Observable<IProductSimple[]>;
 
     searchProfile: () => Observable<string>;
@@ -20,7 +21,8 @@ export interface INet {
 
     getOrders: () => Observable<IOrder[]>;
     getOrderById: (id: string) => Observable<IOrder>;
-    createOrder: (order: IOrder) => Observable<any>;
+    reserveOrder: (order: IOrder) => Observable<any>;
+    confirmOrder: (orderId: string) => Observable<any>;
 
     getAddresses: () => Observable<IAddress[]>;
     createAddress: (address: IAddress) => Observable<IAddress>;

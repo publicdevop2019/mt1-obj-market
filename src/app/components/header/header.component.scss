@@ -13,8 +13,6 @@
     align-items: center;
     color: black;
 }
-@media (max-width: 599px){
-    .mat-toolbar-row, .mat-toolbar-single-row {
-        height: 36px;
-    }
+.mat-toolbar-row, .mat-toolbar-single-row {
+    height: 36px;
 }

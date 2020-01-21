@@ -46,6 +46,7 @@ import { LazyImageComponent } from './components/lazy-image/lazy-image.component
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InmemoryDataService } from './services/in-memory-data.service';
 import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
+import { HeaderService } from './services/header.service';
 @NgModule({
     declarations: [
         AppComponent,
@@ -125,12 +126,6 @@ import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.co
             useClass: LoadingInterceptor,
             multi: true
         },
-        ProductService,
-        HttpProxyService,
-        CartService,
-        SnackbarService,
-        AuthService,
-        FilterService
     ],
     bootstrap: [AppComponent]
 })

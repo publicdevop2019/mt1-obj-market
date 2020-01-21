@@ -4,8 +4,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="content-container">
-        <app-header *ngIf="!scrollDown" [@enterAnimation] (filterClick)="sidenav.open()"></app-header>
-        <!-- <app-header *ngIf="!scrollDown" [@enterAnimation] (filterClick)="sidenav.open()"></app-header> -->
+        <app-header (filterClick)="sidenav.open()"></app-header>
         <mat-progress-bar *ngIf="httpProxy.inProgress" mode="indeterminate" color="primary"></mat-progress-bar>
         <!-- router parent should not has class due to animation issue -->
         <div #scrollBody [@routeAnimations]="prepareRoute(outlet)"

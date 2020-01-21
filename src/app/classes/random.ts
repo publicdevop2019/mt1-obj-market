@@ -267,7 +267,7 @@ export class RandomUtility {
         } as IAddress;
     }
     public static randomCartOrders(min: number): ICartItem[] {
-        let length = RandomUtility.randomInt(min, 10);
+        let length = RandomUtility.randomInt(min, 50);
         const output: ICartItem[] = [];
         while (length > 0) {
             const item = {

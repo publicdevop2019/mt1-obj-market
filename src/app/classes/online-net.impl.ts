@@ -11,9 +11,6 @@ import { AuthService } from '../services/auth.service';
 import { INet } from './net.interface';
 import { RandomUtility } from './random';
 export class OnlineNetImpl implements INet {
-    confirmOrder(orderId: string): Observable<any> {
-        return this.httpClient.get(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders/' + orderId + '/confirm');
-    };
     private defaultDelay = 1000;
     constructor(public httpClient: HttpClient, public authSvc: AuthService) { }
     searchProduct(key: string): Observable<IProductSimple[]> {
@@ -57,6 +54,12 @@ export class OnlineNetImpl implements INet {
     reserveOrder(order: IOrder): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders', order, { observe: 'response' });
     }
+    replaceOrder(order: IOrder): Observable<any> {
+        return this.httpClient.put(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders/' + order.id + '/replace', order, { observe: 'response' });
+    };
+    confirmOrder(orderId: string): Observable<any> {
+        return this.httpClient.get(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders/' + orderId + '/confirm');
+    };
     getOrderById(id: string): Observable<IOrder> {
         return this.httpClient.get<IOrder>(
             environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders/' + id

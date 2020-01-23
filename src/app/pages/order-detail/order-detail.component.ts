@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { notNullAndUndefined } from 'src/app/classes/utility';
 import { BottomSheetAddressPickerComponent } from 'src/app/components/bottom-sheet-address-picker/bottom-sheet-address-picker.component';
@@ -18,6 +18,7 @@ import { OrderService } from 'src/app/services/order.service';
 export class OrderDetailComponent implements OnInit {
     // public order: IOrder;
     public editable = false;
+    public newOrder = false;
     constructor(
         private cartSvc: CartService,
         private bottomSheet: MatBottomSheet,
@@ -30,7 +31,7 @@ export class OrderDetailComponent implements OnInit {
                 switchMap(next => {
                     if (!notNullAndUndefined(next.get('orderId'))) {
                         /** create a new order */
-                        this.editable = true;
+                        this.newOrder = true;
                         return of({
                             productList: this.cartSvc.cart,
                             address: this.orderSvc.order.address,
@@ -68,12 +69,16 @@ export class OrderDetailComponent implements OnInit {
         this.bottomSheet.open(BottomSheetPaymentPickerComponent);
     }
     public reserveOrder() {
-        this.orderSvc.httpProxy.netImpl
-            .reserveOrder(this.orderSvc.order)
-            .subscribe(next => {
-                this.cartSvc.cart = [];
-                this.orderSvc.paymentLink = next.headers.get('location');
-                this.router.navigate(['/payment']);
-            });
+        let createOrReplaceOrder: Observable<any>;
+        if (this.newOrder) {
+            createOrReplaceOrder = this.orderSvc.httpProxy.netImpl.reserveOrder(this.orderSvc.order)
+        } else {
+            createOrReplaceOrder = this.orderSvc.httpProxy.netImpl.replaceOrder(this.orderSvc.order)
+        }
+        createOrReplaceOrder.subscribe(next => {
+            this.cartSvc.cart = [];
+            this.orderSvc.paymentLink = next.headers.get('location');
+            this.router.navigate(['/payment']);
+        });
     }
 }

@@ -22,6 +22,7 @@ export interface INet {
     getOrders: () => Observable<IOrder[]>;
     getOrderById: (id: string) => Observable<IOrder>;
     reserveOrder: (order: IOrder) => Observable<any>;
+    replaceOrder: (order: IOrder) => Observable<any>;
     confirmOrder: (orderId: string) => Observable<any>;
 
     getAddresses: () => Observable<IAddress[]>;

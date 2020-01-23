@@ -14,8 +14,11 @@ import { RandomUtility } from './random';
 import { ITokenResponse, AuthService } from '../services/auth.service';
 
 export class OfflineNetImpl implements INet {
+    replaceOrder(order: IOrder): Observable<any> {
+        return this.httpClient.put('http://localhost:8080/api/orders' + order.id, order);
+    };
     confirmOrder(orderId: string): Observable<any> {
-        return of({'paymentStatus':true}).pipe(
+        return of({ 'paymentStatus': true }).pipe(
             delay(this.defaultDelay)
         );
     };

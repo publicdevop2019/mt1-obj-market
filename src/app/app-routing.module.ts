@@ -24,7 +24,7 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         data: {
-            productListCategory: 'top',
+            productListCategory: 'defaultCategory',
             listView: 'simple',
             animation: 'home'
         }

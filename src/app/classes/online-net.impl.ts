@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IOrder } from '../components/card-order/card-order.component';
 import { ICategory } from '../components/category-list/category-list.component';
@@ -9,9 +8,9 @@ import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 import { AuthService } from '../services/auth.service';
 import { INet } from './net.interface';
-import { RandomUtility } from './random';
 export class OnlineNetImpl implements INet {
-    private defaultDelay = 1000;
+    public pageNumber = 0;
+    private pageSize = 10;
     constructor(public httpClient: HttpClient, public authSvc: AuthService) { }
     searchProduct(key: string): Observable<IProductSimple[]> {
         return this.httpClient.get<IProductSimple[]>(environment.profileUrl + '/api/productDetails/search?key=' + key);
@@ -22,19 +21,6 @@ export class OnlineNetImpl implements INet {
     searchProfile(): Observable<string> {
         return this.httpClient.get<string>(environment.profileUrl + '/api/profiles/search');
     };
-    calcShipptingCost(
-        product: IProductDetail,
-        address: IAddress
-    ): Observable<number> {
-        return of(RandomUtility.randomPrice(0, 999)).pipe(
-            delay(this.defaultDelay)
-        );
-    }
-    calcTax(product: IProductDetail, address: IAddress): Observable<number> {
-        return of(RandomUtility.randomPrice(0, 999)).pipe(
-            delay(this.defaultDelay)
-        );
-    }
     getCategory(): Observable<ICategory[]> {
         return this.httpClient.get<ICategory[]>(
             environment.productUrl + '/api/categories'
@@ -92,18 +78,15 @@ export class OnlineNetImpl implements INet {
             environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
-    getTopProducts(): Observable<IProductSimple[]> {
+    getDefaultCategoryProducts(): Observable<IProductSimple[]> {
         return this.httpClient.get<IProductSimple[]>(
-            environment.productUrl + '/api/categories/demo1'
+            environment.productUrl + '/api/categories/demo1' + '?pageNum=' + this.pageNumber + '&pageSize=' + this.pageSize
         );
     }
-    /**
-     * @temp this should be replaced by real api
-     */
     searchByCategory(category: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient
-                .get<IProductSimple[]>(environment.productUrl + '/api/categories/' + category)
+                .get<IProductSimple[]>(environment.productUrl + '/api/categories/' + category + '?pageNum=' + this.pageNumber + '&pageSize=' + this.pageSize)
                 .subscribe(next => {
                     el.next(next.filter(e => e.category === category));
                 });

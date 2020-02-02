@@ -1,19 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { ICategory } from '../components/category-list/category-list.component';
 import { IOrder } from '../components/card-order/card-order.component';
+import { ICategory } from '../components/category-list/category-list.component';
 import { IAddress } from '../pages/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import {
-    IProductDetail,
-    IProductSimple
-} from '../pages/product-detail/product-detail.component';
+import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
+import { AuthService, ITokenResponse } from '../services/auth.service';
 import { INet } from './net.interface';
-import { RandomUtility } from './random';
-import { ITokenResponse, AuthService } from '../services/auth.service';
 
 export class OfflineNetImpl implements INet {
+    pageNumber: number = 0;
     replaceOrder(order: IOrder): Observable<any> {
         return this.httpClient.put('http://localhost:8080/api/orders' + order.id, order);
     };
@@ -53,19 +50,6 @@ export class OfflineNetImpl implements INet {
             delay(this.defaultDelay)
         );
     };
-    calcShipptingCost(
-        product: IProductDetail,
-        address: IAddress
-    ): Observable<number> {
-        return of(RandomUtility.randomPrice(0, 999)).pipe(
-            delay(this.defaultDelay)
-        );
-    }
-    calcTax(product: IProductDetail, address: IAddress): Observable<number> {
-        return of(RandomUtility.randomPrice(0, 999)).pipe(
-            delay(this.defaultDelay)
-        );
-    }
     deletePayment(id: string): Observable<any> {
         return this.httpClient.delete(
             'http://localhost:8080/api/payments/' + id
@@ -123,7 +107,7 @@ export class OfflineNetImpl implements INet {
             'http://localhost:8080/api/carts'
         );
     }
-    getTopProducts(): Observable<IProductSimple[]> {
+    getDefaultCategoryProducts(): Observable<IProductSimple[]> {
         return this.httpClient.get<IProductSimple[]>(
             'http://localhost:8080/api/productTop'
         );

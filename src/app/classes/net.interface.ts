@@ -5,14 +5,14 @@ import { IAddress } from '../pages/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 export interface INet {
-
+    pageNumber: number;
     searchProduct: (key: string) => Observable<IProductSimple[]>;
 
     searchProfile: () => Observable<string>;
     createProfile: () => Observable<any>;
     getCategory: () => Observable<ICategoryNet[]>;
     searchByCategory: (category: string) => Observable<IProductSimple[]>;
-    getTopProducts: () => Observable<IProductSimple[]>;
+    getDefaultCategoryProducts: () => Observable<IProductSimple[]>;
     getProductDetailsById: (productId: string) => Observable<IProductDetail>;
 
     getCartItems: () => Observable<ICartItem[]>;
@@ -29,10 +29,4 @@ export interface INet {
     createAddress: (address: IAddress) => Observable<IAddress>;
     updateAddress: (address: IAddress) => Observable<IAddress>;
     deleteAddress: (id: string) => Observable<any>;
-
-    calcShipptingCost: (
-        product: IProductDetail,
-        address: IAddress
-    ) => Observable<number>;
-    calcTax: (product: IProductDetail, address: IAddress) => Observable<number>;
 }

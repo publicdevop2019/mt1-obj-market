@@ -1,0 +1,50 @@
+@import '../../../card.scss';
+$base-color: rgba(221, 221, 221, 0.644);
+$base-margin: 4px;
+$ghost-color: #ecebebf1;
+$animation-duration: 1000ms; 
+$gradient-offset: 52 + 16; 
+@mixin border-style {
+    border-radius: 4px;
+}
+@mixin background-gradient { 
+  background-image: linear-gradient(90deg, $base-color 0px, $ghost-color 40px, $base-color 80px);
+  background-size: 80vw;
+}
+
+@keyframes ghost-lines { 
+  0%   { background-position: -100px;  }
+  40%  { background-position: 40vw;    }
+  100% { background-position: 60vw;    }
+}
+
+@mixin animate-ghost-line {
+  @include background-gradient;
+  animation: ghost-lines $animation-duration infinite linear;
+}
+.product-simple-desc{
+    @include border-style;
+    height: 28px;
+    margin-bottom: $base-margin;
+    background-color: $base-color;
+    @include animate-ghost-line;
+}
+
+.product-simple-price{
+    @include border-style;
+    margin-bottom: $base-margin;
+    height: 14px;
+    background-color: $base-color;
+    @include animate-ghost-line;
+}
+.custom-card{
+    background-color: #ffffff;
+    color: #000000;
+}
+.product-simple-image{
+    @include border-style;
+    height: $card-image-height;
+    background-color: $base-color;
+    margin-bottom: $base-margin;
+    @include animate-ghost-line;
+}

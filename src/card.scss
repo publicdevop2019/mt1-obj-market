@@ -1,6 +1,7 @@
 $bodyFont: 12px;
 $bodyPadding:8px;
 $listContainerPadding:8px;
+$card-image-height:150px;
 @mixin card-body-font{
     font-size: $bodyFont;
   }

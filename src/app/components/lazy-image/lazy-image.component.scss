@@ -1,5 +1,6 @@
 @import '~@angular/material/_theming';
 @import '../../../styles.scss';
+@import '../../../card.scss';
 @include mat-core();
 .img-animation{
     transition: opacity 0.8s ease-in-out;
@@ -10,7 +11,7 @@
     height:  48px;
 }
 .card-frame{
-    height: 150px;
+    height: $card-image-height;
 }
 :host{
   background-color:  mat-color($app-accent,A400);

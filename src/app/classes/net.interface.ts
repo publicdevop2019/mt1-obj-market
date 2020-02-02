@@ -6,7 +6,7 @@ import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 export interface INet {
     pageNumber: number;
-    searchProduct: (key: string) => Observable<IProductSimple[]>;
+    searchProduct: (key: string, pageNumber: number) => Observable<IProductSimple[]>;
 
     searchProfile: () => Observable<string>;
     createProfile: () => Observable<any>;

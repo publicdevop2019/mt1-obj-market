@@ -1,7 +1,8 @@
 <app-form-search #searchInput></app-form-search>
 
-<section class="list-container" *ngIf="search$ | async; let searchOuput">
-    <app-card-product *ngFor=" let el of searchOuput" [productSimple]="el" class="product-simple-mobile-container">
+<section class="list-container" *ngIf="searchResults">
+    <app-card-product *ngFor=" let el of searchResults" [productSimple]="el" class="product-simple-mobile-container">
     </app-card-product>
-    <div *ngIf="searchOuput.length == 0" style="text-align: center;width: 100%;">No item found</div>
+    <app-ghost-card-product *ngIf="searchResults.length !== 0 && !endOfPages" class="product-simple-mobile-container"></app-ghost-card-product>
+    <div *ngIf="searchResults.length === 0" style="text-align: center;width: 100%;">No item found</div>
 </section>

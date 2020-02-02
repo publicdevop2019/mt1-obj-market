@@ -10,10 +10,10 @@ import { AuthService } from '../services/auth.service';
 import { INet } from './net.interface';
 export class OnlineNetImpl implements INet {
     public pageNumber = 0;
-    private pageSize = 10;
+    private pageSize = 20;
     constructor(public httpClient: HttpClient, public authSvc: AuthService) { }
-    searchProduct(key: string): Observable<IProductSimple[]> {
-        return this.httpClient.get<IProductSimple[]>(environment.profileUrl + '/api/productDetails/search?key=' + key);
+    searchProduct(key: string, pageNumber: number): Observable<IProductSimple[]> {
+        return this.httpClient.get<IProductSimple[]>(environment.profileUrl + '/api/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + this.pageSize);
     };
     createProfile(): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/api/profiles', null, { observe: 'response' });

@@ -7,7 +7,7 @@
         <app-header (filterClick)="sidenav.open()"></app-header>
         <mat-progress-bar *ngIf="httpProxy.inProgress" mode="indeterminate" color="primary"></mat-progress-bar>
         <!-- router parent should not has class due to animation issue -->
-        <div #scrollBody [@routeAnimations]="prepareRoute(outlet)"
+        <div [@routeAnimations]="prepareRoute(outlet)"
             style="flex-grow: 1;overflow: auto;overflow-x: hidden;">
             <router-outlet #outlet="outlet"></router-outlet>
         </div>

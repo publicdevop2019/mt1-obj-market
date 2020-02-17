@@ -1,4 +1,4 @@
-<mat-toolbar color="accent" class="header-mobile-container" [ngStyle]="{'height':headerSvc.headerHeight+'px'}" style="overflow: hidden;">
+<mat-toolbar color="accent" class="header-mobile-container" style="overflow: hidden;">
     <mat-icon *ngIf="!onHomePage" (click)="navBack()">keyboard_backspace</mat-icon>
     <div *ngIf="!onSearchPage" class="search-mobile-container">
         <mat-icon [routerLink]="'search'" color="primary">search</mat-icon>

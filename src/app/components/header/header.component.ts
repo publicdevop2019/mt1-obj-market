@@ -4,7 +4,6 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { onCategoriesPageHeader, onHomeHeader, onSearchHeader } from 'src/app/classes/utility';
-import { HeaderService } from 'src/app/services/header.service';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -19,7 +18,6 @@ export class HeaderComponent implements OnInit {
         public activatedRoute: ActivatedRoute,
         public router: Router,
         private location: Location,
-        public headerSvc:HeaderService
         ) {
             (router.events.pipe(
                 filter(evt => evt instanceof NavigationEnd)

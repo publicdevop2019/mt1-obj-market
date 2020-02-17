@@ -12,7 +12,6 @@ import { IProductSimple } from 'src/app/pages/product-detail/product-detail.comp
     styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit, OnDestroy {
-    productListCategory: string;
     endOfPages = false;
     private sub0: Subscription;
     private sub1: Subscription;
@@ -24,7 +23,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.productSvc.httpProxy.netImpl.pageNumber = 0;
         this.sub0 = this.activatedRoute.data
             .pipe(switchMap((next: Data) => {
-                this.productListCategory = next.productListCategory;
                 return this.getProductOb();
             }))
             .subscribe(next => {
@@ -49,18 +47,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.productSvc.productSimpleList = [];
     }
     private getProductOb(): Observable<IProductSimple[]> {
-        if (this.productListCategory === 'defaultCategory') {
-            return this.productSvc.httpProxy.netImpl.getDefaultCategoryProducts();
-        } else if (this.productListCategory === 'byCategory') {
-            return this.activatedRoute.paramMap.pipe(
-                switchMap((params: ParamMap) =>
-                    this.productSvc.httpProxy.netImpl.searchByCategory(
-                        params.get('category')
-                    )
+        return this.activatedRoute.paramMap.pipe(
+            switchMap((params: ParamMap) =>
+                this.productSvc.httpProxy.netImpl.searchByCategory(
+                    params.get('category') || 'recommand'
                 )
-            );
-        } else {
-            throwError(new Error('unknown page found'));
-        }
+            )
+        );
     }
 }

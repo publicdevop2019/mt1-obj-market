@@ -12,7 +12,6 @@ export interface INet {
     createProfile: () => Observable<any>;
     getCategory: () => Observable<ICategoryNet[]>;
     searchByCategory: (category: string) => Observable<IProductSimple[]>;
-    getDefaultCategoryProducts: () => Observable<IProductSimple[]>;
     getProductDetailsById: (productId: string) => Observable<IProductDetail>;
 
     getCartItems: () => Observable<ICartItem[]>;

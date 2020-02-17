@@ -11,6 +11,7 @@ import { catchError } from 'rxjs/operators';
 import { HttpProxyService } from './http-proxy.service';
 import { SnackbarService } from './snackbar.service';
 import { AuthService } from './auth.service';
+import * as UUID from 'uuid/v1';
 /**
  * use refresh token if call failed
  */
@@ -31,6 +32,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
             if (req.url.indexOf('profiles') > -1)
                 req = req.clone({
                     setHeaders: {
+                        UUID: UUID(),
                         Authorization: `Bearer ${this.authSvc.currentUserAuthInfo.access_token}`
                     }
                 });

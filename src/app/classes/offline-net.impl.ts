@@ -107,11 +107,6 @@ export class OfflineNetImpl implements INet {
             'http://localhost:8080/api/carts'
         );
     }
-    getDefaultCategoryProducts(): Observable<IProductSimple[]> {
-        return this.httpClient.get<IProductSimple[]>(
-            'http://localhost:8080/api/productTop'
-        );
-    }
     /**
      * @temp this should be replaced by real api
      */

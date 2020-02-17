@@ -1,15 +1,12 @@
-<ng-container *ngIf="isHomePage">
-    <div class="category-mobile-container">
-        <div *ngFor="let el of categoriesConfig" [routerLink]="el.routerUrl" class="category-mobile-item">
-            <app-lazy-image [lazySrc]="imageUrlPrefix+el.url" [iconView]=true style="border-radius: 50%;"></app-lazy-image>
-            <div class="category-mobile-title">{{ el.title }}</div>
-        </div>
-    </div>
-</ng-container>
-<mat-nav-list *ngIf="isCategories" style="padding-top: 0px;">
+<mat-nav-list style="padding-top: 0px;">
     <mat-list style="padding-top: 0px;">
-        <mat-list-item *ngFor="let el of categoriesConfig let last = last" [routerLink]="el.routerUrl" class="category-list-item">
-            <div style="display: flex;flex-direction: row; justify-content:space-between;align-items:center;width: 100%;"><p mat-line>{{ el.title | titlecase }}</p><mat-icon>keyboard_arrow_right</mat-icon></div>
+        <mat-list-item *ngFor="let el of categoriesConfig let last = last" [routerLink]="el.routerUrl"
+            class="category-list-item">
+            <div
+                style="display: flex;flex-direction: row; justify-content:space-between;align-items:center;width: 100%;">
+                <p mat-line>{{ el.title | titlecase }}</p>
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </div>
             <mat-divider *ngIf="!last"></mat-divider>
         </mat-list-item>
     </mat-list>

@@ -78,11 +78,6 @@ export class OnlineNetImpl implements INet {
             environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
-    getDefaultCategoryProducts(): Observable<IProductSimple[]> {
-        return this.httpClient.get<IProductSimple[]>(
-            environment.productUrl + '/api/categories/demo1' + '?pageNum=' + this.pageNumber + '&pageSize=' + this.pageSize
-        );
-    }
     searchByCategory(category: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient

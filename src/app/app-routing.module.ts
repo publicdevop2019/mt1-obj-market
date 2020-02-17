@@ -23,21 +23,17 @@ const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent,
-        data: {
-            productListCategory: 'defaultCategory',
-            listView: 'simple',
-            animation: 'home'
-        }
+        data: { animation: 'home' }
     },
     {
         path: 'categories',
         component: CategoriesComponent,
-        data: { listView: 'full', animation: 'categories' }
+        data: { animation: 'categories' }
     },
     {
         path: 'categories/:category',
         component: ProductListComponent,
-        data: { productListCategory: 'byCategory', animation: 'category' }
+        data: { animation: 'category' }
     },
     {
         path: 'categories/:category/:productId',
@@ -50,13 +46,13 @@ const routes: Routes = [
         component: AccountComponent,
         data: { animation: 'AccountPage' }
     },
-    { path: 'order', component: OrderDetailComponent, data: { animation: 'order' } ,canActivate:[OrderService]},
+    { path: 'order', component: OrderDetailComponent, data: { animation: 'order' }, canActivate: [OrderService] },
     { path: 'search', component: SearchComponent, data: { productListCategory: 'search', animation: 'search' } },
     { path: 'orders', component: OrdersComponent, data: { animation: 'orders' } },
     { path: 'orders/:orderId', component: OrderDetailComponent, data: { animation: 'orderDetail' } },
     { path: 'order-complete', component: OrderCompleteComponent, data: { animation: 'orderComplete' } },
     { path: 'address', component: FormAddressComponent, data: { animation: 'address' } },
-    { path: 'payment', component: PaymentDetailComponent, data: { animation: 'payment' } ,canActivate:[QRService]},
+    { path: 'payment', component: PaymentDetailComponent, data: { animation: 'payment' }, canActivate: [QRService] },
     { path: 'addresses', component: AddressesComponent, data: { animation: 'addresses' } },
     { path: 'addresses/:addressId', component: FormAddressComponent, data: { animation: 'addressDetail' } },
     { path: '', redirectTo: 'home', pathMatch: 'full' },

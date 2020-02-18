@@ -1,4 +1,4 @@
-<mat-sidenav-container class="outer-container" (backdropClick)="close()">
+<mat-sidenav-container [ngClass]="{'dark-theme':themeSvc.isDarkTheme}" class="outer-container" (backdropClick)="close()">
     <mat-sidenav #sidenav [position]="'end'">
         <app-form-filter (closeClick)="close()"></app-form-filter>
     </mat-sidenav>
@@ -7,8 +7,7 @@
         <app-header (filterClick)="sidenav.open()"></app-header>
         <mat-progress-bar *ngIf="httpProxy.inProgress" mode="indeterminate" color="primary"></mat-progress-bar>
         <!-- router parent should not has class due to animation issue -->
-        <div [@routeAnimations]="prepareRoute(outlet)"
-            style="flex-grow: 1;overflow: auto;overflow-x: hidden;">
+        <div [@routeAnimations]="prepareRoute(outlet)" style="flex-grow: 1;overflow: auto;overflow-x: hidden;">
             <router-outlet #outlet="outlet"></router-outlet>
         </div>
 

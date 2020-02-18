@@ -1,7 +1,7 @@
 <ng-container *ngIf="productDetail">
     <div class="product-basic-image-container">
-        <app-lazy-image *ngIf="productDetail.imageUrlLarge && productDetail.imageUrlLarge.length !== 0" class="product-basic-image"
-            [lazySrc]="imageUrlPrefix+productDetail.imageUrlLarge[0]"></app-lazy-image>
+        <app-lazy-image *ngIf="productDetail.imageUrlLarge && productDetail.imageUrlLarge.length !== 0"
+            class="product-basic-image" [lazySrc]="imageUrlPrefix+productDetail.imageUrlLarge[0]"></app-lazy-image>
         <app-lazy-image *ngIf="!productDetail.imageUrlLarge" class="product-basic-image"
             [lazySrc]="imageUrlPrefix+productDetail.imageUrlSmall"></app-lazy-image>
         <!-- <img *ngIf="!productDetail.imageUrlLarge" class="product-basic-image"
@@ -32,8 +32,12 @@
                 <mat-chip-list>
                     <mat-radio-group [formControlName]="el.title">
                         <mat-chip *ngFor="let ee of el.options">
-                            <mat-radio-button [color]="'primary'" [value]="ee.optionValue" [labelPosition]="'before'">
-                                {{ ee.optionValue }}
+                            <span
+                                (click)="productSvc.formProduct.get(el.title).setValue(ee.optionValue)">{{ ee.optionValue }}
+
+                                </span>
+                            <mat-radio-button *ngIf="productSvc.formProduct.get(el.title).value===ee.optionValue"
+                                [color]="'primary'" [value]="ee.optionValue" [labelPosition]="'before'">
                             </mat-radio-button>
                         </mat-chip>
                     </mat-radio-group>

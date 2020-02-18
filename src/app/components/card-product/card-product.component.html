@@ -1,6 +1,7 @@
-<mat-card class="custom-card" [routerLink]="
+<mat-card [routerLink]="
         '/categories/' + productSimple.category + '/' + productSimple.id
-    " matRipple>
+    " matRipple
+    >
     <app-lazy-image [lazySrc]="imageUrlPrefix+productSimple.imageUrlSmall"></app-lazy-image>
     <mat-card-content>
         <div class="product-simple-desc">

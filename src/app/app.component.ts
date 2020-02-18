@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { RouterOutlet } from '@angular/router';
-import { fromEvent, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { shrinkOutAnimation, slideInAnimation } from './classes/animation';
 import { HttpProxyService } from './services/http-proxy.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
     selector: 'app-root',
@@ -12,7 +13,6 @@ import { HttpProxyService } from './services/http-proxy.service';
     animations: [
         slideInAnimation,
         shrinkOutAnimation,
-        // animation triggers go here
     ]
 })
 export class AppComponent{
@@ -20,7 +20,7 @@ export class AppComponent{
     @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
     prevScrollpos: number;
     scrollOb: Observable<any>;
-    constructor(public httpProxy: HttpProxyService) {
+    constructor(public httpProxy: HttpProxyService,public themeSvc:ThemeService) {
     }
     prepareRoute(outlet: RouterOutlet) {
         return (

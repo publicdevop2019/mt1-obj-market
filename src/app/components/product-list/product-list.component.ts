@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Data, ParamMap } from '@angular/router';
-import { throwError, Observable, Subscription } from 'rxjs';
+import { throwError, Observable, Subscription, of } from 'rxjs';
 import { switchMap, skip } from 'rxjs/operators';
 import { ProductService } from 'src/app/services/product.service';
 import { GhostService } from 'src/app/services/ghost.service';
@@ -48,11 +48,18 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
     private getProductOb(): Observable<IProductSimple[]> {
         return this.activatedRoute.paramMap.pipe(
-            switchMap((params: ParamMap) =>
-                this.productSvc.httpProxy.netImpl.searchByCategory(
-                    params.get('category') || 'recommand'
-                )
-            )
-        );
+            switchMap((params: ParamMap) => {
+                if (params.get('category')) {
+                    return this.productSvc.httpProxy.netImpl.searchByCategory(
+                        params.get('category')
+                    )
+                } else {
+                    return this.firstCategory().pipe(switchMap(first => this.productSvc.httpProxy.netImpl.searchByCategory(first)))
+                }
+            }));
+    }
+    private firstCategory(): Observable<string> {
+        return this.productSvc.httpProxy.netImpl
+            .getCategory().pipe(switchMap(next => { return of(next[0].title) }))
     }
 }

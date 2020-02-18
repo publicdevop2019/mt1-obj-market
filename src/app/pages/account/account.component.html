@@ -6,8 +6,11 @@
         >
             <mat-icon fontSet="material-icons-outlined" mat-list-icon>{{ el.icon }}</mat-icon>
             <p mat-line>{{ el.title }}</p>
-            <mat-divider *ngIf="!last"></mat-divider>
-        </mat-list-item>
+            <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-slide-toggle [formControl]="darkThemeCtrl">Dark Theme</mat-slide-toggle>
+            </mat-list-item>
     </mat-list>
     <app-btn [lable]="'Log Out'" (click)="logout()"></app-btn>
 </mat-nav-list>

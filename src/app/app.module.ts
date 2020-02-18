@@ -1,7 +1,7 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatBadgeModule, MatBottomSheetModule, MatButtonModule, MatCardModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatProgressBarModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatTabsModule } from '@angular/material';
+import { MatBadgeModule, MatBottomSheetModule, MatButtonModule, MatCardModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatProgressBarModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -21,7 +21,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FormAddressComponent } from './components/form-address/form-address.component';
 import { FormFilterComponent } from './components/form-filter/form-filter.component';
 import { FormSearchComponent } from './components/form-search/form-search.component';
+import { GhostCardProductComponent } from './components/ghost-card-product/ghost-card-product.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LazyImageComponent } from './components/lazy-image/lazy-image.component';
 import { ProductBasicComponent } from './components/product-basic/product-basic.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AccountComponent } from './pages/account/account.component';
@@ -32,21 +34,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { SearchComponent } from './pages/search/search.component';
-import { AuthService } from './services/auth.service';
-import { CartService } from './services/cart.service';
-import { FilterService } from './services/filter.service';
-import { HttpProxyService } from './services/http-proxy.service';
 import { CustomHttpInterceptor } from './services/http.interceptor';
 import { LoadingInterceptor } from './services/loading.interceptor';
-import { ProductService } from './services/product.service';
-import { SnackbarService } from './services/snackbar.service';
-import { LazyImageComponent } from './components/lazy-image/lazy-image.component';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InmemoryDataService } from './services/in-memory-data.service';
-import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
-import { GhostCardProductComponent } from './components/ghost-card-product/ghost-card-product.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -104,6 +96,7 @@ import { GhostCardProductComponent } from './components/ghost-card-product/ghost
         MatSidenavModule,
         MatRippleModule,
         MatTabsModule,
+        MatSlideToggleModule,
         // InMemoryWebApiModule.forRoot(InmemoryDataService, {
         //     delay: 2000,
         //     passThruUnknownUrl: true

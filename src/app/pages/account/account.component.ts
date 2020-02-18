@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { switchMap, mergeMap } from 'rxjs/operators';
+import { debounceTime, mergeMap } from 'rxjs/operators';
 import { CONFIG_ACCOUNT } from 'src/app/classes/app-config';
 import { safelyGetValue } from 'src/app/classes/utility';
 import { IList } from 'src/app/components/footer/footer.component';
-import { AuthService, ITokenResponse } from 'src/app/services/auth.service';
-import { environment } from 'src/environments/environment';
-import { HttpProxyService } from 'src/app/services/http-proxy.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { HttpProxyService } from 'src/app/services/http-proxy.service';
+import { ThemeService } from 'src/app/services/theme.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-account',
@@ -17,13 +19,16 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class AccountComponent implements OnInit {
     public accountConfig: IList[] = CONFIG_ACCOUNT;
+    public darkThemeCtrl: FormControl;;
     constructor(
         private route: ActivatedRoute,
         public authSvc: AuthService,
         private httpProxy: HttpProxyService,
         private router: Router,
-        private cartSvc: CartService
+        private cartSvc: CartService,
+        private themeSvc: ThemeService
     ) {
+        this.darkThemeCtrl = new FormControl(this.themeSvc.isDarkTheme);
         if (!this.authSvc.currentUserAuthInfo) {
             this.route.queryParams
                 .pipe(
@@ -78,6 +83,9 @@ export class AccountComponent implements OnInit {
              * do nothing
              */
         }
+        this.darkThemeCtrl.valueChanges.pipe(debounceTime(250)).subscribe(next => {
+            this.themeSvc.isDarkTheme = next;
+        })
     }
 
     ngOnInit() { }

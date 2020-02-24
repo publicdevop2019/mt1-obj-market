@@ -1,6 +1,8 @@
-<section style="display: flex;flex-direction: column;align-items: center;">
-    <canvas #qrCodeFrame></canvas>
-    <div>Have you completed payment?</div>
-</section>
-<app-btn [lable]="'Yes'" (click)="confirmPayment()"></app-btn>
-<app-btn [lable]="'Pay later'" [routerLink]="'/home'"></app-btn>
+<div>
+    <section style="display: flex;flex-direction: column;align-items: center;">
+        <canvas #qrCodeFrame></canvas>
+        <div>Have you completed payment?</div>
+    </section>
+    <app-btn [lable]="'Yes'" (click)="confirmPayment()"></app-btn>
+    <app-btn [lable]="'Pay later'" [routerLink]="'/home'"></app-btn>
+</div>

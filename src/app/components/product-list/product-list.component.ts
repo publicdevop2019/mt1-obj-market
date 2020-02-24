@@ -5,6 +5,7 @@ import { switchMap, skip } from 'rxjs/operators';
 import { ProductService } from 'src/app/services/product.service';
 import { GhostService } from 'src/app/services/ghost.service';
 import { IProductSimple } from 'src/app/pages/product-detail/product-detail.component';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
     selector: 'app-product-list',
@@ -18,7 +19,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
     constructor(
         public productSvc: ProductService,
         private activatedRoute: ActivatedRoute,
-        private ghostSvc: GhostService
+        private ghostSvc: GhostService,
+        private filterSvc: FilterService
     ) {
         this.productSvc.httpProxy.netImpl.pageNumber = 0;
         this.sub0 = this.activatedRoute.data
@@ -50,11 +52,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
         return this.activatedRoute.paramMap.pipe(
             switchMap((params: ParamMap) => {
                 if (params.get('category')) {
-                    return this.productSvc.httpProxy.netImpl.searchByCategory(
-                        params.get('category')
-                    )
+                    this.productSvc.currentCategory = params.get('category');
+                    return this.productSvc.httpProxy.netImpl.searchByCategory(this.productSvc.currentCategory, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                 } else {
-                    return this.firstCategory().pipe(switchMap(first => this.productSvc.httpProxy.netImpl.searchByCategory(first)))
+                    return this.firstCategory().pipe(switchMap(first => this.productSvc.httpProxy.netImpl.searchByCategory(first, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)))
                 }
             }));
     }

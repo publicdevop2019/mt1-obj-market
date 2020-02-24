@@ -13,7 +13,7 @@ export class OnlineNetImpl implements INet {
     private pageSize = 20;
     constructor(public httpClient: HttpClient, public authSvc: AuthService) { }
     searchProduct(key: string, pageNumber: number): Observable<IProductSimple[]> {
-        return this.httpClient.get<IProductSimple[]>(environment.profileUrl + '/api/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + this.pageSize);
+        return this.httpClient.get<IProductSimple[]>(environment.productUrl + '/api/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + this.pageSize);
     };
     createProfile(): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/api/profiles', null, { observe: 'response' });
@@ -78,10 +78,10 @@ export class OnlineNetImpl implements INet {
             environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
-    searchByCategory(category: string): Observable<IProductSimple[]> {
+    searchByCategory(category: string, sortBy: string, sortOrder: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient
-                .get<IProductSimple[]>(environment.productUrl + '/api/categories/' + category + '?pageNum=' + this.pageNumber + '&pageSize=' + this.pageSize)
+                .get<IProductSimple[]>(environment.productUrl + '/api/categories/' + category + '?pageNum=' + this.pageNumber + '&pageSize=' + this.pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder)
                 .subscribe(next => {
                     el.next(next.filter(e => e.category === category));
                 });

@@ -107,9 +107,6 @@ export class OfflineNetImpl implements INet {
             'http://localhost:8080/api/carts'
         );
     }
-    /**
-     * @temp this should be replaced by real api
-     */
     searchByCategory(category: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient

@@ -14,6 +14,7 @@ import {
 export class ProductService {
     public productSimpleList: IProductSimple[];
     public formProduct: FormGroup;
+    public currentCategory: string;
     public productDetails: IProductDetail;
     public finalPrice: number;
     constructor(public httpProxy: HttpProxyService) {}

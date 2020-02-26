@@ -1,17 +1,12 @@
-import {
-    HttpErrorResponse,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import * as UUID from 'uuid/v1';
+import { AuthService } from './auth.service';
 import { HttpProxyService } from './http-proxy.service';
 import { SnackbarService } from './snackbar.service';
-import { AuthService } from './auth.service';
-import * as UUID from 'uuid/v1';
 /**
  * use refresh token if call failed
  */
@@ -45,17 +40,12 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                         this.snackBarSvc.openSnackBar('Please login first');
                         localStorage.clear();
                         this.router.navigate(['/account']);
-                        return throwError(error);
-                    } else if (
-                        this.errorStatus.indexOf(httpError.status) > -1
-                    ) {
+                    } else if (this.errorStatus.indexOf(httpError.status) > -1) {
                         this.snackBarSvc.openSnackBar('Server returns 5xx');
                     } else if (httpError.status === 404) {
                         this.snackBarSvc.openSnackBar('Product or category not found');
-                        return throwError(error);
                     } else if (httpError.status === 403) {
                         this.snackBarSvc.openSnackBar('Access is not allowed');
-                        return throwError(error);
                     } else if (httpError.status === 400) {
                         if (req.url.indexOf('profiles/search') > -1) {
                             /**
@@ -67,13 +57,11 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                         } else {
                             this.snackBarSvc.openSnackBar('Bad request');
                         }
-                        return throwError(error);
                     } else if (httpError.status === 0) {
                         this.snackBarSvc.openSnackBar('Network connection failed');
-                        return throwError(error);
                     } else {
-                        return throwError(error);
                     }
+                    return throwError(error);
                 } else {
                     /**
                      * angular in memory api does not return type of HttpErrorResponse when 404 not found

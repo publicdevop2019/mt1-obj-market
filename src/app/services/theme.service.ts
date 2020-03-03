@@ -4,5 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ThemeService {
-  isDarkTheme = false;
+  get isDarkTheme() {
+    if (localStorage.getItem('darkTheme') === 'true') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  set isDarkTheme(next: boolean) {
+    localStorage.setItem('darkTheme', next + '')
+  }
 }

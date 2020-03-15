@@ -12,7 +12,7 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     toDataURL(this.qrFrame.nativeElement as HTMLCanvasElement, this.orderSvc.paymentLink)
   }
-  @ViewChild("qrCodeFrame", { static: false }) qrFrame: ElementRef;
+  @ViewChild("qrCodeFrame") qrFrame: ElementRef;
   constructor(private orderSvc: OrderService, private router: Router, private bar: SnackbarService) {
   }
 

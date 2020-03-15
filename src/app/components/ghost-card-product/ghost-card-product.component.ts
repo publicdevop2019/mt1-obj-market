@@ -7,7 +7,7 @@ import { GhostService } from 'src/app/services/ghost.service';
   styleUrls: ['./ghost-card-product.component.scss']
 })
 export class GhostCardProductComponent implements AfterViewInit {
-  @ViewChild("ghostRef", { static: false }) ghostRef: ElementRef;
+  @ViewChild("ghostRef") ghostRef: ElementRef;
   private _visibilityConfig = {
     threshold: 0
   };

@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.searchResults = next;
       })
   }
-  @ViewChild('searchInput', { static: false }) searchComponnent: FormSearchComponent;
+  @ViewChild('searchInput') searchComponnent: FormSearchComponent;
   constructor(private _httpProxy: HttpProxyService, private ghostSvc: GhostService) {
   }
 

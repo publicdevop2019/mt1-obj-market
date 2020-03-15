@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { shrinkOutAnimation, slideInAnimation } from './classes/animation';
@@ -17,7 +17,7 @@ import { ThemeService } from './services/theme.service';
 })
 export class AppComponent{
     title = 'mt1-obj-market';
-    @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
+    @ViewChild('sidenav') sidenav: MatSidenav;
     prevScrollpos: number;
     scrollOb: Observable<any>;
     constructor(public httpProxy: HttpProxyService,public themeSvc:ThemeService) {

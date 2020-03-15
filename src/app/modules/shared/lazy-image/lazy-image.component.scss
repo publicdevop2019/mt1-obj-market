@@ -1,6 +1,6 @@
 @import '~@angular/material/_theming';
-@import '../../../styles.scss';
-@import '../../../card.scss';
+@import '../../../../styles.scss';
+@import '../../../../card.scss';
 @include mat-core();
 .img-animation{
     transition: opacity 0.8s ease-in-out;

@@ -27,11 +27,11 @@ export const CONFIG_ACCOUNT: IList[] = [
     {
         icon: 'local_shipping',
         title: 'Shipping Address',
-        routerUrl: '/addresses'
+        routerUrl: 'addresses'
     },
     {
         icon: 'assignment',
         title: 'Orders',
-        routerUrl: '/orders'
+        routerUrl: 'orders'
     }
 ];

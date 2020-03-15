@@ -5,9 +5,9 @@ import {
     IProductOption,
     IProductOptions
 } from '../pages/product-detail/product-detail.component';
-import { IAddress } from '../pages/addresses/addresses.component';
+import { IAddress } from '../modules/account/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import { IOrder } from '../components/card-order/card-order.component';
+import { IOrder } from '../modules/account/card-order/card-order.component';
 
 export class RandomUtility {
     public static randomPrice(min: number, max: number): number {

@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { notNullAndUndefined } from 'src/app/classes/utility';
-import { BottomSheetAddressPickerComponent } from 'src/app/components/bottom-sheet-address-picker/bottom-sheet-address-picker.component';
-import { BottomSheetPaymentPickerComponent } from 'src/app/components/bottom-sheet-payment-picker/bottom-sheet-payment-picker.component';
-import { IOrder } from 'src/app/components/card-order/card-order.component';
+import { IOrder } from 'src/app/modules/account/card-order/card-order.component';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
+import { BottomSheetAddressPickerComponent } from '../bottom-sheet-address-picker/bottom-sheet-address-picker.component';
+import { BottomSheetPaymentPickerComponent } from '../bottom-sheet-payment-picker/bottom-sheet-payment-picker.component';
 
 @Component({
     selector: 'app-order-detail',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { IOrder } from '../components/card-order/card-order.component';
+import { IOrder } from '../modules/account/card-order/card-order.component';
 import { CartService } from './cart.service';
 import { HttpProxyService } from './http-proxy.service';
 

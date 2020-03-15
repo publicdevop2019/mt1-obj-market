@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IAddress } from 'src/app/pages/addresses/addresses.component';
+import { IAddress } from 'src/app/modules/account/addresses/addresses.component';
 
 @Component({
     selector: 'app-card-address',

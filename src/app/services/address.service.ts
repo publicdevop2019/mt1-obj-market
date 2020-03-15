@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { IAddress } from '../pages/addresses/addresses.component';
+import { IAddress } from '../modules/account/addresses/addresses.component';
 import { HttpProxyService } from './http-proxy.service';
 
 @Injectable({

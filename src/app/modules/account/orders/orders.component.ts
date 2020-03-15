@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IOrder } from 'src/app/components/card-order/card-order.component';
+import { IOrder } from 'src/app/modules/account/card-order/card-order.component';
 import { HttpProxyService } from 'src/app/services/http-proxy.service';
 
 @Component({

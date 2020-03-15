@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { IAddress } from 'src/app/pages/addresses/addresses.component';
+import { IAddress } from 'src/app/modules/account/addresses/addresses.component';
 import { AddressService } from 'src/app/services/address.service';
 import { OrderService } from 'src/app/services/order.service';
 

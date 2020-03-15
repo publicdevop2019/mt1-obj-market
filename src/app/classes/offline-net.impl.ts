@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { IOrder } from '../components/card-order/card-order.component';
+import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICategory } from '../components/category-list/category-list.component';
-import { IAddress } from '../pages/addresses/addresses.component';
+import { IAddress } from '../modules/account/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 import { AuthService, ITokenResponse } from '../services/auth.service';

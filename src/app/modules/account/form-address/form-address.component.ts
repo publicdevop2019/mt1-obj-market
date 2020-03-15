@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressService } from 'src/app/services/address.service';
-import { IAddress } from 'src/app/pages/addresses/addresses.component';
+import { IAddress } from 'src/app/modules/account/addresses/addresses.component';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Location } from '@angular/common';
 @Component({

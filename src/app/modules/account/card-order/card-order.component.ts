@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IAddress } from 'src/app/pages/addresses/addresses.component';
+import { IAddress } from 'src/app/modules/account/addresses/addresses.component';
 import { ICartItem } from 'src/app/pages/cart/cart.component';
 export interface IOrder {
     id: string;

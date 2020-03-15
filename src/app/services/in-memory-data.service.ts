@@ -3,8 +3,8 @@ import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
 import { RandomUtility } from '../classes/random';
 import { IProductSimple } from '../pages/product-detail/product-detail.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import { IAddress } from '../pages/addresses/addresses.component';
-import { IOrder } from '../components/card-order/card-order.component';
+import { IAddress } from '../modules/account/addresses/addresses.component';
+import { IOrder } from '../modules/account/card-order/card-order.component';
 
 @Injectable({
     providedIn: 'root'

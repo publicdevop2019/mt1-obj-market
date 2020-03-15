@@ -17,7 +17,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,65 +25,42 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BottomSheetAddressPickerComponent } from './components/bottom-sheet-address-picker/bottom-sheet-address-picker.component';
-import { BottomSheetPaymentPickerComponent } from './components/bottom-sheet-payment-picker/bottom-sheet-payment-picker.component';
-import { BtnComponent } from './components/btn/btn.component';
-import { CardAddressComponent } from './components/card-address/card-address.component';
-import { CardCartComponent } from './components/card-cart/card-cart.component';
-import { CardOrderComponent } from './components/card-order/card-order.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormAddressComponent } from './components/form-address/form-address.component';
 import { FormFilterComponent } from './components/form-filter/form-filter.component';
 import { FormSearchComponent } from './components/form-search/form-search.component';
 import { GhostCardProductComponent } from './components/ghost-card-product/ghost-card-product.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LazyImageComponent } from './components/lazy-image/lazy-image.component';
 import { ProductBasicComponent } from './components/product-basic/product-basic.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { AccountComponent } from './pages/account/account.component';
-import { AddressesComponent } from './pages/addresses/addresses.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
-import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
-import { OrdersComponent } from './pages/orders/orders.component';
 import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { SearchComponent } from './pages/search/search.component';
 import { CustomHttpInterceptor } from './services/http.interceptor';
 import { LoadingInterceptor } from './services/loading.interceptor';
+import { SharedModule } from './modules/shared/shared.module';
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         CartComponent,
         CategoriesComponent,
-        AccountComponent,
         HeaderComponent,
         FooterComponent,
         CategoryListComponent,
         ProductDetailComponent,
         CardProductComponent,
         ProductListComponent,
-        CardCartComponent,
-        AddressesComponent,
-        OrdersComponent,
-        FormAddressComponent,
-        BottomSheetAddressPickerComponent,
-        CardAddressComponent,
-        OrderDetailComponent,
         ProductBasicComponent,
-        BottomSheetPaymentPickerComponent,
         OrderCompleteComponent,
-        CardOrderComponent,
-        BtnComponent,
         FormFilterComponent,
         SearchComponent,
         FormSearchComponent,
-        LazyImageComponent,
         PaymentDetailComponent,
         GhostCardProductComponent
     ],
@@ -112,7 +88,6 @@ import { LoadingInterceptor } from './services/loading.interceptor';
         MatProgressBarModule,
         MatSidenavModule,
         MatRippleModule,
-        MatTabsModule,
         MatSlideToggleModule,
         // InMemoryWebApiModule.forRoot(InmemoryDataService, {
         //     delay: 2000,
@@ -120,11 +95,8 @@ import { LoadingInterceptor } from './services/loading.interceptor';
         // }),
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production
-        })
-    ],
-    entryComponents: [
-        BottomSheetAddressPickerComponent,
-        BottomSheetPaymentPickerComponent
+        }),
+        SharedModule
     ],
     providers: [
         {

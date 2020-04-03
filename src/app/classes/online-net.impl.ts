@@ -13,75 +13,75 @@ export class OnlineNetImpl implements INet {
     private pageSize = 20;
     constructor(public httpClient: HttpClient, public authSvc: AuthService) { }
     searchProduct(key: string, pageNumber: number): Observable<IProductSimple[]> {
-        return this.httpClient.get<IProductSimple[]>(environment.productUrl + '/api/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + this.pageSize);
+        return this.httpClient.get<IProductSimple[]>(environment.productUrl + '/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + this.pageSize);
     };
     createProfile(): Observable<any> {
-        return this.httpClient.post(environment.profileUrl + '/api/profiles', null, { observe: 'response' });
+        return this.httpClient.post(environment.profileUrl + '/profiles', null, { observe: 'response' });
     };
     searchProfile(): Observable<string> {
-        return this.httpClient.get<string>(environment.profileUrl + '/api/profiles/search');
+        return this.httpClient.get<string>(environment.profileUrl + '/profiles/search');
     };
     getCategory(): Observable<ICategory[]> {
         return this.httpClient.get<ICategory[]>(
-            environment.productUrl + '/api/categories'
+            environment.productUrl + '/categories'
         );
     }
     removeFromCart(id: string): Observable<any> {
-        return this.httpClient.delete(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/cart/' + id);
+        return this.httpClient.delete(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart/' + id);
     }
     getCartItems(): Observable<ICartItem[]> {
         return this.httpClient.get<ICartItem[]>(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/cart'
+            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart'
         );
     }
     addToCart(item: ICartItem): Observable<any> {
-        return this.httpClient.post(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/cart', item);
+        return this.httpClient.post(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart', item);
     }
     reserveOrder(order: IOrder): Observable<any> {
-        return this.httpClient.post(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders', order, { observe: 'response' });
+        return this.httpClient.post(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders', order, { observe: 'response' });
     }
     replaceOrder(order: IOrder): Observable<any> {
-        return this.httpClient.put(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders/' + order.id + '/replace', order, { observe: 'response' });
+        return this.httpClient.put(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + order.id + '/replace', order, { observe: 'response' });
     };
     confirmOrder(orderId: string): Observable<any> {
-        return this.httpClient.get(environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders/' + orderId + '/confirm');
+        return this.httpClient.get(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + orderId + '/confirm');
     };
     getOrderById(id: string): Observable<IOrder> {
         return this.httpClient.get<IOrder>(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders/' + id
+            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + id
         );
     }
     getOrders(): Observable<IOrder[]> {
         return this.httpClient.get<IOrder[]>(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/orders'
+            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders'
         );
     }
     updateAddress(address: IAddress): Observable<any> {
         return this.httpClient.put(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/addresses/' + address.id,
+            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + address.id,
             address
         );
     }
     createAddress(address: IAddress): Observable<any> {
         return this.httpClient.post(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/addresses',
+            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses',
             address
         );
     }
     getAddresses(): Observable<IAddress[]> {
         return this.httpClient.get<IAddress[]>(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/addresses'
+            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses'
         );
     }
     deleteAddress(id: string): Observable<any> {
         return this.httpClient.delete(
-            environment.profileUrl + '/api/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
+            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
     searchByCategory(category: string, sortBy: string, sortOrder: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient
-                .get<IProductSimple[]>(environment.productUrl + '/api/categories/' + category + '?pageNum=' + this.pageNumber + '&pageSize=' + this.pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder)
+                .get<IProductSimple[]>(environment.productUrl + '/categories/' + category + '?pageNum=' + this.pageNumber + '&pageSize=' + this.pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder)
                 .subscribe(next => {
                     el.next(next.filter(e => e.category === category));
                 });
@@ -89,7 +89,7 @@ export class OnlineNetImpl implements INet {
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(
-            environment.productUrl + '/api/productDetails/' + productId
+            environment.productUrl + '/productDetails/' + productId
         );
     }
 }

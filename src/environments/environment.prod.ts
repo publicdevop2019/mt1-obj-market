@@ -4,7 +4,7 @@ export const environment = {
   APP_ID: 'obj-market',
   APPP_SECRET_PUBLIC: '',
   getTokenUri: 'http://api.manytreetechnology.com:8111/auth-svc/oauth/token',
-  oauthRedirectUri: 'http://shop.manytreetechnology.com:8111/account',
+  oauthRedirectUri: 'http://shop.manytreetechnology.com/account',
   authorzieUrl: 'http://api.manytreetechnology.com/authorize?response_type=code&',
   profileUrl:'http://api.manytreetechnology.com:8111/profile-svc',
   productUrl:'http://api.manytreetechnology.com:8111/product-svc',

@@ -8,6 +8,7 @@
     "start": "ng serve",
     "start-pwa": "http-server -p 8080 -c-1 dist/mt1-obj-market",
     "build": "ng build --prod",
+    "build:hw": "ng build --configuration hw",
     "test": "ng test",
     "lint": "ng lint --fix",
     "e2e": "ng e2e",

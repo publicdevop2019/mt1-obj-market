@@ -3,8 +3,8 @@
         <mat-list-item *ngFor="let el of accountConfig let last = last" [routerLink]="el.routerUrl">
             <mat-icon fontSet="material-icons-outlined" mat-list-icon>{{ el.icon }}</mat-icon>
             <p mat-line [ngSwitch]="el.title">
-                <ng-container *ngSwitchCase="'shipping_address'">Shipping Address</ng-container>
-                <ng-container *ngSwitchCase="'orders'">Orders</ng-container>
+                <ng-container *ngSwitchCase="'shipping_address'" i18n>Shipping Address</ng-container>
+                <ng-container *ngSwitchCase="'orders'" i18n>Orders</ng-container>
             </p>
             <mat-divider></mat-divider>
         </mat-list-item>
@@ -12,7 +12,7 @@
             <mat-slide-toggle [formControl]="darkThemeCtrl" i18n>Dark Theme</mat-slide-toggle>
         </mat-list-item>
     </mat-list>
-    <app-btn [lable]="'Log Out'" (click)="logout()" i18n-lable></app-btn>
+    <app-btn (click)="logout()" i18n-lable [lable]="'Log Out'"></app-btn>
 </mat-nav-list>
 <div *ngIf="!authSvc.currentUserAuthInfo" class="account-login-page">
     <app-btn *ngIf="!authSvc.currentUserAuthInfo" [lable]="'Login'" (click)="login()" i18n-lable></app-btn>

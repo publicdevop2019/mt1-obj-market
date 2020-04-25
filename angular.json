@@ -100,6 +100,12 @@
               "ngswConfigPath": "ngsw-config.json"
             },
             "zh-Hans": {
+              "fileReplacements": [
+                {
+                  "replace": "src/locale/constant.ts",
+                  "with": "src/locale/constant.zh-Hans.ts"
+                }
+              ],
               "localize": [
                 "zh-Hans"
               ],

@@ -58,7 +58,7 @@ export class ProductDetailComponent implements OnInit {
     public addToCart() {
         this.cartSvc.httpProxy.netImpl
             .addToCart(this.productSvc.extractCartItem()).pipe(mergeMap(next => {
-                this.snackBarSvc.openSnackBar('Item added');
+                this.snackBarSvc.openSnackBar('item_added');
                 return this.cartSvc.httpProxy.netImpl.getCartItems()
             }))
             .subscribe(next => {

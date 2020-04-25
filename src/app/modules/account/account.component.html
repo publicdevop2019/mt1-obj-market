@@ -1,23 +1,19 @@
 <mat-nav-list *ngIf="authSvc.currentUserAuthInfo">
     <mat-list>
-        <mat-list-item
-            *ngFor="let el of accountConfig let last = last"
-            [routerLink]="el.routerUrl"
-        >
+        <mat-list-item *ngFor="let el of accountConfig let last = last" [routerLink]="el.routerUrl">
             <mat-icon fontSet="material-icons-outlined" mat-list-icon>{{ el.icon }}</mat-icon>
-            <p mat-line>{{ el.title }}</p>
+            <p mat-line [ngSwitch]="el.title">
+                <ng-container *ngSwitchCase="'shipping_address'">Shipping Address</ng-container>
+                <ng-container *ngSwitchCase="'orders'">Orders</ng-container>
+            </p>
             <mat-divider></mat-divider>
-            </mat-list-item>
-            <mat-list-item>
-                <mat-slide-toggle [formControl]="darkThemeCtrl">Dark Theme</mat-slide-toggle>
-            </mat-list-item>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-slide-toggle [formControl]="darkThemeCtrl" i18n>Dark Theme</mat-slide-toggle>
+        </mat-list-item>
     </mat-list>
-    <app-btn [lable]="'Log Out'" (click)="logout()"></app-btn>
+    <app-btn [lable]="'Log Out'" (click)="logout()" i18n-lable></app-btn>
 </mat-nav-list>
 <div *ngIf="!authSvc.currentUserAuthInfo" class="account-login-page">
-    <app-btn
-        *ngIf="!authSvc.currentUserAuthInfo"
-        [lable]="'Login'"
-        (click)="login()"
-    ></app-btn>
+    <app-btn *ngIf="!authSvc.currentUserAuthInfo" [lable]="'Login'" (click)="login()" i18n-lable></app-btn>
 </div>

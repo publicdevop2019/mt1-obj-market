@@ -7,7 +7,7 @@
     <div *ngIf="order.productList.length >= 3" class="card-desc">
         ...
     </div>
-    <div class="card-desc">Total {{ order.paymentAmt }}</div>
+    <div class="card-desc" i18n>Total {{ order.paymentAmt }}</div>
     <div class="modify-card-btn">
         <button mat-button color="primary" class="card-btn" [routerLink]=" order.id">
             {{order.paymentStatus==='paid'?'View details':'Pay now'}}

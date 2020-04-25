@@ -60,10 +60,12 @@
         *ngIf="addAddress"
         [lable]="'Create'"
         (click)="doCreate()"
+        i18n-lable
     ></app-btn>
     <app-btn
         *ngIf="!addAddress"
         [lable]="'Update'"
         (click)="doUpdate()"
+        i18n-lable
     ></app-btn>
 </div>

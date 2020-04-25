@@ -28,7 +28,7 @@
         </div>
     </div>
     <div *ngIf="editable" class="modify-card-btn">
-        <button mat-button color="error" class="card-btn" (click)="emitEvent()">
+        <button mat-button color="error" class="card-btn" (click)="emitEvent()" i18n>
             Delete
         </button>
         <button
@@ -36,6 +36,7 @@
             color="primary"
             class="card-btn"
             [routerLink]="address.id"
+            i18n
         >
             Edit
         </button>

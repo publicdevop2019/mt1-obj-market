@@ -1,5 +1,5 @@
 <ng-container *ngIf="!address">
-    <div>
+    <div i18n>
         Loading
     </div>
 </ng-container>
@@ -9,6 +9,7 @@
         [routerLink]="'account/address'"
         [queryParams]="{ callbackUrl: 'order' }"
         (click)="dismiss()"
+        i18n-lable
     ></app-btn>
 </div>
 <ng-container *ngIf="address && address.length != 0">

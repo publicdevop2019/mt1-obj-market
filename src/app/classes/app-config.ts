@@ -26,12 +26,12 @@ export const CONFIG_FOOTER: IList[] = [
 export const CONFIG_ACCOUNT: IList[] = [
     {
         icon: 'local_shipping',
-        title: 'Shipping Address',
+        title: 'shipping_address',
         routerUrl: 'addresses'
     },
     {
         icon: 'assignment',
-        title: 'Orders',
+        title: 'orders',
         routerUrl: 'orders'
     }
 ];

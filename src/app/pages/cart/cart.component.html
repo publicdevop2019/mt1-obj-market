@@ -17,5 +17,6 @@
         [lable]="'Processed to checkout'"
         *ngIf="cartSvc.cart.length !== 0"
         (click)="checkout()"
+        i18n-lable
     ></app-btn>
 </ng-container>

@@ -11,7 +11,7 @@
             {{ productSimple.price }}
         </div>
         <div class="product-simple-sale" i18n>
-            {{ productSimple.sales===null ||productSimple.sales===undefined? 0 : productSimple.sales }} &nbsp; sold
+            sold &nbsp;{{ productSimple.sales===null ||productSimple.sales===undefined? 0 : productSimple.sales }}
         </div>
     </mat-card-content>
 </mat-card>

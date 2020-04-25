@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./btn.component.scss']
 })
 export class BtnComponent implements OnInit {
-    @Input() lable: string;
+    @Input() label: string;
     constructor() {}
 
     ngOnInit() {}

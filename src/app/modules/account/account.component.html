@@ -12,8 +12,8 @@
             <mat-slide-toggle [formControl]="darkThemeCtrl" i18n>Dark Theme</mat-slide-toggle>
         </mat-list-item>
     </mat-list>
-    <app-btn (click)="logout()" i18n-lable [lable]="'Log Out'"></app-btn>
+    <app-btn (click)="logout()" i18n-label label="Log Out"></app-btn>
 </mat-nav-list>
 <div *ngIf="!authSvc.currentUserAuthInfo" class="account-login-page">
-    <app-btn *ngIf="!authSvc.currentUserAuthInfo" [lable]="'Login'" (click)="login()" i18n-lable></app-btn>
+    <app-btn *ngIf="!authSvc.currentUserAuthInfo" label="Login" (click)="login()" i18n-label></app-btn>
 </div>

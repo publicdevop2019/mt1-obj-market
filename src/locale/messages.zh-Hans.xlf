@@ -18,12 +18,44 @@
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="d8124284c23d09d75bf14d192b9f504fcbfaa41e" datatype="html">
+        <source>Add new address</source>
+        <target>添加地址</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/addresses/addresses.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1cca2d20f4651cd681a53c4b8a0ca4f18afeff06" datatype="html">
+        <source>Processed to checkout</source>
+        <target>去付款</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="e2cec126f7bc6e94985ec1d358b9a65d91c00f86" datatype="html">
         <source>Total <x id="INTERPOLATION" equiv-text="{{ order.paymentAmt }}"/></source>
         <target>总价 <x id="INTERPOLATION" equiv-text="{{ order.paymentAmt }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/card-order/card-order.component.html</context>
           <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ac20db5416969da62d3e6ec91cb3789ebd8e5687" datatype="html">
+        <source>&apos;ADD TO CART&apos;</source>
+        <target>&apos;添加到购物车&apos;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8328c51ddeb57b816135b1dccecaf5eea236180b" datatype="html">
+        <source>&apos;Processed to checkout&apos;</source>
+        <source>&apos;Processed to checkout&apos;</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.component.html</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c" datatype="html">
@@ -80,6 +112,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
           <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a8e29599a5923fb278ce40352e53ae78997ddd37" datatype="html">
+        <source>View My Orders</source>
+        <target>查看我的订单</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/order-complete/order-complete.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7686600611acaa4ad87cd889e4b6fafe2f28e4e7" datatype="html">
@@ -200,6 +240,78 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/card-address/card-address.component.html</context>
           <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4f20f2d5a6882190892e58b85f6ccbedfa737952" datatype="html">
+        <source>Yes</source>
+        <target>确认</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/payment-detail/payment-detail.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="29349e9027b29abba721f43a71672bf8f4d58353" datatype="html">
+        <source>Pay later</source>
+        <target>稍后再说</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/payment-detail/payment-detail.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fcd8b8df3991e12db7daacd26d057602ca7bc857" datatype="html">
+        <source>&apos;Add new address&apos;</source>
+        <target>添加新地址</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/bottom-sheet-address-picker/bottom-sheet-address-picker.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+            <trans-unit id="e8a079f18a2f58f5b2c70266ca2dd589470645d7" datatype="html">
+        <source>Pick Address</source>
+        <target>选择地址</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/order-detail/order-detail.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+            <trans-unit id="b2c720588da8f569949941cd054649993e7c69d7" datatype="html">
+        <source>Pick Payment</source>
+        <target>选择支付方式</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/order-detail/order-detail.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d0227a069d21cc5c6951d829cbf135be5b5bc767" datatype="html">
+        <source>Log Out</source>
+        <target>登出</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <target>登入</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ee71bc853dc680721462ef0d78139c00072b254" datatype="html">
+        <source>&apos;Create&apos;</source>
+        <target>创建</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="215ea80107804b6930c941b3397972fb5d511534" datatype="html">
+        <source>&apos;Update&apos;</source>
+        <target>修改</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
     </body>

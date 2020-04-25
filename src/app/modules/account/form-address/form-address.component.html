@@ -58,14 +58,14 @@
     </mat-form-field>
     <app-btn
         *ngIf="addAddress"
-        [lable]="'Create'"
+        label="'Create'"
         (click)="doCreate()"
-        i18n-lable
+        i18n-label
     ></app-btn>
     <app-btn
         *ngIf="!addAddress"
-        [lable]="'Update'"
+        label="'Update'"
         (click)="doUpdate()"
-        i18n-lable
+        i18n-label
     ></app-btn>
 </div>

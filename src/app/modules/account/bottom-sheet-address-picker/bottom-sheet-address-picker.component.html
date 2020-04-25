@@ -5,11 +5,11 @@
 </ng-container>
 <div *ngIf="address && address.length == 0">
     <app-btn
-        [lable]="'Add new address'"
+        label="'Add new address'"
         [routerLink]="'account/address'"
         [queryParams]="{ callbackUrl: 'order' }"
         (click)="dismiss()"
-        i18n-lable
+        i18n-label
     ></app-btn>
 </div>
 <ng-container *ngIf="address && address.length != 0">

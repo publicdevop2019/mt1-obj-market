@@ -16,7 +16,7 @@
             <app-card-address *ngIf="orderSvc.order.address" [address]="orderSvc.order.address" [editable]="false">
             </app-card-address>
         </ng-container>
-        <app-btn *ngIf="editable" (click)="openAddressPicker()" [lable]="'Pick Address'" i18n-lable></app-btn>
+        <app-btn *ngIf="editable" (click)="openAddressPicker()" label="Pick Address" i18n-label></app-btn>
     </div>
 
     <div>
@@ -26,10 +26,10 @@
             <img src="../../../assets/imgs/wechat_pay.png" 
                 style="max-width: 100%;">
         </mat-card>
-        <app-btn *ngIf="editable" (click)="openPaymentPicker()" [lable]="'Pick Payment'" i18n-lable></app-btn>
+        <app-btn *ngIf="editable" (click)="openPaymentPicker()" label="Pick Payment" i18n-label></app-btn>
     </div>
     <ng-container *ngIf="editable">
         <mat-divider></mat-divider>
-        <app-btn (click)="reserveOrder()" [lable]="'Pay & Place order'"></app-btn>
+        <app-btn (click)="reserveOrder()" label="Pay & Place order"></app-btn>
     </ng-container>
 </div>

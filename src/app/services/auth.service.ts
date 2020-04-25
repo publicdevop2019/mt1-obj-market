@@ -31,7 +31,7 @@ export class AuthService {
     get userProfileId() {
         if (localStorage.getItem('userProfileId') === null) {
             this.router.navigate(['/account']);
-            this._snackBarSvc.openSnackBar('Please login first')
+            this._snackBarSvc.openSnackBar('login_required')
             localStorage.clear();
             /**
              * @note below msg will not get printed out, 

@@ -260,6 +260,20 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="d4d9163871c0b1b92a068907ca65f355bab8a9be" datatype="html">
+        <source>Paid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/orders/orders.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fd5c4dd3b10a16063b4312930202101581e3764d" datatype="html">
+        <source>Unpaid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/orders/orders.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="9e981bd608144c625281f43bfc372c690937109b" datatype="html">
         <source>Enter Full name</source>
         <context-group purpose="location">

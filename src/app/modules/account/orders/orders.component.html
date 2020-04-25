@@ -1,5 +1,5 @@
 <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Paid" >
+    <mat-tab label="Paid" i18n-label>
         <div class="card-list">
             <app-card-order *ngFor="let el of paiedOrders" [order]="el"></app-card-order>
         </div>
@@ -8,7 +8,7 @@
             <span i18n>No item to display</span>
         </div>
     </mat-tab>
-    <mat-tab label="Unpaid">
+    <mat-tab label="Unpaid" i18n-label>
         <div class="card-list">
             <app-card-order *ngFor="let el of unpaiedOrders" [order]="el"></app-card-order>
         </div>

@@ -37,15 +37,15 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                 if (error instanceof HttpErrorResponse) {
                     const httpError = error as HttpErrorResponse;
                     if (httpError.status === 401) {
-                        this.snackBarSvc.openSnackBar('Please login first');
+                        this.snackBarSvc.openSnackBar('login_required');
                         localStorage.clear();
                         this.router.navigate(['/account']);
                     } else if (this.errorStatus.indexOf(httpError.status) > -1) {
-                        this.snackBarSvc.openSnackBar('Server returns 5xx');
+                        this.snackBarSvc.openSnackBar('server_5xx');
                     } else if (httpError.status === 404) {
-                        this.snackBarSvc.openSnackBar('Product or category not found');
+                        this.snackBarSvc.openSnackBar('not_found');
                     } else if (httpError.status === 403) {
-                        this.snackBarSvc.openSnackBar('Access is not allowed');
+                        this.snackBarSvc.openSnackBar('server_403');
                     } else if (httpError.status === 400) {
                         if (req.url.indexOf('profiles/search') > -1) {
                             /**
@@ -55,10 +55,10 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                                 this.authSvc.userProfileId = next.headers.get('location')
                             })
                         } else {
-                            this.snackBarSvc.openSnackBar('Bad request');
+                            this.snackBarSvc.openSnackBar('server_400');
                         }
                     } else if (httpError.status === 0) {
-                        this.snackBarSvc.openSnackBar('Network connection failed');
+                        this.snackBarSvc.openSnackBar('net_error');
                     } else {
                     }
                     return throwError(error);

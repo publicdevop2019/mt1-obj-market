@@ -3,22 +3,22 @@ import { IList } from '../components/footer/footer.component';
 export const CONFIG_FOOTER: IList[] = [
     {
         icon: 'home',
-        title: 'Home',
+        title: 'home',
         routerUrl: 'home'
     },
     {
         icon: 'category',
-        title: 'Categories',
+        title: 'categories',
         routerUrl: 'categories'
     },
     {
         icon: 'shopping_cart',
-        title: 'Cart',
+        title: 'cart',
         routerUrl: 'cart'
     },
     {
         icon: 'account_box',
-        title: 'Account',
+        title: 'account',
         routerUrl: 'account'
     }
 ];

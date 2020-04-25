@@ -1,13 +1,16 @@
 <mat-toolbar color="accent" class="footer-mobile-container">
-    <button
-        *ngFor="let el of footerConfig"
-        class="footer-mobile-item"
-        mat-button
-        [routerLink]="el.routerUrl"
-        style="flex: 1; line-height: 0px;"
-    >
-        <mat-icon *ngIf="el.title==='Cart'" class="footer-mobile-icon" fontSet="material-icons-outlined" matBadge="{{cartSvc.cart.length}}" matBadgePosition="above after" matBadgeColor="primary" matBadgeSize="small">{{ el.icon }} </mat-icon>
-        <mat-icon *ngIf="el.title!=='Cart'" class="footer-mobile-icon" fontSet="material-icons-outlined">{{ el.icon }} </mat-icon>
-        <div class="footer-mobile-title">{{ el.title }}</div>
+    <button *ngFor="let el of footerConfig" class="footer-mobile-item" mat-button [routerLink]="el.routerUrl"
+        style="flex: 1; line-height: 0px;">
+        <mat-icon *ngIf="el.title==='cart'" class="footer-mobile-icon" fontSet="material-icons-outlined"
+            matBadge="{{cartSvc.cart.length}}" matBadgePosition="above after" matBadgeColor="primary"
+            matBadgeSize="small">{{ el.icon }} </mat-icon>
+        <mat-icon *ngIf="el.title!=='cart'" class="footer-mobile-icon" fontSet="material-icons-outlined">{{ el.icon }}
+        </mat-icon>
+        <div class="footer-mobile-title" [ngSwitch]="el.title">
+            <ng-container *ngSwitchCase="'home'" i18n>Home</ng-container>
+            <ng-container *ngSwitchCase="'categories'" i18n>Categories</ng-container>
+            <ng-container *ngSwitchCase="'cart'" i18n>Cart</ng-container>
+            <ng-container *ngSwitchCase="'account'" i18n>Account</ng-container>
+        </div>
     </button>
 </mat-toolbar>

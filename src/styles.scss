@@ -16,6 +16,7 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
 @import './card.scss';
 @import './form.scss';
+@import './locale/zh-Hans.scss';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

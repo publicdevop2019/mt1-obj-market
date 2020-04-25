@@ -23,6 +23,10 @@
           <context context-type="sourcefile">src/app/modules/account/addresses/addresses.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/bottom-sheet-address-picker/bottom-sheet-address-picker.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="e2cec126f7bc6e94985ec1d358b9a65d91c00f86" datatype="html">
         <source>Total <x id="INTERPOLATION" equiv-text="{{ order.paymentAmt }}"/></source>
@@ -38,8 +42,8 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8328c51ddeb57b816135b1dccecaf5eea236180b" datatype="html">
-        <source>&apos;Processed to checkout&apos;</source>
+      <trans-unit id="1cca2d20f4651cd681a53c4b8a0ca4f18afeff06" datatype="html">
+        <source>Processed to checkout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/cart/cart.component.html</context>
           <context context-type="linenumber">17</context>
@@ -135,6 +139,13 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5da3c9fdcf92f8bba5a92f227b534c1f68e24c30" datatype="html">
+        <source>Enter Search Param</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-search/form-search.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="11c56e24297f4beb617fa26526098d44f3c33bb1" datatype="html">
         <source>Have you completed payment?</source>
         <context-group purpose="location">
@@ -163,13 +174,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/bottom-sheet-address-picker/bottom-sheet-address-picker.component.html</context>
           <context context-type="linenumber">2</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="fcd8b8df3991e12db7daacd26d057602ca7bc857" datatype="html">
-        <source>&apos;Add new address&apos;</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/account/bottom-sheet-address-picker/bottom-sheet-address-picker.component.html</context>
-          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b1443b0f23f1ccca9f67caec37ab95e01c29dfa8" datatype="html">
@@ -242,18 +246,102 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5ee71bc853dc680721462ef0d78139c00072b254" datatype="html">
-        <source>&apos;Create&apos;</source>
+      <trans-unit id="9e981bd608144c625281f43bfc372c690937109b" datatype="html">
+        <source>Enter Full name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0262914a66ddc4f281a27eddfd418fd5f83b8dc7" datatype="html">
+        <source>Enter Street and number, P.O. box,c/o.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6cc167cfdf77fcae87cdbd4b0e9fa7bccec5a8cf" datatype="html">
+        <source>Apartment, suite, unit, building, floor, etc.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="18fad099b1342c055b6633eb0bdfdd2a03f7fb84" datatype="html">
+        <source>Enter City</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="80292788b6f1aa9744cefb32af24675049beacc8" datatype="html">
+        <source>Enter Postal Code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="732517f729ca662b3bceaffd8cdcc4e677bf819f" datatype="html">
+        <source>Enter Phone number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="904bbb8b277b16c8a13d99be5e5679cf37324449" datatype="html">
+        <source>Select Country</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fb75b511f15747825fb8d2a3b9f27ec080efe1bc" datatype="html">
+        <source>Canada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ddae8ce5cbb3dbb7f036804f449768d68fc02221" datatype="html">
+        <source>China</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1940fdb8871ec4bd275b9b6570795b2ace8f59a1" datatype="html">
+        <source>Select Province</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e60639753288a89cd75cc6f9276cc044a9b7551e" datatype="html">
+        <source>Ontario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="44a4bd193793ce5f1500117b395a0c8ec04c2017" datatype="html">
+        <source>Quebec</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
           <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="215ea80107804b6930c941b3397972fb5d511534" datatype="html">
-        <source>&apos;Update&apos;</source>
+      <trans-unit id="70a67e04629f6d412db0a12d51820b480788d795" datatype="html">
+        <source>Create</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="047f50bc5b5d17b5bec0196355953e1a5c590ddb" datatype="html">
+        <source>Update</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="090097acb772863e355714ef9a4180881cdd6890" datatype="html">

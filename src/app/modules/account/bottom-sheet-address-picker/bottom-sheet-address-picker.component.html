@@ -5,7 +5,7 @@
 </ng-container>
 <div *ngIf="address && address.length == 0">
     <app-btn
-        label="'Add new address'"
+        label="Add new address"
         [routerLink]="'account/address'"
         [queryParams]="{ callbackUrl: 'order' }"
         (click)="dismiss()"

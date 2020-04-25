@@ -3,22 +3,22 @@ import { IList } from '../components/footer/footer.component';
 export const CONFIG_FOOTER: IList[] = [
     {
         icon: 'home',
-        title: 'Home',
+        title: 'home',
         routerUrl: 'home'
     },
     {
         icon: 'category',
-        title: 'Categories',
+        title: 'categories',
         routerUrl: 'categories'
     },
     {
         icon: 'shopping_cart',
-        title: 'Cart',
+        title: 'cart',
         routerUrl: 'cart'
     },
     {
         icon: 'account_box',
-        title: 'Account',
+        title: 'account',
         routerUrl: 'account'
     }
 ];
@@ -26,12 +26,12 @@ export const CONFIG_FOOTER: IList[] = [
 export const CONFIG_ACCOUNT: IList[] = [
     {
         icon: 'local_shipping',
-        title: 'Shipping Address',
+        title: 'shipping_address',
         routerUrl: 'addresses'
     },
     {
         icon: 'assignment',
-        title: 'Orders',
+        title: 'orders',
         routerUrl: 'orders'
     }
 ];

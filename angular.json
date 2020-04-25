@@ -10,6 +10,12 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "zh-Hans": "src/locale/messages.zh-Hans.xlf"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -92,6 +98,39 @@
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
+            },
+            "zh-Hans": {
+              "fileReplacements": [
+                {
+                  "replace": "src/locale/constant.ts",
+                  "with": "src/locale/constant.zh-Hans.ts"
+                }
+              ],
+              "localize": [
+                "zh-Hans"
+              ],
+              "main": "src/main.ts",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -103,6 +142,9 @@
           "configurations": {
             "production": {
               "browserTarget": "mt1-obj-market:build:production"
+            },
+            "zh-Hans": {
+              "browserTarget": "mt1-obj-market:build:zh-Hans"
             }
           }
         },

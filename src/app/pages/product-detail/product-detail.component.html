@@ -4,7 +4,8 @@
         [productDetail]="productDetail"
     ></app-product-basic>
     <app-btn
-        [lable]="'ADD TO CART'"
+        i18n-label
+        label="ADD TO CART"
         *ngIf="productBasic.productDetail"
         (click)="addToCart()"
     ></app-btn>

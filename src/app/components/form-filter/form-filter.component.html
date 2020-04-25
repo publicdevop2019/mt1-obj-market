@@ -1,14 +1,14 @@
-<button mat-button color="primary" class="filter-btn" (click)="emitEvent()">
+<button mat-button color="primary" class="filter-btn" (click)="emitEvent()" i18n>
     Close
 </button>
 <div [formGroup]="filterSvc.filterForm">
     <mat-form-field>
         <mat-label>Sort</mat-label>
         <mat-select formControlName="sortBy">
-            <mat-option value="price_low_to_high">Price low to high</mat-option>
-            <mat-option value="price_high_to_low">Price high to low</mat-option>
-            <mat-option value="name_A_Z">Name A-Z</mat-option>
-            <mat-option value="name_Z_A">Name Z-A</mat-option>
+            <mat-option value="price_low_to_high" i18n>Price low to high</mat-option>
+            <mat-option value="price_high_to_low" i18n>Price high to low</mat-option>
+            <mat-option value="name_A_Z" i18n>Name A-Z</mat-option>
+            <mat-option value="name_Z_A" i18n>Name Z-A</mat-option>
         </mat-select>
     </mat-form-field>
 </div>

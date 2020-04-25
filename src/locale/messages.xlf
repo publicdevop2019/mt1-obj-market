@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1b691047f09f45a27919ba8c173ec4f7108df6e3" datatype="html">
+        <source>No item to display</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/addresses/addresses.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/orders/orders.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/orders/orders.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d8124284c23d09d75bf14d192b9f504fcbfaa41e" datatype="html">
+        <source>Add new address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/addresses/addresses.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/bottom-sheet-address-picker/bottom-sheet-address-picker.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e2cec126f7bc6e94985ec1d358b9a65d91c00f86" datatype="html">
+        <source>Total <x id="INTERPOLATION" equiv-text="{{ order.paymentAmt }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/card-order/card-order.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ceda8546927f35cdfe0706f18252ebf613d3266a" datatype="html">
+        <source>ADD TO CART</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1cca2d20f4651cd681a53c4b8a0ca4f18afeff06" datatype="html">
+        <source>Processed to checkout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/cart/cart.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c" datatype="html">
+        <source>Home</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="04201f9d27abd7d6f58a4328ab98063ce1072006" datatype="html">
+        <source>Categories</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="35ddec84bef64323860438124b61cf24859fa892" datatype="html">
+        <source>Cart</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="29881a45dafbe5aa05cd9d0441a4c0c2fb06df92" datatype="html">
+        <source>Account</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3243b660cfee29ba478e8543dd6042d350bad04b" datatype="html">
+        <source>
+            sold  <x id="INTERPOLATION" equiv-text="{{ productSimple.sales===null ||productSimple.sales===undefined? 0 : productSimple.sales }}"/>
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/card-product/card-product.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="48a18099cfe8b6a7070fc33be97d692cd06d4d0e" datatype="html">
+        <source>
+            sold   <x id="INTERPOLATION" equiv-text="{{ productDetail.sales===null ||productDetail.sales===undefined? 0 : productDetail.sales }}"/> 
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="27e9f934e74434f5c1a70120b8e626fe31b9f80d" datatype="html">
+        <source>Thank you, your order has been placed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/order-complete/order-complete.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a8e29599a5923fb278ce40352e53ae78997ddd37" datatype="html">
+        <source>View My Orders</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/order-complete/order-complete.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7686600611acaa4ad87cd889e4b6fafe2f28e4e7" datatype="html">
+        <source>
+    Close
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="686ae859cdf686fdde552502527ddd7914aacaa8" datatype="html">
+        <source>Price low to high</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8c7fcbdb2a1494d368c1356d9e100b2e898406be" datatype="html">
+        <source>Price high to low</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="21b3c0e6c6d84c5542d67e47dcc92f60cfd8dbab" datatype="html">
+        <source>Name A-Z</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cb8a401689c8b5aaea127de07e61c04b85a76da0" datatype="html">
+        <source>Name Z-A</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5da3c9fdcf92f8bba5a92f227b534c1f68e24c30" datatype="html">
+        <source>Enter Search Param</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-search/form-search.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="11c56e24297f4beb617fa26526098d44f3c33bb1" datatype="html">
+        <source>Have you completed payment?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/payment-detail/payment-detail.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4f20f2d5a6882190892e58b85f6ccbedfa737952" datatype="html">
+        <source>Yes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/payment-detail/payment-detail.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="29349e9027b29abba721f43a71672bf8f4d58353" datatype="html">
+        <source>Pay later</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/payment-detail/payment-detail.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="59cdbd4c9051d128065abdbd5ca58ab8e49d2184" datatype="html">
+        <source>
+        Loading
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/bottom-sheet-address-picker/bottom-sheet-address-picker.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b1443b0f23f1ccca9f67caec37ab95e01c29dfa8" datatype="html">
+        <source>TOTAL</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/order-detail/order-detail.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2952b6ad4bbd1a7ab16676c940e421cf051a6d3a" datatype="html">
+        <source>Shipping Details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/order-detail/order-detail.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e8a079f18a2f58f5b2c70266ca2dd589470645d7" datatype="html">
+        <source>Pick Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/order-detail/order-detail.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addf0dc8a913c19d58059639260d233f2258867f" datatype="html">
+        <source>Payment Details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/order-detail/order-detail.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b2c720588da8f569949941cd054649993e7c69d7" datatype="html">
+        <source>Pick Payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/order-detail/order-detail.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1a1eb15d4aaa7ddabbe0e215a47bb84534829afb" datatype="html">
+        <source>Pay &amp; Place order</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/order-detail/order-detail.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4c7409ea41598422d9968af7d3a0a4a44a3c8a53" datatype="html">
+        <source>Shipping Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4e7f5f07ae8e67878f35b34bcee10e39300ff41a" datatype="html">
+        <source>Orders</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ab48f0ca3ad58581e7ee4e009abfe5121c7abd15" datatype="html">
+        <source>Dark Theme</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d0227a069d21cc5c6951d829cbf135be5b5bc767" datatype="html">
+        <source>Log Out</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d4d9163871c0b1b92a068907ca65f355bab8a9be" datatype="html">
+        <source>Paid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/orders/orders.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fd5c4dd3b10a16063b4312930202101581e3764d" datatype="html">
+        <source>Unpaid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/orders/orders.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9e981bd608144c625281f43bfc372c690937109b" datatype="html">
+        <source>Enter Full name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0262914a66ddc4f281a27eddfd418fd5f83b8dc7" datatype="html">
+        <source>Enter Street and number, P.O. box,c/o.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6cc167cfdf77fcae87cdbd4b0e9fa7bccec5a8cf" datatype="html">
+        <source>Apartment, suite, unit, building, floor, etc.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="18fad099b1342c055b6633eb0bdfdd2a03f7fb84" datatype="html">
+        <source>Enter City</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="80292788b6f1aa9744cefb32af24675049beacc8" datatype="html">
+        <source>Enter Postal Code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="732517f729ca662b3bceaffd8cdcc4e677bf819f" datatype="html">
+        <source>Enter Phone number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="904bbb8b277b16c8a13d99be5e5679cf37324449" datatype="html">
+        <source>Select Country</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fb75b511f15747825fb8d2a3b9f27ec080efe1bc" datatype="html">
+        <source>Canada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ddae8ce5cbb3dbb7f036804f449768d68fc02221" datatype="html">
+        <source>China</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1940fdb8871ec4bd275b9b6570795b2ace8f59a1" datatype="html">
+        <source>Select Province</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e60639753288a89cd75cc6f9276cc044a9b7551e" datatype="html">
+        <source>Ontario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="44a4bd193793ce5f1500117b395a0c8ec04c2017" datatype="html">
+        <source>Quebec</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="70a67e04629f6d412db0a12d51820b480788d795" datatype="html">
+        <source>Create</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="047f50bc5b5d17b5bec0196355953e1a5c590ddb" datatype="html">
+        <source>Update</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="090097acb772863e355714ef9a4180881cdd6890" datatype="html">
+        <source>
+            Delete
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/card-address/card-address.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="369bc2e68cb31298afc15b40855745eea4042724" datatype="html">
+        <source>
+            Edit
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/card-address/card-address.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

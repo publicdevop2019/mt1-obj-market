@@ -1,8 +1,8 @@
 <div>
     <section style="display: flex;flex-direction: column;align-items: center;">
         <canvas #qrCodeFrame></canvas>
-        <div>Have you completed payment?</div>
+        <div i18n>Have you completed payment?</div>
     </section>
-    <app-btn [lable]="'Yes'" (click)="confirmPayment()"></app-btn>
-    <app-btn [lable]="'Pay later'" [routerLink]="'/home'"></app-btn>
+    <app-btn label="Yes" (click)="confirmPayment()" i18n-label></app-btn>
+    <app-btn label="Pay later" [routerLink]="'/home'" i18n-label></app-btn>
 </div>

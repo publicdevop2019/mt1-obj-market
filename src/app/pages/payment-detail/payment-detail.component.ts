@@ -25,7 +25,7 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
       if (next.paymentStatus === true) {
         this.router.navigate(['/order-complete']);
       } else {
-        this.bar.openSnackBar('looks like we did not receieve your payment')
+        this.bar.openSnackBar('pymt_not_receieved')
       }
     })
   }

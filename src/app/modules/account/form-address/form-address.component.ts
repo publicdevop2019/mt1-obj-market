@@ -56,7 +56,7 @@ export class FormAddressComponent implements OnInit {
             .updateAddress(this.addressForm.getRawValue() as IAddress)
             .subscribe(next => {
                 this.router.navigate(['/addresses']);
-                this.snackBarSvc.openSnackBar('Address updated');
+                this.snackBarSvc.openSnackBar('item_updated');
             });
     }
     public doCreate() {
@@ -64,7 +64,7 @@ export class FormAddressComponent implements OnInit {
             .createAddress(this.addressForm.getRawValue() as IAddress)
             .subscribe(next => {
                 this.location.back();
-                this.snackBarSvc.openSnackBar('Address added');
+                this.snackBarSvc.openSnackBar('item_added');
             });
     }
 }

@@ -13,6 +13,6 @@
     *ngIf="address && address.length === 0"
     class="empty-item-container-create"
 >
-    <span>No item to display</span>
+    <span i18n>No item to display</span>
 </div>
-<app-btn [lable]="'Add new address'" [routerLink]="'../address'"></app-btn>
+<app-btn label="Add new address" [routerLink]="'../address'" i18n-label></app-btn>

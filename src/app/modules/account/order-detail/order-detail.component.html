@@ -6,30 +6,30 @@
     <mat-divider></mat-divider>
     <div role="list" class="order-detail-price-container">
         <div role="listitem" class="order-detail-price-item" style="font-weight: 600;">
-            <span>TOTAL</span> <span>{{ calcTotal()}}</span>
+            <span i18n>TOTAL</span> <span>{{ calcTotal()}}</span>
         </div>
     </div>
 
     <div >
-        <div class="order-address-title">Shipping Details</div>
+        <div class="order-address-title" i18n>Shipping Details</div>
         <ng-container>
             <app-card-address *ngIf="orderSvc.order.address" [address]="orderSvc.order.address" [editable]="false">
             </app-card-address>
         </ng-container>
-        <app-btn *ngIf="editable" (click)="openAddressPicker()" [lable]="'Pick Address'"></app-btn>
+        <app-btn *ngIf="editable" (click)="openAddressPicker()" label="Pick Address" i18n-label></app-btn>
     </div>
 
     <div>
-        <div class="order-payment-title">Payment Details</div>
+        <div class="order-payment-title" i18n>Payment Details</div>
         <mat-card *ngIf="orderSvc.order.paymentType==='wechat_pay'" class="card-container-action"
             matRipple>
             <img src="../../../assets/imgs/wechat_pay.png" 
                 style="max-width: 100%;">
         </mat-card>
-        <app-btn *ngIf="editable" (click)="openPaymentPicker()" [lable]="'Pick Payment'"></app-btn>
+        <app-btn *ngIf="editable" (click)="openPaymentPicker()" label="Pick Payment" i18n-label></app-btn>
     </div>
     <ng-container *ngIf="editable">
         <mat-divider></mat-divider>
-        <app-btn (click)="reserveOrder()" [lable]="'Pay & Place order'"></app-btn>
+        <app-btn (click)="reserveOrder()" label="Pay & Place order" i18n-label></app-btn>
     </ng-container>
 </div>

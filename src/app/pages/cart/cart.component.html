@@ -14,8 +14,9 @@
         <span>Your shopping cart is empty</span>
     </div>
     <app-btn
-        [lable]="'Processed to checkout'"
+        label="Processed to checkout"
         *ngIf="cartSvc.cart.length !== 0"
         (click)="checkout()"
+        i18n-label
     ></app-btn>
 </ng-container>

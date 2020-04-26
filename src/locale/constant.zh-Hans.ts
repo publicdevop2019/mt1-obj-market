@@ -9,4 +9,5 @@ export const CONSTANT_I18N = {
     'not_found': '资源未找到',
     'net_error': '网络异常',
     redirctUrl: '/zh-Hans/account',
+    docTitle:'Object 商城'
 }

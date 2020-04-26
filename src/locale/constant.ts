@@ -8,4 +8,5 @@ export const CONSTANT_I18N = {
     'server_400': 'Please review your information',
     'not_found': 'Resource not found',
     'net_error': 'Network connection error',
+    redirctUrl: '/account',
 }

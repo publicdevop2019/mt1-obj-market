@@ -4,6 +4,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { SnackbarService } from './snackbar.service';
+import { CONSTANT_I18N } from 'src/locale/constant';
 export interface ITokenResponse {
     access_token: string;
     refresh_token?: string;
@@ -56,7 +57,7 @@ export class AuthService {
         const formData = new FormData();
         formData.append('grant_type', 'authorization_code');
         formData.append('code', code);
-        formData.append('redirect_uri', environment.oauthRedirectUri);
+        formData.append('redirect_uri', environment.oauthRedirectUri + CONSTANT_I18N.redirctUrl);
         return this.httpClient.post<ITokenResponse>(
             environment.getTokenUri,
             formData,

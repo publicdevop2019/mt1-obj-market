@@ -14,8 +14,8 @@ export class OrdersComponent implements OnInit {
     constructor(public httpProxy: HttpProxyService) {
         this.httpProxy.netImpl.getOrders().subscribe(next => {
             this.orderTotal = next;
-            this.paiedOrders = this.orderTotal.filter(e => e.paymentStatus === 'paid');
-            this.unpaiedOrders = this.orderTotal.filter(e => e.paymentStatus === 'unpaid');
+            this.paiedOrders = this.orderTotal.filter(e => e.orderState.indexOf('NOT_PAID') === -1);
+            this.unpaiedOrders = this.orderTotal.filter(e => e.orderState.indexOf('NOT_PAID') > -1);
         });
     }
 

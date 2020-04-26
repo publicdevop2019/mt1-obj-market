@@ -6,6 +6,7 @@
     "deploy": "ng build --prod && cp -a ./dist/mt1-obj-market/. ./public/ && rm -r ./public/* && cp -a ./dist/mt1-obj-market/. ./public/ && firebase deploy",
     "ng": "ng",
     "start": "ng serve",
+    "start-zh-Hans": "ng serve --configuration=zh-Hans",
     "start-pwa": "http-server -p 8080 -c-1 dist/mt1-obj-market",
     "build": "ng build --prod",
     "build-zh-Hans": "ng build --configuration=production,zh-Hans",

@@ -33,7 +33,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.sub1 = this.ghostSvc.productCardGhostObser.pipe(skip(1))
+        this.sub1 = this.ghostSvc.productCardGhostObser
             .pipe(switchMap(() => {
                 this.productSvc.httpProxy.netImpl.pageNumber++;
                 return this.getProductOb();

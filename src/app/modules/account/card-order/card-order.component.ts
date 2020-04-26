@@ -3,11 +3,11 @@ import { IAddress } from 'src/app/modules/account/addresses/addresses.component'
 import { ICartItem } from 'src/app/pages/cart/cart.component';
 export interface IOrder {
     id: string;
-    productList: ICartItem[];
-    address: IAddress;
-    paymentType: string; // wechat pay or ali pay
     paymentAmt:string;
-    paymentStatus?:string;
+    orderState:string;
+    productList: ICartItem[];
+    address?: IAddress;
+    paymentType?: string; // wechat pay or ali pay
 }
 @Component({
     selector: 'app-card-order',

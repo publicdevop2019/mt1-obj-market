@@ -36,7 +36,7 @@ export class OrderDetailComponent implements OnInit {
                             productList: this.cartSvc.cart,
                             address: this.orderSvc.order.address,
                             paymentType: this.orderSvc.order.paymentType,
-                            paymentStatus: 'unpaid'
+                            orderState: 'NOT_PAID'
                         } as IOrder);
                     } else {
                         /** read an existing paid or unpaid order */
@@ -48,7 +48,7 @@ export class OrderDetailComponent implements OnInit {
             )
             .subscribe(next => {
                 this.orderSvc.order = next;
-                if (this.orderSvc.order.paymentStatus === 'unpaid')
+                if (this.orderSvc.order.orderState.indexOf('NOT_PAID') > -1)
                     this.editable = true;
             });
     }

@@ -10,6 +10,6 @@ export const CONSTANT_I18N = {
     'net_error': '网络异常',
     viewDetails: '查看订单',
     payNow: '立即支付',
-    redirctUrl: '/account',
+    redirctUrl: '/zh-Hans/account',
     docTitle:'Object 商城'
 }

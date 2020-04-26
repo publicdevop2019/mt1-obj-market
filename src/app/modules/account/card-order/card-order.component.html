@@ -9,8 +9,9 @@
     </div>
     <div class="card-desc" i18n>Total {{ order.paymentAmt }}</div>
     <div class="modify-card-btn">
-        <button mat-button color="primary" class="card-btn" [routerLink]="order.id" i18n>
-            {{order.orderState.indexOf('NOT_PAID')>-1?"Pay now":"View details"}}
-        </button>
+        <button *ngIf="order.orderState.indexOf('NOT_PAID')>-1" mat-button color="primary" class="card-btn"
+            [routerLink]="order.id">{{CONST_I18N.payNow}}</button>
+        <button *ngIf="order.orderState.indexOf('NOT_PAID')===-1" mat-button color="primary" class="card-btn"
+            [routerLink]="order.id">{{CONST_I18N.viewDetails}} </button>
     </div>
 </mat-card>

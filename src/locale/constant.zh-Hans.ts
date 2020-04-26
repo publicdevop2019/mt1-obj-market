@@ -8,6 +8,8 @@ export const CONSTANT_I18N = {
     'server_400': '请检查您的信息',
     'not_found': '资源未找到',
     'net_error': '网络异常',
-    redirctUrl: '/zh-Hans/account',
+    viewDetails: '查看订单',
+    payNow: '立即支付',
+    redirctUrl: '/account',
     docTitle:'Object 商城'
 }

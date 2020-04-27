@@ -12,7 +12,7 @@ import {
     providedIn: 'root'
 })
 export class ProductService {
-    public productSimpleList: IProductSimple[];
+    public productSimpleList: IProductSimple[]=[];
     public formProduct: FormGroup;
     public currentCategory: string;
     public productDetails: IProductDetail;

@@ -5,13 +5,12 @@ import { IAddress } from '../modules/account/addresses/addresses.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 export interface INet {
-    pageNumber: number;
-    searchProduct: (key: string, pageNumber: number) => Observable<IProductSimple[]>;
+    searchProduct: (key: string, pageNumber: number, pageSize: number) => Observable<IProductSimple[]>;
 
     searchProfile: () => Observable<string>;
     createProfile: () => Observable<any>;
     getCategory: () => Observable<ICategoryNet[]>;
-    searchByCategory: (category: string, sortBy: string, sortOrder: string) => Observable<IProductSimple[]>;
+    searchByCategory: (category: string, pageNum: number, pageSize: number, sortBy: string, sortOrder: string) => Observable<IProductSimple[]>;
     getProductDetailsById: (productId: string) => Observable<IProductDetail>;
 
     getCartItems: () => Observable<ICartItem[]>;

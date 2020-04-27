@@ -10,7 +10,6 @@ import { AuthService, ITokenResponse } from '../services/auth.service';
 import { INet } from './net.interface';
 
 export class OfflineNetImpl implements INet {
-    pageNumber: number = 0;
     replaceOrder(order: IOrder): Observable<any> {
         return this.httpClient.put('http://localhost:8080/api/orders' + order.id, order);
     };

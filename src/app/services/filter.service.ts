@@ -14,7 +14,6 @@ export class FilterService {
     });
     constructor(private productSvc: ProductService) {
         this.filterForm.get('sortBy').valueChanges.pipe(switchMap(next => {
-            this.productSvc.httpProxy.netImpl.pageNumber = 0;
             if (next === 'price_low_to_high') {
                 this.defaultSortBy = 'price';
                 this.defaultSortOrder = 'asc';
@@ -30,7 +29,7 @@ export class FilterService {
             } else {
                 throw new Error('unknown sort type ' + next);
             }
-            return this.productSvc.httpProxy.netImpl.searchByCategory(this.productSvc.currentCategory, this.defaultSortBy, this.defaultSortOrder);
+            return this.productSvc.httpProxy.netImpl.searchByCategory(this.productSvc.currentCategory,0,20, this.defaultSortBy, this.defaultSortOrder);
         })).subscribe(next => {
             this.productSvc.productSimpleList = next;
         });

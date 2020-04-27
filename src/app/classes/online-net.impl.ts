@@ -9,11 +9,9 @@ import { IProductDetail, IProductSimple } from '../pages/product-detail/product-
 import { AuthService } from '../services/auth.service';
 import { INet } from './net.interface';
 export class OnlineNetImpl implements INet {
-    public pageNumber = 0;
-    private pageSize = 20;
     constructor(public httpClient: HttpClient, public authSvc: AuthService) { }
-    searchProduct(key: string, pageNumber: number): Observable<IProductSimple[]> {
-        return this.httpClient.get<IProductSimple[]>(environment.productUrl + '/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + this.pageSize);
+    searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimple[]> {
+        return this.httpClient.get<IProductSimple[]>(environment.productUrl + '/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + pageSize);
     };
     createProfile(): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/profiles', null, { observe: 'response' });
@@ -78,10 +76,10 @@ export class OnlineNetImpl implements INet {
             environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
-    searchByCategory(category: string, sortBy: string, sortOrder: string): Observable<IProductSimple[]> {
+    searchByCategory(category: string, pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimple[]> {
         return new Observable<IProductSimple[]>(el => {
             this.httpClient
-                .get<IProductSimple[]>(environment.productUrl + '/categories/' + category + '?pageNum=' + this.pageNumber + '&pageSize=' + this.pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder)
+                .get<IProductSimple[]>(environment.productUrl + '/categories/' + category + '?pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder)
                 .subscribe(next => {
                     el.next(next.filter(e => e.category === category));
                 });

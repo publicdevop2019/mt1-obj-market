@@ -14,6 +14,7 @@ import { GhostService } from 'src/app/services/ghost.service';
 })
 export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   private pageNumber = 0;
+  private pageSize = 5;
   private searchKey = '';
   private sub0: Subscription;
   private sub1: Subscription;
@@ -26,7 +27,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(map(el => el.trim()))
       .pipe(switchMap(e => {
         this.searchKey = e;
-        return this._httpProxy.netImpl.searchProduct(e, this.pageNumber)
+        return this._httpProxy.netImpl.searchProduct(e, this.pageNumber, this.pageSize)
       }))
       .subscribe(next => {
         this.searchResults = next;
@@ -44,9 +45,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub1 = this.ghostSvc.productCardGhostObser
       .pipe(switchMap(() => {
         this.pageNumber++;
-        return this._httpProxy.netImpl.searchProduct(this.searchKey, this.pageNumber)
+        return this._httpProxy.netImpl.searchProduct(this.searchKey, this.pageNumber, this.pageSize)
       })).subscribe(next => {
-        if (next.length === 0)
+        if (next.length < this.pageSize)
           this.endOfPages = true;
         this.searchResults.push(...next);
       })

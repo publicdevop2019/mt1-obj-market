@@ -14,6 +14,8 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
     endOfPages = false;
+    private pageNum = -1;
+    private pageSize = 20;
     private sub0: Subscription;
     private sub1: Subscription;
     constructor(
@@ -22,7 +24,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
         private ghostSvc: GhostService,
         private filterSvc: FilterService
     ) {
-        this.productSvc.httpProxy.netImpl.pageNumber = 0;
         this.sub0 = this.activatedRoute.data
             .pipe(switchMap((next: Data) => {
                 return this.getProductOb();
@@ -35,10 +36,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.sub1 = this.ghostSvc.productCardGhostObser
             .pipe(switchMap(() => {
-                this.productSvc.httpProxy.netImpl.pageNumber++;
                 return this.getProductOb();
             })).subscribe(next => {
-                if (next.length === 0)
+                if (next.length < this.pageSize)
                     this.endOfPages = true;
                 this.productSvc.productSimpleList.push(...next);
             })
@@ -49,13 +49,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.productSvc.productSimpleList = [];
     }
     private getProductOb(): Observable<IProductSimple[]> {
+        this.pageNum++;
         return this.activatedRoute.paramMap.pipe(
             switchMap((params: ParamMap) => {
                 if (params.get('category')) {
                     this.productSvc.currentCategory = params.get('category');
-                    return this.productSvc.httpProxy.netImpl.searchByCategory(this.productSvc.currentCategory, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                    return this.productSvc.httpProxy.netImpl.searchByCategory(this.productSvc.currentCategory, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                 } else {
-                    return this.firstCategory().pipe(switchMap(first => this.productSvc.httpProxy.netImpl.searchByCategory(first, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)))
+                    return this.firstCategory().pipe(switchMap(first => this.productSvc.httpProxy.netImpl.searchByCategory(first, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)))
                 }
             }));
     }

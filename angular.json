@@ -41,7 +41,7 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "production-en-US": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -70,7 +70,43 @@
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             },
-            "hw": {
+            "production-zh-Hans": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/locale/constant.ts",
+                  "with": "src/locale/constant.zh-Hans.ts"
+                }
+              ],
+              "localize": [
+                "zh-Hans"
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "hw-en-US": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -99,8 +135,12 @@
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             },
-            "zh-Hans": {
+            "hw-zh-Hans": {
               "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hw.ts"
+                },
                 {
                   "replace": "src/locale/constant.ts",
                   "with": "src/locale/constant.zh-Hans.ts"
@@ -109,7 +149,6 @@
               "localize": [
                 "zh-Hans"
               ],
-              "main": "src/main.ts",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

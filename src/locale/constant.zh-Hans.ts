@@ -11,5 +11,5 @@ export const CONSTANT_I18N = {
     viewDetails: '查看订单',
     payNow: '立即支付',
     redirctUrl: '/zh-Hans/account',
-    docTitle:'Object 商城'
+    docTitle:'多树商城'
 }

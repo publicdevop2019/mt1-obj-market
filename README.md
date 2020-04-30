@@ -7,3 +7,4 @@
 - Ghost element
 - Service worker, SPA
 - Angular material
+- Animation

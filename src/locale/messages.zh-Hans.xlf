@@ -288,7 +288,7 @@
       </trans-unit>
       <trans-unit id="ab48f0ca3ad58581e7ee4e009abfe5121c7abd15" datatype="html">
         <source>Dark Theme</source>
-        <target>暗黑模式</target>
+        <target>夜间模式</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
           <context context-type="linenumber">12</context>

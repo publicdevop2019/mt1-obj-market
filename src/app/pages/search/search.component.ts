@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   private searchKey = '';
   private sub0: Subscription;
   private sub1: Subscription;
+  private sub2: Subscription;
   endOfPages = false;
   searchResults: IProductSimple[];
   ngAfterViewInit(): void {
@@ -43,8 +44,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
       }))
       .subscribe(next => {
         this.searchResults = next;
-      })
-    this.activeRoute.queryParamMap.subscribe(queryMaps => {
+      });
+    this.sub2 = this.activeRoute.queryParamMap.subscribe(queryMaps => {
+      console.dir('inside queryParamMap call')
       if (queryMaps.get('key')) {
         const str = queryMaps.get('key')
         this.searchKey = str;
@@ -52,6 +54,8 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.changeRef.detectChanges();
       }
     });
+    // unsub to prevent duplicate search call after input change
+    this.sub2.unsubscribe();
   }
   @ViewChild('searchInput') searchComponnent: FormSearchComponent;
   constructor(private _httpProxy: HttpProxyService, private ghostSvc: GhostService, private router: Router, private activeRoute: ActivatedRoute, private changeRef: ChangeDetectorRef) {

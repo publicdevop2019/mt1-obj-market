@@ -4,8 +4,11 @@ export interface ICategory {
     title: string;
     routerUrl: string;
 }
-export interface ICategoryNet {
+export interface ICategoryCard {
     title: string;
+}
+export interface ICategoryNet {
+    categoryList: ICategoryCard[];
 }
 @Component({
     selector: 'app-category-list',
@@ -19,7 +22,7 @@ export class CategoryListComponent implements OnInit {
     ) {
         this.httpProxy.netImpl
             .getCategory()
-            .subscribe(next => (this.categoriesConfig = next.map(e => <ICategory>{ title: e.title, routerUrl: '/categories/' + e.title })));
+            .subscribe(next => (this.categoriesConfig = next.categoryList.map(e => <ICategory>{ title: e.title, routerUrl: '/categories/' + e.title })));
     }
 
     ngOnInit() { }

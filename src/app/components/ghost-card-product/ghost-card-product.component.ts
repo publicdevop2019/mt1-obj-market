@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { GhostService } from 'src/app/services/ghost.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-ghost-card-product',
@@ -11,15 +12,17 @@ export class GhostCardProductComponent implements AfterViewInit {
   private _visibilityConfig = {
     threshold: 0
   };
-  constructor(private _ghostSvc: GhostService) { }
+  constructor(private _ghostSvc: GhostService, private themeSvc: ThemeService) { }
   ngAfterViewInit(): void {
-    let observer = new IntersectionObserver((entries, self) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this._ghostSvc.productCardGhostObser.next()
-        }
-      });
-    }, this._visibilityConfig);
-    observer.observe(this.ghostRef.nativeElement);
+    if (this.themeSvc.isBrowser) {
+      let observer = new IntersectionObserver((entries, self) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this._ghostSvc.productCardGhostObser.next()
+          }
+        });
+      }, this._visibilityConfig);
+      observer.observe(this.ghostRef.nativeElement);
+    }
   }
 }

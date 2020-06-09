@@ -58,20 +58,3 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
 }
 
 export * from './src/main.server';
-const domino = require("domino");
-const fs = require("fs");
-const path = require("path");
-const templateA = fs
-  .readFileSync(path.join("dist/mt1-obj-market/browser", "index.html"))
-  .toString();
-const win = domino.createWindow(templateA);
-win.Object = Object;
-win.Math = Math;
-
-global["window"] = win;
-global["document"] = win.document;
-global["branch"] = null;
-global["object"] = win.object;
-global['HTMLElement'] = win.HTMLElement;
-global['navigator'] = win.navigator;
-global['localStorage'] = win.localStorage;

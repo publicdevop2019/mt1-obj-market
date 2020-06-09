@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mt1-obj-market",
+            "outputPath": "dist/mt1-obj-market/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -235,6 +235,46 @@
             "production": {
               "devServerTarget": "mt1-obj-market:serve:production"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/mt1-obj-market/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "mt1-obj-market:build",
+            "serverTarget": "mt1-obj-market:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mt1-obj-market:build:production",
+              "serverTarget": "mt1-obj-market:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "mt1-obj-market:build:production",
+            "serverTarget": "mt1-obj-market:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

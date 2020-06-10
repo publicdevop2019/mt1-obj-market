@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ICategoryNet } from '../components/category-list/category-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
@@ -8,8 +8,12 @@ import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 import { AuthService } from '../services/auth.service';
 import { INet } from './net.interface';
+import { ThemeService } from '../services/theme.service';
+/**
+ * only send http request if running in browser
+ */
 export class OnlineNetImpl implements INet {
-    constructor(public httpClient: HttpClient, public authSvc: AuthService) { }
+    constructor(public httpClient: HttpClient, public authSvc: AuthService, private themeSvc: ThemeService) { }
     searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimple[]> {
         return this.httpClient.get<IProductSimple[]>(environment.productUrl + '/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + pageSize);
     };
@@ -28,9 +32,11 @@ export class OnlineNetImpl implements INet {
         return this.httpClient.delete(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart/' + id);
     }
     getCartItems(): Observable<ICartItem[]> {
-        return this.httpClient.get<ICartItem[]>(
-            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart'
-        );
+        if (this.themeSvc.isBrowser)
+            return this.httpClient.get<ICartItem[]>(
+                environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart'
+            );
+        return of([])
     }
     addToCart(item: ICartItem): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart', item);
@@ -50,9 +56,11 @@ export class OnlineNetImpl implements INet {
         );
     }
     getOrders(): Observable<IOrder[]> {
-        return this.httpClient.get<IOrder[]>(
-            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders'
-        );
+        if (this.themeSvc.isBrowser)
+            return this.httpClient.get<IOrder[]>(
+                environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders'
+            );
+        return of([])
     }
     updateAddress(address: IAddress): Observable<any> {
         return this.httpClient.put(
@@ -67,9 +75,11 @@ export class OnlineNetImpl implements INet {
         );
     }
     getAddresses(): Observable<IAddress[]> {
-        return this.httpClient.get<IAddress[]>(
-            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses'
-        );
+        if (this.themeSvc.isBrowser)
+            return this.httpClient.get<IAddress[]>(
+                environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses'
+            );
+        return of([])
     }
     deleteAddress(id: string): Observable<any> {
         return this.httpClient.delete(
@@ -77,6 +87,7 @@ export class OnlineNetImpl implements INet {
         );
     }
     searchByCategory(category: string, pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimple[]> {
+        // if (this.themeSvc.isBrowser)
         return new Observable<IProductSimple[]>(el => {
             this.httpClient
                 .get<IProductSimple[]>(environment.productUrl + '/categories/' + category + '?pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder)
@@ -84,6 +95,7 @@ export class OnlineNetImpl implements INet {
                     el.next(next.filter(e => e.category === category));
                 });
         });
+        // return of([])
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(

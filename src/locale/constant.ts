@@ -11,5 +11,6 @@ export const CONSTANT_I18N = {
     viewDetails: 'View Details',
     payNow: 'Pay Now',
     redirctUrl: '/account',
-    docTitle: 'Object Market'
+    docTitle: 'Object Market',
+    'payment_link_not_found': 'Unable to find payment link'
 }

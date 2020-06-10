@@ -3,6 +3,7 @@ import 'zone.js/dist/zone-node';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
+import * as cookieParser from 'cookie-parser';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
@@ -21,7 +22,7 @@ export function app() {
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
-
+  server.use(cookieParser());
   // Example Express Rest API endpoints
   // app.get('/api/**', (req, res) => { });
   // Serve static files from /browser
@@ -30,7 +31,11 @@ export function app() {
   }));
 
   // All regular routes use the Universal engine
+  // set global value like theme, loginStatus so server can return right html view
   server.get('*', (req, res) => {
+    let parsed = cookieParser.JSONCookies(req.cookies);
+    global['darkTheme'] = parsed['darkTheme'];
+    global['login'] = parsed['login'];
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 

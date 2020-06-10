@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
         private themeSvc: ThemeService
     ) {
         this.darkThemeCtrl = new FormControl(this.themeSvc.isDarkTheme);
-        if (!this.authSvc.currentUserAuthInfo) {
+        if (!this.authSvc.currentUserAuthInfo && this.themeSvc.isBrowser) {
             this.route.queryParams
                 .pipe(
                     mergeMap(output => {

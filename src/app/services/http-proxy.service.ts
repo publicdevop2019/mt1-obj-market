@@ -5,6 +5,7 @@ import { OfflineNetImpl } from '../classes/offline-net.impl';
 import { HttpClient } from '@angular/common/http';
 import { OnlineNetImpl } from '../classes/online-net.impl';
 import { AuthService } from './auth.service';
+import { ThemeService } from './theme.service';
 
 @Injectable({
     providedIn: 'root'
@@ -12,11 +13,11 @@ import { AuthService } from './auth.service';
 export class HttpProxyService {
     public netImpl: INet;
     public inProgress = false;
-    constructor(private http: HttpClient,private authSvc:AuthService) {
+    constructor(private http: HttpClient, private authSvc: AuthService, private themeSvc: ThemeService) {
         if (environment.mode === 'offline') {
-            this.netImpl = new OfflineNetImpl(this.http,this.authSvc);
+            this.netImpl = new OfflineNetImpl(this.http, this.authSvc);
         } else {
-            this.netImpl = new OnlineNetImpl(this.http,this.authSvc);
+            this.netImpl = new OnlineNetImpl(this.http, this.authSvc, this.themeSvc);
         }
     }
 }

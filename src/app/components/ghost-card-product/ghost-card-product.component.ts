@@ -23,6 +23,9 @@ export class GhostCardProductComponent implements AfterViewInit {
         });
       }, this._visibilityConfig);
       observer.observe(this.ghostRef.nativeElement);
+    }else{
+      // if running in server, directly trigger first call
+      this._ghostSvc.productCardGhostObser.next();
     }
   }
 }

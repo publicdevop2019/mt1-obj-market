@@ -8,13 +8,15 @@
 - Service worker, SPA
 - Angular material
 - Animation
+- Server side rendering
 # 中文
 - Angular, scss, typescript
 - 多语言支持, i18n
 - 夜间模式
-- 懒加载代码以及图片
+- 路由以及图片懒加载
 - 无限滚动条
 - 页面骨架
 - Service worker, SPA
 - Angular material
-- Animation
+- 页面动画
+- 服务端渲染

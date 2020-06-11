@@ -10,7 +10,7 @@ export class ThemeService {
   }
   get isDarkTheme() {
     if (this.isBrowser) {
-      return localStorage.getItem('darkTheme') === 'true'
+      return getCookie('darkTheme') === 'true'
     } else {
       return global['darkTheme'] === 'true';
     }
@@ -20,7 +20,12 @@ export class ThemeService {
    * cookie for SSR usage
    */
   set isDarkTheme(next: boolean) {
-    localStorage.setItem('darkTheme', next + '');
     document.cookie = `darkTheme=${next}`
   }
+}
+
+function getCookie(name: string): string {
+  let value = "; " + document.cookie;
+  let parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
 }

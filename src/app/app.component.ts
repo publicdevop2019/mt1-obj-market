@@ -1,4 +1,4 @@
-import { Component, ViewChild, Inject, LOCALE_ID } from '@angular/core';
+import { Component, ViewChild, Inject, LOCALE_ID, AfterViewInit, ChangeDetectorRef, AfterContentInit, AfterContentChecked, AfterViewChecked } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -18,14 +18,25 @@ import { CONSTANT_I18N } from 'src/locale/constant';
         shrinkOutAnimation,
     ]
 })
-export class AppComponent {
+export class AppComponent implements AfterViewChecked {
     title = 'mt1-obj-market';
     @ViewChild('sidenav') sidenav: MatSidenav;
     prevScrollpos: number;
     scrollOb: Observable<any>;
-    constructor(public httpProxy: HttpProxyService, public themeSvc: ThemeService, @Inject(DOCUMENT) doc: Document, @Inject(LOCALE_ID) locale: string, private titleService: Title) {
+    constructor(
+        public httpProxy: HttpProxyService,
+        public themeSvc: ThemeService,
+        @Inject(DOCUMENT) doc: Document,
+        @Inject(LOCALE_ID) locale: string,
+        private titleService: Title,
+        private changeRef: ChangeDetectorRef
+        ) {
         doc.documentElement.setAttribute('lang', locale);
         this.titleService.setTitle(CONSTANT_I18N.docTitle);
+    }
+    ngAfterViewChecked(): void {
+        if (!this.themeSvc.isBrowser)
+            this.changeRef.detectChanges();
     }
     prepareRoute(outlet: RouterOutlet) {
         return (

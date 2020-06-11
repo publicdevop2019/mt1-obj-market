@@ -37,7 +37,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
             })
     }
     ngOnDestroy(): void {
-        this.sub1.unsubscribe();
+        if (this.sub1)
+            this.sub1.unsubscribe();
         this.productSvc.productSimpleList = [];
     }
     private getProductOb(): Observable<IProductSimple[]> {
@@ -56,6 +57,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
     private firstCategory(): Observable<string> {
         return this.productSvc.httpProxy.netImpl
-            .getCategory().pipe(switchMap(next => { return of(next[0].title) }))
+            .getCategory().pipe(switchMap(next => { return of(next.categoryList[0].title) }))
     }
 }

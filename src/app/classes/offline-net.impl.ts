@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { IOrder } from '../modules/account/card-order/card-order.component';
-import { ICategory } from '../components/category-list/category-list.component';
+import { ICategoryNet } from '../components/category-list/category-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
+import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 import { AuthService, ITokenResponse } from '../services/auth.service';
@@ -62,8 +62,8 @@ export class OfflineNetImpl implements INet {
     removeFromCart(id: string): Observable<any> {
         return this.httpClient.delete('http://localhost:8080/api/carts/' + id);
     }
-    getCategory(): Observable<ICategory[]> {
-        return this.httpClient.get<ICategory[]>(
+    getCategory(): Observable<ICategoryNet> {
+        return this.httpClient.get<ICategoryNet>(
             'http://localhost:8080/api/categories'
         );
     }

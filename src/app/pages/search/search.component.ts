@@ -46,7 +46,6 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.searchResults = next;
       });
     this.sub2 = this.activeRoute.queryParamMap.subscribe(queryMaps => {
-      console.dir('inside queryParamMap call')
       if (queryMaps.get('key')) {
         const str = queryMaps.get('key')
         this.searchKey = str;

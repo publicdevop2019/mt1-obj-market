@@ -11,5 +11,6 @@ export const CONSTANT_I18N = {
     viewDetails: '查看订单',
     payNow: '立即支付',
     redirctUrl: '/zh-Hans/account',
-    docTitle:'多树商城'
+    docTitle:'多树商城',
+    'payment_link_not_found': '无法找到支付链接',
 }

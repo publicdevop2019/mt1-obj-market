@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-lazy-image',
@@ -15,7 +16,9 @@ export class LazyImageComponent implements OnInit, AfterViewInit {
     threshold: 0
   };
   public loading = false;
-  constructor() { }
+  constructor(private themeSvc: ThemeService) {
+
+  }
   ngAfterViewInit(): void {
     let erroOb = fromEvent(this.imgRef.nativeElement, "error");
     let loadOb = fromEvent(this.imgRef.nativeElement, "load");
@@ -25,15 +28,17 @@ export class LazyImageComponent implements OnInit, AfterViewInit {
     erroOb.pipe(take(1)).subscribe(() => {
       (this.imgRef.nativeElement as HTMLImageElement).src = '../../../assets/imgs/img-404.svg';
     })
-    let observer = new IntersectionObserver((entries, self) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLImageElement).src = this.lazySrc;
-          self.unobserve(entry.target);
-        }
-      });
-    }, this._visibilityConfig);
-    observer.observe(this.imgRef.nativeElement);
+    if (this.themeSvc.isBrowser) {
+      let observer = new IntersectionObserver((entries, self) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLImageElement).src = this.lazySrc;
+            self.unobserve(entry.target);
+          }
+        });
+      }, this._visibilityConfig);
+      observer.observe(this.imgRef.nativeElement);
+    }
 
 
   }

@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICategoryNet } from '../components/category-list/category-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
+import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 export interface INet {
@@ -9,7 +9,7 @@ export interface INet {
 
     searchProfile: () => Observable<string>;
     createProfile: () => Observable<any>;
-    getCategory: () => Observable<ICategoryNet[]>;
+    getCategory: () => Observable<ICategoryNet>;
     searchByCategory: (category: string, pageNum: number, pageSize: number, sortBy: string, sortOrder: string) => Observable<IProductSimple[]>;
     getProductDetailsById: (productId: string) => Observable<IProductDetail>;
 

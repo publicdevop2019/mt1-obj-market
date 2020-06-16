@@ -44,6 +44,9 @@ export class OfflineNetImpl implements INet {
             'uid': 'root'
         }))
     }
+    getOrderId(): Observable<any> {
+        return of({});
+    };
     searchProfile(): Observable<string> {
         return of('100').pipe(
             delay(this.defaultDelay)

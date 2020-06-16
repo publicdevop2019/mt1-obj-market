@@ -19,19 +19,12 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
   confirmPayment() {
-    let orderId = this.extractOrderIdFromPaymentLink(this.orderSvc.paymentLink);
-    this.orderSvc.order.id = orderId;
-    this.orderSvc.httpProxy.netImpl.confirmOrder(orderId).subscribe(next => {
+    this.orderSvc.httpProxy.netImpl.confirmOrder(this.orderSvc.order.id).subscribe(next => {
       if (next.paymentStatus === true) {
         this.router.navigate(['/order-complete']);
       } else {
         this.bar.openSnackBar('pymt_not_receieved')
       }
     })
-  }
-  private extractOrderIdFromPaymentLink(paymentLink: string) {
-    let start = paymentLink.indexOf('product_id')
-    let searchStr = paymentLink.substr(start)
-    return searchStr.substring(searchStr.indexOf('=') + 1, searchStr.indexOf('&'))
   }
 }

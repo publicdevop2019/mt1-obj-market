@@ -5,6 +5,7 @@ import { IProductOptions } from 'src/app/pages/product-detail/product-detail.com
 import { CartService } from 'src/app/services/cart.service';
 import { shrinkOutAnimation } from 'src/app/classes/animation';
 import { AuthService } from 'src/app/services/auth.service';
+import { OrderService } from 'src/app/services/order.service';
 export interface ICartItem {
     /**
      * @note in-memory-web-api works correctly with numeric id, if type string then id need to set to ''
@@ -30,7 +31,8 @@ export class CartComponent {
     constructor(
         public cartSvc: CartService,
         private router: Router,
-        private autSvc: AuthService
+        private autSvc: AuthService,
+        private orderSvc: OrderService,
     ) {
         this.cartSvc.httpProxy.netImpl.getCartItems().subscribe(next => {
             this.retrieveInProgress = false;
@@ -39,6 +41,9 @@ export class CartComponent {
     }
     public checkout(): void {
         if (this.autSvc.currentUserAuthInfo) {
+            this.cartSvc.httpProxy.netImpl.getOrderId().subscribe(next => {
+                this.orderSvc.order.id = next.headers.get('location');
+            });
             this.router.navigate(['/order']);
         } else {
             /**

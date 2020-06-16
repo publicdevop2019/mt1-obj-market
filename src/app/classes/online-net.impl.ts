@@ -42,10 +42,13 @@ export class OnlineNetImpl implements INet {
         return this.httpClient.post(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart', item);
     }
     reserveOrder(order: IOrder): Observable<any> {
-        return this.httpClient.post(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders', order, { observe: 'response' });
+        return this.httpClient.post(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + order.id, order, { observe: 'response' });
     }
     replaceOrder(order: IOrder): Observable<any> {
         return this.httpClient.put(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + order.id + '/replace', order, { observe: 'response' });
+    };
+    getOrderId(): Observable<any> {
+        return this.httpClient.get(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/id', { observe: 'response' });
     };
     confirmOrder(orderId: string): Observable<any> {
         return this.httpClient.get(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + orderId + '/confirm');

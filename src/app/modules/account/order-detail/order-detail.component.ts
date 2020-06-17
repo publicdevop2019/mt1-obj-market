@@ -36,7 +36,8 @@ export class OrderDetailComponent implements OnInit {
                             productList: this.cartSvc.cart,
                             address: this.orderSvc.order.address,
                             paymentType: this.orderSvc.order.paymentType,
-                            orderState: 'NOT_PAID'
+                            orderState: 'NOT_PAID',
+                            id:this.orderSvc.order.id,
                         } as IOrder);
                     } else {
                         /** read an existing paid or unpaid order */

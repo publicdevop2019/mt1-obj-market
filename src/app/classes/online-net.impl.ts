@@ -90,15 +90,8 @@ export class OnlineNetImpl implements INet {
         );
     }
     searchByCategory(category: string, pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimple[]> {
-        // if (this.themeSvc.isBrowser)
-        return new Observable<IProductSimple[]>(el => {
-            this.httpClient
-                .get<IProductSimple[]>(environment.productUrl + '/categories/' + category + '?pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder)
-                .subscribe(next => {
-                    el.next(next.filter(e => e.category === category));
-                });
-        });
-        // return of([])
+        return this.httpClient
+            .get<IProductSimple[]>(environment.productUrl + '/categories/' + category + '?pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder);
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(

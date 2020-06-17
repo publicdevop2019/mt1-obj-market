@@ -10,13 +10,13 @@ RUN npm run build-hw
 
 RUN mkdir -p build/en-US
 
-RUN cp dist/mt1-obj-market build/en-US/mt1-obj-market -rf
+RUN cp dist/mt1-obj-market/browser build/en-US/mt1-obj-market -rf
 
 RUN mkdir -p build/zh-Hans
 
 RUN npm run build-hw-zh-Hans
 
-RUN cp dist/mt1-obj-market/zh-Hans build/zh-Hans/mt1-obj-market -rf
+RUN cp dist/mt1-obj-market/browser/zh-Hans build/zh-Hans/mt1-obj-market -rf
 
 FROM nginx:latest
 

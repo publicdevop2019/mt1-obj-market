@@ -57,6 +57,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
     private firstCategory(): Observable<string> {
         return this.productSvc.httpProxy.netImpl
-            .getCategory().pipe(switchMap(next => { return of(next.categoryList[0].title) }))
+            .getCategory().pipe(switchMap(next => { return of(next.data[0].name) }))
     }
 }

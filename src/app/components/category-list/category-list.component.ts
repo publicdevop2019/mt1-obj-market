@@ -5,10 +5,11 @@ export interface ICategory {
     routerUrl: string;
 }
 export interface ICategoryCard {
-    title: string;
+    name: string;
+    tags:string[];
 }
 export interface ICategoryNet {
-    categoryList: ICategoryCard[];
+    data: ICategoryCard[];
 }
 @Component({
     selector: 'app-category-list',
@@ -22,7 +23,7 @@ export class CategoryListComponent implements OnInit {
     ) {
         this.httpProxy.netImpl
             .getCategory()
-            .subscribe(next => (this.categoriesConfig = next.categoryList.map(e => <ICategory>{ title: e.title, routerUrl: '/categories/' + e.title })));
+            .subscribe(next => (this.categoriesConfig = next.data.map(e => <ICategory>{ title: e.name, routerUrl: '/categories/' + e.name })));
     }
 
     ngOnInit() { }

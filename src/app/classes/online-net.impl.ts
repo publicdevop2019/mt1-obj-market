@@ -25,7 +25,7 @@ export class OnlineNetImpl implements INet {
     };
     getCategory(): Observable<ICategoryNet> {
         return this.httpClient.get<ICategoryNet>(
-            environment.productUrl + '/categories'
+            environment.productUrl + '/public/catalogs'
         );
     }
     removeFromCart(id: string): Observable<any> {

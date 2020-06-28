@@ -7,7 +7,7 @@ import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 import { AuthService, ITokenResponse } from '../services/auth.service';
-import { INet } from './net.interface';
+import { INet, IProductSimpleNet } from './net.interface';
 
 export class OfflineNetImpl implements INet {
     replaceOrder(order: IOrder): Observable<any> {
@@ -109,13 +109,10 @@ export class OfflineNetImpl implements INet {
             'http://localhost:8080/api/carts'
         );
     }
-    searchByCategory(category: string): Observable<IProductSimple[]> {
-        return new Observable<IProductSimple[]>(el => {
+    searchByCategory(attributesKey: string[]): Observable<IProductSimpleNet> {
+        return new Observable<IProductSimpleNet>(el => {
             this.httpClient
                 .get<IProductSimple[]>('http://localhost:8080/api/productTotal')
-                .subscribe(next => {
-                    el.next(next.filter(e => e.category === category));
-                });
         });
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {

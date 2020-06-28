@@ -7,7 +7,7 @@ import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 import { AuthService } from '../services/auth.service';
-import { INet } from './net.interface';
+import { INet, IProductSimpleNet } from './net.interface';
 import { ThemeService } from '../services/theme.service';
 /**
  * only send http request if running in browser
@@ -89,13 +89,13 @@ export class OnlineNetImpl implements INet {
             environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
-    searchByCategory(category: string, pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimple[]> {
+    searchByCategory(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
         return this.httpClient
-            .get<IProductSimple[]>(environment.productUrl + '/categories/' + category + '?pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder);
+            .get<IProductSimpleNet>(environment.productUrl + '/public/productDetails?attributes=' + attributesKey.join(',') + '&pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder);
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(
-            environment.productUrl + '/productDetails/' + productId
+            environment.productUrl + '/public/productDetails/' + productId
         );
     }
 }

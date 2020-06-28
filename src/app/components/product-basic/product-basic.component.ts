@@ -13,16 +13,17 @@ import { environment } from 'src/environments/environment';
 export class ProductBasicComponent implements OnInit {
     @Input() productDetail: IProductDetail;
     public imageUrlPrefix: string = environment.imageUrl + '/'
-    constructor(public productSvc: ProductService) {}
+    constructor(public productSvc: ProductService) { }
 
     ngOnInit() {
         const optionCtrls: any = {};
-        if(this.productDetail.selectedOptions)
-        this.productDetail.selectedOptions.forEach(e => {
-            optionCtrls[e.title] = new FormControl('', []);
-        });
+        if (this.productDetail.selectedOptions)
+            this.productDetail.selectedOptions.forEach(e => {
+                optionCtrls[e.title] = new FormControl('', []);
+            });
         this.productSvc.formProduct = new FormGroup(optionCtrls);
-        this.productSvc.finalPrice=+this.productDetail.price;
+        this.productSvc.formProduct.addControl('salesAttr', new FormControl())
+        this.productSvc.finalPrice = +this.productDetail.lowestPrice;
         this.productSvc.formProduct.valueChanges.subscribe(next => {
             this.productSvc.finalPrice = this.calcTotal();
         });
@@ -31,7 +32,8 @@ export class ProductBasicComponent implements OnInit {
     calcTotal(): number {
         let vars = 0;
         let qty = 1;
-        Object.keys(this.productSvc.formProduct.controls).forEach(title => {
+        let basePrice = +this.productDetail.lowestPrice
+        Object.keys(this.productSvc.formProduct.controls).filter(e => e !== 'salesAttr').forEach(title => {
             if (
                 notNullAndUndefinedAndEmptyString(
                     this.productSvc.formProduct.get(title).value
@@ -57,6 +59,8 @@ export class ProductBasicComponent implements OnInit {
                 }
             }
         });
-        return +((+this.productDetail.price + vars) * qty).toFixed(2);
+        if (this.productSvc.formProduct.get('salesAttr').value)
+            basePrice = this.productDetail.skus.filter(e => e.attributeSales == this.productSvc.formProduct.get('salesAttr').value)[0].price
+        return +((+basePrice + vars) * qty).toFixed(2);
     }
 }

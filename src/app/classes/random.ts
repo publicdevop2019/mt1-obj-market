@@ -123,8 +123,8 @@ export class RandomUtility {
             imageUrlSmall: RandomUtility.randomImageUrl(),
             name: RandomUtility.randomLengthString(0, 20),
             description: RandomUtility.randomLengthStringWithSpace(100, 200),
-            price: RandomUtility.randomPrice(0, 9999).toString(),
-            sales: RandomUtility.randomSales().toString(),
+            lowestPrice: RandomUtility.randomPrice(0, 9999).toString(),
+            totalSales: RandomUtility.randomSales().toString(),
             category: categories.title,
             id: RandomUtility.randomInt(0, 9999).toString()
         } as IProductSimple;
@@ -162,9 +162,8 @@ export class RandomUtility {
             imageUrlSmall: simple.imageUrlSmall,
             name: simple.name,
             description: simple.description,
-            price: simple.price,
-            sales: simple.sales,
-            category: simple.category,
+            lowestPrice: simple.lowestPrice,
+            totalSales: simple.totalSales,
             id: simple.id,
             imageUrlLarge: RandomUtility.randomImageUrls(
                 0,

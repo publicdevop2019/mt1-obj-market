@@ -8,10 +8,8 @@ export interface IProductSimple {
     imageUrlSmall: string;
     name: string;
     description: string;
-    rate?: string;
-    price: string;
-    sales: string;
-    category: string;
+    lowestPrice: string;
+    totalSales: string;
     id: string;
 }
 export interface IProductOptions {
@@ -22,10 +20,16 @@ export interface IProductOption {
     optionValue: string;
     priceVar?: string;
 }
+export interface IProductSku {
+    attributeSales: string[];
+    price: number;
+    storageOrder: number;
+}
 export interface IProductDetail extends IProductSimple {
     imageUrlLarge?: string[];
     selectedOptions?: IProductOptions[];
     specification?: string[];
+    skus: IProductSku[]
 }
 @Component({
     selector: 'app-product-detail',

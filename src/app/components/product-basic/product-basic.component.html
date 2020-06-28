@@ -18,7 +18,8 @@
             {{ productDetail.description }}
         </div>
         <div class="product-basic-sale" i18n>
-            sold &nbsp; {{ productDetail.sales===null ||productDetail.sales===undefined? 0 : productDetail.sales }} 
+            sold &nbsp;
+            {{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}
         </div>
         <mat-divider *ngIf="productDetail.selectedOptions"></mat-divider>
         <div [formGroup]="productSvc.formProduct">
@@ -33,7 +34,7 @@
                             <span
                                 (click)="productSvc.formProduct.get(el.title).setValue(ee.optionValue)">{{ ee.optionValue }}
 
-                                </span>
+                            </span>
                             <mat-radio-button *ngIf="productSvc.formProduct.get(el.title).value===ee.optionValue"
                                 [color]="'primary'" [value]="ee.optionValue" [labelPosition]="'before'">
                             </mat-radio-button>
@@ -42,6 +43,19 @@
                 </mat-chip-list>
                 <mat-divider *ngIf="!last"></mat-divider>
             </div>
+            <mat-divider style="padding-top: 24px;"></mat-divider>
+            <mat-chip-list>
+                <mat-radio-group [formControlName]="'salesAttr'">
+                    <mat-chip *ngFor="let el of productDetail.skus">
+                        <span
+                            (click)="productSvc.formProduct.get('salesAttr').setValue(el.attributeSales)">{{ el.attributeSales.join(' ') }}
+                        </span>
+                        <mat-radio-button *ngIf="productSvc.formProduct.get('salesAttr').value===el.attributeSales"
+                            [color]="'primary'" [value]="el.attributeSales" [labelPosition]="'before'">
+                        </mat-radio-button>
+                    </mat-chip>
+                </mat-radio-group>
+            </mat-chip-list>
         </div>
     </div>
 </ng-container>

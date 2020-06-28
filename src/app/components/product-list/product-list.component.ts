@@ -6,6 +6,8 @@ import { IProductSimple } from 'src/app/pages/product-detail/product-detail.comp
 import { FilterService } from 'src/app/services/filter.service';
 import { GhostService } from 'src/app/services/ghost.service';
 import { ProductService } from 'src/app/services/product.service';
+import { ICategoryCard } from '../category-list/category-list.component';
+import { IProductSimpleNet } from 'src/app/classes/net.interface';
 
 @Component({
     selector: 'app-product-list',
@@ -31,9 +33,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
             .pipe(switchMap(() => {
                 return this.getProductOb();
             })).subscribe(next => {
-                if (next.length < this.pageSize)
+                if (next.data.length < this.pageSize)
                     this.endOfPages = true;
-                this.productSvc.productSimpleList.push(...next);
+                this.productSvc.productSimpleList.push(...next.data);
             })
     }
     ngOnDestroy(): void {
@@ -41,22 +43,25 @@ export class ProductListComponent implements OnInit, OnDestroy {
             this.sub1.unsubscribe();
         this.productSvc.productSimpleList = [];
     }
-    private getProductOb(): Observable<IProductSimple[]> {
+    private getProductOb(): Observable<IProductSimpleNet> {
         this.pageNum++;
         return this.activatedRoute.paramMap.pipe(
             switchMap((params: ParamMap) => {
                 if (params.get('category')) {
-                    this.productSvc.currentCategory = params.get('category');
-                    return this.productSvc.httpProxy.netImpl.searchByCategory(this.productSvc.currentCategory, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                    return this.productSvc.httpProxy.netImpl.getCategory()
+                        .pipe(switchMap(next => {
+                            let var1 = next.data.find(e => e.name === params.get('category'));
+                            return this.productSvc.httpProxy.netImpl.searchByCategory(var1.attributesKey, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                        }))
                 } else {
                     return this.firstCategory().pipe(switchMap(first => {
-                        return this.productSvc.httpProxy.netImpl.searchByCategory(first, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                        return this.productSvc.httpProxy.netImpl.searchByCategory(first.attributesKey, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                     }))
                 }
             }));
     }
-    private firstCategory(): Observable<string> {
+    private firstCategory(): Observable<ICategoryCard> {
         return this.productSvc.httpProxy.netImpl
-            .getCategory().pipe(switchMap(next => { return of(next.data[0].name) }))
+            .getCategory().pipe(switchMap(next => { return of(next.data[0]) }))
     }
 }

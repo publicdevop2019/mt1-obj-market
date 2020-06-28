@@ -16,6 +16,7 @@ export interface ICartItem {
      * @note use list instead of key-value pair due to map structure not well supported in both JSON utility and HttpClient
      */
     selectedOptions: IProductOptions[];
+    attributesSales:string[]
     imageUrlSmall: string;
     productId: string;
     name: string;

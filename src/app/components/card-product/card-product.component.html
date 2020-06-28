@@ -1,17 +1,17 @@
 <mat-card [routerLink]="
-        '/categories/' + productSimple.category + '/' + productSimple.id
-    " matRipple
-    >
+        '/productDetail/'+ productSimple.id
+    " matRipple>
     <app-lazy-image [lazySrc]="imageUrlPrefix+productSimple.imageUrlSmall"></app-lazy-image>
     <mat-card-content>
         <div class="product-simple-desc">
             {{ productSimple.description }}
         </div>
         <div class="product-simple-price">
-            {{ productSimple.price }}
+            {{ productSimple.lowestPrice }}
         </div>
         <div class="product-simple-sale" i18n>
-            sold &nbsp;{{ productSimple.sales===null ||productSimple.sales===undefined? 0 : productSimple.sales }}
+            sold
+            &nbsp;{{ productSimple.totalSales===null ||productSimple.totalSales===undefined? 0 : productSimple.totalSales }}
         </div>
     </mat-card-content>
 </mat-card>

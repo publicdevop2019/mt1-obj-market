@@ -7,17 +7,18 @@ import {
     IProductOptions,
     IProductSimple
 } from '../pages/product-detail/product-detail.component';
+import { ICategoryCard } from '../components/category-list/category-list.component';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-    public productSimpleList: IProductSimple[]=[];
+    public productSimpleList: IProductSimple[] = [];
     public formProduct: FormGroup;
-    public currentCategory: string;
+    public currentCategory: ICategoryCard;
     public productDetails: IProductDetail;
     public finalPrice: number;
-    constructor(public httpProxy: HttpProxyService) {}
+    constructor(public httpProxy: HttpProxyService) { }
     extractCartItem(): ICartItem {
         return {
             finalPrice: this.finalPrice.toString(),
@@ -25,11 +26,15 @@ export class ProductService {
             imageUrlSmall: this.productDetails.imageUrlSmall,
             productId: this.productDetails.id,
             name: this.productDetails.name,
+            attributesSales: this.getSalesAttr(),
             id: ''
         } as ICartItem;
     }
+    getSalesAttr(): string[] {
+        return this.formProduct.get('salesAttr').value
+    }
     private _getSelectedOptions(): IProductOptions[] {
-        return Object.keys(this.formProduct.controls).map(ctrlKey => {
+        return Object.keys(this.formProduct.controls).filter(e => e !== 'salesAttr').map(ctrlKey => {
             return {
                 title: ctrlKey,
                 options: [

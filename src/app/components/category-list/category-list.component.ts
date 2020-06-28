@@ -6,7 +6,7 @@ export interface ICategory {
 }
 export interface ICategoryCard {
     name: string;
-    tags:string[];
+    attributesKey:string[];
 }
 export interface ICategoryNet {
     data: ICategoryCard[];

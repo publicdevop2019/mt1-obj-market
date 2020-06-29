@@ -14,7 +14,8 @@ import { ICategoryCard } from '../components/category-list/category-list.compone
 })
 export class ProductService {
     public productSimpleList: IProductSimple[] = [];
-    public formProduct: FormGroup;
+    public formProductOption: FormGroup;
+    public formProductSalesAttr: FormGroup;
     public currentCategory: ICategoryCard;
     public productDetails: IProductDetail;
     public finalPrice: number;
@@ -31,15 +32,16 @@ export class ProductService {
         } as ICartItem;
     }
     getSalesAttr(): string[] {
-        return this.formProduct.get('salesAttr').value
+        let sales = this.formProductSalesAttr.value
+        return Object.keys(sales).map(key => key + ":" + sales[key]).sort();
     }
     private _getSelectedOptions(): IProductOptions[] {
-        return Object.keys(this.formProduct.controls).filter(e => e !== 'salesAttr').map(ctrlKey => {
+        return Object.keys(this.formProductOption.controls).map(ctrlKey => {
             return {
                 title: ctrlKey,
                 options: [
                     {
-                        optionValue: this.formProduct.get(ctrlKey).value
+                        optionValue: this.formProductOption.get(ctrlKey).value
                     }
                 ]
             } as IProductOptions;

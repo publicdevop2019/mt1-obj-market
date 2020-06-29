@@ -35,15 +35,6 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a6d810f5acb51f801687291ea092eff07271556e" datatype="html">
-        <source>
-            <x id="INTERPOLATION" equiv-text="{{order.orderState.indexOf(&apos;NOT_PAID&apos;)&gt;-1?&quot;Pay now&quot;:&quot;View details&quot;}}"/>
-        </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/account/card-order/card-order.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="ceda8546927f35cdfe0706f18252ebf613d3266a" datatype="html">
         <source>ADD TO CART</source>
         <context-group purpose="location">
@@ -86,22 +77,31 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3243b660cfee29ba478e8543dd6042d350bad04b" datatype="html">
+      <trans-unit id="5f1cd9c861448aed4f51356f330e790f61892979" datatype="html">
         <source>
-            sold  <x id="INTERPOLATION" equiv-text="{{ productSimple.sales===null ||productSimple.sales===undefined? 0 : productSimple.sales }}"/>
+            sold
+             <x id="INTERPOLATION" equiv-text="{{ productSimple.totalSales===null ||productSimple.totalSales===undefined? 0 : productSimple.totalSales }}"/>
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/card-product/card-product.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="48a18099cfe8b6a7070fc33be97d692cd06d4d0e" datatype="html">
+      <trans-unit id="fdac0348bf249df68df9c7f117c0c708b00b3105" datatype="html">
         <source>
-            sold   <x id="INTERPOLATION" equiv-text="{{ productDetail.sales===null ||productDetail.sales===undefined? 0 : productDetail.sales }}"/> 
+            sold  
+            <x id="INTERPOLATION" equiv-text="{{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}"/>
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
           <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8ce5939f32f07c1a40efd7a003b56998c6502872" datatype="html">
+        <source>RESET FORM</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="27e9f934e74434f5c1a70120b8e626fe31b9f80d" datatype="html">

@@ -155,4 +155,11 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
         if (out)
             this.basePrice = out.price
     }
+    getImageUrl(url: string) {
+        if (url.includes('http')) {
+            return url
+        } else {
+            return this.imageUrlPrefix + url
+        }
+    }
 }

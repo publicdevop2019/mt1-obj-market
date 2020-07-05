@@ -29,7 +29,7 @@ export class FilterService {
             } else {
                 throw new Error('unknown sort type ' + next);
             }
-            return this.productSvc.httpProxy.netImpl.searchByCategory(this.productSvc.currentCategory.attributesKey, 0, 20, this.defaultSortBy, this.defaultSortOrder);
+            return this.productSvc.httpProxy.netImpl.searchByCatalog(this.productSvc.currentCategory.attributesKey, 0, 20, this.defaultSortBy, this.defaultSortOrder);
         })).subscribe(next => {
             this.productSvc.productSimpleList = next.data;
         });

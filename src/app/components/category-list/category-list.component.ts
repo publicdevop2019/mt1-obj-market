@@ -22,7 +22,7 @@ export class CategoryListComponent implements OnInit {
         private httpProxy: HttpProxyService
     ) {
         this.httpProxy.netImpl
-            .getCategory()
+            .getCatalog()
             .subscribe(next => (this.catalogsConfig = next.data.map(e => <ICategory>{ title: e.name, routerUrl: '/catalogs/' + e.name })));
     }
 

@@ -33,7 +33,7 @@ const routes: Routes = [
         data: { animation: 'catalog' }
     },
     {
-        path: 'productDetail/:productId',
+        path: 'products/:productId',
         component: ProductDetailComponent,
         data: { animation: 'productDetail' }
     },

@@ -23,7 +23,7 @@ export class OnlineNetImpl implements INet {
     searchProfile(): Observable<string> {
         return this.httpClient.get<string>(environment.profileUrl + '/profiles/search');
     };
-    getCategory(): Observable<ICategoryNet> {
+    getCatalog(): Observable<ICategoryNet> {
         return this.httpClient.get<ICategoryNet>(
             environment.productUrl + '/public/catalogs'
         );
@@ -89,7 +89,7 @@ export class OnlineNetImpl implements INet {
             environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
-    searchByCategory(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
+    searchByCatalog(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
         return this.httpClient
             .get<IProductSimpleNet>(environment.productUrl + '/public/productDetails?attributes=' + attributesKey.join(',') + '&pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder);
     }

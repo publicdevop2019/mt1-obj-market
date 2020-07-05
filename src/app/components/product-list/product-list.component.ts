@@ -48,20 +48,20 @@ export class ProductListComponent implements OnInit, OnDestroy {
         return this.activatedRoute.paramMap.pipe(
             switchMap((params: ParamMap) => {
                 if (params.get('category')) {
-                    return this.productSvc.httpProxy.netImpl.getCategory()
+                    return this.productSvc.httpProxy.netImpl.getCatalog()
                         .pipe(switchMap(next => {
                             let var1 = next.data.find(e => e.name === params.get('category'));
-                            return this.productSvc.httpProxy.netImpl.searchByCategory(var1.attributesKey, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                            return this.productSvc.httpProxy.netImpl.searchByCatalog(var1.attributesKey, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                         }))
                 } else {
                     return this.firstCategory().pipe(switchMap(first => {
-                        return this.productSvc.httpProxy.netImpl.searchByCategory(first.attributesKey, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                        return this.productSvc.httpProxy.netImpl.searchByCatalog(first.attributesKey, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                     }))
                 }
             }));
     }
     private firstCategory(): Observable<ICategoryCard> {
         return this.productSvc.httpProxy.netImpl
-            .getCategory().pipe(switchMap(next => { return of(next.data[0]) }))
+            .getCatalog().pipe(switchMap(next => { return of(next.data[0]) }))
     }
 }

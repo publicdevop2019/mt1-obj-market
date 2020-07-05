@@ -65,7 +65,7 @@ export class OfflineNetImpl implements INet {
     removeFromCart(id: string): Observable<any> {
         return this.httpClient.delete('http://localhost:8080/api/carts/' + id);
     }
-    getCategory(): Observable<ICategoryNet> {
+    getCatalog(): Observable<ICategoryNet> {
         return this.httpClient.get<ICategoryNet>(
             'http://localhost:8080/api/catalogs'
         );
@@ -109,7 +109,7 @@ export class OfflineNetImpl implements INet {
             'http://localhost:8080/api/carts'
         );
     }
-    searchByCategory(attributesKey: string[]): Observable<IProductSimpleNet> {
+    searchByCatalog(attributesKey: string[]): Observable<IProductSimpleNet> {
         return new Observable<IProductSimpleNet>(el => {
             this.httpClient
                 .get<IProductSimple[]>('http://localhost:8080/api/productTotal')

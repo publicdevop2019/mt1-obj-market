@@ -12,8 +12,8 @@ export interface INet {
 
     searchProfile: () => Observable<string>;
     createProfile: () => Observable<any>;
-    getCategory: () => Observable<ICategoryNet>;
-    searchByCategory: (attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string) => Observable<IProductSimpleNet>;
+    getCatalog: () => Observable<ICategoryNet>;
+    searchByCatalog: (attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string) => Observable<IProductSimpleNet>;
     getProductDetailsById: (productId: string) => Observable<IProductDetail>;
 
     getCartItems: () => Observable<ICartItem[]>;

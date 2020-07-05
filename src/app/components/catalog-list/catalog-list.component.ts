@@ -69,7 +69,7 @@ export class CatalogListComponent implements OnInit {
         }).length >= 1
     }
     public updateList(node: ICatalogCustomerTreeNode) {
-        if (node.children)
+        if (node.children && node.children.length > 0)
             this.currentNode = node.children
         else {
             this.router.navigateByUrl('/catalogs/' + node.name)

@@ -5,17 +5,17 @@ import { ICatalogNet } from '../components/catalog-list/catalog-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
 import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
+import { IProductDetail } from '../pages/product-detail/product-detail.component';
 import { AuthService } from '../services/auth.service';
-import { INet, IProductSimpleNet } from './net.interface';
 import { ThemeService } from '../services/theme.service';
+import { INet, IProductSimpleNet } from './net.interface';
 /**
  * only send http request if running in browser
  */
 export class OnlineNetImpl implements INet {
     constructor(public httpClient: HttpClient, public authSvc: AuthService, private themeSvc: ThemeService) { }
-    searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimple[]> {
-        return this.httpClient.get<IProductSimple[]>(environment.productUrl + '/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + pageSize);
+    searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimpleNet> {
+        return this.httpClient.get<IProductSimpleNet>(environment.productUrl + '/public/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + pageSize);
     };
     createProfile(): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/profiles', null, { observe: 'response' });

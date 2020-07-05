@@ -8,7 +8,7 @@ export interface IProductSimpleNet {
     data: IProductSimple[];
 }
 export interface INet {
-    searchProduct: (key: string, pageNumber: number, pageSize: number) => Observable<IProductSimple[]>;
+    searchProduct: (key: string, pageNumber: number, pageSize: number) => Observable<IProductSimpleNet>;
 
     searchProfile: () => Observable<string>;
     createProfile: () => Observable<any>;

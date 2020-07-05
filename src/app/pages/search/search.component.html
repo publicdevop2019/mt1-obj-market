@@ -3,6 +3,6 @@
 <section class="list-container" *ngIf="searchResults">
     <app-card-product *ngFor=" let el of searchResults" [productSimple]="el" class="product-simple-mobile-container">
     </app-card-product>
-    <app-ghost-card-product *ngIf="searchResults.length !== 0 && !endOfPages" class="product-simple-mobile-container"></app-ghost-card-product>
-    <div *ngIf="searchResults.length === 0" style="text-align: center;width: 100%;">No item found</div>
+    <app-ghost-card-product *ngIf="searchResults.length !== 0 && !endOfPages && searchResults.length >= pageSize"></app-ghost-card-product>
+    <div *ngIf="searchResults.length === 0" style="text-align: center;width: 100%;" i18n>No item found</div>
 </section>

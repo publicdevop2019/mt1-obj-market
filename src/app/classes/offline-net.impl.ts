@@ -18,13 +18,10 @@ export class OfflineNetImpl implements INet {
             delay(this.defaultDelay)
         );
     };
-    searchProduct(key: string): Observable<IProductSimple[]> {
-        return new Observable<IProductSimple[]>(el => {
+    searchProduct(key: string): Observable<IProductSimpleNet> {
+        return new Observable<IProductSimpleNet>(el => {
             this.httpClient
-                .get<IProductSimple[]>('http://localhost:8080/api/productTotal')
-                .subscribe(next => {
-                    el.next(next.filter(e => e.name === key));
-                });
+                .get<IProductSimpleNet>('http://localhost:8080/api/productTotal')
         });
     };
     createProfile(): Observable<any> {

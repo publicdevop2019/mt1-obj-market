@@ -20,6 +20,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     private pageSize = 20;
     private sub0: Subscription;
     private sub1: Subscription;
+    public productSimpleList: IProductSimple[];
     constructor(
         public productSvc: ProductService,
         private activatedRoute: ActivatedRoute,
@@ -35,13 +36,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
             })).subscribe(next => {
                 if (next.data.length < this.pageSize)
                     this.endOfPages = true;
-                this.productSvc.productSimpleList.push(...next.data);
+                if (!this.productSimpleList)
+                    this.productSimpleList = [];
+                this.productSimpleList.push(...next.data);
             })
     }
     ngOnDestroy(): void {
         if (this.sub1)
             this.sub1.unsubscribe();
-        this.productSvc.productSimpleList = [];
     }
     private getProductOb(): Observable<IProductSimpleNet> {
         this.pageNum++;

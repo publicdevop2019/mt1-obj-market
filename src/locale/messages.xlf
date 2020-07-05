@@ -56,7 +56,7 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="04201f9d27abd7d6f58a4328ab98063ce1072006" datatype="html">
+      <trans-unit id="51a58fec46aa2ecc16e919d90938ff1ce307e848" datatype="html">
         <source>Catalogs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
@@ -94,6 +94,17 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/card-product/card-product.component.html</context>
           <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20c7c1d3c60ffcc8ce56a404077960a472a66760" datatype="html">
+        <source>No item found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-list/product-list.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/search/search.component.html</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="20142cbd46070098e87539b9bfa3471ad7ce9093" datatype="html">

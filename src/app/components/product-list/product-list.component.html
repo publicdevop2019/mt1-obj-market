@@ -1,3 +1,4 @@
-<app-card-product *ngFor="let el of productSvc.productSimpleList" [productSimple]="el"
+<app-card-product *ngFor="let el of productSimpleList" [productSimple]="el"
     class="product-simple-mobile-container"></app-card-product>
+<div *ngIf="productSimpleList&&productSimpleList.length === 0" style="text-align: center;width: 100%; margin-top: 30vh;" i18n>No item found</div>
 <app-ghost-card-product *ngIf="!endOfPages"></app-ghost-card-product>

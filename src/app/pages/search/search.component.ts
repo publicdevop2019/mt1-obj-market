@@ -15,7 +15,7 @@ import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router'
 })
 export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   private pageNumber = 0;
-  private pageSize = 5;
+  public pageSize = 6;
   private searchKey = '';
   private sub0: Subscription;
   private sub1: Subscription;
@@ -43,7 +43,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         return this._httpProxy.netImpl.searchProduct(e, this.pageNumber, this.pageSize)
       }))
       .subscribe(next => {
-        this.searchResults = next;
+        this.searchResults = next.data;
       });
     this.sub2 = this.activeRoute.queryParamMap.subscribe(queryMaps => {
       if (queryMaps.get('key')) {
@@ -71,9 +71,9 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.pageNumber++;
         return this._httpProxy.netImpl.searchProduct(this.searchKey, this.pageNumber, this.pageSize)
       })).subscribe(next => {
-        if (next.length < this.pageSize)
+        if (next.data.length < this.pageSize)
           this.endOfPages = true;
-        this.searchResults.push(...next);
+        this.searchResults.push(...next.data);
       })
   }
   private invalidSearchParam(input: string): boolean {

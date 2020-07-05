@@ -35,7 +35,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { ProductBasicComponent } from './components/product-basic/product-basic.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CartComponent } from './pages/cart/cart.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
 import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
@@ -44,12 +43,13 @@ import { SearchComponent } from './pages/search/search.component';
 import { CustomHttpInterceptor } from './services/http.interceptor';
 import { LoadingInterceptor } from './services/loading.interceptor';
 import { SharedModule } from './modules/shared/shared.module';
+import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         CartComponent,
-        CategoriesComponent,
+        CatalogsComponent,
         HeaderComponent,
         FooterComponent,
         CategoryListComponent,

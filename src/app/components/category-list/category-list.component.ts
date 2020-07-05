@@ -17,13 +17,13 @@ export interface ICategoryNet {
     styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-    public categoriesConfig: ICategory[];
+    public catalogsConfig: ICategory[];
     constructor(
         private httpProxy: HttpProxyService
     ) {
         this.httpProxy.netImpl
             .getCategory()
-            .subscribe(next => (this.categoriesConfig = next.data.map(e => <ICategory>{ title: e.name, routerUrl: '/categories/' + e.name })));
+            .subscribe(next => (this.catalogsConfig = next.data.map(e => <ICategory>{ title: e.name, routerUrl: '/catalogs/' + e.name })));
     }
 
     ngOnInit() { }

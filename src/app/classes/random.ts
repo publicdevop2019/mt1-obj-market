@@ -70,7 +70,7 @@ export class RandomUtility {
             return output.substr(0, length);
         }
     }
-    public static randomCategories(): ICategory[] {
+    public static randomCatalogs(): ICategory[] {
         let iCount = RandomUtility.randomInt(1, 1);
         const output: ICategory[] = [];
         while (iCount > 0) {
@@ -98,7 +98,7 @@ export class RandomUtility {
         return {
             url: rUrl,
             title: rTitle,
-            routerUrl: '/categories/' + rTitle
+            routerUrl: '/catalogs/' + rTitle
         } as ICategory;
     }
     public static randomImageUrl() {
@@ -117,26 +117,25 @@ export class RandomUtility {
         return RandomUtility.randomFromArray<string>(rImages);
     }
     public static randomProductSimpleFromCategory(
-        categories: ICategory
+        catalogs: ICategory
     ): IProductSimple {
         return {
             imageUrlSmall: RandomUtility.randomImageUrl(),
             name: RandomUtility.randomLengthString(0, 20),
             description: RandomUtility.randomLengthStringWithSpace(100, 200),
-            lowestPrice: RandomUtility.randomPrice(0, 9999).toString(),
+            lowestPrice: RandomUtility.randomPrice(0, 9999),
             totalSales: RandomUtility.randomSales().toString(),
-            category: categories.title,
             id: RandomUtility.randomInt(0, 9999).toString()
         } as IProductSimple;
     }
     public static randomProductSimpleListFromCategory(
-        categories: ICategory
+        catalogs: ICategory
     ): IProductSimple[] {
         let length = RandomUtility.randomInt(0, 50);
         const output: IProductSimple[] = [];
         while (length > 0) {
             output.push(
-                RandomUtility.randomProductSimpleFromCategory(categories)
+                RandomUtility.randomProductSimpleFromCategory(catalogs)
             );
             length--;
         }

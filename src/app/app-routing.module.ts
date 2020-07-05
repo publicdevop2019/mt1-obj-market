@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { OrderDetailComponent } from './modules/account/order-detail/order-detail.component';
 import { CartComponent } from './pages/cart/cart.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
 import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
@@ -11,6 +10,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { SearchComponent } from './pages/search/search.component';
 import { OrderService } from './services/order.service';
 import { QRService } from './services/qr.service';
+import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 /**
  * @note remember to add animation in data {} to for new router mapping
  */
@@ -23,14 +23,14 @@ const routes: Routes = [
         data: { animation: 'home' }
     },
     {
-        path: 'categories',
-        component: CategoriesComponent,
-        data: { animation: 'categories' }
+        path: 'catalogs',
+        component: CatalogsComponent,
+        data: { animation: 'catalogs' }
     },
     {
-        path: 'categories/:category',
+        path: 'catalogs/:catalog',
         component: ProductListComponent,
-        data: { animation: 'category' }
+        data: { animation: 'catalog' }
     },
     {
         path: 'productDetail/:productId',
@@ -48,8 +48,8 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-})],
+        initialNavigation: 'enabled'
+    })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

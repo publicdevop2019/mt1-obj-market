@@ -67,7 +67,7 @@ export class OfflineNetImpl implements INet {
     }
     getCategory(): Observable<ICategoryNet> {
         return this.httpClient.get<ICategoryNet>(
-            'http://localhost:8080/api/categories'
+            'http://localhost:8080/api/catalogs'
         );
     }
     reserveOrder(order: IOrder): Observable<any> {

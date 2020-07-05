@@ -3,5 +3,5 @@
     <div *ngIf="!onSearchPage" class="search-mobile-container">
         <mat-icon [routerLink]="'search'" color="primary">search</mat-icon>
     </div>
-    <mat-icon *ngIf="onCategoriesPage" (click)="emitEvent()">filter_list</mat-icon>
+    <mat-icon *ngIf="onCatalogsPage" (click)="emitEvent()">filter_list</mat-icon>
 </mat-toolbar>

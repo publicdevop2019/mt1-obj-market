@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpProxyService } from 'src/app/services/http-proxy.service';
+import { Router } from '@angular/router';
 export interface ICatalog {
     title: string;
     routerUrl: string;
 }
 export interface ICatalogCard {
+    id: number;
     name: string;
-    attributesKey:string[];
+    attributesKey: string[];
+    parentId?: number;
 }
 export interface ICatalogNet {
     data: ICatalogCard[];
+}
+export interface ICatalogCustomerTreeNode {
+    id: number,
+    name: string,
+    children?: ICatalogCustomerTreeNode[],
+    tags?: string[],
 }
 @Component({
     selector: 'app-catalog-list',
@@ -17,14 +26,53 @@ export interface ICatalogNet {
     styleUrls: ['./catalog-list.component.scss']
 })
 export class CatalogListComponent implements OnInit {
-    public catalogsConfig: ICatalog[];
+    public catalogsTree: ICatalogCustomerTreeNode[];
+    public currentNode: ICatalogCustomerTreeNode[];
     constructor(
-        private httpProxy: HttpProxyService
+        private httpProxy: HttpProxyService,
+        private router: Router,
     ) {
         this.httpProxy.netImpl
             .getCatalog()
-            .subscribe(next => (this.catalogsConfig = next.data.map(e => <ICatalog>{ title: e.name, routerUrl: '/catalogs/' + e.name })));
+            .subscribe(next => {
+                this.catalogsTree = this.convertToTree(next.data)
+                this.currentNode = this.catalogsTree;
+            });
+
     }
 
     ngOnInit() { }
+    private convertToTree(catalogs: ICatalogCard[]): ICatalogCustomerTreeNode[] {
+        let rootNodes = catalogs.filter(e => e.parentId === null || e.parentId === undefined);
+        let treeNodes = rootNodes.map(e => <ICatalogCustomerTreeNode>{
+            id: e.id,
+            name: e.name,
+        });
+        let currentLevel = treeNodes;
+        while (this.notLeafNode(catalogs, currentLevel)) {
+            let nextLevelCol: ICatalogCustomerTreeNode[] = []
+            currentLevel.forEach(childNode => {
+                let nextLevel = catalogs.filter(el => el.parentId === childNode.id).map(e => <ICatalogCustomerTreeNode>{
+                    id: e.id,
+                    name: e.name,
+                });
+                childNode.children = nextLevel;
+                nextLevelCol.push(...nextLevel);
+            });
+            currentLevel = nextLevelCol;
+        }
+        return treeNodes;
+    }
+    private notLeafNode(catalogs: ICatalogCard[], nodes: ICatalogCustomerTreeNode[]): boolean {
+        return nodes.filter(node => {
+            return catalogs.filter(el => el.parentId === node.id).length >= 1
+        }).length >= 1
+    }
+    public updateList(node: ICatalogCustomerTreeNode) {
+        if (node.children)
+            this.currentNode = node.children
+        else {
+            this.router.navigateByUrl('/catalogs/' + node.name)
+        }
+    }
 }

@@ -47,10 +47,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.pageNum++;
         return this.activatedRoute.paramMap.pipe(
             switchMap((params: ParamMap) => {
-                if (params.get('category')) {
+                if (params.get('catalog')) {
                     return this.productSvc.httpProxy.netImpl.getCatalog()
                         .pipe(switchMap(next => {
-                            let var1 = next.data.find(e => e.name === params.get('category'));
+                            let var1 = next.data.find(e => e.name === params.get('catalog'));
                             return this.productSvc.httpProxy.netImpl.searchByCatalog(var1.attributesKey, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                         }))
                 } else {

@@ -77,6 +77,15 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="e2064e7f1e64dd962bc8545d97b9906fe70c3a93" datatype="html">
+        <source>
+            $<x id="INTERPOLATION" equiv-text="{{ productSimple.lowestPrice.toFixed(2)  }}"/>
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/card-product/card-product.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5f1cd9c861448aed4f51356f330e790f61892979" datatype="html">
         <source>
             sold
@@ -87,6 +96,17 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="20142cbd46070098e87539b9bfa3471ad7ce9093" datatype="html">
+        <source>
+            <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>$ <x id="INTERPOLATION" equiv-text="{{
+                productSvc.finalPrice.toFixed(2) 
+            }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="fdac0348bf249df68df9c7f117c0c708b00b3105" datatype="html">
         <source>
             sold  
@@ -94,14 +114,7 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8ce5939f32f07c1a40efd7a003b56998c6502872" datatype="html">
-        <source>RESET FORM</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="27e9f934e74434f5c1a70120b8e626fe31b9f80d" datatype="html">

@@ -82,10 +82,6 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
             this.disableList = newDisableList;
         }
     }
-    resetSalesForm() {
-        this.productSvc.formProductSalesAttr.reset({}, { onlySelf: true });
-        this.disableList = [];
-    }
     hasAllSalesAttr(e: IProductSku, salesAttr: string[]): boolean {
         return salesAttr.filter(attr => e.attributeSales.includes(attr)).length === salesAttr.length
     }

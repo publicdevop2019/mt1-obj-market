@@ -1,13 +1,13 @@
 <mat-card [routerLink]="
         '/productDetail/'+ productSimple.id
     " matRipple>
-    <app-lazy-image [lazySrc]="getImageUrl(productSimple.imageUrlSmall)"></app-lazy-image>
+    <app-lazy-image [lazySrc]="getImageUrl(productSimple.imageUrlSmall)" [view]="'card'"></app-lazy-image>
     <mat-card-content>
         <div class="product-simple-desc">
             {{ productSimple.name }}
         </div>
-        <div class="product-simple-price">
-            {{ productSimple.lowestPrice }}
+        <div class="product-simple-price" i18n>
+            &#36;{{ productSimple.lowestPrice.toFixed(2)  }}
         </div>
         <div class="product-simple-sale" i18n>
             sold

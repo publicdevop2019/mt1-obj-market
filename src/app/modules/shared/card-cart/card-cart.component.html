@@ -2,7 +2,7 @@
     <div class="cart-item-brief">
         <mat-icon *ngIf="editable" class="cart-item-brief-icon" (click)="emitEvent()">delete_outline</mat-icon>
         <app-lazy-image class="cart-item-image" [lazySrc]="imageUrlPrefix+cartItemDetails.imageUrlSmall"
-            [iconView]=true></app-lazy-image>
+            [view]="'icon'"></app-lazy-image>
         <div class="cart-item-brief-container">
             <div class="cart-item-brief-name">
                 {{ cartItemDetails.name | titlecase }}

@@ -8,7 +8,7 @@ export interface IProductSimple {
     imageUrlSmall: string;
     name: string;
     description: string;
-    lowestPrice: string;
+    lowestPrice: number;
     totalSales: string;
     id: string;
 }

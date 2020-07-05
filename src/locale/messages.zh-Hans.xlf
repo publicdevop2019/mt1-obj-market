@@ -86,6 +86,18 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="e2064e7f1e64dd962bc8545d97b9906fe70c3a93" datatype="html">
+        <source>
+            $<x id="INTERPOLATION" equiv-text="{{ productSimple.lowestPrice.toFixed(2)  }}"/>
+        </source>
+        <target>
+            &#165;<x id="INTERPOLATION" equiv-text="{{ productSimple.lowestPrice.toFixed(2)  }}"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/card-product/card-product.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5f1cd9c861448aed4f51356f330e790f61892979" datatype="html">
         <source>
             sold <x id="INTERPOLATION" equiv-text="{{ productSimple.totalSales===null ||productSimple.totalSales===undefined? 0 : productSimple.totalSales }}"/>
@@ -98,6 +110,22 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="d801a9f872faffe944bd23155af2c7b8d62a90b7" datatype="html">
+        <source>
+            <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>$	<x id="INTERPOLATION" equiv-text="{{
+                productSvc.finalPrice.toFixed(2) 
+            }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+        </source>
+        <target>
+            <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>&#165;	<x id="INTERPOLATION" equiv-text="{{
+                productSvc.finalPrice.toFixed(2) 
+            }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="fdac0348bf249df68df9c7f117c0c708b00b3105" datatype="html">
         <source>
             sold  <x id="INTERPOLATION" equiv-text="{{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}"/>
@@ -108,14 +136,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
           <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8ce5939f32f07c1a40efd7a003b56998c6502872" datatype="html">
-        <source>RESET FORM</source>
-        <target>重置</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
-          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="27e9f934e74434f5c1a70120b8e626fe31b9f80d" datatype="html">

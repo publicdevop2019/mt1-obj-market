@@ -6,7 +6,7 @@ import { IProductSimple } from 'src/app/pages/product-detail/product-detail.comp
 import { FilterService } from 'src/app/services/filter.service';
 import { GhostService } from 'src/app/services/ghost.service';
 import { ProductService } from 'src/app/services/product.service';
-import { ICategoryCard } from '../category-list/category-list.component';
+import { ICatalogCard } from '../catalog-list/catalog-list.component';
 import { IProductSimpleNet } from 'src/app/classes/net.interface';
 
 @Component({
@@ -60,7 +60,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 }
             }));
     }
-    private firstCategory(): Observable<ICategoryCard> {
+    private firstCategory(): Observable<ICatalogCard> {
         return this.productSvc.httpProxy.netImpl
             .getCatalog().pipe(switchMap(next => { return of(next.data[0]) }))
     }

@@ -26,7 +26,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
-import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CatalogListComponent } from './components/catalog-list/catalog-list.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormFilterComponent } from './components/form-filter/form-filter.component';
 import { FormSearchComponent } from './components/form-search/form-search.component';
@@ -52,7 +52,7 @@ import { CatalogsComponent } from './pages/catalogs/catalogs.component';
         CatalogsComponent,
         HeaderComponent,
         FooterComponent,
-        CategoryListComponent,
+        CatalogListComponent,
         ProductDetailComponent,
         CardProductComponent,
         ProductListComponent,

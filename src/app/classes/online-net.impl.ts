@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ICategoryNet } from '../components/category-list/category-list.component';
+import { ICatalogNet } from '../components/catalog-list/catalog-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
 import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
@@ -23,8 +23,8 @@ export class OnlineNetImpl implements INet {
     searchProfile(): Observable<string> {
         return this.httpClient.get<string>(environment.profileUrl + '/profiles/search');
     };
-    getCatalog(): Observable<ICategoryNet> {
-        return this.httpClient.get<ICategoryNet>(
+    getCatalog(): Observable<ICatalogNet> {
+        return this.httpClient.get<ICatalogNet>(
             environment.productUrl + '/public/catalogs'
         );
     }

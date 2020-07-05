@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ICategoryNet } from '../components/category-list/category-list.component';
+import { ICatalogNet } from '../components/catalog-list/catalog-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
 import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
@@ -12,7 +12,7 @@ export interface INet {
 
     searchProfile: () => Observable<string>;
     createProfile: () => Observable<any>;
-    getCatalog: () => Observable<ICategoryNet>;
+    getCatalog: () => Observable<ICatalogNet>;
     searchByCatalog: (attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string) => Observable<IProductSimpleNet>;
     getProductDetailsById: (productId: string) => Observable<IProductDetail>;
 

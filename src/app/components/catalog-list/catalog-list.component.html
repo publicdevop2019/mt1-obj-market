@@ -1,7 +1,7 @@
 <mat-nav-list style="padding-top: 0px;">
     <mat-list style="padding-top: 0px;">
         <mat-list-item *ngFor="let el of catalogsConfig let last = last" [routerLink]="el.routerUrl"
-            class="category-list-item">
+            class="catalog-list-item">
             <div
                 style="display: flex;flex-direction: row; justify-content:space-between;align-items:center;width: 100%;">
                 <p mat-line style="margin:0 0;">{{ el.title | titlecase }}</p>

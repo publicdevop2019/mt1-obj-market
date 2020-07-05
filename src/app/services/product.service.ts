@@ -7,7 +7,7 @@ import {
     IProductOptions,
     IProductSimple
 } from '../pages/product-detail/product-detail.component';
-import { ICategoryCard } from '../components/category-list/category-list.component';
+import { ICatalogCard } from '../components/catalog-list/catalog-list.component';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,7 @@ export class ProductService {
     public productSimpleList: IProductSimple[] = [];
     public formProductOption: FormGroup;
     public formProductSalesAttr: FormGroup;
-    public currentCategory: ICategoryCard;
+    public currentCategory: ICatalogCard;
     public productDetails: IProductDetail;
     public finalPrice: number;
     constructor(public httpProxy: HttpProxyService) { }

@@ -33,8 +33,8 @@
             <mat-chip-list>
                     <ng-container *ngFor="let ee of el.value">
                         <mat-chip 
-                        (click)="(!disableList.includes(el.name + ee))&&productSvc.formProductSalesAttr.get(el.name).setValue(ee)"
-                        [ngClass]="{'disable-style':disableList.includes(el.name + ee),
+                        (click)="(!currentDisableList.includes(el.name + ee))&&toggleValue(el.name,ee)"
+                        [ngClass]="{'disable-style':currentDisableList.includes(el.name + ee),
                         'chip-selected':productSvc.formProductSalesAttr.get(el.name)&&productSvc.formProductSalesAttr.get(el.name).value===ee}">
                         {{ ee }}
                         </mat-chip>

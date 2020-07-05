@@ -57,32 +57,67 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
             )
         }))
     }
-    public disableList: string[] = [];
+    public currentDisableList: string[] = [];
+    private previousAdded: string[] = [];
+    private previousCtrl: string = '';
+    private previousCtrlValue: string = '';
     updateAttrCtrl(ctrlName: string, next: string) {
-        //find matching sku(s)
-        if (next) {
-            let fg = this.productSvc.formProductSalesAttr
-            let salesAttr = Object.keys(fg.value).filter(e => (fg.get(e).value !== '' && fg.get(e).value !== null)).map(e => e + ':' + fg.get(e).value);
-            let avaliableSku = this.productDetail.skus.filter(e => this.hasAllSalesAttr(e, salesAttr));
-            let var1 = avaliableSku.map(e => e.attributeSales.filter(e => !e.includes(ctrlName)));
-            let flat: string[] = [];
-            var1.forEach(e => flat.push(...e));
-            let newDisableList: string[] = [...this.disableList.filter(e => e.includes(ctrlName))]
-            this.salesAttr.filter(e => e.name !== ctrlName).forEach(
-                e => {
-                    e.value.forEach(
-                        ee => {
-                            if (!flat.includes(e.name + ':' + ee)) {
-                                newDisableList.push(e.name + ee)
-                            }
-                        }
-                    )
-                }
-            )
-            this.disableList = newDisableList;
+        let fg = this.productSvc.formProductSalesAttr;
+        let salesAttr = Object.keys(fg.value).filter(e => (fg.get(e).value !== '' && fg.get(e).value !== null)).map(e => e + ':' + fg.get(e).value);
+        let avaliableSku = this.productDetail.skus.filter(e => this.containsSelected(e, salesAttr));
+        let var1 = avaliableSku.map(e => e.attributeSales);
+        let flattedSku: string[] = [];
+        var1.forEach(e => flattedSku.push(...e));
+        let toBeAdded: string[] = []
+        let toBeRemoved: string[] = []
+        if (ctrlName === this.previousCtrl) {
+            if (!next && this.previousCtrlValue) {
+                this.currentDisableList = this.currentDisableList.filter(e => !this.previousAdded.includes(e))
+                return;
+            }
         }
+        this.salesAttr.filter(e => e.name !== ctrlName).forEach(
+            e => {
+                e.value.forEach(
+                    ee => {
+                        if (!flattedSku.includes(e.name + ':' + ee) && !this.currentDisableList.includes(e.name + ee)) {
+                            toBeAdded.push(e.name + ee)
+                        }
+                    }
+                )
+            }
+        )
+        this.salesAttr.forEach(
+            e => {
+                e.value.forEach(
+                    ee => {
+                        if (flattedSku.includes(e.name + ':' + ee)) {
+                            toBeRemoved.push(e.name + ee)
+                        }
+                    }
+                )
+            }
+        )
+        this.currentDisableList.push(...toBeAdded);
+        this.currentDisableList = this.currentDisableList.filter(e => !toBeRemoved.includes(e));
+        this.previousCtrlValue = next;
+        this.previousCtrl = ctrlName;
+        this.previousAdded = toBeAdded;
+        if (salesAttr.length === 1 && salesAttr.filter(e => e.includes(ctrlName)).length === 0) {
+            this.currentDisableList = this.currentDisableList.filter(e => !e.includes(salesAttr[0].split(":")[0]));
+            this.previousCtrlValue = '';
+            this.previousCtrl = '';
+            this.previousAdded = [];
+        }
+        if (salesAttr.length === 0) {
+            this.currentDisableList = [];
+            this.previousCtrlValue = '';
+            this.previousCtrl = '';
+            this.previousAdded = [];
+        }
+
     }
-    hasAllSalesAttr(e: IProductSku, salesAttr: string[]): boolean {
+    containsSelected(e: IProductSku, salesAttr: string[]): boolean {
         return salesAttr.filter(attr => e.attributeSales.includes(attr)).length === salesAttr.length
     }
     extracSalesInfo(skus: IProductSku[]) {
@@ -157,5 +192,11 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
         } else {
             return this.imageUrlPrefix + url
         }
+    }
+    toggleValue(ctrl: string, value: string) {
+        if (this.productSvc.formProductSalesAttr.get(ctrl).value === value)
+            this.productSvc.formProductSalesAttr.get(ctrl).setValue('')
+        else
+            this.productSvc.formProductSalesAttr.get(ctrl).setValue(value)
     }
 }

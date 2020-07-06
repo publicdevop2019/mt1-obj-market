@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpProxyService } from 'src/app/services/http-proxy.service';
 import { Router } from '@angular/router';
-export interface ICatalog {
-    title: string;
-    routerUrl: string;
-}
 export interface ICatalogCard {
     id: number;
     name: string;

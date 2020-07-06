@@ -31,7 +31,7 @@ export class FilterService {
             }
             return this.productSvc.httpProxy.netImpl.searchByCatalog(this.productSvc.currentCategory.attributesKey, 0, 20, this.defaultSortBy, this.defaultSortOrder);
         })).subscribe(next => {
-            this.productSvc.productSimpleList = next.data;
+            // this.productSvc.productSimpleList = next.data;
         });
     }
 }

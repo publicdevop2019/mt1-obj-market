@@ -72,11 +72,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
     public loadAttributes(attr: ICatalogCard) {
         let tags: string[] = [];
-        tags.push(...attr.attributesKey);
+        tags.push(...attr.attributes);
         while (attr.parentId !== null && attr.parentId !== undefined) {
             let nextId = attr.parentId;
             attr = this.catalogs.find(e => e.id === nextId);
-            tags.push(...attr.attributesKey);
+            tags.push(...attr.attributes);
         }
         return tags;
     }

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 export interface ICatalogCard {
     id: number;
     name: string;
-    attributesKey: string[];
+    attributes: string[];
     parentId?: number;
 }
 export interface ICatalogNet {

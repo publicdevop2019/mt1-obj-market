@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { ICategoryNet } from '../components/category-list/category-list.component';
+import { ICatalogNet } from '../components/catalog-list/catalog-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
 import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 import { AuthService, ITokenResponse } from '../services/auth.service';
-import { INet } from './net.interface';
+import { INet, IProductSimpleNet } from './net.interface';
 
 export class OfflineNetImpl implements INet {
     replaceOrder(order: IOrder): Observable<any> {
@@ -18,13 +18,10 @@ export class OfflineNetImpl implements INet {
             delay(this.defaultDelay)
         );
     };
-    searchProduct(key: string): Observable<IProductSimple[]> {
-        return new Observable<IProductSimple[]>(el => {
+    searchProduct(key: string): Observable<IProductSimpleNet> {
+        return new Observable<IProductSimpleNet>(el => {
             this.httpClient
-                .get<IProductSimple[]>('http://localhost:8080/api/productTotal')
-                .subscribe(next => {
-                    el.next(next.filter(e => e.name === key));
-                });
+                .get<IProductSimpleNet>('http://localhost:8080/api/productTotal')
         });
     };
     createProfile(): Observable<any> {
@@ -65,9 +62,9 @@ export class OfflineNetImpl implements INet {
     removeFromCart(id: string): Observable<any> {
         return this.httpClient.delete('http://localhost:8080/api/carts/' + id);
     }
-    getCategory(): Observable<ICategoryNet> {
-        return this.httpClient.get<ICategoryNet>(
-            'http://localhost:8080/api/categories'
+    getCatalog(): Observable<ICatalogNet> {
+        return this.httpClient.get<ICatalogNet>(
+            'http://localhost:8080/api/catalogs'
         );
     }
     reserveOrder(order: IOrder): Observable<any> {
@@ -109,13 +106,10 @@ export class OfflineNetImpl implements INet {
             'http://localhost:8080/api/carts'
         );
     }
-    searchByCategory(category: string): Observable<IProductSimple[]> {
-        return new Observable<IProductSimple[]>(el => {
+    searchByCatalog(attributesKey: string[]): Observable<IProductSimpleNet> {
+        return new Observable<IProductSimpleNet>(el => {
             this.httpClient
                 .get<IProductSimple[]>('http://localhost:8080/api/productTotal')
-                .subscribe(next => {
-                    el.next(next.filter(e => e.category === category));
-                });
         });
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {

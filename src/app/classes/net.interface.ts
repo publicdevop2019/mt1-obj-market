@@ -1,16 +1,19 @@
 import { Observable } from 'rxjs';
-import { ICategoryNet } from '../components/category-list/category-list.component';
+import { ICatalogNet } from '../components/catalog-list/catalog-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
 import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
+export interface IProductSimpleNet {
+    data: IProductSimple[];
+}
 export interface INet {
-    searchProduct: (key: string, pageNumber: number, pageSize: number) => Observable<IProductSimple[]>;
+    searchProduct: (key: string, pageNumber: number, pageSize: number) => Observable<IProductSimpleNet>;
 
     searchProfile: () => Observable<string>;
     createProfile: () => Observable<any>;
-    getCategory: () => Observable<ICategoryNet>;
-    searchByCategory: (category: string, pageNum: number, pageSize: number, sortBy: string, sortOrder: string) => Observable<IProductSimple[]>;
+    getCatalog: () => Observable<ICatalogNet>;
+    searchByCatalog: (attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string) => Observable<IProductSimpleNet>;
     getProductDetailsById: (productId: string) => Observable<IProductDetail>;
 
     getCartItems: () => Observable<ICartItem[]>;

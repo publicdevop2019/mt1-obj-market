@@ -1,3 +1,5 @@
+@import "~@angular/material/theming";
+@import '../../../scss/theme.scss';
 .product-basic-desc{
     padding: 12px 0px 0px 0px;
     font-size: 14px;
@@ -8,19 +10,18 @@
     margin: 24px 8px 0px 8px;
 }
 .product-basic-price{
-    font-size: 14px;
-    font-weight: 700;
-    font-style: italic;
-    margin: 4px 0;
+    font-size: 22px;
+    font-weight: 500;
+    color: mat-color($app-primary);
 }
 .product-basic-sale{
     font-size: 10px;
     margin: 8px 0;
     font-style: italic;
 }
-.product-basic-image{
-    max-width: 100%;
-    max-height: 50%;
+.chip-selected{
+    background-color: mat-color($app-primary) !important;
+    color: #FFFFFF !important;
 }
 .product-basic-title{
     font-size: 22px;
@@ -45,9 +46,9 @@
     padding: 8px 8px 8px 8px;
 }
 .product-basic-option-title{
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 16px;
 }
 .product-basic-option-container{
     padding: 8px 0px;
@@ -56,9 +57,6 @@
     border-top-color: #616161;
     margin-top: 8px;
 }
-.order-address-container{
-    
-}
 .order-address-title{
     font-size: 24px;
     font-weight: 500;
@@ -66,4 +64,7 @@
 }
 .product-basic-image-container{
     text-align: center;
+}
+.disable-style{
+    color: gray !important;
 }

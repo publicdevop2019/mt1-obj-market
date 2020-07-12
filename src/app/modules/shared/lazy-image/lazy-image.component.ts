@@ -10,7 +10,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 })
 export class LazyImageComponent implements OnInit, AfterViewInit {
   @Input() lazySrc: string;
-  @Input() iconView: boolean = false;
+  @Input() view: 'card'|'detail'|'icon' = 'icon';
   @ViewChild("imgRef") imgRef: ElementRef;
   private _visibilityConfig = {
     threshold: 0

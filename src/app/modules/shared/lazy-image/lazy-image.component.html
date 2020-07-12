@@ -1,2 +1,2 @@
 <img class="img-animation" [ngStyle]="{'opacity':loading?'1':'0'}" #imgRef
-    [ngClass]="{'icon-frame':iconView,'card-frame':!iconView}" >
+    [ngClass]="{'icon-frame':view==='icon','card-frame':view==='card','detail-frame':view==='detail'}">

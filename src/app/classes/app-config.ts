@@ -8,8 +8,8 @@ export const CONFIG_FOOTER: IList[] = [
     },
     {
         icon: 'category',
-        title: 'categories',
-        routerUrl: 'categories'
+        title: 'catalogs',
+        routerUrl: 'catalogs'
     },
     {
         icon: 'shopping_cart',

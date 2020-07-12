@@ -1,47 +1,66 @@
 <ng-container *ngIf="productDetail">
     <div class="product-basic-image-container">
         <app-lazy-image *ngIf="productDetail.imageUrlLarge && productDetail.imageUrlLarge.length !== 0"
-            class="product-basic-image" [lazySrc]="imageUrlPrefix+productDetail.imageUrlLarge[0]"></app-lazy-image>
-        <app-lazy-image *ngIf="!productDetail.imageUrlLarge" class="product-basic-image"
-            [lazySrc]="imageUrlPrefix+productDetail.imageUrlSmall"></app-lazy-image>
+            [lazySrc]="getImageUrl(productDetail.imageUrlLarge[0])" [view]="'detail'"></app-lazy-image>
+        <app-lazy-image *ngIf="!(productDetail.imageUrlLarge.length > 0)"
+            [lazySrc]="getImageUrl(productDetail.imageUrlSmall)" [view]="'detail'"></app-lazy-image>
     </div>
     <div class="product-basic-detail-container">
         <div class="product-basic-title-container">
-            <span class="product-basic-title">{{
+            <span class="product-basic-title" style="line-height: 1.33;">{{
                 productDetail.name | titlecase
             }}</span>
-            <span class="product-basic-title">{{
-                productSvc.finalPrice 
+        </div>
+        <div style="text-align: right;line-height: initial;" i18n>
+            <span class="product-basic-price">&#36; {{
+                productSvc.finalPrice.toFixed(2) 
             }}</span>
         </div>
         <div class="product-basic-desc">
             {{ productDetail.description }}
         </div>
         <div class="product-basic-sale" i18n>
-            sold &nbsp; {{ productDetail.sales===null ||productDetail.sales===undefined? 0 : productDetail.sales }} 
+            sold &nbsp;
+            {{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}
         </div>
-        <mat-divider *ngIf="productDetail.selectedOptions"></mat-divider>
-        <div [formGroup]="productSvc.formProduct">
-            <div *ngFor="let el of productDetail.selectedOptions; let last = last"
-                class="product-basic-option-container">
-                <div class="product-basic-option-title">
-                    {{ el.title | titlecase }}
-                </div>
-                <mat-chip-list>
-                    <mat-radio-group [formControlName]="el.title">
-                        <mat-chip *ngFor="let ee of el.options">
-                            <span
-                                (click)="productSvc.formProduct.get(el.title).setValue(ee.optionValue)">{{ ee.optionValue }}
 
-                                </span>
-                            <mat-radio-button *ngIf="productSvc.formProduct.get(el.title).value===ee.optionValue"
-                                [color]="'primary'" [value]="ee.optionValue" [labelPosition]="'before'">
-                            </mat-radio-button>
-                        </mat-chip>
-                    </mat-radio-group>
-                </mat-chip-list>
-                <mat-divider *ngIf="!last"></mat-divider>
+        <mat-divider style="padding-top: 8px;"></mat-divider>
+        <div *ngFor="let el of salesAttr; let last = last" class="product-basic-option-container"
+            [formGroup]="productSvc.formProductSalesAttr">
+            <div class="product-basic-option-title">
+                {{ productDetail.skus[0].skuIdMap[el.name] | titlecase }}
             </div>
+            <mat-chip-list>
+                    <ng-container *ngFor="let ee of el.value">
+                        <mat-chip 
+                        (click)="(!currentDisableList.includes(el.name + ee))&&toggleValue(el.name,ee)"
+                        [ngClass]="{'disable-style':currentDisableList.includes(el.name + ee),
+                        'chip-selected':productSvc.formProductSalesAttr.get(el.name)&&productSvc.formProductSalesAttr.get(el.name).value===ee}">
+                        {{ ee }}
+                        </mat-chip>
+                    </ng-container>
+            </mat-chip-list>
+        </div>
+        <mat-divider style="padding-top: 24px;" *ngIf="productDetail.selectedOptions"></mat-divider>
+        <div *ngFor="let el of productDetail.selectedOptions; let last = last"
+            [formGroup]="productSvc.formProductOption" class="product-basic-option-container">
+            <div class="product-basic-option-title">
+                {{ el.title | titlecase }}
+            </div>
+            <mat-chip-list>
+                <mat-radio-group [formControlName]="el.title">
+                    <mat-chip *ngFor="let ee of el.options">
+                        <span
+                            (click)="productSvc.formProductOption.get(el.title).setValue(ee.optionValue)">{{ ee.optionValue }}
+
+                        </span>
+                        <mat-radio-button *ngIf="productSvc.formProductOption.get(el.title).value===ee.optionValue"
+                            [color]="'primary'" [value]="ee.optionValue" [labelPosition]="'before'">
+                        </mat-radio-button>
+                    </mat-chip>
+                </mat-radio-group>
+            </mat-chip-list>
+            <mat-divider *ngIf="!last"></mat-divider>
         </div>
     </div>
 </ng-container>

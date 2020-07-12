@@ -15,11 +15,11 @@ export class InmemoryDataService implements InMemoryDbService {
         const productTotal: IProductSimple[] = [];
         let productTotalDetails: IProductSimple[] = [];
         const carts: ICartItem[] = RandomUtility.randomCartOrders(0);
-        const categories = RandomUtility.randomCategories();
+        const catalogs = RandomUtility.randomCatalogs();
         const addresses: IAddress[] = RandomUtility.randomAddressList();
         const orders: IOrder[] = RandomUtility.randomSuccessOrderList();
 
-        categories.forEach(category => {
+        catalogs.forEach(category => {
             productTotal.push(
                 ...RandomUtility.randomProductSimpleListFromCategory(category)
             );
@@ -35,7 +35,7 @@ export class InmemoryDataService implements InMemoryDbService {
         );
 
         return {
-            categories,
+            catalogs: catalogs,
             productTop,
             productTotal,
             productTotalDetails,

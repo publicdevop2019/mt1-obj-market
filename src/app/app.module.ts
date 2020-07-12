@@ -26,7 +26,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
-import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CatalogListComponent } from './components/catalog-list/catalog-list.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormFilterComponent } from './components/form-filter/form-filter.component';
 import { FormSearchComponent } from './components/form-search/form-search.component';
@@ -35,7 +35,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { ProductBasicComponent } from './components/product-basic/product-basic.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CartComponent } from './pages/cart/cart.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
 import { PaymentDetailComponent } from './pages/payment-detail/payment-detail.component';
@@ -44,15 +43,16 @@ import { SearchComponent } from './pages/search/search.component';
 import { CustomHttpInterceptor } from './services/http.interceptor';
 import { LoadingInterceptor } from './services/loading.interceptor';
 import { SharedModule } from './modules/shared/shared.module';
+import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         CartComponent,
-        CategoriesComponent,
+        CatalogsComponent,
         HeaderComponent,
         FooterComponent,
-        CategoryListComponent,
+        CatalogListComponent,
         ProductDetailComponent,
         CardProductComponent,
         ProductListComponent,

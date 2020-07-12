@@ -35,15 +35,6 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a6d810f5acb51f801687291ea092eff07271556e" datatype="html">
-        <source>
-            <x id="INTERPOLATION" equiv-text="{{order.orderState.indexOf(&apos;NOT_PAID&apos;)&gt;-1?&quot;Pay now&quot;:&quot;View details&quot;}}"/>
-        </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/account/card-order/card-order.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="ceda8546927f35cdfe0706f18252ebf613d3266a" datatype="html">
         <source>ADD TO CART</source>
         <context-group purpose="location">
@@ -65,8 +56,8 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="04201f9d27abd7d6f58a4328ab98063ce1072006" datatype="html">
-        <source>Categories</source>
+      <trans-unit id="51a58fec46aa2ecc16e919d90938ff1ce307e848" datatype="html">
+        <source>Catalogs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
           <context context-type="linenumber">11</context>
@@ -86,22 +77,55 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3243b660cfee29ba478e8543dd6042d350bad04b" datatype="html">
+      <trans-unit id="e2064e7f1e64dd962bc8545d97b9906fe70c3a93" datatype="html">
         <source>
-            sold  <x id="INTERPOLATION" equiv-text="{{ productSimple.sales===null ||productSimple.sales===undefined? 0 : productSimple.sales }}"/>
+            $<x id="INTERPOLATION" equiv-text="{{ productSimple.lowestPrice.toFixed(2)  }}"/>
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/card-product/card-product.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="48a18099cfe8b6a7070fc33be97d692cd06d4d0e" datatype="html">
+      <trans-unit id="5f1cd9c861448aed4f51356f330e790f61892979" datatype="html">
         <source>
-            sold   <x id="INTERPOLATION" equiv-text="{{ productDetail.sales===null ||productDetail.sales===undefined? 0 : productDetail.sales }}"/> 
+            sold
+             <x id="INTERPOLATION" equiv-text="{{ productSimple.totalSales===null ||productSimple.totalSales===undefined? 0 : productSimple.totalSales }}"/>
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/card-product/card-product.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20c7c1d3c60ffcc8ce56a404077960a472a66760" datatype="html">
+        <source>No item found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-list/product-list.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/search/search.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20142cbd46070098e87539b9bfa3471ad7ce9093" datatype="html">
+        <source>
+            <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>$ <x id="INTERPOLATION" equiv-text="{{
+                productSvc.finalPrice.toFixed(2) 
+            }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fdac0348bf249df68df9c7f117c0c708b00b3105" datatype="html">
+        <source>
+            sold  
+            <x id="INTERPOLATION" equiv-text="{{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}"/>
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="27e9f934e74434f5c1a70120b8e626fe31b9f80d" datatype="html">

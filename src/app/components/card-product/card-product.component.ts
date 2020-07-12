@@ -10,7 +10,14 @@ import { environment } from 'src/environments/environment';
 export class CardProductComponent implements OnInit {
     @Input() public productSimple: IProductSimple;
     public imageUrlPrefix: string = environment.imageUrl + '/'
-    constructor() {}
+    constructor() { }
 
-    ngOnInit() {}
+    ngOnInit() { }
+    getImageUrl(url: string) {
+        if (url.includes('http')) {
+            return url
+        } else {
+            return this.imageUrlPrefix + url
+        }
+    }
 }

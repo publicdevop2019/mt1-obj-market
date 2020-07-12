@@ -7,17 +7,19 @@ import {
     IProductOptions,
     IProductSimple
 } from '../pages/product-detail/product-detail.component';
+import { ICatalogCard } from '../components/catalog-list/catalog-list.component';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-    public productSimpleList: IProductSimple[]=[];
-    public formProduct: FormGroup;
-    public currentCategory: string;
+    // public productSimpleList: IProductSimple[] = [];
+    public formProductOption: FormGroup;
+    public formProductSalesAttr: FormGroup;
+    public currentCategory: ICatalogCard;
     public productDetails: IProductDetail;
     public finalPrice: number;
-    constructor(public httpProxy: HttpProxyService) {}
+    constructor(public httpProxy: HttpProxyService) { }
     extractCartItem(): ICartItem {
         return {
             finalPrice: this.finalPrice.toString(),
@@ -25,16 +27,21 @@ export class ProductService {
             imageUrlSmall: this.productDetails.imageUrlSmall,
             productId: this.productDetails.id,
             name: this.productDetails.name,
+            attributesSales: this.getSalesAttr(),
             id: ''
         } as ICartItem;
     }
+    getSalesAttr(): string[] {
+        let sales = this.formProductSalesAttr.value
+        return Object.keys(sales).map(key => key + ":" + sales[key]).sort();
+    }
     private _getSelectedOptions(): IProductOptions[] {
-        return Object.keys(this.formProduct.controls).map(ctrlKey => {
+        return Object.keys(this.formProductOption.controls).map(ctrlKey => {
             return {
                 title: ctrlKey,
                 options: [
                     {
-                        optionValue: this.formProduct.get(ctrlKey).value
+                        optionValue: this.formProductOption.get(ctrlKey).value
                     }
                 ]
             } as IProductOptions;

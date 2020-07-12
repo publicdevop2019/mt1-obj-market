@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
     public onHomePage: boolean = true;
-    public onCategoriesPage: boolean = false;
+    public onCatalogsPage: boolean = false;
     public onSearchPage: boolean = false;
     @Output() filterClick = new EventEmitter<void>();
     constructor(
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
         (router.events.pipe(
             filter(evt => evt instanceof NavigationEnd)
         ) as Observable<NavigationEnd>).subscribe(next => {
-            this.onCategoriesPage = router.routerState.snapshot.url.includes('categories');
+            this.onCatalogsPage = router.routerState.snapshot.url.includes('catalogs');
             this.onHomePage = router.routerState.snapshot.url.includes('home');
             this.onSearchPage = router.routerState.snapshot.url.includes('search');
         });

@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ICategoryNet } from '../components/category-list/category-list.component';
+import { ICatalogNet } from '../components/catalog-list/catalog-list.component';
 import { IAddress } from '../modules/account/addresses/addresses.component';
 import { IOrder } from '../modules/account/card-order/card-order.component';
 import { ICartItem } from '../pages/cart/cart.component';
-import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
+import { IProductDetail } from '../pages/product-detail/product-detail.component';
 import { AuthService } from '../services/auth.service';
-import { INet } from './net.interface';
 import { ThemeService } from '../services/theme.service';
+import { INet, IProductSimpleNet } from './net.interface';
 /**
  * only send http request if running in browser
  */
 export class OnlineNetImpl implements INet {
     constructor(public httpClient: HttpClient, public authSvc: AuthService, private themeSvc: ThemeService) { }
-    searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimple[]> {
-        return this.httpClient.get<IProductSimple[]>(environment.productUrl + '/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + pageSize);
+    searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimpleNet> {
+        return this.httpClient.get<IProductSimpleNet>(environment.productUrl + '/public/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + pageSize);
     };
     createProfile(): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/profiles', null, { observe: 'response' });
@@ -23,8 +23,8 @@ export class OnlineNetImpl implements INet {
     searchProfile(): Observable<string> {
         return this.httpClient.get<string>(environment.profileUrl + '/profiles/search');
     };
-    getCategory(): Observable<ICategoryNet> {
-        return this.httpClient.get<ICategoryNet>(
+    getCatalog(): Observable<ICatalogNet> {
+        return this.httpClient.get<ICatalogNet>(
             environment.productUrl + '/public/catalogs'
         );
     }
@@ -89,13 +89,13 @@ export class OnlineNetImpl implements INet {
             environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
-    searchByCategory(category: string, pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimple[]> {
+    searchByCatalog(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
         return this.httpClient
-            .get<IProductSimple[]>(environment.productUrl + '/categories/' + category + '?pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder);
+            .get<IProductSimpleNet>(environment.productUrl + '/public/productDetails?attributes=' + attributesKey.join(',') + '&pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder);
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(
-            environment.productUrl + '/productDetails/' + productId
+            environment.productUrl + '/public/productDetails/' + productId
         );
     }
 }

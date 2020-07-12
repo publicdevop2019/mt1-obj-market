@@ -1,31 +1,23 @@
-<div class="cart-item-container" matRipple >
+<div class="cart-item-container" matRipple>
     <div class="cart-item-brief">
-        <mat-icon
-            *ngIf="editable"
-            class="cart-item-brief-icon"
-            (click)="emitEvent()"
-            >delete_outline</mat-icon
-        >
-        <app-lazy-image class="cart-item-image" [lazySrc]="imageUrlPrefix+cartItemDetails.imageUrlSmall" [iconView]=true></app-lazy-image>
+        <mat-icon *ngIf="editable" class="cart-item-brief-icon" (click)="emitEvent()">delete_outline</mat-icon>
+        <app-lazy-image class="cart-item-image" [lazySrc]="imageUrlPrefix+cartItemDetails.imageUrlSmall"
+            [view]="'icon'"></app-lazy-image>
         <div class="cart-item-brief-container">
             <div class="cart-item-brief-name">
                 {{ cartItemDetails.name | titlecase }}
             </div>
-            <div *ngIf="cartItemDetails.selectedOptions"
-                [ngClass]="{
+            <div *ngIf="cartItemDetails.selectedOptions" [ngClass]="{
                     'cart-item-brief-options-container-editable': editable,
                     'cart-item-brief-options-container': !editable
-                }"
-            >
-                <span
-                    *ngFor="let e of cartItemDetails.selectedOptions"
-                    class="cart-item-brief-option"
-                >
-                    <span *ngIf="e.options[0]"
-                        >{{ e.title | titlecase }}:{{
+                }">
+                <span *ngFor="let e of cartItemDetails.selectedOptions" class="cart-item-brief-option">
+                    <span *ngIf="e.options[0]">{{ e.title | titlecase }}:{{
                             e.options[0].optionValue | titlecase
-                        }}</span
-                    >
+                        }}</span>
+                </span>
+                <span *ngFor="let e of cartItemDetails.attributesSales" class="cart-item-brief-option">
+                    <span *ngIf="e">{{ e}}</span>
                 </span>
             </div>
         </div>

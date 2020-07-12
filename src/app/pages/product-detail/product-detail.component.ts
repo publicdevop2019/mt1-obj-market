@@ -24,6 +24,7 @@ export interface IProductSku {
     attributeSales: string[];
     price: number;
     storageOrder: number;
+    skuIdMap: { [key: number]: string }
 }
 export interface IProductDetail extends IProductSimple {
     imageUrlLarge?: string[];

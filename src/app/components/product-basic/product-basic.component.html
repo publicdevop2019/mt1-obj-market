@@ -28,7 +28,7 @@
         <div *ngFor="let el of salesAttr; let last = last" class="product-basic-option-container"
             [formGroup]="productSvc.formProductSalesAttr">
             <div class="product-basic-option-title">
-                {{ el.name | titlecase }}
+                {{ productDetail.skus[0].skuIdMap[el.name] | titlecase }}
             </div>
             <mat-chip-list>
                     <ng-container *ngFor="let ee of el.value">

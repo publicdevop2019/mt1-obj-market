@@ -12,10 +12,23 @@ export class CardCartComponent implements OnInit {
     @Input() editable = false;
     @Output() deleted = new EventEmitter<void>();
     public imageUrlPrefix: string = environment.imageUrl + '/'
-    constructor() {}
+    constructor() { }
 
-    ngOnInit() {}
+    ngOnInit() { }
     public emitEvent() {
         this.deleted.emit();
+    }
+    getImageUrl(url: string) {
+        if (url.includes('http')) {
+            return url
+        } else {
+            return this.imageUrlPrefix + url
+        }
+    }
+    parseSku(sku: string) {
+        return this.cartItemDetails.attrIdMap[sku.split(':')[0]] + ":" + sku.split(':')[1];
+    }
+    parseFinalPrice(price:string){
+        return (+price).toFixed(2)
     }
 }

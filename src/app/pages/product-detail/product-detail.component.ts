@@ -24,13 +24,13 @@ export interface IProductSku {
     attributeSales: string[];
     price: number;
     storageOrder: number;
-    skuIdMap: { [key: number]: string }
 }
 export interface IProductDetail extends IProductSimple {
     imageUrlLarge?: string[];
     selectedOptions?: IProductOptions[];
     specification?: string[];
-    skus: IProductSku[]
+    skus: IProductSku[],
+    attrIdMap: { [key: number]: string }
 }
 @Component({
     selector: 'app-product-detail',

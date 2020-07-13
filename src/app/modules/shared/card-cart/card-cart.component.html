@@ -1,7 +1,7 @@
 <div class="cart-item-container" matRipple>
     <div class="cart-item-brief">
         <mat-icon *ngIf="editable" class="cart-item-brief-icon" (click)="emitEvent()">delete_outline</mat-icon>
-        <app-lazy-image class="cart-item-image" [lazySrc]="imageUrlPrefix+cartItemDetails.imageUrlSmall"
+        <app-lazy-image class="cart-item-image" [lazySrc]="getImageUrl(cartItemDetails.imageUrlSmall)"
             [view]="'icon'"></app-lazy-image>
         <div class="cart-item-brief-container">
             <div class="cart-item-brief-name">
@@ -17,10 +17,10 @@
                         }}</span>
                 </span>
                 <span *ngFor="let e of cartItemDetails.attributesSales" class="cart-item-brief-option">
-                    <span *ngIf="e">{{ e}}</span>
+                    <span *ngIf="e">{{ parseSku(e)}}</span>
                 </span>
             </div>
         </div>
     </div>
-    <div class="cart-item-price">{{ cartItemDetails.finalPrice }}</div>
+    <div class="cart-item-price">{{ parseFinalPrice(cartItemDetails.finalPrice) }}</div>
 </div>

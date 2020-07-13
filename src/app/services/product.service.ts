@@ -28,6 +28,7 @@ export class ProductService {
             productId: this.productDetails.id,
             name: this.productDetails.name,
             attributesSales: this.getSalesAttr(),
+            attrIdMap:this.productDetails.attrIdMap,
             id: ''
         } as ICartItem;
     }

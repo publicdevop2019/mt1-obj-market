@@ -55,13 +55,13 @@ export class OrderDetailComponent implements OnInit {
     }
 
     ngOnInit() { }
-    public calcTotal(): number {
+    public calcTotal(): string {
         let sum = 0;
         this.orderSvc.order.productList.forEach(e => {
             sum = sum + +e.finalPrice;
         });
         this.orderSvc.order.paymentAmt = sum.toFixed(2);
-        return +sum.toFixed(2);
+        return (+sum).toFixed(2);
     }
     public openAddressPicker() {
         this.bottomSheet.open(BottomSheetAddressPickerComponent);

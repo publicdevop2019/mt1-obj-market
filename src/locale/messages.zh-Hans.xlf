@@ -486,6 +486,22 @@
           <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
+            <trans-unit id="20142cbd46070098e87539b9bfa3471ad7ce9093" datatype="html">
+        <source>
+            <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>$ <x id="INTERPOLATION" equiv-text="{{
+                productSvc.finalPrice.toFixed(2) 
+            }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+        </source>
+        <target>
+            <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>&#165; <x id="INTERPOLATION" equiv-text="{{
+                productSvc.finalPrice.toFixed(2) 
+            }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

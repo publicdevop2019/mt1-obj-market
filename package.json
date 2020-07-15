@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "pretty-lint": "npm run prettier-ts && npm run lint && npm run prettier-html",
-    "deploy": "ng build --prod && cp -a ./dist/mt1-obj-market/. ./public/ && rm -r ./public/* && cp -a ./dist/mt1-obj-market/. ./public/ && firebase deploy",
+    "deploy": "npm run build-hw-zh-Hans && rm -r ./public/* && cp -a ./dist/mt1-obj-market/browser/. ./public/ && npm run build && cp -a ./dist/mt1-obj-market/browser/. ./public/ && firebase deploy",
     "ng": "ng",
     "start": "ng serve",
     "start-zh-Hans": "ng serve --configuration=zh-Hans",

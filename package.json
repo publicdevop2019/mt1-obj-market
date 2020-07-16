@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "pretty-lint": "npm run prettier-ts && npm run lint && npm run prettier-html",
-    "deploy": "npm run build-hw-zh-Hans && rm -r ./public/* && cp -a ./dist/mt1-obj-market/browser/. ./public/ && npm run build && cp -a ./dist/mt1-obj-market/browser/. ./public/ && firebase deploy",
+    "deploy": "npm run build-offline && rm -r ./public/* && cp -a ./dist/mt1-obj-market/browser/. ./public/ && npm run build-offline-zh-Hans && cp -a ./dist/mt1-obj-market/browser/. ./public/ && firebase deploy",
     "ng": "ng",
     "start": "ng serve",
     "start-zh-Hans": "ng serve --configuration=zh-Hans",
@@ -12,6 +12,8 @@
     "build-zh-Hans": "ng build --configuration=production-zh-Hans",
     "build-hw": "ng build --configuration=hw-en-US",
     "build-hw-zh-Hans": "ng build --configuration=hw-zh-Hans",
+    "build-offline": "ng build --configuration=offline-en-US",
+    "build-offline-zh-Hans": "ng build --configuration=offline-zh-Hans",
     "test": "ng test",
     "lint": "ng lint --fix",
     "e2e": "ng e2e",

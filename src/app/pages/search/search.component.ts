@@ -40,7 +40,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
             queryParams: { key: this.searchKey },
             queryParamsHandling: 'merge'
           });
-        return this._httpProxy.netImpl.searchProduct(e, this.pageNumber, this.pageSize)
+        return this._httpProxy.searchProduct(e, this.pageNumber, this.pageSize)
       }))
       .subscribe(next => {
         this.searchResults = next.data;
@@ -69,7 +69,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub1 = this.ghostSvc.productCardGhostObser
       .pipe(switchMap(() => {
         this.pageNumber++;
-        return this._httpProxy.netImpl.searchProduct(this.searchKey, this.pageNumber, this.pageSize)
+        return this._httpProxy.searchProduct(this.searchKey, this.pageNumber, this.pageSize)
       })).subscribe(next => {
         if (next.data.length < this.pageSize)
           this.endOfPages = true;

@@ -19,7 +19,7 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
   confirmPayment() {
-    this.orderSvc.httpProxy.netImpl.confirmOrder(this.orderSvc.order.id).subscribe(next => {
+    this.orderSvc.httpProxy.confirmOrder(this.orderSvc.order.id).subscribe(next => {
       if (next.paymentStatus === true) {
         this.router.navigate(['/order-complete']);
       } else {

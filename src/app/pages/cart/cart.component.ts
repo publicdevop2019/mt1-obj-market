@@ -36,14 +36,14 @@ export class CartComponent {
         private autSvc: AuthService,
         private orderSvc: OrderService,
     ) {
-        this.cartSvc.httpProxy.netImpl.getCartItems().subscribe(next => {
+        this.cartSvc.httpProxy.getCartItems().subscribe(next => {
             this.retrieveInProgress = false;
             this.cartSvc.cart = next;
         });
     }
     public checkout(): void {
         if (this.autSvc.currentUserAuthInfo) {
-            this.cartSvc.httpProxy.netImpl.getOrderId().subscribe(next => {
+            this.cartSvc.httpProxy.getOrderId().subscribe(next => {
                 this.orderSvc.order.id = next.headers.get('location');
             });
             this.router.navigate(['/order']);
@@ -58,11 +58,11 @@ export class CartComponent {
         }
     }
     public doDelete(id: string) {
-        this.cartSvc.httpProxy.netImpl
+        this.cartSvc.httpProxy
             .removeFromCart(id)
             .pipe(
                 switchMap(next => {
-                    return this.cartSvc.httpProxy.netImpl.getCartItems();
+                    return this.cartSvc.httpProxy.getCartItems();
                 })
             )
             .subscribe(next => {

@@ -28,7 +28,7 @@ export class CatalogListComponent implements OnInit {
         private httpProxy: HttpProxyService,
         private router: Router,
     ) {
-        this.httpProxy.netImpl
+        this.httpProxy
             .getCatalog()
             .subscribe(next => {
                 this.catalogsTree = this.convertToTree(next.data)

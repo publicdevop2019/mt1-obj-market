@@ -48,7 +48,7 @@ export class ProductDetailComponent implements OnInit {
         this.activatedRoute.paramMap
             .pipe(
                 switchMap(next => {
-                    return this.productSvc.httpProxy.netImpl.getProductDetailsById(
+                    return this.productSvc.httpProxy.getProductDetailsById(
                         next.get('productId')
                     );
                 })
@@ -61,10 +61,10 @@ export class ProductDetailComponent implements OnInit {
 
     ngOnInit() { }
     public addToCart() {
-        this.cartSvc.httpProxy.netImpl
+        this.cartSvc.httpProxy
             .addToCart(this.productSvc.extractCartItem()).pipe(mergeMap(next => {
                 this.snackBarSvc.openSnackBar('item_added');
-                return this.cartSvc.httpProxy.netImpl.getCartItems()
+                return this.cartSvc.httpProxy.getCartItems()
             }))
             .subscribe(next => {
                 this.cartSvc.cart = next;

@@ -52,7 +52,7 @@ export class AccountComponent implements OnInit {
                                 },
                                 queryParamsHandling: 'merge'
                             })
-                            return this.httpProxy.netImpl.searchProfile()
+                            return this.httpProxy.searchProfile()
                         } else {
                             return of(undefined);
                             /** purposely do nothing */
@@ -62,7 +62,7 @@ export class AccountComponent implements OnInit {
                     mergeMap(profileId => {
                         if (profileId) {
                             this.authSvc.userProfileId = profileId;
-                            return this.httpProxy.netImpl.getCartItems()
+                            return this.httpProxy.getCartItems()
                         } else {
                             return of(undefined);
                         }

@@ -2,12 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { IProductSimpleNet } from 'src/app/classes/net.interface';
 import { IProductSimple } from 'src/app/pages/product-detail/product-detail.component';
 import { FilterService } from 'src/app/services/filter.service';
 import { GhostService } from 'src/app/services/ghost.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ICatalogCard } from '../catalog-list/catalog-list.component';
+import { IProductSimpleNet } from 'src/app/services/http-proxy.service';
 
 @Component({
     selector: 'app-product-list',
@@ -50,21 +50,21 @@ export class ProductListComponent implements OnInit, OnDestroy {
         return this.activatedRoute.paramMap.pipe(
             switchMap((params: ParamMap) => {
                 if (params.get('catalog')) {
-                    return this.productSvc.httpProxy.netImpl.getCatalog()
+                    return this.productSvc.httpProxy.getCatalog()
                         .pipe(switchMap(next => {
                             this.catalogs = next.data;
                             let var1 = next.data.find(e => e.name === params.get('catalog'));
-                            return this.productSvc.httpProxy.netImpl.searchByCatalog(this.loadAttributes(var1), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                            return this.productSvc.httpProxy.searchByCatalog(this.loadAttributes(var1), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                         }))
                 } else {
                     return this.firstCategory().pipe(switchMap(first => {
-                        return this.productSvc.httpProxy.netImpl.searchByCatalog(this.loadAttributes(first), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                        return this.productSvc.httpProxy.searchByCatalog(this.loadAttributes(first), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                     }))
                 }
             }));
     }
     private firstCategory(): Observable<ICatalogCard> {
-        return this.productSvc.httpProxy.netImpl
+        return this.productSvc.httpProxy
             .getCatalog().pipe(switchMap(next => {
                 this.catalogs = next.data;
                 return of(next.data[0])

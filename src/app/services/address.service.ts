@@ -8,25 +8,25 @@ import { HttpProxyService } from './http-proxy.service';
     providedIn: 'root'
 })
 export class AddressService {
-    constructor(private http: HttpProxyService) {}
+    constructor(private httpProxy: HttpProxyService) {}
 
     public getShippingAddress(): Observable<IAddress[]> {
-        return this.http.netImpl.getAddresses();
+        return this.httpProxy.getAddresses();
     }
     public getAddressById(id: string): Observable<IAddress> {
-        return this.http.netImpl.getAddresses().pipe(
+        return this.httpProxy.getAddresses().pipe(
             switchMap(addresses => {
                 return of(addresses.find(el => el.id.toString() === id));
             })
         );
     }
     public createAddress(address: IAddress): Observable<IAddress> {
-        return this.http.netImpl.createAddress(address);
+        return this.httpProxy.createAddress(address);
     }
     public updateAddress(address: IAddress): Observable<IAddress> {
-        return this.http.netImpl.updateAddress(address);
+        return this.httpProxy.updateAddress(address);
     }
     public deleteAddress(id: string): Observable<any> {
-        return this.http.netImpl.deleteAddress(id);
+        return this.httpProxy.deleteAddress(id);
     }
 }

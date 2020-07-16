@@ -41,7 +41,7 @@ export class OrderDetailComponent implements OnInit {
                         } as IOrder);
                     } else {
                         /** read an existing paid or unpaid order */
-                        return this.orderSvc.httpProxy.netImpl.getOrderById(
+                        return this.orderSvc.httpProxy.getOrderById(
                             next.get('orderId')
                         );
                     }
@@ -72,9 +72,9 @@ export class OrderDetailComponent implements OnInit {
     public reserveOrder() {
         let createOrReplaceOrder: Observable<any>;
         if (this.newOrder) {
-            createOrReplaceOrder = this.orderSvc.httpProxy.netImpl.reserveOrder(this.orderSvc.order)
+            createOrReplaceOrder = this.orderSvc.httpProxy.reserveOrder(this.orderSvc.order)
         } else {
-            createOrReplaceOrder = this.orderSvc.httpProxy.netImpl.replaceOrder(this.orderSvc.order)
+            createOrReplaceOrder = this.orderSvc.httpProxy.replaceOrder(this.orderSvc.order)
         }
         createOrReplaceOrder.subscribe(next => {
             this.cartSvc.cart = [];

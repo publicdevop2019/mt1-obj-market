@@ -12,7 +12,7 @@ export class OrdersComponent implements OnInit {
     public paiedOrders: IOrder[];
     public unpaiedOrders: IOrder[];
     constructor(public httpProxy: HttpProxyService) {
-        this.httpProxy.netImpl.getOrders().subscribe(next => {
+        this.httpProxy.getOrders().subscribe(next => {
             this.orderTotal = next;
             this.paiedOrders = this.orderTotal.filter(e => e.orderState.indexOf('NOT_PAID') === -1);
             this.unpaiedOrders = this.orderTotal.filter(e => e.orderState.indexOf('NOT_PAID') > -1);

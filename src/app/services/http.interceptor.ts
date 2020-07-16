@@ -51,7 +51,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                             /**
                              * create profile
                              */
-                            this.httpProxy.netImpl.createProfile().subscribe(next => {
+                            this.httpProxy.createProfile().subscribe(next => {
                                 this.authSvc.userProfileId = next.headers.get('location')
                             })
                         } else {

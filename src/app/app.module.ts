@@ -44,6 +44,7 @@ import { CustomHttpInterceptor } from './services/http.interceptor';
 import { LoadingInterceptor } from './services/loading.interceptor';
 import { SharedModule } from './modules/shared/shared.module';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
+import { OfflineInterceptor } from './services/offline.interceptor';
 @NgModule({
     declarations: [
         AppComponent,
@@ -89,10 +90,6 @@ import { CatalogsComponent } from './pages/catalogs/catalogs.component';
         MatSidenavModule,
         MatRippleModule,
         MatSlideToggleModule,
-        // InMemoryWebApiModule.forRoot(InmemoryDataService, {
-        //     delay: 2000,
-        //     passThruUnknownUrl: true
-        // }),
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production
         }),
@@ -107,6 +104,11 @@ import { CatalogsComponent } from './pages/catalogs/catalogs.component';
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: OfflineInterceptor,
             multi: true
         },
     ],

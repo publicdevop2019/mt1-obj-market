@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     endOfPages = false;
     private pageNum = -1;
     private pageSize = 20;
-    private sub1: Subscription;
+    private subs: Subscription = new Subscription();
     public productSimpleList: IProductSimple[];
     private catalogs: ICatalogCard[];
     constructor(
@@ -30,7 +30,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.sub1 = this.ghostSvc.productCardGhostObser
+        this.filterSvc.filterForm.get('filterValue').reset([])
+        let sub = this.ghostSvc.productCardGhostObser
             .pipe(switchMap(() => {
                 return this.getProductOb();
             })).subscribe(next => {
@@ -40,10 +41,30 @@ export class ProductListComponent implements OnInit, OnDestroy {
                     this.productSimpleList = [];
                 this.productSimpleList.push(...next.data);
             })
+        let sub2 = this.filterSvc.applyFilter.subscribe(() => {
+            let filterValue = this.filterSvc.filterForm.get('filterValue').value as string[];
+            filterValue = this.combileSame(filterValue)
+            let defaultValue = this.loadAttributes(this.productSvc.currentCategory);
+            defaultValue.push(...filterValue)
+            this.productSvc.httpProxy.searchByAttributes(defaultValue, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder).subscribe(next => {
+                this.productSimpleList = next.data
+            })
+        })
+        this.subs.add(sub)
+        this.subs.add(sub2)
+    }
+    combileSame(filterValue: string[]): string[] {
+        let key = filterValue.map(e => e.split(":")[0]);
+        let ret: Set<string> = new Set(key);
+        let var1: string[] = []
+        ret.forEach(e => {
+            let combined = filterValue.filter(el => el.includes(e + ":")).map(ee => ee.split(':')[1]).join('||');
+            var1.push(e + ":" + combined)
+        });
+        return var1;
     }
     ngOnDestroy(): void {
-        if (this.sub1)
-            this.sub1.unsubscribe();
+        this.subs.unsubscribe();
     }
     private getProductOb(): Observable<IProductSimpleNet> {
         this.pageNum++;
@@ -53,12 +74,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
                     return this.productSvc.httpProxy.getCatalog()
                         .pipe(switchMap(next => {
                             this.catalogs = next.data;
-                            let var1 = next.data.find(e => e.name === params.get('catalog'));
-                            return this.productSvc.httpProxy.searchByCatalog(this.loadAttributes(var1), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                            let var1 = next.data.find(e => String(e.id) === params.get('catalog'));
+                            this.productSvc.currentCategory = var1;
+                            return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(var1), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                         }))
                 } else {
                     return this.firstCategory().pipe(switchMap(first => {
-                        return this.productSvc.httpProxy.searchByCatalog(this.loadAttributes(first), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                        return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(first), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
                     }))
                 }
             }));

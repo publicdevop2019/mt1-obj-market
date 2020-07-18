@@ -68,7 +68,7 @@ export class CatalogListComponent implements OnInit {
         if (node.children && node.children.length > 0)
             this.currentNode = node.children
         else {
-            this.router.navigateByUrl('/catalogs/' + node.name)
+            this.router.navigateByUrl('/catalogs/' + node.id)
         }
     }
 }

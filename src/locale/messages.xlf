@@ -151,6 +151,13 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5d43539fc358c3a548b9d487be821db73e2702ff" datatype="html">
+        <source>Sort</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="686ae859cdf686fdde552502527ddd7914aacaa8" datatype="html">
         <source>Price low to high</source>
         <context-group purpose="location">
@@ -177,6 +184,20 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
           <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e6abbf04323e395f930ed75f0a7a3195b00176ab" datatype="html">
+        <source>Sales low to high</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="376c9035170f8471bb697491743cc3f25f29f28f" datatype="html">
+        <source>Sales high to low</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5da3c9fdcf92f8bba5a92f227b534c1f68e24c30" datatype="html">

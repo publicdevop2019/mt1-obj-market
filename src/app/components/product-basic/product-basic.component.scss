@@ -1,5 +1,5 @@
-@import "~@angular/material/theming";
-@import '../../../scss/theme.scss';
+// @import "~@angular/material/theming";
+// @import '../../../scss/theme.scss';
 .product-basic-desc{
     padding: 12px 0px 0px 0px;
     font-size: 14px;
@@ -12,16 +12,12 @@
 .product-basic-price{
     font-size: 22px;
     font-weight: 500;
-    color: mat-color($app-primary);
+    // color: mat-color($app-primary);
 }
 .product-basic-sale{
     font-size: 10px;
     margin: 8px 0;
     font-style: italic;
-}
-.chip-selected{
-    background-color: mat-color($app-primary) !important;
-    color: #FFFFFF !important;
 }
 .product-basic-title{
     font-size: 22px;
@@ -64,7 +60,4 @@
 }
 .product-basic-image-container{
     text-align: center;
-}
-.disable-style{
-    color: gray !important;
 }

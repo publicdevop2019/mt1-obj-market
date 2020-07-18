@@ -2,13 +2,30 @@
     Close
 </button>
 <div [formGroup]="filterSvc.filterForm">
-    <mat-form-field>
-        <mat-label>Sort</mat-label>
+    <mat-form-field style="width: 100%;">
+        <mat-label i18n>Sort</mat-label>
         <mat-select formControlName="sortBy">
             <mat-option value="price_low_to_high" i18n>Price low to high</mat-option>
             <mat-option value="price_high_to_low" i18n>Price high to low</mat-option>
             <mat-option value="name_A_Z" i18n>Name A-Z</mat-option>
             <mat-option value="name_Z_A" i18n>Name Z-A</mat-option>
+            <mat-option value="sales_low_to_high" i18n>Sales low to high</mat-option>
+            <mat-option value="sales_hight_to_low" i18n>Sales high to low</mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-divider style="padding-top: 8px;"></mat-divider>
+    <div *ngFor="let e of filterSvc.filter;">
+        <div style="font-size: 22px;font-weight: 500; margin-bottom: 12px;margin-top: 24px;">
+            {{ e.name | titlecase }}
+        </div>
+        <mat-chip-list [multiple]="true">
+            <ng-container *ngFor="let ee of e.selectValues">
+                <mat-chip color="primary" 
+                    (click)="toggleValue(e,ee)" [selected]="selected(e,ee)">
+                    {{ ee }}
+                </mat-chip>
+            </ng-container>
+        </mat-chip-list>
+    </div>
+    <app-btn [label]="'Confirm'" (click)="applyFilter()" i18n-label></app-btn>
 </div>

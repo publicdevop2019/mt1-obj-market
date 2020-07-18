@@ -10,6 +10,7 @@ import { mockProductDetail } from 'src/assets/mocks/mock-product-detail';
 import { mockProductSimple } from 'src/assets/mocks/mock-product-simples';
 import { mockCart } from 'src/assets/mocks/mock-cart';
 import { mockOrder } from 'src/assets/mocks/mock-order';
+import { mockFilter } from 'src/assets/mocks/mock-filter';
 /**
  * use refresh token if call failed
  */
@@ -68,6 +69,9 @@ export class OfflineInterceptor implements HttpInterceptor {
                 }
                 if (req.url.includes('orders')) {
                     return of(new HttpResponse({ status: 200, body: mockOrders })).pipe(delay(this.DEFAULT_DELAY))
+                }
+                if (req.url.includes('filters')) {
+                    return of(new HttpResponse({ status: 200, body: mockFilter })).pipe(delay(this.DEFAULT_DELAY))
                 }
             }
         }

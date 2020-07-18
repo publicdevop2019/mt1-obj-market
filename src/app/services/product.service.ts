@@ -13,7 +13,6 @@ import { ICatalogCard } from '../components/catalog-list/catalog-list.component'
     providedIn: 'root'
 })
 export class ProductService {
-    // public productSimpleList: IProductSimple[] = [];
     public formProductOption: FormGroup;
     public formProductSalesAttr: FormGroup;
     public currentCategory: ICatalogCard;

@@ -502,6 +502,30 @@
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
+            <trans-unit id="5d43539fc358c3a548b9d487be821db73e2702ff" datatype="html">
+        <source>Sort</source>
+        <target>排序</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e6abbf04323e395f930ed75f0a7a3195b00176ab" datatype="html">
+        <source>Sales low to high</source>
+        <target>销量由低到高</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="376c9035170f8471bb697491743cc3f25f29f28f" datatype="html">
+        <source>Sales high to low</source>
+        <target>销量由高到低</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

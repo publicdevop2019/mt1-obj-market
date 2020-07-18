@@ -1,7 +1,7 @@
 <mat-toolbar color="accent" class="header-mobile-container" style="overflow: hidden;">
-    <mat-icon *ngIf="!onHomePage" (click)="navBack()">keyboard_backspace</mat-icon>
+    <mat-icon (click)="navBack()" [ngStyle]="{'visibility':!onHomePage?'':'hidden'}">keyboard_backspace</mat-icon>
     <div *ngIf="!onSearchPage" class="search-mobile-container">
         <mat-icon [routerLink]="'search'" color="primary">search</mat-icon>
     </div>
-    <mat-icon *ngIf="onCatalogsPage" (click)="emitEvent()">filter_list</mat-icon>
+    <mat-icon [ngStyle]="{'visibility':onCatalogsPage?'':'hidden'}" (click)="emitEvent()">filter_list</mat-icon>
 </mat-toolbar>

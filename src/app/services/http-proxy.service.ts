@@ -9,6 +9,7 @@ import { ICartItem } from '../pages/cart/cart.component';
 import { IProductDetail, IProductSimple } from '../pages/product-detail/product-detail.component';
 import { AuthService } from './auth.service';
 import { ThemeService } from './theme.service';
+import { IFilterDetails } from './filter.service';
 export interface IProductSimpleNet {
     data: IProductSimple[];
 }
@@ -21,6 +22,9 @@ export class HttpProxyService {
     searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimpleNet> {
         return this.httpClient.get<IProductSimpleNet>(environment.productUrl + '/public/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + pageSize);
     };
+    getFilterForCatalog(id: number) {
+        return this.httpClient.get<IFilterDetails>(environment.productUrl + '/public/filters/search?catalogId=' + id);
+    }
     createProfile(): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/profiles', null, { observe: 'response' });
     };
@@ -93,7 +97,7 @@ export class HttpProxyService {
             environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
         );
     }
-    searchByCatalog(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
+    searchByAttributes(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
         return this.httpClient
             .get<IProductSimpleNet>(environment.productUrl + '/public/productDetails?attributes=' + attributesKey.join(',') + '&pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder);
     }

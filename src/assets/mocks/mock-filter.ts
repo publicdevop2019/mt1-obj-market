@@ -4,7 +4,7 @@ export const mockFilter={
             "id": 835604663263232,
             "name": "尺码",
             "description": "身高＋胸围＋大小",
-            "selectValues": [
+            "values": [
               "165/84A/M",
               "160/84A/S",
               "155/76A/XS",
@@ -25,7 +25,7 @@ export const mockFilter={
           {
             "id": 835604723556352,
             "name": "颜色",
-            "selectValues": [
+            "values": [
               "米色",
               "粉色",
               "淡粉色",
@@ -41,7 +41,7 @@ export const mockFilter={
             "id": 835717050163200,
             "name": "材质",
             "description": "服装（面料）",
-            "selectValues": [
+            "values": [
               "真丝",
               "雪纺",
               "莫代尔",

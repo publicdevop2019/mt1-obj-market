@@ -1,7 +1,7 @@
 
 export const environment = {
   production: false,
-  mode: 'offline' as 'online' | 'offline',
+  mode: 'online' as 'online' | 'offline',
   APP_ID: 'obj-market',
   APPP_SECRET_PUBLIC: '',
   // getTokenUri: 'http://admin.manytreetechnology.com:8111/oauth/token',

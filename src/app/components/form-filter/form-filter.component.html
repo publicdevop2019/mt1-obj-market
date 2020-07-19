@@ -19,7 +19,7 @@
             {{ e.name | titlecase }}
         </div>
         <mat-chip-list [multiple]="true">
-            <ng-container *ngFor="let ee of e.selectValues">
+            <ng-container *ngFor="let ee of e.values">
                 <mat-chip color="primary" 
                     (click)="toggleValue(e,ee)" [selected]="selected(e,ee)">
                     {{ ee }}

@@ -10,7 +10,7 @@ export interface IFilterDetails {
 export interface IFilter {
     id: number,
     name: string,
-    selectValues: string[]
+    values: string[]
 }
 @Injectable({
     providedIn: 'root'

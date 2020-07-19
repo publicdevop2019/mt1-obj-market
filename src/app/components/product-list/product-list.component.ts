@@ -58,7 +58,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         let ret: Set<string> = new Set(key);
         let var1: string[] = []
         ret.forEach(e => {
-            let combined = filterValue.filter(el => el.includes(e + ":")).map(ee => ee.split(':')[1]).join('||');
+            let combined = filterValue.filter(el => el.includes(e + ":")).map(ee => ee.split(':')[1]).join('$');
             var1.push(e + ":" + combined)
         });
         return var1;

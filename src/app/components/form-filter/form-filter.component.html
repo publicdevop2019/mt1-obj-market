@@ -13,7 +13,6 @@
             <mat-option value="sales_hight_to_low" i18n>Sales high to low</mat-option>
         </mat-select>
     </mat-form-field>
-    <mat-divider style="padding-top: 8px;"></mat-divider>
     <div *ngFor="let e of filterSvc.filter;">
         <div style="font-size: 22px;font-weight: 500; margin-bottom: 12px;margin-top: 24px;">
             {{ e.name | titlecase }}

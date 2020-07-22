@@ -19,6 +19,7 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
     public imageUrlPrefix: string = environment.imageUrl + '/'
     public salesAttr: ISaleAttrUI[] = [];
     private basePrice: number;
+    public firstImage: string;
     constructor(public productSvc: ProductService) { }
     ngOnDestroy(): void {
         this.subs.forEach(sub => {
@@ -26,6 +27,7 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
         })
     }
     ngOnInit() {
+        this.firstImage = this.productDetail.imageUrlSmall;
         const optionCtrls: any = {};
         if (this.productDetail.selectedOptions)
             this.productDetail.selectedOptions.forEach(e => {
@@ -194,9 +196,18 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
         }
     }
     toggleValue(ctrl: string, value: string) {
-        if (this.productSvc.formProductSalesAttr.get(ctrl).value === value)
+        if (this.productSvc.formProductSalesAttr.get(ctrl).value === value) {
+            this.firstImage = this.productDetail.imageUrlSmall;
             this.productSvc.formProductSalesAttr.get(ctrl).setValue('')
-        else
-            this.productSvc.formProductSalesAttr.get(ctrl).setValue(value)
+        }
+        else {
+            this.productSvc.formProductSalesAttr.get(ctrl).setValue(value);
+            this.updateImage(ctrl, value)
+        }
+
+    }
+    updateImage(ctrl: string, value: string) {
+        if (this.productDetail.attributeSaleImages[ctrl + ":" + value])
+            this.firstImage = this.productDetail.attributeSaleImages[ctrl + ":" + value]
     }
 }

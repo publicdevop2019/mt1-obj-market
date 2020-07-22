@@ -31,6 +31,7 @@ export interface IProductDetail extends IProductSimple {
     specification?: string[];
     skus: IProductSku[],
     attrIdMap: { [key: number]: string }
+    attributeSaleImages?: { [key: string]: string }
 }
 @Component({
     selector: 'app-product-detail',

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -8,9 +8,9 @@ import { ThemeService } from 'src/app/services/theme.service';
   templateUrl: './lazy-image.component.html',
   styleUrls: ['./lazy-image.component.scss']
 })
-export class LazyImageComponent implements OnInit, AfterViewInit {
+export class LazyImageComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() lazySrc: string;
-  @Input() view: 'card'|'detail'|'icon' = 'icon';
+  @Input() view: 'card' | 'detail' | 'icon' = 'icon';
   @ViewChild("imgRef") imgRef: ElementRef;
   private _visibilityConfig = {
     threshold: 0
@@ -18,6 +18,11 @@ export class LazyImageComponent implements OnInit, AfterViewInit {
   public loading = false;
   constructor(private themeSvc: ThemeService) {
 
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['lazySrc'].previousValue && changes['lazySrc'].previousValue !== changes['lazySrc'].currentValue) {
+      (this.imgRef && this.imgRef.nativeElement as HTMLImageElement).src = changes['lazySrc'].currentValue;
+    }
   }
   ngAfterViewInit(): void {
     let erroOb = fromEvent(this.imgRef.nativeElement, "error");

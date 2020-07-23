@@ -1,4 +1,6 @@
-export const mockProductDetail = {
+import { IProductDetail } from 'src/app/pages/product-detail/product-detail.component';
+
+export const mockProductDetail: IProductDetail = {
   "id": 835606421200896,
   "name": "【迪士尼合作款】ONE MORE2020夏季新款涂鸦薄上衣短袖T恤女",
   "imageUrlSmall": "https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i1/1652714638/O1CN01v4m3ta1k8FYY743F6_!!1652714638.jpg_430x430q90.jpg",
@@ -22,6 +24,34 @@ export const mockProductDetail = {
         "https://img.alicdn.com/imgextra/i3/384661685/O1CN01l7joqz1OJlxuNwjiN_!!384661685-0-lubanu-s.jpg_430x430q90.jpg"]
     }
   ],
+  "selectedOptions": [
+    {
+    title: "数量",
+    options: [
+      {
+        optionValue: '2',
+        priceVar: 'x2'
+      },
+      {
+        optionValue: '3',
+        priceVar: 'x3'
+      }
+    ]
+  },
+    {
+    title: "个性挂饰",
+    options: [
+      {
+        optionValue: '普通',
+        priceVar: '+50'
+      },
+      {
+        optionValue: '豪华',
+        priceVar: '+100'
+      }
+    ]
+  }
+],
   "skus": [
     {
       "attributeSales": [

@@ -1,15 +1,16 @@
 <ng-container *ngIf="productDetail">
     <app-slideshow [imageUrls]="imageUrls"></app-slideshow>
     <div class="product-basic-detail-container">
+
         <div class="product-basic-title-container">
             <span class="product-basic-title" style="line-height: 1.33;">{{
-                productDetail.name | titlecase
-            }}</span>
+                    productDetail.name | titlecase
+                }}</span>
         </div>
         <div style="text-align: right;line-height: initial;" i18n>
             <span class="product-basic-price">&#36; {{
-                productSvc.finalPrice.toFixed(2) 
-            }}</span>
+                    productSvc.finalPrice.toFixed(2) 
+                }}</span>
         </div>
         <div class="product-basic-desc">
             {{ productDetail.description }}
@@ -18,8 +19,9 @@
             sold &nbsp;
             {{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}
         </div>
-
-        <mat-divider style="padding-top: 8px;"></mat-divider>
+    </div>
+    <div style="height: 8px; width: 100%; background-color: #ffffff;"></div>
+    <div class="product-basic-detail-container">
         <div *ngFor="let el of salesAttr; let last = last" class="product-basic-option-container"
             [formGroup]="productSvc.formProductSalesAttr">
             <div class="product-basic-option-title">
@@ -36,7 +38,9 @@
                 </ng-container>
             </mat-chip-list>
         </div>
-        <mat-divider style="padding-top: 24px;" *ngIf="productDetail.selectedOptions"></mat-divider>
+    </div>
+    <div style="height: 8px; width: 100%; background-color: #ffffff;" *ngIf="productDetail.selectedOptions"></div>
+    <div class="product-basic-detail-container">
         <div *ngFor="let el of productDetail.selectedOptions; let last = last"
             [formGroup]="productSvc.formProductOption" class="product-basic-option-container">
             <div class="product-basic-option-title">
@@ -55,7 +59,6 @@
                     </mat-chip>
                 </mat-radio-group>
             </mat-chip-list>
-            <mat-divider *ngIf="!last"></mat-divider>
         </div>
     </div>
 </ng-container>

@@ -9,8 +9,8 @@ export interface IProductSimple {
     name: string;
     description: string;
     lowestPrice: number;
-    totalSales: string;
-    id: string;
+    totalSales: number;
+    id: number;
 }
 export interface IProductOptions {
     title: string;

@@ -1,0 +1,6 @@
+<div *ngFor="let url of imageUrls" class="hide fade" #slides style="height: 100vw;">
+    <img [src]="url">
+</div>
+<div *ngIf="imageUrls.length>=2" style="text-align:center;margin-top: 8px;">
+    <span *ngFor="let url of imageUrls;let i = index" class="dot" (click)="currentSlide(i+1)" #dots></span>
+</div>

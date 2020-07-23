@@ -20,6 +20,7 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
     public salesAttr: ISaleAttrUI[] = [];
     private basePrice: number;
     public firstImage: string;
+    public imageUrls: string[]
     constructor(public productSvc: ProductService) { }
     ngOnDestroy(): void {
         this.subs.forEach(sub => {
@@ -27,6 +28,7 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
         })
     }
     ngOnInit() {
+        this.imageUrls = this.productDetail.attributeSaleImages[1].imageUrls;
         this.firstImage = this.productDetail.imageUrlSmall;
         const optionCtrls: any = {};
         if (this.productDetail.selectedOptions)

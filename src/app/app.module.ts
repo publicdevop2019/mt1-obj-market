@@ -45,6 +45,7 @@ import { LoadingInterceptor } from './services/loading.interceptor';
 import { SharedModule } from './modules/shared/shared.module';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 import { OfflineInterceptor } from './services/offline.interceptor';
+import { SlideshowComponent } from './components/slideshow/slideshow.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -63,7 +64,8 @@ import { OfflineInterceptor } from './services/offline.interceptor';
         SearchComponent,
         FormSearchComponent,
         PaymentDetailComponent,
-        GhostCardProductComponent
+        GhostCardProductComponent,
+        SlideshowComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),

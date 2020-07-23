@@ -1,11 +1,5 @@
 <ng-container *ngIf="productDetail">
-    <div class="product-basic-image-container">
-        <!-- <app-lazy-image *ngIf="productDetail.imageUrlLarge && productDetail.imageUrlLarge.length !== 0"
-            [lazySrc]="getImageUrl(productDetail.imageUrlLarge[0])" [view]="'detail'"></app-lazy-image>
-        <app-lazy-image *ngIf="!(productDetail.imageUrlLarge.length > 0)"
-            [lazySrc]="getImageUrl(firstImage)" [view]="'detail'"></app-lazy-image> -->
-        <app-slideshow [imageUrls]="imageUrls"></app-slideshow>
-    </div>
+    <app-slideshow [imageUrls]="imageUrls"></app-slideshow>
     <div class="product-basic-detail-container">
         <div class="product-basic-title-container">
             <span class="product-basic-title" style="line-height: 1.33;">{{
@@ -32,16 +26,14 @@
                 {{ productDetail.attrIdMap[el.name] | titlecase }}
             </div>
             <mat-chip-list>
-                    <ng-container *ngFor="let ee of el.value">
-                        <mat-chip 
-                        [color]="'primary'"
+                <ng-container *ngFor="let ee of el.value">
+                    <mat-chip [color]="'primary'"
                         (click)="(!currentDisableList.includes(el.name + ee))&&toggleValue(el.name,ee)"
                         [selected]="productSvc.formProductSalesAttr.get(el.name)&&productSvc.formProductSalesAttr.get(el.name).value===ee"
-                        [disabled]="currentDisableList.includes(el.name + ee)"
-                        >
+                        [disabled]="currentDisableList.includes(el.name + ee)">
                         {{ ee }}
-                        </mat-chip>
-                    </ng-container>
+                    </mat-chip>
+                </ng-container>
             </mat-chip-list>
         </div>
         <mat-divider style="padding-top: 24px;" *ngIf="productDetail.selectedOptions"></mat-divider>

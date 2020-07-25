@@ -4,6 +4,8 @@ import { switchMap, mergeMap } from 'rxjs/operators';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { Title } from '@angular/platform-browser';
+import { CONSTANT_I18N } from 'src/locale/constant';
 export interface IProductSimple {
     imageUrlSmall: string;
     name: string;
@@ -48,8 +50,10 @@ export class ProductDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private cartSvc: CartService,
         private productSvc: ProductService,
-        private snackBarSvc: SnackbarService
+        private snackBarSvc: SnackbarService,
+        private titleSvc: Title
     ) {
+        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.productDetail)
         this.activatedRoute.paramMap
             .pipe(
                 switchMap(next => {
@@ -61,9 +65,9 @@ export class ProductDetailComponent implements OnInit {
             .subscribe(next => {
                 this.productDetail = next;
                 this.productSvc.productDetails = next;
+                this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.productDetail + ' ' + next.name)
             });
     }
-
     ngOnInit() { }
     public addToCart() {
         this.cartSvc.httpProxy

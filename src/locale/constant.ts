@@ -12,5 +12,18 @@ export const CONSTANT_I18N = {
     payNow: 'Pay Now',
     redirctUrl: '/account',
     docTitle: 'Object Market',
+    catalogs: 'Catalogs',
+    home: 'Home',
+    cart: 'Cart',
+    account: 'Account',
+    productDetail: 'Product',
+    shippingAddress: 'Shipping Address',
+    orders: 'Orders',
+    search: 'Search Products',
+    newOrders: 'New Orders',
+    ordersDetail: 'Order Detail',
+    paymentDetail: 'Payment',
+    orderComplete: 'Order Placed',
+    addAddress: 'Add',
     'payment_link_not_found': 'Unable to find payment link'
 }

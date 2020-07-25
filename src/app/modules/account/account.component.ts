@@ -12,6 +12,7 @@ import { HttpProxyService } from 'src/app/services/http-proxy.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { environment } from 'src/environments/environment';
 import { CONSTANT_I18N } from 'src/locale/constant';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-account',
@@ -27,8 +28,10 @@ export class AccountComponent implements OnInit {
         private httpProxy: HttpProxyService,
         private router: Router,
         private cartSvc: CartService,
-        private themeSvc: ThemeService
+        private themeSvc: ThemeService,
+        private titleSvc: Title
     ) {
+        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account)
         this.darkThemeCtrl = new FormControl(this.themeSvc.isDarkTheme);
         if (!this.authSvc.currentUserAuthInfo && this.themeSvc.isBrowser) {
             this.route.queryParams

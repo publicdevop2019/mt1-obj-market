@@ -3,6 +3,8 @@ import { toDataURL } from 'qrcode';
 import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { Title } from '@angular/platform-browser';
+import { CONSTANT_I18N } from 'src/locale/constant';
 @Component({
   selector: 'app-payment-detail',
   templateUrl: './payment-detail.component.html',
@@ -13,7 +15,8 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
     toDataURL(this.qrFrame.nativeElement as HTMLCanvasElement, this.orderSvc.paymentLink)
   }
   @ViewChild("qrCodeFrame") qrFrame: ElementRef;
-  constructor(private orderSvc: OrderService, private router: Router, private bar: SnackbarService) {
+  constructor(private orderSvc: OrderService, private router: Router, private bar: SnackbarService, private titleSvc: Title) {
+    this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.paymentDetail)
   }
 
   ngOnInit() {

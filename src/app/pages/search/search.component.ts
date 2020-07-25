@@ -7,6 +7,8 @@ import { IProductSimple } from '../product-detail/product-detail.component';
 import { FormSearchComponent } from 'src/app/components/form-search/form-search.component';
 import { GhostService } from 'src/app/services/ghost.service';
 import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { CONSTANT_I18N } from 'src/locale/constant';
 
 @Component({
   selector: 'app-search',
@@ -57,7 +59,8 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub2.unsubscribe();
   }
   @ViewChild('searchInput') searchComponnent: FormSearchComponent;
-  constructor(private _httpProxy: HttpProxyService, private ghostSvc: GhostService, private router: Router, private activeRoute: ActivatedRoute, private changeRef: ChangeDetectorRef) {
+  constructor(private _httpProxy: HttpProxyService, private ghostSvc: GhostService, private router: Router, private activeRoute: ActivatedRoute, private changeRef: ChangeDetectorRef,private titleSvc:Title) {
+    this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.search)
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpProxyService } from 'src/app/services/http-proxy.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
+import { CONSTANT_I18N } from 'src/locale/constant';
 export interface ICatalogCard {
     id: number;
     name: string;
@@ -27,6 +30,8 @@ export class CatalogListComponent implements OnInit {
     constructor(
         private httpProxy: HttpProxyService,
         private router: Router,
+        private location: Location,
+        private activeRoute: ActivatedRoute,
     ) {
         this.httpProxy
             .getCatalog()
@@ -65,8 +70,11 @@ export class CatalogListComponent implements OnInit {
         }).length >= 1
     }
     public updateList(node: ICatalogCustomerTreeNode) {
-        if (node.children && node.children.length > 0)
-            this.currentNode = node.children
+        if (node.children && node.children.length > 0) {
+            this.currentNode = node.children;
+            const url = this.router.createUrlTree([`${this.location.path()}`, `${node.id}`], { relativeTo: this.activeRoute }).toString()
+            this.location.go(url);
+        }
         else {
             this.router.navigateByUrl('/catalogs/' + node.id)
         }

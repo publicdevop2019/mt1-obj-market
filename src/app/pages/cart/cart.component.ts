@@ -6,6 +6,8 @@ import { CartService } from 'src/app/services/cart.service';
 import { shrinkOutAnimation } from 'src/app/classes/animation';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order.service';
+import { Title } from '@angular/platform-browser';
+import { CONSTANT_I18N } from 'src/locale/constant';
 export interface ICartItem {
     /**
      * @note in-memory-web-api works correctly with numeric id, if type string then id need to set to ''
@@ -35,7 +37,9 @@ export class CartComponent {
         private router: Router,
         private autSvc: AuthService,
         private orderSvc: OrderService,
+        private titleSvc: Title
     ) {
+        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.cart)
         this.cartSvc.httpProxy.getCartItems().subscribe(next => {
             this.retrieveInProgress = false;
             this.cartSvc.cart = next;

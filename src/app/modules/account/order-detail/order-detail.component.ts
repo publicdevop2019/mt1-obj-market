@@ -9,6 +9,8 @@ import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 import { BottomSheetAddressPickerComponent } from '../bottom-sheet-address-picker/bottom-sheet-address-picker.component';
 import { BottomSheetPaymentPickerComponent } from '../bottom-sheet-payment-picker/bottom-sheet-payment-picker.component';
+import { Title } from '@angular/platform-browser';
+import { CONSTANT_I18N } from 'src/locale/constant';
 
 @Component({
     selector: 'app-order-detail',
@@ -16,7 +18,6 @@ import { BottomSheetPaymentPickerComponent } from '../bottom-sheet-payment-picke
     styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
-    // public order: IOrder;
     public editable = false;
     public newOrder = false;
     constructor(
@@ -24,7 +25,8 @@ export class OrderDetailComponent implements OnInit {
         private bottomSheet: MatBottomSheet,
         public orderSvc: OrderService,
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private titleSvc: Title
     ) {
         this.activatedRoute.paramMap
             .pipe(
@@ -32,15 +34,17 @@ export class OrderDetailComponent implements OnInit {
                     if (!notNullAndUndefined(next.get('orderId'))) {
                         /** create a new order */
                         this.newOrder = true;
+                        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.newOrders)
                         return of({
                             productList: this.cartSvc.cart,
                             address: this.orderSvc.order.address,
                             paymentType: this.orderSvc.order.paymentType,
                             orderState: 'NOT_PAID',
-                            id:this.orderSvc.order.id,
+                            id: this.orderSvc.order.id,
                         } as IOrder);
                     } else {
                         /** read an existing paid or unpaid order */
+                        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.ordersDetail + ' ' + next.get('orderId'));
                         return this.orderSvc.httpProxy.getOrderById(
                             next.get('orderId')
                         );

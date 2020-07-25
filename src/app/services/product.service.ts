@@ -27,13 +27,15 @@ export class ProductService {
             productId: this.productDetails.id,
             name: this.productDetails.name,
             attributesSales: this.getSalesAttr(),
-            attrIdMap:this.productDetails.attrIdMap,
+            attrIdMap: this.productDetails.attrIdMap,
             id: ''
         } as ICartItem;
     }
     getSalesAttr(): string[] {
-        let sales = this.formProductSalesAttr.value
-        return Object.keys(sales).map(key => key + ":" + sales[key]).sort();
+        if (this.productDetails.skus && this.productDetails.skus.length !== 0) {
+            let sales = this.formProductSalesAttr.value
+            return Object.keys(sales).map(key => key + ":" + sales[key]).sort();
+        }
     }
     private _getSelectedOptions(): IProductOptions[] {
         return Object.keys(this.formProductOption.controls).map(ctrlKey => {

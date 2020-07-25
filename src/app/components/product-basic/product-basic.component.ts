@@ -45,15 +45,17 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
         this.productSvc.formProductOption.valueChanges.subscribe(next => {
             this.productSvc.finalPrice = this.calcTotal();
         });
-        this.extracSalesInfo(this.productDetail.skus);
-        this.productSvc.formProductSalesAttr.valueChanges.subscribe(next => {
-            if (Object.keys(next).filter(e => next[e] === '').length === 0) {
-                this.updateBasePrice(next);
-                this.productSvc.finalPrice = this.calcTotal();
-            }
-        });
+        if (this.productDetail.skus && this.productDetail.skus.length != 0){
+            this.extracSalesInfo(this.productDetail.skus);
+            this.productSvc.formProductSalesAttr.valueChanges.subscribe(next => {
+                if (Object.keys(next).filter(e => next[e] === '').length === 0) {
+                    this.updateBasePrice(next);
+                    this.productSvc.finalPrice = this.calcTotal();
+                }
+            });
+            this.dynamicUpdateAttrCtrlStatus();
+        }
         this.basePrice = +this.productDetail.lowestPrice;
-        this.dynamicUpdateAttrCtrlStatus();
 
     }
     private subs: Subscription[] = []

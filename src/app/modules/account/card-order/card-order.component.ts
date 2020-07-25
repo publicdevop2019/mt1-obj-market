@@ -4,7 +4,7 @@ import { ICartItem } from 'src/app/pages/cart/cart.component';
 import { CONSTANT_I18N } from 'src/locale/constant';
 export interface IOrder {
     id: string;
-    paymentAmt:string;
+    paymentAmt:number;
     orderState:string;
     productList: ICartItem[];
     address?: IAddress;

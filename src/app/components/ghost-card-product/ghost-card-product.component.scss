@@ -40,8 +40,6 @@ $gradient-offset: 52 + 16;
 .custom-card{
     background-color: #ffffff;
     color: #000000;
-    min-width: 38.4%;
-    margin: 1.5% 1.5% 0 1.5%;
 }
 .product-simple-image{
     @include border-style;

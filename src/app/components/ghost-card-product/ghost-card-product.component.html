@@ -1,56 +1,13 @@
 <div #ghostRef style="display: flex;flex-direction: row; flex-wrap: wrap;">
-    <mat-card class="custom-card" matRipple>
-        <div class="product-simple-image"></div>
-        <mat-card-content>
-            <div class="product-simple-desc">
-            </div>
-            <div class="product-simple-price">
-            </div>
-        </mat-card-content>
-    </mat-card>
-    <mat-card class="custom-card" matRipple>
-        <div class="product-simple-image"></div>
-        <mat-card-content>
-            <div class="product-simple-desc">
-            </div>
-            <div class="product-simple-price">
-            </div>
-        </mat-card-content>
-    </mat-card>
-    <mat-card class="custom-card" matRipple>
-        <div class="product-simple-image"></div>
-        <mat-card-content>
-            <div class="product-simple-desc">
-            </div>
-            <div class="product-simple-price">
-            </div>
-        </mat-card-content>
-    </mat-card>
-    <mat-card class="custom-card" matRipple>
-        <div class="product-simple-image"></div>
-        <mat-card-content>
-            <div class="product-simple-desc">
-            </div>
-            <div class="product-simple-price">
-            </div>
-        </mat-card-content>
-    </mat-card>
-    <mat-card class="custom-card" matRipple>
-        <div class="product-simple-image"></div>
-        <mat-card-content>
-            <div class="product-simple-desc">
-            </div>
-            <div class="product-simple-price">
-            </div>
-        </mat-card-content>
-    </mat-card>
-    <mat-card class="custom-card" matRipple>
-        <div class="product-simple-image"></div>
-        <mat-card-content>
-            <div class="product-simple-desc">
-            </div>
-            <div class="product-simple-price">
-            </div>
-        </mat-card-content>
-    </mat-card>
+    <div *ngFor="let i of count" style="width: 47%;padding: 1.5%;">
+        <mat-card class="custom-card" matRipple>
+            <div class="product-simple-image"></div>
+            <mat-card-content>
+                <div class="product-simple-desc">
+                </div>
+                <div class="product-simple-price">
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

@@ -60,7 +60,7 @@ export class OrderDetailComponent implements OnInit {
         this.orderSvc.order.productList.forEach(e => {
             sum = sum + +e.finalPrice;
         });
-        this.orderSvc.order.paymentAmt = sum.toFixed(2);
+        this.orderSvc.order.paymentAmt = sum;
         return (+sum).toFixed(2);
     }
     public openAddressPicker() {

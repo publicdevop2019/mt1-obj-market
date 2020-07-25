@@ -12,6 +12,7 @@ export class GhostCardProductComponent implements AfterViewInit {
   private _visibilityConfig = {
     threshold: 0
   };
+  public count = ['1','2','3','4','5','6','7','7']
   constructor(private _ghostSvc: GhostService, private themeSvc: ThemeService) { }
   ngAfterViewInit(): void {
     if (this.themeSvc.isBrowser) {
@@ -23,7 +24,7 @@ export class GhostCardProductComponent implements AfterViewInit {
         });
       }, this._visibilityConfig);
       observer.observe(this.ghostRef.nativeElement);
-    }else{
+    } else {
       // if running in server, directly trigger first call
       this._ghostSvc.productCardGhostObser.next();
     }

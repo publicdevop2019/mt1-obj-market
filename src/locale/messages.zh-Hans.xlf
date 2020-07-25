@@ -30,14 +30,6 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e2cec126f7bc6e94985ec1d358b9a65d91c00f86" datatype="html">
-        <source>Total <x id="INTERPOLATION" equiv-text="{{ order.paymentAmt }}"/></source>
-        <target>总计 <x id="INTERPOLATION" equiv-text="{{ order.paymentAmt }}"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/account/card-order/card-order.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="ceda8546927f35cdfe0706f18252ebf613d3266a" datatype="html">
         <source>ADD TO CART</source>
         <target>添加到购物车</target>
@@ -524,6 +516,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/form-filter/form-filter.component.html</context>
           <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3e6937fdbde4da7f8c6866d56182945437e2629e" datatype="html">
+        <source>Go Back</source>
+        <target>返回上一级</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/catalog-list/catalog-list.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d22e2dd2008bbeea1de73be858b9f5f652765f0b" datatype="html">
+        <source>Total <x id="INTERPOLATION" equiv-text="{{ order.paymentAmt.toFixed(2) }}"/></source>
+        <target>总计 <x id="INTERPOLATION" equiv-text="{{ order.paymentAmt.toFixed(2) }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/card-order/card-order.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
     </body>

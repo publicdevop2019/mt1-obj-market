@@ -235,6 +235,20 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="f32ecff76a7258dc2bd32bfde18916e693915cd2" datatype="html">
+        <source>This product is sold out</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/sold-out-banner/sold-out-banner.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0c0be57aaf30414531e79157a45e0fc3fd6b637b" datatype="html">
+        <source>DISMISS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/sold-out-banner/sold-out-banner.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="59cdbd4c9051d128065abdbd5ca58ab8e49d2184" datatype="html">
         <source>
         Loading

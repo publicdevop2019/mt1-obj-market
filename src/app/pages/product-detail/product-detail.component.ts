@@ -25,13 +25,14 @@ export interface IProductOption {
 export interface IProductSku {
     attributeSales: string[];
     price: number;
-    storageOrder: number;
+    storage: number;
 }
 export interface IProductDetail extends IProductSimple {
     imageUrlLarge?: string[];
     selectedOptions?: IProductOptions[];
     specification?: string[];
     skus: IProductSku[],
+    storage?:number,
     attrIdMap: { [key: number]: string }
     attributeSaleImages?: IAttrImage[]
 }

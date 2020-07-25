@@ -46,6 +46,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 import { OfflineInterceptor } from './services/offline.interceptor';
 import { SlideshowComponent } from './components/slideshow/slideshow.component';
+import { SoldOutBannerComponent } from './components/sold-out-banner/sold-out-banner.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -65,7 +66,8 @@ import { SlideshowComponent } from './components/slideshow/slideshow.component';
         FormSearchComponent,
         PaymentDetailComponent,
         GhostCardProductComponent,
-        SlideshowComponent
+        SlideshowComponent,
+        SoldOutBannerComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),

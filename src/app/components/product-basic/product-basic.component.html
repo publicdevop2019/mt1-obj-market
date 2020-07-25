@@ -20,6 +20,7 @@
             {{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}
         </div>
     </div>
+    <app-sold-out-banner *ngIf="soldOut&&!soldOutDismiss" (msgDismiss)="soldOutDismiss=true"></app-sold-out-banner>
     <div *ngIf="salesAttr.length!=0" style="height: 8px; width: 100%; background-color: #ffffff;"></div>
     <div class="product-basic-detail-container">
         <div *ngFor="let el of salesAttr; let last = last" class="product-basic-option-container"

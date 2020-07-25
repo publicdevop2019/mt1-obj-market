@@ -20,6 +20,8 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
     public salesAttr: ISaleAttrUI[] = [];
     private basePrice: number;
     public imageUrls: string[]
+    public soldOut = false;
+    public soldOutDismiss = false;
     constructor(public productSvc: ProductService) { }
     ngOnDestroy(): void {
         this.subs.forEach(sub => {
@@ -45,7 +47,7 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
         this.productSvc.formProductOption.valueChanges.subscribe(next => {
             this.productSvc.finalPrice = this.calcTotal();
         });
-        if (this.productDetail.skus && this.productDetail.skus.length != 0){
+        if (this.productDetail.skus && this.productDetail.skus.length != 0) {
             this.extracSalesInfo(this.productDetail.skus);
             this.productSvc.formProductSalesAttr.valueChanges.subscribe(next => {
                 if (Object.keys(next).filter(e => next[e] === '').length === 0) {
@@ -54,6 +56,10 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
                 }
             });
             this.dynamicUpdateAttrCtrlStatus();
+        } else {
+            if (this.productDetail.storage === 0) {
+                this.soldOut = true;
+            }
         }
         this.basePrice = +this.productDetail.lowestPrice;
 
@@ -132,7 +138,9 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
         return salesAttr.filter(attr => e.attributeSales.includes(attr)).length === salesAttr.length
     }
     extracSalesInfo(skus: IProductSku[]) {
+        let totalStorage = 0;
         skus.forEach(sku => {
+            totalStorage = totalStorage + sku.storage;
             sku.attributeSales.forEach(e => {
                 let name = e.split(':')[0];
                 let value = e.split(':')[1];
@@ -158,6 +166,9 @@ export class ProductBasicComponent implements OnInit, OnDestroy {
                 salesCtrls[e.name] = new FormControl('', []);
             });
         this.productSvc.formProductSalesAttr = new FormGroup(salesCtrls);
+        if (totalStorage === 0) {
+            this.soldOut = true;
+        }
     }
 
     calcTotal(): number {

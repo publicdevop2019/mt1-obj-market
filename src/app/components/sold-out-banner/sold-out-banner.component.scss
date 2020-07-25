@@ -1,0 +1,13 @@
+.sold-out-container{
+    height: 36px;
+    padding: 10px 8px 8px 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    vertical-align: middle;
+}
+.sold-out-msg{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-weight: 500;
+}

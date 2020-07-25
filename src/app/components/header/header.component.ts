@@ -11,7 +11,8 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 export class HeaderComponent implements OnInit {
     public onHomePage: boolean = true;
-    public onCatalogsPage: boolean = false;
+    public onProductList: boolean = false;
+    public onCatalogsSelect: boolean = false;
     public onSearchPage: boolean = false;
     @Output() filterClick = new EventEmitter<void>();
     constructor(
@@ -23,7 +24,8 @@ export class HeaderComponent implements OnInit {
         (router.events.pipe(
             filter(evt => evt instanceof NavigationEnd)
         ) as Observable<NavigationEnd>).subscribe(next => {
-            this.onCatalogsPage = router.routerState.snapshot.url.includes('catalogs/');
+            this.onProductList = router.routerState.snapshot.url.includes('catalogs/');
+            this.onCatalogsSelect = router.routerState.snapshot.url.includes('catalogs');
             this.onHomePage = router.routerState.snapshot.url.includes('home');
             this.onSearchPage = router.routerState.snapshot.url.includes('search');
         });

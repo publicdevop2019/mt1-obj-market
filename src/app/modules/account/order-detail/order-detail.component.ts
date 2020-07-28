@@ -74,6 +74,7 @@ export class OrderDetailComponent implements OnInit {
         this.bottomSheet.open(BottomSheetPaymentPickerComponent);
     }
     public reserveOrder() {
+        this.orderSvc.scrollTop.next();
         let createOrReplaceOrder: Observable<any>;
         if (this.newOrder) {
             createOrReplaceOrder = this.orderSvc.httpProxy.reserveOrder(this.orderSvc.order)

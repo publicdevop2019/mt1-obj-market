@@ -21,7 +21,7 @@
         </div>
     </div>
     <app-sold-out-banner *ngIf="soldOut&&!soldOutDismiss" (msgDismiss)="soldOutDismiss=true"></app-sold-out-banner>
-    <div *ngIf="salesAttr.length!=0" style="height: 8px; width: 100%; background-color: #ffffff;"></div>
+    <div *ngIf="salesAttr.length!=0" class="app-divider" ></div>
     <div class="product-basic-detail-container">
         <div *ngFor="let el of salesAttr; let last = last" class="product-basic-option-container"
             [formGroup]="productSvc.formProductSalesAttr">
@@ -40,7 +40,7 @@
             </mat-chip-list>
         </div>
     </div>
-    <div style="height: 8px; width: 100%; background-color: #ffffff;" *ngIf="productDetail.selectedOptions"></div>
+    <div class="app-divider" *ngIf="productDetail.selectedOptions"></div>
     <div class="product-basic-detail-container">
         <div *ngFor="let el of productDetail.selectedOptions; let last = last"
             [formGroup]="productSvc.formProductOption" class="product-basic-option-container">

@@ -37,10 +37,12 @@ $gradient-offset: 52 + 16;
     background-color: $base-color;
     @include animate-ghost-line;
 }
+
 .custom-card{
     background-color: #ffffff;
     color: #000000;
 }
+
 .product-simple-image{
     @include border-style;
     height: $card-image-height;

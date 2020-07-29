@@ -46,7 +46,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             filterValue = this.combileSame(filterValue)
             let defaultValue = this.loadAttributes(this.productSvc.currentCategory);
             defaultValue.push(...filterValue)
-            this.productSvc.httpProxy.searchByAttributes(defaultValue, this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder).subscribe(next => {
+            this.productSvc.httpProxy.searchByAttributes(defaultValue, this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder).subscribe(next => {
                 this.productSimpleList = next.data
             })
         })
@@ -76,11 +76,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
                             this.catalogs = next.data;
                             let var1 = next.data.find(e => String(e.id) === params.get('catalog'));
                             this.productSvc.currentCategory = var1;
-                            return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(var1), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                            return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(var1), this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder)
                         }))
                 } else {
                     return this.firstCategory().pipe(switchMap(first => {
-                        return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(first), this.pageNum, this.pageSize, this.filterSvc.defaultSortBy, this.filterSvc.defaultSortOrder)
+                        return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(first), this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder)
                     }))
                 }
             }));

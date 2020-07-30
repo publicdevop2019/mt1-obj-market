@@ -28,6 +28,7 @@ export class OrderDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private titleSvc: Title
     ) {
+        this.orderSvc.order = undefined;
         this.activatedRoute.paramMap
             .pipe(
                 switchMap(next => {

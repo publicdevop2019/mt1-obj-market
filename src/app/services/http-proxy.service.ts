@@ -20,7 +20,7 @@ export class HttpProxyService {
     public inProgress = false;
     constructor(public httpClient: HttpClient, public authSvc: AuthService, private themeSvc: ThemeService) { }
     searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimpleNet> {
-        return this.httpClient.get<IProductSimpleNet>(environment.productUrl + '/public/productDetails/search?key=' + key + '&pageNum=' + pageNumber + '&pageSize=' + pageSize);
+        return this.httpClient.get<IProductSimpleNet>(environment.productUrl + '/public/productDetails?query=name:' + key + '&page=num:' + pageNumber + ',size:' + pageSize);
     };
     getFilterForCatalog(id: number) {
         return this.httpClient.get<IFilterDetails>(environment.productUrl + '/public/filters/search?catalogId=' + id);
@@ -99,7 +99,10 @@ export class HttpProxyService {
     }
     searchByAttributes(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
         return this.httpClient
-            .get<IProductSimpleNet>(environment.productUrl + '/public/productDetails?attributes=' + attributesKey.join(',') + '&pageNum=' + pageNum + '&pageSize=' + pageSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder);
+            .get<IProductSimpleNet>(environment.productUrl + '/public/productDetails' + this.getSearchParam(attributesKey) + '&page=num:' + pageNum + ',size:' + pageSize + ',by:' + sortBy + ',order:' + sortOrder);
+    }
+    private getSearchParam(attr: string[]): string {
+        return '?query=attr:' + attr.map(e => e.replace(":", "-")).join('$')
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(

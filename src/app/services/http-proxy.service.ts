@@ -23,7 +23,7 @@ export class HttpProxyService {
         return this.httpClient.get<IProductSimpleNet>(environment.productUrl + '/public/productDetails?query=name:' + key + '&page=num:' + pageNumber + ',size:' + pageSize);
     };
     getFilterForCatalog(id: number) {
-        return this.httpClient.get<IFilterDetails>(environment.productUrl + '/public/filters/search?catalogId=' + id);
+        return this.httpClient.get<IFilterDetails>(environment.productUrl + '/public/filters?query=catalog:' + id);
     }
     createProfile(): Observable<any> {
         return this.httpClient.post(environment.profileUrl + '/profiles', null, { observe: 'response' });

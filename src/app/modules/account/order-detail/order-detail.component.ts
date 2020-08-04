@@ -28,7 +28,7 @@ export class OrderDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private titleSvc: Title
     ) {
-        this.orderSvc.order = undefined;
+        this.orderSvc.order = <IOrder>{};
         this.activatedRoute.paramMap
             .pipe(
                 switchMap(next => {
@@ -36,6 +36,7 @@ export class OrderDetailComponent implements OnInit {
                         /** create a new order */
                         this.newOrder = true;
                         this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.newOrders)
+                        console.dir(this.cartSvc.cart)
                         return of({
                             productList: this.cartSvc.cart,
                             address: this.orderSvc.order.address,

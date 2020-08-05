@@ -48,7 +48,7 @@ export class CartComponent {
     public checkout(): void {
         if (this.autSvc.currentUserAuthInfo) {
             this.cartSvc.httpProxy.getOrderId().subscribe(next => {
-                this.orderSvc.order.id = next.headers.get('location');
+                this.orderSvc.generatedOrderId = next.headers.get('location');
             });
             this.router.navigate(['/order']);
         } else {

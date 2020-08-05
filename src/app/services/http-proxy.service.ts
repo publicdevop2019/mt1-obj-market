@@ -58,10 +58,10 @@ export class HttpProxyService {
     getOrderId(): Observable<any> {
         return this.httpClient.get(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/id', { observe: 'response' });
     };
-    confirmOrder(orderId: string): Observable<any> {
+    confirmOrder(orderId: number): Observable<any> {
         return this.httpClient.get(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + orderId + '/confirm');
     };
-    getOrderById(id: string): Observable<IOrder> {
+    getOrderById(id: number): Observable<IOrder> {
         return this.httpClient.get<IOrder>(
             environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + id
         );

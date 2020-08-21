@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { IProductSimple } from 'src/app/pages/product-detail/product-detail.component';
 import { FilterService } from 'src/app/services/filter.service';
 import { GhostService } from 'src/app/services/ghost.service';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductListService } from 'src/app/services/product.service';
 import { ICatalogCard } from '../catalog-list/catalog-list.component';
 import { IProductSimpleNet } from 'src/app/services/http-proxy.service';
 
@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     public productSimpleList: IProductSimple[];
     private catalogs: ICatalogCard[];
     constructor(
-        public productSvc: ProductService,
+        public productSvc: ProductListService,
         private activatedRoute: ActivatedRoute,
         private ghostSvc: GhostService,
         private filterSvc: FilterService

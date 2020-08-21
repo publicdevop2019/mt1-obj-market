@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -32,7 +32,6 @@ import { FormFilterComponent } from './components/form-filter/form-filter.compon
 import { FormSearchComponent } from './components/form-search/form-search.component';
 import { GhostCardProductComponent } from './components/ghost-card-product/ghost-card-product.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ProductBasicComponent } from './components/product-basic/product-basic.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -45,8 +44,7 @@ import { LoadingInterceptor } from './services/loading.interceptor';
 import { SharedModule } from './modules/shared/shared.module';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 import { OfflineInterceptor } from './services/offline.interceptor';
-import { SlideshowComponent } from './components/slideshow/slideshow.component';
-import { SoldOutBannerComponent } from './components/sold-out-banner/sold-out-banner.component';
+import 'mt-wc-product'
 @NgModule({
     declarations: [
         AppComponent,
@@ -59,15 +57,12 @@ import { SoldOutBannerComponent } from './components/sold-out-banner/sold-out-ba
         ProductDetailComponent,
         CardProductComponent,
         ProductListComponent,
-        ProductBasicComponent,
         OrderCompleteComponent,
         FormFilterComponent,
         SearchComponent,
         FormSearchComponent,
         PaymentDetailComponent,
         GhostCardProductComponent,
-        SlideshowComponent,
-        SoldOutBannerComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -116,6 +111,7 @@ import { SoldOutBannerComponent } from './components/sold-out-banner/sold-out-ba
             multi: true
         },
     ],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

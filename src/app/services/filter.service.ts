@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
-import { ProductService } from './product.service';
+import { ProductListService } from './product.service';
 import { HttpProxyService } from './http-proxy.service';
 import { Subject } from 'rxjs';
 export interface IFilterDetails {
@@ -24,7 +24,7 @@ export class FilterService {
         sortBy: new FormControl('', []),
         filterValue: new FormControl([], []),
     });
-    constructor(private productSvc: ProductService, private httpProxy: HttpProxyService) {
+    constructor(private productSvc: ProductListService, private httpProxy: HttpProxyService) {
         this.filterForm.get('sortBy').valueChanges.subscribe(next => {
             if (next === 'price_low_to_high') {
                 this.sortBy = 'price';

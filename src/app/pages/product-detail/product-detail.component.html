@@ -1,12 +1,3 @@
-<ng-container *ngIf="productDetail">
-    <app-product-basic
-        #productBasic
-        [productDetail]="productDetail"
-    ></app-product-basic>
-    <app-btn
-        i18n-label
-        label="ADD TO CART"
-        *ngIf="productBasic.productDetail"
-        (click)="addToCart()"
-    ></app-btn>
-</ng-container>
+<div #product>
+</div>
+<app-btn i18n-label label="ADD TO CART" *ngIf="productDetail" (click)="addToCart()"></app-btn>

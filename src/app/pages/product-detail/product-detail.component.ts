@@ -24,7 +24,7 @@ export interface IProductOption {
     priceVar?: string;
 }
 export interface IProductSku {
-    attributeSales: string[];
+    attributesSales: string[];
     price: number;
     storage: number;
 }
@@ -71,6 +71,7 @@ export class ProductDetailComponent implements OnInit {
                 const popupEl = document.createElement('mt-wc-product');
                 (popupEl as any).productDetail = next;
                 (popupEl as any).locale = locale.replace('-','');
+                (popupEl as any).imgSize = '100vw';
                 this.productDetail = next;
                 popupEl.addEventListener('valueChanged', (e) => {
                     this.cartItem = (e as CustomEvent).detail;

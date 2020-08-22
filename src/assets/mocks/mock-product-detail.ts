@@ -54,7 +54,7 @@ export const mockProductDetail: IProductDetail = {
 ],
   "skus": [
     {
-      "attributeSales": [
+      "attributesSales": [
         "835604663263232:155/80A/XS",
         "835604723556352:玫红"
       ],
@@ -62,7 +62,7 @@ export const mockProductDetail: IProductDetail = {
       "price": 179
     },
     {
-      "attributeSales": [
+      "attributesSales": [
         "835604723556352:玫红",
         "835604663263232:160/84A/S"
       ],
@@ -70,7 +70,7 @@ export const mockProductDetail: IProductDetail = {
       "price": 179
     },
     {
-      "attributeSales": [
+      "attributesSales": [
         "835604723556352:玫红",
         "835604663263232:165/88/A/M"
       ],
@@ -78,7 +78,7 @@ export const mockProductDetail: IProductDetail = {
       "price": 179
     },
     {
-      "attributeSales": [
+      "attributesSales": [
         "835604663263232:155/80A/XS",
         "835604723556352:白色"
       ],

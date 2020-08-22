@@ -33,7 +33,7 @@ export class HttpProxyService {
     };
     getCatalog(): Observable<ICatalogNet> {
         return this.httpClient.get<ICatalogNet>(
-            environment.productUrl + '/public/catalogs'
+            environment.productUrl + '/catalogs/public'
         );
     }
     removeFromCart(id: string): Observable<any> {

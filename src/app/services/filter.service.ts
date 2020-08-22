@@ -17,7 +17,7 @@ export interface IFilter {
 })
 export class FilterService {
     public filter: IFilter[] = []
-    public sortBy = 'price';
+    public sortBy = 'lowestPrice';
     public sortOrder = 'asc';
     public applyFilter: Subject<void> = new Subject();
     public filterForm: FormGroup = new FormGroup({
@@ -27,10 +27,10 @@ export class FilterService {
     constructor(private productSvc: ProductListService, private httpProxy: HttpProxyService) {
         this.filterForm.get('sortBy').valueChanges.subscribe(next => {
             if (next === 'price_low_to_high') {
-                this.sortBy = 'price';
+                this.sortBy = 'lowestPrice';
                 this.sortOrder = 'asc';
             } else if (next === 'price_high_to_low') {
-                this.sortBy = 'price'
+                this.sortBy = 'lowestPrice'
                 this.sortOrder = 'desc';
             } else if (next === 'name_A_Z') {
                 this.sortBy = 'name'

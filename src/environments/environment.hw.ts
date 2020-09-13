@@ -2,7 +2,7 @@
 export const environment = {
   production: true,
   mode: 'online' as 'online' | 'offline',
-  APP_ID: 'obj-market',
+  APP_ID: '838330249904144',
   APPP_SECRET_PUBLIC: '',
   authorzieUrl: 'http://localhost:4300/authorize?response_type=code&',
   productUrl: 'http://localhost:8111/product-svc',

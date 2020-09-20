@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 })
 export class OrderService {
     public order: IOrder = <IOrder>{};
-    public generatedOrderId: number;
+    public changeId:string;
     public paymentLink: string;
     public scrollTop: Subject<void> = new Subject();
     constructor(public httpProxy: HttpProxyService, private router: Router, private cartSvc: CartService) { }

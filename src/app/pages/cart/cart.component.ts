@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order.service';
 import { Title } from '@angular/platform-browser';
 import { CONSTANT_I18N } from 'src/locale/constant';
+import * as UUID from 'uuid/v1';
 export interface ICartItem {
     /**
      * @note in-memory-web-api works correctly with numeric id, if type string then id need to set to ''
@@ -42,14 +43,12 @@ export class CartComponent {
         this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.cart)
         this.cartSvc.httpProxy.getCartItems().subscribe(next => {
             this.retrieveInProgress = false;
-            this.cartSvc.cart = next;
+            this.cartSvc.cart = next.data;
         });
     }
     public checkout(): void {
         if (this.autSvc.currentUserAuthInfo) {
-            this.cartSvc.httpProxy.getOrderId().subscribe(next => {
-                this.orderSvc.generatedOrderId = next.headers.get('location');
-            });
+            this.orderSvc.changeId = UUID();
             this.router.navigate(['/order']);
         } else {
             /**

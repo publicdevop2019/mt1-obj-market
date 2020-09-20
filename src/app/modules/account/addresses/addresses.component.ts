@@ -26,7 +26,7 @@ export class AddressesComponent implements OnInit {
     constructor(public addressSvc: AddressService, private titleSvc: Title) {
         this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.shippingAddress)
         this.addressSvc.getShippingAddress().subscribe(next => {
-            this.address = next;
+            this.address = next.data;
         });
     }
 

@@ -5,7 +5,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import * as UUID from 'uuid/v1';
 import { AuthService } from './auth.service';
-import { HttpProxyService } from './http-proxy.service';
 import { SnackbarService } from './snackbar.service';
 /**
  * use refresh token if call failed
@@ -15,7 +14,6 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     private errorStatus: number[] = [500, 503, 502];
     constructor(
         private router: Router,
-        private httpProxy: HttpProxyService,
         private authSvc: AuthService,
         private snackBarSvc: SnackbarService
     ) { }
@@ -24,7 +22,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
             this.authSvc.currentUserAuthInfo &&
             this.authSvc.currentUserAuthInfo.access_token
         ) {
-            if (req.url.indexOf('profiles') > -1)
+            if (req.url.indexOf('auth-svc/oauth/token') === -1 && req.url.indexOf('public') === -1)
                 req = req.clone({
                     setHeaders: {
                         UUID: UUID(),
@@ -47,16 +45,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                     } else if (httpError.status === 403) {
                         this.snackBarSvc.openSnackBar('server_403');
                     } else if (httpError.status === 400) {
-                        if (req.url.indexOf('profiles/search') > -1) {
-                            /**
-                             * create profile
-                             */
-                            this.httpProxy.createProfile().subscribe(next => {
-                                this.authSvc.userProfileId = next.headers.get('location')
-                            })
-                        } else {
-                            this.snackBarSvc.openSnackBar('server_400');
-                        }
+                        this.snackBarSvc.openSnackBar('server_400');
                     } else if (httpError.status === 0) {
                         this.snackBarSvc.openSnackBar('net_error');
                     } else {

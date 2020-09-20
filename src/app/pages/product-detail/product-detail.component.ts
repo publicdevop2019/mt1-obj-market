@@ -88,7 +88,7 @@ export class ProductDetailComponent implements OnInit {
                 return this.cartSvc.httpProxy.getCartItems()
             }))
             .subscribe(next => {
-                this.cartSvc.cart = next;
+                this.cartSvc.cart = next.data;
             });
     }
 }

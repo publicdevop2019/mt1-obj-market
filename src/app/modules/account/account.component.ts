@@ -55,19 +55,10 @@ export class AccountComponent implements OnInit {
                                 },
                                 queryParamsHandling: 'merge'
                             })
-                            return this.httpProxy.searchProfile()
-                        } else {
-                            return of(undefined);
-                            /** purposely do nothing */
-                        }
-                    })
-                ).pipe(
-                    mergeMap(profileId => {
-                        if (profileId) {
-                            this.authSvc.userProfileId = profileId;
                             return this.httpProxy.getCartItems()
                         } else {
                             return of(undefined);
+                            /** purposely do nothing */
                         }
                     })
                 )

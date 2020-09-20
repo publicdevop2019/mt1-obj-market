@@ -20,7 +20,7 @@ export class BottomSheetAddressPickerComponent implements OnInit {
         private orderSvc: OrderService
     ) {
         this.addressSvc.getShippingAddress().subscribe(next => {
-            this.address = next;
+            this.address = next.data;
             this.change.detectChanges();
         });
     }
@@ -31,7 +31,6 @@ export class BottomSheetAddressPickerComponent implements OnInit {
     }
     public dismiss(): void {
         this.bottomSheetRef.dismiss();
-        event.preventDefault();
     }
     ngOnInit() { }
 }

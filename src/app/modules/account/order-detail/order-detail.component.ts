@@ -79,10 +79,9 @@ export class OrderDetailComponent implements OnInit {
         this.orderSvc.scrollTop.next();
         let createOrReplaceOrder: Observable<any>;
         if (this.newOrder) {
-            this.orderSvc.order.id = this.orderSvc.generatedOrderId;
-            createOrReplaceOrder = this.orderSvc.httpProxy.reserveOrder(this.orderSvc.order)
+            createOrReplaceOrder = this.orderSvc.httpProxy.createOrder(this.orderSvc.order, this.orderSvc.changeId)
         } else {
-            createOrReplaceOrder = this.orderSvc.httpProxy.replaceOrder(this.orderSvc.order)
+            createOrReplaceOrder = this.orderSvc.httpProxy.reserveOrder(this.orderSvc.order)
         }
         createOrReplaceOrder.subscribe(next => {
             this.cartSvc.cart = [];

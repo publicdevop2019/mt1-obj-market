@@ -39,24 +39,24 @@ export class AuthService {
             document.cookie = "login=true";
         }
     }
-    get userProfileId() {
-        if (localStorage.getItem('userProfileId') === null) {
-            this.router.navigate(['/account']);
-            this._snackBarSvc.openSnackBar('login_required')
-            localStorage.clear();
-            /**
-             * @note below msg will not get printed out, 
-             * { return undefined } can not present here otherwise undefined will be added to url
-             */
-            throw new Error('userProfileId not exist')
-            // return undefined;
-        } else {
-            return localStorage.getItem('userProfileId')
-        }
-    };
-    set userProfileId(id: string) {
-        localStorage.setItem('userProfileId', id)
-    };
+    // get userProfileId() {
+    //     if (localStorage.getItem('userProfileId') === null) {
+    //         this.router.navigate(['/account']);
+    //         this._snackBarSvc.openSnackBar('login_required')
+    //         localStorage.clear();
+    //         /**
+    //          * @note below msg will not get printed out, 
+    //          * { return undefined } can not present here otherwise undefined will be added to url
+    //          */
+    //         throw new Error('userProfileId not exist')
+    //         // return undefined;
+    //     } else {
+    //         return localStorage.getItem('userProfileId')
+    //     }
+    // };
+    // set userProfileId(id: string) {
+    //     localStorage.setItem('userProfileId', id)
+    // };
     getToken(code: string): Observable<ITokenResponse> {
         const header = new HttpHeaders().append(
             'Authorization',

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,8 +10,18 @@ import { IProductDetail, IProductSimple } from '../pages/product-detail/product-
 import { AuthService } from './auth.service';
 import { ThemeService } from './theme.service';
 import { IFilterDetails } from './filter.service';
-export interface IProductSimpleNet {
-    data: IProductSimple[];
+import * as UUID from 'uuid/v1';
+export interface ISumRep<T> {
+    data: T[];
+    totalItemCount: number;
+}
+export interface IProductSimpleNet extends ISumRep<IProductSimple> {
+}
+export interface ICartResp extends ISumRep<ICartItem> {
+}
+export interface IAddressResp extends ISumRep<IAddress> {
+}
+export interface IOrderResp extends ISumRep<IOrder> {
 }
 @Injectable({
     providedIn: 'root'
@@ -25,76 +35,85 @@ export class HttpProxyService {
     getFilterForCatalog(id: number) {
         return this.httpClient.get<IFilterDetails>(environment.productUrl + '/public/filters?query=catalog:' + id);
     }
-    createProfile(): Observable<any> {
-        return this.httpClient.post(environment.profileUrl + '/profiles', null, { observe: 'response' });
-    };
-    searchProfile(): Observable<string> {
-        return this.httpClient.get<string>(environment.profileUrl + '/profiles/search');
-    };
     getCatalog(): Observable<ICatalogNet> {
         return this.httpClient.get<ICatalogNet>(
             environment.productUrl + '/catalogs/public'
         );
     }
     removeFromCart(id: string): Observable<any> {
-        return this.httpClient.delete(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart/' + id);
+        let headerConfig = new HttpHeaders();
+        headerConfig = headerConfig.set('changeId', UUID())
+        return this.httpClient.delete(environment.profileUrl + '/cart/user/' + id, { headers: headerConfig });
     }
-    getCartItems(): Observable<ICartItem[]> {
+    getCartItems(): Observable<ICartResp> {
         if (this.themeSvc.isBrowser)
-            return this.httpClient.get<ICartItem[]>(
-                environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart'
+            return this.httpClient.get<ICartResp>(
+                environment.profileUrl + '/cart/user'
             );
-        return of([])
+        return of({ data: [], totalItemCount: 0 })
     }
     addToCart(item: ICartItem): Observable<any> {
-        return this.httpClient.post(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/cart', item);
+        let headerConfig = new HttpHeaders();
+        headerConfig = headerConfig.set('changeId', UUID())
+        return this.httpClient.post(environment.profileUrl + '/cart/user', item, { headers: headerConfig });
+    }
+
+    createOrder(order: IOrder, changeId: string): Observable<any> {
+        let headerConfig = new HttpHeaders();
+        headerConfig = headerConfig.set('changeId', changeId)
+        return this.httpClient.post(environment.profileUrl + '/orders/user', order, { headers: headerConfig, observe: 'response' });
     }
     reserveOrder(order: IOrder): Observable<any> {
-        return this.httpClient.post(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + order.id, order, { observe: 'response' });
-    }
-    replaceOrder(order: IOrder): Observable<any> {
-        return this.httpClient.put(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + order.id + '/replace', order, { observe: 'response' });
-    };
-    getOrderId(): Observable<any> {
-        return this.httpClient.get(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/id', { observe: 'response' });
+        return this.httpClient.put(environment.profileUrl + '/orders/user/' + order.id + '/reserve', order, { observe: 'response' });
     };
     confirmOrder(orderId: number): Observable<any> {
-        return this.httpClient.get(environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + orderId + '/confirm');
+        return this.httpClient.put(environment.profileUrl + '/orders/user/' + orderId + '/confirm', null);
     };
     getOrderById(id: number): Observable<IOrder> {
         return this.httpClient.get<IOrder>(
-            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders/' + id
+            environment.profileUrl + '/orders/user/' + id
         );
     }
-    getOrders(): Observable<IOrder[]> {
+    getOrders(): Observable<IOrderResp> {
         if (this.themeSvc.isBrowser)
-            return this.httpClient.get<IOrder[]>(
-                environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/orders'
+            return this.httpClient.get<IOrderResp>(
+                environment.profileUrl + '/orders/user'
             );
-        return of([])
+        return of({ data: [], totalItemCount: 0 })
     }
     updateAddress(address: IAddress): Observable<any> {
+        let headerConfig = new HttpHeaders();
+        headerConfig = headerConfig.set('changeId', UUID())
         return this.httpClient.put(
-            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + address.id,
-            address
+            environment.profileUrl + '/addresses/user/' + address.id,
+            address, { headers: headerConfig }
         );
     }
     createAddress(address: IAddress): Observable<any> {
+        let headerConfig = new HttpHeaders();
+        headerConfig = headerConfig.set('changeId', UUID())
         return this.httpClient.post(
-            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses',
-            address
+            environment.profileUrl + '/addresses/user',
+            address, { headers: headerConfig }
         );
     }
-    getAddresses(): Observable<IAddress[]> {
+    getAddresses(): Observable<IAddressResp> {
         if (this.themeSvc.isBrowser)
-            return this.httpClient.get<IAddress[]>(
-                environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses'
+            return this.httpClient.get<IAddressResp>(
+                environment.profileUrl + '/addresses/user'
             );
-        return of([])
+        return of({ data: [], totalItemCount: 0 })
+    }
+    getAddressesById(id: number): Observable<IAddress> {
+        return this.httpClient.get<IAddress>(
+            environment.profileUrl + '/addresses/user/' + id
+        );
     }
     deleteAddress(id: string): Observable<any> {
+        let headerConfig = new HttpHeaders();
+        headerConfig = headerConfig.set('changeId', UUID())
         return this.httpClient.delete(
-            environment.profileUrl + '/profiles/' + this.authSvc.userProfileId + '/addresses/' + id
+            environment.profileUrl + '/addresses/user/' + id, { headers: headerConfig }
         );
     }
     searchByAttributes(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {

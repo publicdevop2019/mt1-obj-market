@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { IAddress } from '../modules/account/addresses/addresses.component';
 import { HttpProxyService } from './http-proxy.service';
 
@@ -8,17 +7,13 @@ import { HttpProxyService } from './http-proxy.service';
     providedIn: 'root'
 })
 export class AddressService {
-    constructor(private httpProxy: HttpProxyService) {}
+    constructor(private httpProxy: HttpProxyService) { }
 
-    public getShippingAddress(): Observable<IAddress[]> {
+    public getShippingAddress() {
         return this.httpProxy.getAddresses();
     }
-    public getAddressById(id: string): Observable<IAddress> {
-        return this.httpProxy.getAddresses().pipe(
-            switchMap(addresses => {
-                return of(addresses.find(el => el.id.toString() === id));
-            })
-        );
+    public getAddressById(id: number): Observable<IAddress> {
+        return this.httpProxy.getAddressesById(id);
     }
     public createAddress(address: IAddress): Observable<IAddress> {
         return this.httpProxy.createAddress(address);

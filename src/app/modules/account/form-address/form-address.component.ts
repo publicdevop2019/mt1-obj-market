@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AddressService } from 'src/app/services/address.service';
-import { IAddress } from 'src/app/modules/account/addresses/addresses.component';
-import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { IAddress } from 'src/app/modules/account/addresses/addresses.component';
+import { AddressService } from 'src/app/services/address.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 import { CONSTANT_I18N } from 'src/locale/constant';
 @Component({
     selector: 'app-form-address',
@@ -29,7 +29,6 @@ export class FormAddressComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private addressSvc: AddressService,
         private snackBarSvc: SnackbarService,
-        private router: Router,
         private location: Location,
         private titleSvc: Title
     ) {
@@ -44,7 +43,7 @@ export class FormAddressComponent implements OnInit {
                 this.addAddress = false;
                 this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.shippingAddress)
                 this.addressSvc
-                    .getAddressById(next.get('addressId'))
+                    .getAddressById(+next.get('addressId'))
                     .subscribe(address => {
                         this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.shippingAddress + ' ' + address.fullName)
                         this._populateAddressFields(address);
@@ -61,7 +60,7 @@ export class FormAddressComponent implements OnInit {
         this.addressSvc
             .updateAddress(this.addressForm.getRawValue() as IAddress)
             .subscribe(next => {
-                this.router.navigate(['/addresses']);
+                this.location.back();
                 this.snackBarSvc.openSnackBar('item_updated');
             });
     }

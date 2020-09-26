@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -70,7 +70,9 @@ export class OrderDetailComponent implements OnInit {
         return (+sum).toFixed(2);
     }
     public openAddressPicker() {
-        this.bottomSheet.open(BottomSheetAddressPickerComponent);
+        let config = new MatBottomSheetConfig();
+        config.data = { context: this.newOrder ? 'new' : 'update' };
+        this.bottomSheet.open(BottomSheetAddressPickerComponent,config);
     }
     public openPaymentPicker() {
         this.bottomSheet.open(BottomSheetPaymentPickerComponent);

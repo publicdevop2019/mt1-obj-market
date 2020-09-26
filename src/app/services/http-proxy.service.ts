@@ -67,7 +67,9 @@ export class HttpProxyService {
         return this.httpClient.put(environment.profileUrl + '/orders/user/' + order.id + '/reserve', order, { observe: 'response' });
     };
     confirmOrder(orderId: number): Observable<any> {
-        return this.httpClient.put(environment.profileUrl + '/orders/user/' + orderId + '/confirm', null);
+        let headerConfig = new HttpHeaders();
+        headerConfig = headerConfig.set('changeId', UUID())
+        return this.httpClient.put(environment.profileUrl + '/orders/user/' + orderId + '/confirm', null, { headers: headerConfig });
     };
     getOrderById(id: number): Observable<IOrder> {
         return this.httpClient.get<IOrder>(

@@ -33,7 +33,7 @@ export class HttpProxyService {
         return this.httpClient.get<IProductSimpleNet>(environment.productUrl + '/products/public?query=name:' + key + '&page=num:' + pageNumber + ',size:' + pageSize);
     };
     getFilterForCatalog(id: number) {
-        return this.httpClient.get<IFilterDetails>(environment.productUrl + '/public/filters?query=catalog:' + id);
+        return this.httpClient.get<IFilterDetails>(environment.productUrl + '/filters/public?query=catalog:' + id);
     }
     getCatalog(): Observable<ICatalogNet> {
         return this.httpClient.get<ICatalogNet>(

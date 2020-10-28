@@ -35,7 +35,7 @@
         <target>添加到购物车</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/product-detail/product-detail.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1cca2d20f4651cd681a53c4b8a0ca4f18afeff06" datatype="html">
@@ -128,18 +128,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
           <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="fdac0348bf249df68df9c7f117c0c708b00b3105" datatype="html">
-        <source>
-            sold  <x id="INTERPOLATION" equiv-text="{{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}"/>
-        </source>
-        <target>
-            销量  <x id="INTERPOLATION" equiv-text="{{ productDetail.totalSales===null ||productDetail.totalSales===undefined? 0 : productDetail.totalSales }}"/>
-        </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/product-basic/product-basic.component.html</context>
-          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="27e9f934e74434f5c1a70120b8e626fe31b9f80d" datatype="html">
@@ -425,6 +413,10 @@
           <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
           <context context-type="linenumber">56</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="e60639753288a89cd75cc6f9276cc044a9b7551e" datatype="html">
         <source>Ontario</source>
@@ -432,6 +424,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
           <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="44a4bd193793ce5f1500117b395a0c8ec04c2017" datatype="html">
@@ -441,13 +437,17 @@
           <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
           <context context-type="linenumber">61</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="70a67e04629f6d412db0a12d51820b480788d795" datatype="html">
         <source>Create</source>
         <target>创建</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="047f50bc5b5d17b5bec0196355953e1a5c590ddb" datatype="html">
@@ -455,7 +455,7 @@
         <target>更新</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/form-address/form-address.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="090097acb772863e355714ef9a4180881cdd6890" datatype="html">
@@ -532,22 +532,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/account/card-order/card-order.component.html</context>
           <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-            <trans-unit id="f32ecff76a7258dc2bd32bfde18916e693915cd2" datatype="html">
-        <source>This product is sold out</source>
-        <target>这件商品暂无库存</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/sold-out-banner/sold-out-banner.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="0c0be57aaf30414531e79157a45e0fc3fd6b637b" datatype="html">
-        <source>DISMISS</source>
-        <target>知道了</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/sold-out-banner/sold-out-banner.component.html</context>
-          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
     </body>

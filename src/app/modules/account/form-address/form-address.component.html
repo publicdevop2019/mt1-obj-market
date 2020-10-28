@@ -52,7 +52,7 @@
             <mat-option value="China" i18n>China</mat-option>
         </mat-select>
     </mat-form-field>
-    <mat-form-field class="form-field">
+    <mat-form-field *ngIf="!isMobile()" class="form-field">
         <mat-label i18n>Select Province</mat-label>
         <mat-select formControlName="province">
             <mat-option value="ontario" i18n
@@ -60,6 +60,13 @@
             >
             <mat-option value="quebec" i18n>Quebec</mat-option>
         </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="isMobile()" class="form-field">
+        <mat-label i18n>Select Province</mat-label>
+        <select matNativeControl>
+            <option value="ontario" i18n>Ontario</option>
+            <option value="quebec" i18n>Quebec</option>
+        </select>
     </mat-form-field>
     <app-btn
         *ngIf="addAddress"

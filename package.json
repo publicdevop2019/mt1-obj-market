@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "pretty-lint": "npm run prettier-ts && npm run lint && npm run prettier-html",
-    "deploy": "npm run build-offline && rm -r ./public/* && cp -a ./dist/mt1-obj-market/browser/. ./public/ && npm run build-offline-zh-Hans && cp -a ./dist/mt1-obj-market/browser/. ./public/ && firebase deploy",
+    "package": "npm run build-offline && rm -r ./public/* && cp -a ./dist/mt1-obj-market/browser/. ./public/en-Us && npm run build-offline-zh-Hans && cp -a ./dist/mt1-obj-market/browser/. ./public/",
     "ng": "ng",
     "start": "ng serve",
     "start-zh-Hans": "ng serve --configuration=zh-Hans",

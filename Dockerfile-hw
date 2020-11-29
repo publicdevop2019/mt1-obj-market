@@ -1,4 +1,4 @@
-FROM node:10.18.0-jessie AS node
+FROM node:14.15.1-alpine3.12 AS node
 
 WORKDIR /usr/src/app
 

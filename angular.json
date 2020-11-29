@@ -11,9 +11,15 @@
         }
       },
       "i18n": {
-        "sourceLocale": "en-US",
+        "sourceLocale": {
+          "code": "en",
+          "baseHref": ""
+        },
         "locales": {
-          "zh-Hans": "src/locale/messages.zh-Hans.xlf"
+          "zh-Hans": {
+            "baseHref": "",
+            "translation": "src/locale/messages.zh-Hans.xlf"
+          }
         }
       },
       "root": "",

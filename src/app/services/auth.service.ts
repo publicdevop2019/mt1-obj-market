@@ -26,7 +26,7 @@ export class AuthService {
                 return {} as ITokenResponse;
             return undefined;
         }
-        if (localStorage.getItem('jwt') === null)
+        if (localStorage.getItem('jwt') === null || localStorage.getItem('jwt') === undefined)
             return undefined;
         return JSON.parse(localStorage.getItem('jwt')) as ITokenResponse;
     }

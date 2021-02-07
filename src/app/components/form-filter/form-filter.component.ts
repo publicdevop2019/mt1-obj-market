@@ -18,8 +18,8 @@ export class FormFilterComponent implements OnInit, AfterViewChecked {
     public emitEvent() {
         this.closeClick.emit();
     }
-    public toggleValue(e: IFilter, value: string) {
-        const var1 = e.id + ':' + value
+    public toggleValue(filter: IFilter, value: string) {
+        const var1 = filter.id + ':' + value
         const current = this.filterSvc.filterForm.get('filterValue').value as string[];
         if (current.indexOf(var1) > -1) {
             this.filterSvc.filterForm.get('filterValue').setValue(current.filter(e => e !== var1))

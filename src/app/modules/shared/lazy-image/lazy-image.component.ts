@@ -12,7 +12,7 @@ export class LazyImageComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() lazySrc: string;
   @Input() view: 'card' | 'detail' | 'icon' = 'icon';
   @ViewChild('imgRef') imgRef: ElementRef;
-  private _visibilityConfig = {
+  private visibilityConfig = {
     threshold: 0
   };
   public loading = false;
@@ -41,7 +41,7 @@ export class LazyImageComponent implements OnInit, AfterViewInit, OnChanges {
             self.unobserve(entry.target);
           }
         });
-      }, this._visibilityConfig);
+      }, this.visibilityConfig);
       observer.observe(this.imgRef.nativeElement);
     }
 

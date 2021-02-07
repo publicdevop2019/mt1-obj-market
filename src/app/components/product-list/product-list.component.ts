@@ -48,9 +48,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
             filterValue = this.combileSame(filterValue)
             const defaultValue = this.loadAttributes(this.productSvc.currentCategory);
             defaultValue.push(...filterValue)
-            this.productSvc.httpProxy.searchByAttributes(defaultValue, this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder).subscribe(next => {
-                this.productSimpleList = next.data
-            })
+            this.productSvc.httpProxy.searchByAttributes(defaultValue,
+                this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder).subscribe(next => {
+                    this.productSimpleList = next.data
+                })
         })
         this.subs.add(sub)
         this.subs.add(sub2)
@@ -78,11 +79,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
                             this.catalogs = next.data;
                             const var1 = next.data.find(e => String(e.id) === params.get('catalog'));
                             this.productSvc.currentCategory = var1;
-                            return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(var1), this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder)
+                            return this.productSvc.httpProxy.
+                                searchByAttributes(this.loadAttributes(var1),
+                                    this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder)
                         }))
                 } else {
                     return this.firstCategory().pipe(switchMap(first => {
-                        return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(first), this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder)
+                        return this.productSvc.httpProxy.searchByAttributes(
+                            this.loadAttributes(first), this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder)
                     }))
                 }
             }));

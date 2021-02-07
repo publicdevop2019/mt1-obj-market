@@ -15,7 +15,8 @@ import { CONSTANT_I18N } from 'src/locale/constant';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
-  constructor(private _httpProxy: HttpProxyService, private ghostSvc: GhostService, private router: Router, private activeRoute: ActivatedRoute, private changeRef: ChangeDetectorRef,private titleSvc:Title) {
+  constructor(private httpProxy: HttpProxyService, private ghostSvc: GhostService, 
+    private router: Router, private activeRoute: ActivatedRoute, private changeRef: ChangeDetectorRef,private titleSvc:Title) {
     this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.search)
   }
   private pageNumber = 0;
@@ -45,7 +46,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
             queryParams: { key: this.searchKey },
             queryParamsHandling: 'merge'
           });
-        return this._httpProxy.searchProduct(e, this.pageNumber, this.pageSize)
+        return this.httpProxy.searchProduct(e, this.pageNumber, this.pageSize)
       }))
       .subscribe(next => {
         this.searchResults = next.data;
@@ -71,7 +72,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub1 = this.ghostSvc.productCardGhostObser
       .pipe(switchMap(() => {
         this.pageNumber++;
-        return this._httpProxy.searchProduct(this.searchKey, this.pageNumber, this.pageSize)
+        return this.httpProxy.searchProduct(this.searchKey, this.pageNumber, this.pageSize)
       })).subscribe(next => {
         if (next.data.length < this.pageSize) {
           this.endOfPages = true;

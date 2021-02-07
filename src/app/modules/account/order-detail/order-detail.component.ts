@@ -46,7 +46,8 @@ export class OrderDetailComponent implements OnInit {
                         } as IOrder);
                     } else {
                         /** read an existing paid or unpaid order */
-                        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.ordersDetail + ' ' + next.get('orderId'));
+                        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account 
+                        + ' ' + CONSTANT_I18N.ordersDetail + ' ' + next.get('orderId'));
                         return this.orderSvc.httpProxy.getOrderById(
                             +next.get('orderId')
                         );

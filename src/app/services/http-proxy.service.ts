@@ -30,7 +30,8 @@ export class HttpProxyService {
     public inProgress = false;
     constructor(public httpClient: HttpClient, public authSvc: AuthService, private themeSvc: ThemeService) { }
     searchProduct(key: string, pageNumber: number, pageSize: number): Observable<IProductSimpleNet> {
-        return this.httpClient.get<IProductSimpleNet>(environment.productUrl + '/products/public?query=name:' + key + '&page=num:' + pageNumber + ',size:' + pageSize);
+        return this.httpClient.get<IProductSimpleNet>(environment.productUrl 
+            + '/products/public?query=name:' + key + '&page=num:' + pageNumber + ',size:' + pageSize);
     };
     getFilterForCatalog(id: number) {
         return this.httpClient.get<IFilterDetails>(environment.productUrl + '/filters/public?query=catalog:' + id);
@@ -67,17 +68,20 @@ export class HttpProxyService {
     reserveOrder(order: IOrder): Observable<any> {
         let headerConfig = new HttpHeaders();
         headerConfig = headerConfig.set('changeId', UUID())
-        return this.httpClient.put(environment.profileUrl + '/orders/user/' + order.id + '/reserve', null, { headers: headerConfig, observe: 'response' });
+        return this.httpClient.put(environment.profileUrl 
+            + '/orders/user/' + order.id + '/reserve', null, { headers: headerConfig, observe: 'response' });
     };
     updateOrderAddress(order: IOrder, newAddress: IAddress): Observable<any> {
         let headerConfig = new HttpHeaders();
         headerConfig = headerConfig.set('changeId', UUID())
-        return this.httpClient.put(environment.profileUrl + '/orders/user/' + order.id, newAddress, { headers: headerConfig, observe: 'response' });
+        return this.httpClient.put(environment.profileUrl 
+            + '/orders/user/' + order.id, newAddress, { headers: headerConfig, observe: 'response' });
     };
     confirmOrder(orderId: number): Observable<any> {
         let headerConfig = new HttpHeaders();
         headerConfig = headerConfig.set('changeId', UUID())
-        return this.httpClient.put(environment.profileUrl + '/orders/user/' + orderId + '/confirm', null, { headers: headerConfig });
+        return this.httpClient.put(environment.profileUrl 
+            + '/orders/user/' + orderId + '/confirm', null, { headers: headerConfig });
     };
     getOrderById(id: number): Observable<IOrder> {
         return this.httpClient.get<IOrder>(
@@ -128,9 +132,11 @@ export class HttpProxyService {
             environment.profileUrl + '/addresses/user/' + id, { headers: headerConfig }
         );
     }
-    searchByAttributes(attributesKey: string[], pageNum: number, pageSize: number, sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
+    searchByAttributes(attributesKey: string[], pageNum: number, pageSize: number, 
+        sortBy: string, sortOrder: string): Observable<IProductSimpleNet> {
         return this.httpClient
-            .get<IProductSimpleNet>(environment.productUrl + '/products/public' + this.getSearchParam(attributesKey) + '&page=num:' + pageNum + ',size:' + pageSize + ',by:' + sortBy + ',order:' + sortOrder);
+            .get<IProductSimpleNet>(environment.productUrl + '/products/public' 
+            + this.getSearchParam(attributesKey) + '&page=num:' + pageNum + ',size:' + pageSize + ',by:' + sortBy + ',order:' + sortOrder);
     }
     private getSearchParam(attr: string[]): string {
         return '?query=attr:' + attr.map(e => e.replace(':', '-')).join('$')

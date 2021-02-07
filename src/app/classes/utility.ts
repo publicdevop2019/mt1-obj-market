@@ -1,5 +1,8 @@
+export function nullOrUndefined(input: any): boolean {
+    return (input === null || input === undefined);
+}
 export function notNullAndUndefined(input: any): boolean {
-    return !(input === null || input === undefined);
+    return !nullOrUndefined(input);
 }
 export function notNullAndUndefinedAndEmptyString(input: any): boolean {
     return !(input === null || input === undefined || input === '');

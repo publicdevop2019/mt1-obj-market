@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpProxyService } from 'src/app/services/http-proxy.service';
 import { Router } from '@angular/router';
-import { isNullOrUndefined } from 'util';
+import { notNullAndUndefined } from 'src/app/classes/utility';
 export interface ICatalogCard {
     id: number;
     name: string;
@@ -51,7 +51,8 @@ export class CatalogListComponent implements OnInit {
         while (this.notLeafNode(catalogs, currentLevel)) {
             const nextLevelCol: ICatalogCustomerTreeNode[] = []
             currentLevel.forEach(childNode => {
-                const nextLevel = catalogs.filter(el => el.parentId === childNode.id).map(e => ({ id: e.id, name: e.name, } as ICatalogCustomerTreeNode));
+                const nextLevel = catalogs.filter(el => el.parentId === childNode.id)
+                    .map(e => ({ id: e.id, name: e.name, } as ICatalogCustomerTreeNode));
                 childNode.children = nextLevel;
                 nextLevelCol.push(...nextLevel);
             });
@@ -84,12 +85,12 @@ export class CatalogListComponent implements OnInit {
             this.currentNodes = this.findNodeById(this.catalogsTree, grandParentId, this.catalogs)
         }
     }
-    findNodeById(catalogsTree: ICatalogCustomerTreeNode[], id: number, catalogs: ICatalogCard[]): ICatalogCustomerTreeNode[] {
-        const path: number[] = [id];
-        const paId = catalogs.find(e => e.id === id).parentId;
-        while (!isNullOrUndefined(paId)) {
-            const paId: number = catalogs.find(e => e.id === paId).parentId;
-            if (!isNullOrUndefined(paId)) {
+    findNodeById(catalogsTree: ICatalogCustomerTreeNode[], nodeId: number, catalogs: ICatalogCard[]): ICatalogCustomerTreeNode[] {
+        const path: number[] = [nodeId];
+        let paId = catalogs.find(e => e.id === nodeId).parentId;
+        while (notNullAndUndefined(paId)) {
+            paId = catalogs.find(e => e.id === paId).parentId;
+            if (notNullAndUndefined(paId)) {
                 path.push(paId)
             }
         }

@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { debounce, switchMap, filter, map, skip } from 'rxjs/operators';
-import { interval, Observable, Subscription } from 'rxjs';
+import { debounce, switchMap, filter, map } from 'rxjs/operators';
+import { interval, Subscription } from 'rxjs';
 import { HttpProxyService } from 'src/app/services/http-proxy.service';
 import { IProductSimple } from '../product-detail/product-detail.component';
 import { FormSearchComponent } from 'src/app/components/form-search/form-search.component';
 import { GhostService } from 'src/app/services/ghost.service';
-import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CONSTANT_I18N } from 'src/locale/constant';
 
@@ -16,6 +15,10 @@ import { CONSTANT_I18N } from 'src/locale/constant';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
+  constructor(private httpProxy: HttpProxyService, private ghostSvc: GhostService, 
+    private router: Router, private activeRoute: ActivatedRoute, private changeRef: ChangeDetectorRef,private titleSvc:Title) {
+    this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.search)
+  }
   private pageNumber = 0;
   public pageSize = 6;
   private searchKey = '';
@@ -24,6 +27,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   private sub2: Subscription;
   endOfPages = false;
   searchResults: IProductSimple[];
+  @ViewChild('searchInput') searchComponnent: FormSearchComponent;
   ngAfterViewInit(): void {
     // sub for search event
     this.sub0 = this.searchComponnent.searchForm.get('search').valueChanges
@@ -42,7 +46,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
             queryParams: { key: this.searchKey },
             queryParamsHandling: 'merge'
           });
-        return this._httpProxy.searchProduct(e, this.pageNumber, this.pageSize)
+        return this.httpProxy.searchProduct(e, this.pageNumber, this.pageSize)
       }))
       .subscribe(next => {
         this.searchResults = next.data;
@@ -58,10 +62,6 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     // unsub to prevent duplicate search call after input change
     this.sub2.unsubscribe();
   }
-  @ViewChild('searchInput') searchComponnent: FormSearchComponent;
-  constructor(private _httpProxy: HttpProxyService, private ghostSvc: GhostService, private router: Router, private activeRoute: ActivatedRoute, private changeRef: ChangeDetectorRef,private titleSvc:Title) {
-    this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.search)
-  }
 
   ngOnDestroy(): void {
     this.sub0.unsubscribe()
@@ -72,15 +72,16 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub1 = this.ghostSvc.productCardGhostObser
       .pipe(switchMap(() => {
         this.pageNumber++;
-        return this._httpProxy.searchProduct(this.searchKey, this.pageNumber, this.pageSize)
+        return this.httpProxy.searchProduct(this.searchKey, this.pageNumber, this.pageSize)
       })).subscribe(next => {
-        if (next.data.length < this.pageSize)
+        if (next.data.length < this.pageSize) {
           this.endOfPages = true;
+        }
         this.searchResults.push(...next.data);
       })
   }
   private invalidSearchParam(input: string): boolean {
-    let spaces: RegExp = new RegExp(/^\s*$/)
+    const spaces: RegExp = new RegExp(/^\s*$/)
     return !spaces.test(input)
   }
 

@@ -47,7 +47,7 @@ export interface IAttrImage {
     styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-    @ViewChild("product") product: ElementRef;
+    @ViewChild('product') product: ElementRef;
     public cartItem: ICartItem;
     public productDetail: IProductDetail;
     constructor(

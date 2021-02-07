@@ -1,10 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CONSTANT_I18N } from 'src/locale/constant';
-import { SnackbarService } from './snackbar.service';
 import { ThemeService } from './theme.service';
 export interface ITokenResponse {
     access_token: string;
@@ -18,25 +16,27 @@ export interface ITokenResponse {
     providedIn: 'root'
 })
 export class AuthService {
-    constructor(private httpClient: HttpClient, private router: Router, private _snackBarSvc: SnackbarService, private themeSvc:ThemeService) {
+    constructor(private httpClient: HttpClient, private themeSvc:ThemeService) {
     }
     get currentUserAuthInfo() {
         if (!this.themeSvc.isBrowser) {
-            if (global['login'] === 'true')
+            if ((global as any).login === 'true') {
                 return {} as ITokenResponse;
+            }
             return undefined;
         }
-        if (localStorage.getItem('jwt') === null || localStorage.getItem('jwt') === undefined)
+        if (localStorage.getItem('jwt') === null || localStorage.getItem('jwt') === undefined) {
             return undefined;
+        }
         return JSON.parse(localStorage.getItem('jwt')) as ITokenResponse;
     }
     set currentUserAuthInfo(token: ITokenResponse) {
         if (token === null || token === undefined) {
             localStorage.clear();
-            document.cookie = "login=false";
+            document.cookie = 'login=false';
         } else {
             localStorage.setItem('jwt', JSON.stringify(token));
-            document.cookie = "login=true";
+            document.cookie = 'login=true';
         }
     }
     // get userProfileId() {

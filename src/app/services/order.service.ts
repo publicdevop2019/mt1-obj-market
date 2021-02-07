@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
     providedIn: 'root'
 })
 export class OrderService {
-    public order: IOrder = <IOrder>{};
+    public order: IOrder = {} as IOrder;
     public changeId:string;
     public paymentLink: string;
     public scrollTop: Subject<void> = new Subject();

@@ -32,7 +32,8 @@ export class BottomSheetAddressPickerComponent implements OnInit {
         if (this.orderBottomSheet.context === 'new') {
             this.orderSvc.order.address = address;
         } else {
-            this.orderSvc.httpProxy.updateOrderAddress(this.orderSvc.order, address).pipe(switchMap(e => this.orderSvc.httpProxy.getOrderById(this.orderSvc.order.id))).subscribe(next => {
+            this.orderSvc.httpProxy.updateOrderAddress(this.orderSvc.order, address)
+            .pipe(switchMap(e => this.orderSvc.httpProxy.getOrderById(this.orderSvc.order.id))).subscribe(next => {
                 this.orderSvc.order = next;
             })
         }

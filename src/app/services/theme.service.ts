@@ -4,7 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class ThemeService {
-  isBrowser: boolean = true;
+  isBrowser = true;
   constructor(@Inject(PLATFORM_ID) platformId: string) {
     this.isBrowser = isPlatformBrowser(platformId)
   }
@@ -12,7 +12,7 @@ export class ThemeService {
     if (this.isBrowser) {
       return getCookie('darkTheme') === 'true'
     } else {
-      return global['darkTheme'] === 'true';
+      return (global as any).darkTheme === 'true';
     }
   }
   /**
@@ -25,7 +25,7 @@ export class ThemeService {
 }
 
 function getCookie(name: string): string {
-  let value = "; " + document.cookie;
-  let parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
+  const value = '; ' + document.cookie;
+  const parts = value.split('; ' + name + '=');
+  if (parts.length === 2) { return parts.pop().split(';').shift(); }
 }

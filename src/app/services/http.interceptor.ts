@@ -22,13 +22,14 @@ export class CustomHttpInterceptor implements HttpInterceptor {
             this.authSvc.currentUserAuthInfo &&
             this.authSvc.currentUserAuthInfo.access_token
         ) {
-            if (req.url.indexOf('auth-svc/oauth/token') === -1 && req.url.indexOf('public') === -1)
+            if (req.url.indexOf('auth-svc/oauth/token') === -1 && req.url.indexOf('public') === -1) {
                 req = req.clone({
                     setHeaders: {
                         UUID: UUID(),
                         Authorization: `Bearer ${this.authSvc.currentUserAuthInfo.access_token}`
                     }
                 });
+            }
         }
         return next.handle(req).pipe(
             catchError(error => {

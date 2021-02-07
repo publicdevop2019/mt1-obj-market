@@ -8,7 +8,7 @@ import { safelyGetValue } from 'src/app/classes/utility';
 import { IList } from 'src/app/components/footer/footer.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
-import { HttpProxyService, ICartResp } from 'src/app/services/http-proxy.service';
+import { HttpProxyService } from 'src/app/services/http-proxy.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { environment } from 'src/environments/environment';
 import { CONSTANT_I18N } from 'src/locale/constant';
@@ -64,7 +64,7 @@ export class AccountComponent implements OnInit {
                 )
                 .subscribe(
                     carts => {
-                        this.cartSvc.cart = (carts&&carts.data) || [];
+                        this.cartSvc.cart = (carts && carts.data) || [];
                         if (sessionStorage.getItem('nextUrl')) {
                             this.router.navigateByUrl(sessionStorage.getItem('nextUrl'));
                             sessionStorage.removeItem('nextUrl');
@@ -92,7 +92,8 @@ export class AccountComponent implements OnInit {
     }
     login() {
         location.replace(
-            `${environment.authorzieUrl}client_id=${environment.APP_ID}&redirect_uri=${environment.oauthRedirectUri + CONSTANT_I18N.redirctUrl}&state=login`
+            `${environment.authorzieUrl}client_id=${environment.APP_ID}
+            &redirect_uri=${environment.oauthRedirectUri + CONSTANT_I18N.redirctUrl}&state=login`
         );
     }
     logout() {

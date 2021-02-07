@@ -28,7 +28,7 @@ export class OrderDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private titleSvc: Title
     ) {
-        this.orderSvc.order = <IOrder>{};
+        this.orderSvc.order = {} as IOrder;
         this.activatedRoute.paramMap
             .pipe(
                 switchMap(next => {
@@ -46,7 +46,8 @@ export class OrderDetailComponent implements OnInit {
                         } as IOrder);
                     } else {
                         /** read an existing paid or unpaid order */
-                        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.ordersDetail + ' ' + next.get('orderId'));
+                        this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account 
+                        + ' ' + CONSTANT_I18N.ordersDetail + ' ' + next.get('orderId'));
                         return this.orderSvc.httpProxy.getOrderById(
                             +next.get('orderId')
                         );
@@ -55,8 +56,9 @@ export class OrderDetailComponent implements OnInit {
             )
             .subscribe(next => {
                 this.orderSvc.order = next;
-                if (this.orderSvc.order.orderState.indexOf('NOT_PAID') > -1)
+                if (this.orderSvc.order.orderState.indexOf('NOT_PAID') > -1) {
                     this.editable = true;
+                }
             });
     }
 
@@ -70,7 +72,7 @@ export class OrderDetailComponent implements OnInit {
         return (+sum).toFixed(2);
     }
     public openAddressPicker() {
-        let config = new MatBottomSheetConfig();
+        const config = new MatBottomSheetConfig();
         config.data = { context: this.newOrder ? 'new' : 'update' };
         this.bottomSheet.open(BottomSheetAddressPickerComponent,config);
     }

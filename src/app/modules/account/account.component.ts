@@ -8,7 +8,7 @@ import { safelyGetValue } from 'src/app/classes/utility';
 import { IList } from 'src/app/components/footer/footer.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
-import { HttpProxyService, ICartResp } from 'src/app/services/http-proxy.service';
+import { HttpProxyService } from 'src/app/services/http-proxy.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { environment } from 'src/environments/environment';
 import { CONSTANT_I18N } from 'src/locale/constant';

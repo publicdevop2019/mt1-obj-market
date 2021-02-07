@@ -46,10 +46,11 @@ export class HttpProxyService {
         return this.httpClient.delete(environment.profileUrl + '/cart/user/' + id, { headers: headerConfig });
     }
     getCartItems(): Observable<ICartResp> {
-        if (this.themeSvc.isBrowser)
+        if (this.themeSvc.isBrowser) {
             return this.httpClient.get<ICartResp>(
                 environment.profileUrl + '/cart/user'
             );
+        }
         return of({ data: [], totalItemCount: 0 })
     }
     addToCart(item: ICartItem): Observable<any> {
@@ -84,10 +85,11 @@ export class HttpProxyService {
         );
     }
     getOrders(): Observable<IOrderResp> {
-        if (this.themeSvc.isBrowser)
+        if (this.themeSvc.isBrowser) {
             return this.httpClient.get<IOrderResp>(
                 environment.profileUrl + '/orders/user'
             );
+        }
         return of({ data: [], totalItemCount: 0 })
     }
     updateAddress(address: IAddress): Observable<any> {
@@ -107,10 +109,11 @@ export class HttpProxyService {
         );
     }
     getAddresses(): Observable<IAddressResp> {
-        if (this.themeSvc.isBrowser)
+        if (this.themeSvc.isBrowser) {
             return this.httpClient.get<IAddressResp>(
                 environment.profileUrl + '/addresses/user'
             );
+        }
         return of({ data: [], totalItemCount: 0 })
     }
     getAddressesById(id: number): Observable<IAddress> {
@@ -130,7 +133,7 @@ export class HttpProxyService {
             .get<IProductSimpleNet>(environment.productUrl + '/products/public' + this.getSearchParam(attributesKey) + '&page=num:' + pageNum + ',size:' + pageSize + ',by:' + sortBy + ',order:' + sortOrder);
     }
     private getSearchParam(attr: string[]): string {
-        return '?query=attr:' + attr.map(e => e.replace(":", "-")).join('$')
+        return '?query=attr:' + attr.map(e => e.replace(':', '-')).join('$')
     }
     getProductDetailsById(productId: string): Observable<IProductDetail> {
         return this.httpClient.get<IProductDetail>(

@@ -10,10 +10,10 @@ import { FilterService } from 'src/app/services/filter.service';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    public onHomePage: boolean = true;
-    public onProductList: boolean = false;
-    public onCatalogsSelect: boolean = false;
-    public onSearchPage: boolean = false;
+    public onHomePage = true;
+    public onProductList = false;
+    public onCatalogsSelect = false;
+    public onSearchPage = false;
     @Output() filterClick = new EventEmitter<void>();
     constructor(
         public activatedRoute: ActivatedRoute,

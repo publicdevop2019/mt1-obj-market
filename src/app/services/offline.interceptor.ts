@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -29,8 +29,8 @@ export class OfflineInterceptor implements HttpInterceptor {
                     return of(new HttpResponse({ status: 200, body: mockedToken })).pipe(delay(this.DEFAULT_DELAY));
                 }
                 if (req.url.includes('orders/')) {
-                    let header = new HttpHeaders();
-                    let var0 = header.set('Location', 'weixin?//wxpay/bizpayurl?appid=wx2421b1c4370ec43b&mch_id=10000100&nonce_str=aa43681f1b804d2eacfb2f9e0107aa59&product_id=836202480025600&time_stamp=1415949957&sign=512F68131DD251DA4A45DA79CC7EFE9D')
+                    const header = new HttpHeaders();
+                    const var0 = header.set('Location', 'weixin?//wxpay/bizpayurl?appid=wx2421b1c4370ec43b&mch_id=10000100&nonce_str=aa43681f1b804d2eacfb2f9e0107aa59&product_id=836202480025600&time_stamp=1415949957&sign=512F68131DD251DA4A45DA79CC7EFE9D')
                     return of(new HttpResponse({ status: 200, headers: var0, body: { paymentStatus: true } })).pipe(delay(this.DEFAULT_DELAY))
                 }
                 return of(new HttpResponse({ status: 200 })).pipe(delay(this.DEFAULT_DELAY));

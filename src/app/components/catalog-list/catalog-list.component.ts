@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpProxyService } from 'src/app/services/http-proxy.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { Title } from '@angular/platform-browser';
-import { CONSTANT_I18N } from 'src/locale/constant';
+import { Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 export interface ICatalogCard {
     id: number;
@@ -26,7 +23,7 @@ export interface ICatalogCustomerTreeNode {
     styleUrls: ['./catalog-list.component.scss']
 })
 export class CatalogListComponent implements OnInit {
-    public topLevel: boolean = true
+    public topLevel = true
     private catalogs: ICatalogCard[];
     public catalogsTree: ICatalogCustomerTreeNode[];
     public currentNodes: ICatalogCustomerTreeNode[];
@@ -47,20 +44,20 @@ export class CatalogListComponent implements OnInit {
     ngOnInit() { }
     private convertToTree(catalogs: ICatalogCard[]): ICatalogCustomerTreeNode[] {
         let levelIndex = 0;
-        let rootNodes = catalogs.filter(e => e.parentId === null || e.parentId === undefined);
-        let treeNodes = rootNodes.map(e => <ICatalogCustomerTreeNode>{
+        const rootNodes = catalogs.filter(e => e.parentId === null || e.parentId === undefined);
+        const treeNodes = rootNodes.map(e => <ICatalogCustomerTreeNode>{
             id: e.id,
             name: e.name,
-        });
+        } );
         let currentLevel = treeNodes;
         levelIndex++;
         while (this.notLeafNode(catalogs, currentLevel)) {
-            let nextLevelCol: ICatalogCustomerTreeNode[] = []
+            const nextLevelCol: ICatalogCustomerTreeNode[] = []
             currentLevel.forEach(childNode => {
-                let nextLevel = catalogs.filter(el => el.parentId === childNode.id).map(e => <ICatalogCustomerTreeNode>{
+                const nextLevel = catalogs.filter(el => el.parentId === childNode.id).map(e => <ICatalogCustomerTreeNode>{
                     id: e.id,
                     name: e.name,
-                });
+                } );
                 childNode.children = nextLevel;
                 nextLevelCol.push(...nextLevel);
             });
@@ -83,9 +80,9 @@ export class CatalogListComponent implements OnInit {
         }
     }
     public lastNavList() {
-        let parentId = this.catalogs.find(e => e.id === this.currentNodes[0].id).parentId;
-        let grandParentId = this.catalogs.find(e => e.id === parentId).parentId;
-        let grandParent = this.catalogs.find(e => e.id === grandParentId);
+        const parentId = this.catalogs.find(e => e.id === this.currentNodes[0].id).parentId;
+        const grandParentId = this.catalogs.find(e => e.id === parentId).parentId;
+        const grandParent = this.catalogs.find(e => e.id === grandParentId);
         if (grandParent === undefined) {
             this.currentNodes = this.catalogsTree;
             this.topLevel = true;
@@ -94,12 +91,13 @@ export class CatalogListComponent implements OnInit {
         }
     }
     findNodeById(catalogsTree: ICatalogCustomerTreeNode[], id: number, catalogs: ICatalogCard[]): ICatalogCustomerTreeNode[] {
-        let path: number[] = [id];
-        let paId = catalogs.find(e => e.id === id).parentId;
+        const path: number[] = [id];
+        const paId = catalogs.find(e => e.id === id).parentId;
         while (!isNullOrUndefined(paId)) {
-            let paId: number = catalogs.find(e => e.id === paId).parentId;
-            if (!isNullOrUndefined(paId))
+            const paId: number = catalogs.find(e => e.id === paId).parentId;
+            if (!isNullOrUndefined(paId)) {
                 path.push(paId)
+            }
         }
         let currentLevel: ICatalogCustomerTreeNode[] = catalogsTree;
         path.reverse().forEach(id => {

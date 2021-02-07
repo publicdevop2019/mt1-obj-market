@@ -11,7 +11,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 export class LazyImageComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() lazySrc: string;
   @Input() view: 'card' | 'detail' | 'icon' = 'icon';
-  @ViewChild("imgRef") imgRef: ElementRef;
+  @ViewChild('imgRef') imgRef: ElementRef;
   private _visibilityConfig = {
     threshold: 0
   };
@@ -20,13 +20,13 @@ export class LazyImageComponent implements OnInit, AfterViewInit, OnChanges {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['lazySrc'].previousValue && changes['lazySrc'].previousValue !== changes['lazySrc'].currentValue) {
-      (this.imgRef && this.imgRef.nativeElement as HTMLImageElement).src = changes['lazySrc'].currentValue;
+    if (changes.lazySrc.previousValue && changes.lazySrc.previousValue !== changes.lazySrc.currentValue) {
+      (this.imgRef && this.imgRef.nativeElement as HTMLImageElement).src = changes.lazySrc.currentValue;
     }
   }
   ngAfterViewInit(): void {
-    let erroOb = fromEvent(this.imgRef.nativeElement, "error");
-    let loadOb = fromEvent(this.imgRef.nativeElement, "load");
+    const erroOb = fromEvent(this.imgRef.nativeElement, 'error');
+    const loadOb = fromEvent(this.imgRef.nativeElement, 'load');
     loadOb.pipe(take(1)).subscribe(() => {
       this.loading = true;
     })
@@ -34,7 +34,7 @@ export class LazyImageComponent implements OnInit, AfterViewInit, OnChanges {
       (this.imgRef.nativeElement as HTMLImageElement).src = '../../../assets/imgs/img-404.svg';
     })
     if (this.themeSvc.isBrowser) {
-      let observer = new IntersectionObserver((entries, self) => {
+      const observer = new IntersectionObserver((entries, self) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             (entry.target as HTMLImageElement).src = this.lazySrc;

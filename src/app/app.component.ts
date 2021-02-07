@@ -1,4 +1,4 @@
-import { Component, ViewChild, Inject, LOCALE_ID, AfterViewInit, ChangeDetectorRef, AfterContentInit, AfterContentChecked, AfterViewChecked, ElementRef } from '@angular/core';
+import { Component, ViewChild, Inject, LOCALE_ID, ChangeDetectorRef, AfterViewChecked, ElementRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -41,8 +41,9 @@ export class AppComponent implements AfterViewChecked {
         })
     }
     ngAfterViewChecked(): void {
-        if (!this.themeSvc.isBrowser)
+        if (!this.themeSvc.isBrowser) {
             this.changeRef.detectChanges();
+        }
     }
     prepareRoute(outlet: RouterOutlet) {
         return (

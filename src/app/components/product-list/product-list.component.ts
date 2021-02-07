@@ -31,20 +31,22 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.filterSvc.filterForm.get('filterValue').reset([])
-        let sub = this.ghostSvc.productCardGhostObser
+        const sub = this.ghostSvc.productCardGhostObser
             .pipe(switchMap(() => {
                 return this.getProductOb();
             })).subscribe(next => {
-                if (next.data.length < this.pageSize)
+                if (next.data.length < this.pageSize) {
                     this.endOfPages = true;
-                if (!this.productSimpleList)
+                }
+                if (!this.productSimpleList) {
                     this.productSimpleList = [];
+                }
                 this.productSimpleList.push(...next.data);
             })
-        let sub2 = this.filterSvc.applyFilter.subscribe(() => {
+        const sub2 = this.filterSvc.applyFilter.subscribe(() => {
             let filterValue = this.filterSvc.filterForm.get('filterValue').value as string[];
             filterValue = this.combileSame(filterValue)
-            let defaultValue = this.loadAttributes(this.productSvc.currentCategory);
+            const defaultValue = this.loadAttributes(this.productSvc.currentCategory);
             defaultValue.push(...filterValue)
             this.productSvc.httpProxy.searchByAttributes(defaultValue, this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder).subscribe(next => {
                 this.productSimpleList = next.data
@@ -54,12 +56,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.subs.add(sub2)
     }
     combileSame(filterValue: string[]): string[] {
-        let key = filterValue.map(e => e.split(":")[0]);
-        let ret: Set<string> = new Set(key);
-        let var1: string[] = []
+        const key = filterValue.map(e => e.split(':')[0]);
+        const ret: Set<string> = new Set(key);
+        const var1: string[] = []
         ret.forEach(e => {
-            let combined = filterValue.filter(el => el.includes(e + ":")).map(ee => ee.split(':')[1]).join('.');
-            var1.push(e + ":" + combined)
+            const combined = filterValue.filter(el => el.includes(e + ':')).map(ee => ee.split(':')[1]).join('.');
+            var1.push(e + ':' + combined)
         });
         return var1;
     }
@@ -74,7 +76,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
                     return this.productSvc.httpProxy.getCatalog()
                         .pipe(switchMap(next => {
                             this.catalogs = next.data;
-                            let var1 = next.data.find(e => String(e.id) === params.get('catalog'));
+                            const var1 = next.data.find(e => String(e.id) === params.get('catalog'));
                             this.productSvc.currentCategory = var1;
                             return this.productSvc.httpProxy.searchByAttributes(this.loadAttributes(var1), this.pageNum, this.pageSize, this.filterSvc.sortBy, this.filterSvc.sortOrder)
                         }))
@@ -93,10 +95,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
             }))
     }
     public loadAttributes(attr: ICatalogCard) {
-        let tags: string[] = [];
+        const tags: string[] = [];
         tags.push(...attr.attributes);
         while (attr.parentId !== null && attr.parentId !== undefined) {
-            let nextId = attr.parentId;
+            const nextId = attr.parentId;
             attr = this.catalogs.find(e => e.id === nextId);
             tags.push(...attr.attributes);
         }

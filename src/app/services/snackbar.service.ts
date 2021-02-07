@@ -1,4 +1,4 @@
-import { Injectable, Inject, LOCALE_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CONSTANT_I18N } from 'src/locale/constant';
 

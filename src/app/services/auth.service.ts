@@ -22,21 +22,23 @@ export class AuthService {
     }
     get currentUserAuthInfo() {
         if (!this.themeSvc.isBrowser) {
-            if (global['login'] === 'true')
+            if (global.login === 'true') {
                 return {} as ITokenResponse;
+            }
             return undefined;
         }
-        if (localStorage.getItem('jwt') === null || localStorage.getItem('jwt') === undefined)
+        if (localStorage.getItem('jwt') === null || localStorage.getItem('jwt') === undefined) {
             return undefined;
+        }
         return JSON.parse(localStorage.getItem('jwt')) as ITokenResponse;
     }
     set currentUserAuthInfo(token: ITokenResponse) {
         if (token === null || token === undefined) {
             localStorage.clear();
-            document.cookie = "login=false";
+            document.cookie = 'login=false';
         } else {
             localStorage.setItem('jwt', JSON.stringify(token));
-            document.cookie = "login=true";
+            document.cookie = 'login=true';
         }
     }
     // get userProfileId() {

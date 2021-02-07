@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { GhostService } from 'src/app/services/ghost.service';
 import { ThemeService } from 'src/app/services/theme.service';
 
@@ -8,7 +8,7 @@ import { ThemeService } from 'src/app/services/theme.service';
   styleUrls: ['./ghost-card-product.component.scss']
 })
 export class GhostCardProductComponent implements AfterViewInit {
-  @ViewChild("ghostRef") ghostRef: ElementRef;
+  @ViewChild('ghostRef') ghostRef: ElementRef;
   private _visibilityConfig = {
     threshold: 0
   };
@@ -16,7 +16,7 @@ export class GhostCardProductComponent implements AfterViewInit {
   constructor(private _ghostSvc: GhostService, private themeSvc: ThemeService) { }
   ngAfterViewInit(): void {
     if (this.themeSvc.isBrowser) {
-      let observer = new IntersectionObserver((entries, self) => {
+      const observer = new IntersectionObserver((entries, self) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             this._ghostSvc.productCardGhostObser.next()

@@ -19,8 +19,8 @@ export class FormFilterComponent implements OnInit, AfterViewChecked {
         this.closeClick.emit();
     }
     public toggleValue(e: IFilter, value: string) {
-        let var1 = e.id + ":" + value
-        let current = this.filterSvc.filterForm.get('filterValue').value as string[];
+        const var1 = e.id + ':' + value
+        const current = this.filterSvc.filterForm.get('filterValue').value as string[];
         if (current.indexOf(var1) > -1) {
             this.filterSvc.filterForm.get('filterValue').setValue(current.filter(e => e !== var1))
         } else {
@@ -28,7 +28,7 @@ export class FormFilterComponent implements OnInit, AfterViewChecked {
         }
     }
     public selected(e: IFilter, value: string) {
-        let var1 = e.id + ":" + value
+        const var1 = e.id + ':' + value
         return (this.filterSvc.filterForm.get('filterValue').value as string[]).indexOf(var1) > -1
     }
     public applyFilter() {

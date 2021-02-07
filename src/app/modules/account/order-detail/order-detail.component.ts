@@ -28,7 +28,7 @@ export class OrderDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private titleSvc: Title
     ) {
-        this.orderSvc.order = <IOrder>{};
+        this.orderSvc.order = {} as IOrder;
         this.activatedRoute.paramMap
             .pipe(
                 switchMap(next => {
@@ -55,8 +55,9 @@ export class OrderDetailComponent implements OnInit {
             )
             .subscribe(next => {
                 this.orderSvc.order = next;
-                if (this.orderSvc.order.orderState.indexOf('NOT_PAID') > -1)
+                if (this.orderSvc.order.orderState.indexOf('NOT_PAID') > -1) {
                     this.editable = true;
+                }
             });
     }
 
@@ -70,7 +71,7 @@ export class OrderDetailComponent implements OnInit {
         return (+sum).toFixed(2);
     }
     public openAddressPicker() {
-        let config = new MatBottomSheetConfig();
+        const config = new MatBottomSheetConfig();
         config.data = { context: this.newOrder ? 'new' : 'update' };
         this.bottomSheet.open(BottomSheetAddressPickerComponent,config);
     }

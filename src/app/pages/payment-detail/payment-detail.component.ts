@@ -11,18 +11,18 @@ import { CONSTANT_I18N } from 'src/locale/constant';
   styleUrls: ['./payment-detail.component.scss']
 })
 export class PaymentDetailComponent implements OnInit, AfterViewInit {
-  ngAfterViewInit(): void {
-    toDataURL(this.qrFrame.nativeElement as HTMLCanvasElement, this.orderSvc.paymentLink)
-  }
-  @ViewChild("qrCodeFrame") qrFrame: ElementRef;
   constructor(private orderSvc: OrderService, private router: Router, private bar: SnackbarService, private titleSvc: Title) {
     this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.paymentDetail)
+  }
+  @ViewChild('qrCodeFrame') qrFrame: ElementRef;
+  ngAfterViewInit(): void {
+    toDataURL(this.qrFrame.nativeElement as HTMLCanvasElement, this.orderSvc.paymentLink)
   }
 
   ngOnInit() {
   }
   confirmPayment() {
-    let orderId = this.extractOrderIdFromPaymentLink(this.orderSvc.paymentLink);
+    const orderId = this.extractOrderIdFromPaymentLink(this.orderSvc.paymentLink);
     this.orderSvc.httpProxy.confirmOrder(+orderId).subscribe(next => {
       if (next.paymentStatus === true) {
         this.router.navigate(['/order-complete']);
@@ -32,8 +32,8 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
     })
   }
   private extractOrderIdFromPaymentLink(paymentLink: string) {
-    let start = paymentLink.indexOf('product_id')
-    let searchStr = paymentLink.substr(start)
+    const start = paymentLink.indexOf('product_id')
+    const searchStr = paymentLink.substr(start)
     return searchStr.substring(searchStr.indexOf('=') + 1, searchStr.indexOf('&'))
   }
 }

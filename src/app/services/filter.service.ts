@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { switchMap } from 'rxjs/operators';
 import { ProductListService } from './product.service';
 import { HttpProxyService } from './http-proxy.service';
 import { Subject } from 'rxjs';

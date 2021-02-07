@@ -26,7 +26,7 @@ export class CardCartComponent implements OnInit {
         }
     }
     parseSku(sku: string) {
-        return this.cartItemDetails.attrIdMap[sku.split(':')[0]] + ":" + sku.split(':')[1];
+        return this.cartItemDetails.attrIdMap[sku.split(':')[0]] + ':' + sku.split(':')[1];
     }
     parseFinalPrice(price:string){
         return (+price).toFixed(2)

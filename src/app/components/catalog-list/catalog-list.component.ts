@@ -45,19 +45,13 @@ export class CatalogListComponent implements OnInit {
     private convertToTree(catalogs: ICatalogCard[]): ICatalogCustomerTreeNode[] {
         let levelIndex = 0;
         const rootNodes = catalogs.filter(e => e.parentId === null || e.parentId === undefined);
-        const treeNodes = rootNodes.map(e => <ICatalogCustomerTreeNode>{
-            id: e.id,
-            name: e.name,
-        } );
+        const treeNodes = rootNodes.map(e => ({ id: e.id, name: e.name } as ICatalogCustomerTreeNode));
         let currentLevel = treeNodes;
         levelIndex++;
         while (this.notLeafNode(catalogs, currentLevel)) {
             const nextLevelCol: ICatalogCustomerTreeNode[] = []
             currentLevel.forEach(childNode => {
-                const nextLevel = catalogs.filter(el => el.parentId === childNode.id).map(e => <ICatalogCustomerTreeNode>{
-                    id: e.id,
-                    name: e.name,
-                } );
+                const nextLevel = catalogs.filter(el => el.parentId === childNode.id).map(e => ({ id: e.id, name: e.name, } as ICatalogCustomerTreeNode));
                 childNode.children = nextLevel;
                 nextLevelCol.push(...nextLevel);
             });

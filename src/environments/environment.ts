@@ -2,7 +2,7 @@
 export const environment = {
   production: false,
   mode: 'online' as 'online' | 'offline',
-  APP_ID: '838330249904144',
+  APP_ID: '0C8B11ZYRXFM',
   APPP_SECRET_PUBLIC: '',
   // getTokenUri: 'http://admin.manytreetechnology.com:8111/oauth/token',
   // oauthRedirectUri: 'http://localhost:4200',

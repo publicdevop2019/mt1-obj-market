@@ -92,8 +92,7 @@ export class AccountComponent implements OnInit {
     }
     login() {
         location.replace(
-            `${environment.authorzieUrl}client_id=${environment.APP_ID}
-            &redirect_uri=${environment.oauthRedirectUri + CONSTANT_I18N.redirctUrl}&state=login`
+            `${environment.authorzieUrl}client_id=${environment.APP_ID}&redirect_uri=${environment.oauthRedirectUri + CONSTANT_I18N.redirctUrl}&state=login`
         );
     }
     logout() {

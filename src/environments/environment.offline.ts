@@ -2,7 +2,7 @@
 export const environment = {
     production: true,
     mode: 'offline' as 'online' | 'offline',
-    APP_ID: '838330249904144',
+    APP_ID: '0C8B11ZYRXFM',
     APPP_SECRET_PUBLIC: '',
     authorzieUrl: 'https://mt9-oauth2-ui.firebaseapp.com/authorize?response_type=code&',
     productUrl: 'http://localhost:8111/product-svc',

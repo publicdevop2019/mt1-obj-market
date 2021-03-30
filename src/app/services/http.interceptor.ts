@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import * as UUID from 'uuid/v1';
+import { getCookie } from '../classes/utility';
 import { AuthService } from './auth.service';
 import { SnackbarService } from './snackbar.service';
 /**
@@ -44,7 +45,36 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                     } else if (httpError.status === 404) {
                         this.snackBarSvc.openSnackBar('not_found');
                     } else if (httpError.status === 403) {
-                        this.snackBarSvc.openSnackBar('server_403');
+                        //for csrf request, retry 
+                        if (getCookie('XSRF-TOKEN')) {
+                            req = req.clone({ setHeaders: { 'X-XSRF-TOKEN': getCookie('XSRF-TOKEN') }, withCredentials: true });
+                        } else {
+                            this.snackBarSvc.openSnackBar('server_403');
+                            return throwError(error);
+                        }
+                        return next.handle(req).pipe(catchError((errorNew: HttpErrorResponse) => {
+                            if (errorNew instanceof HttpErrorResponse) {
+                                const httpError = errorNew as HttpErrorResponse;
+                                if (httpError.status === 401) {
+                                    this.snackBarSvc.openSnackBar('login_required');
+                                    localStorage.clear();
+                                    this.router.navigate(['/account']);
+                                } else if (this.errorStatus.indexOf(httpError.status) > -1) {
+                                    this.snackBarSvc.openSnackBar('server_5xx');
+                                } else if (httpError.status === 404) {
+                                    this.snackBarSvc.openSnackBar('not_found');
+                                } else if (httpError.status === 403) {
+                                    this.snackBarSvc.openSnackBar('server_403');
+                                } else if (httpError.status === 400) {
+                                    this.snackBarSvc.openSnackBar('server_400');
+                                } else if (httpError.status === 0) {
+                                    this.snackBarSvc.openSnackBar('net_error');
+                                } else {
+                                }
+                                return throwError(errorNew);
+                            }
+                            return throwError(errorNew);
+                        }));
                     } else if (httpError.status === 400) {
                         this.snackBarSvc.openSnackBar('server_400');
                     } else if (httpError.status === 0) {

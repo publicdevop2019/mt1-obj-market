@@ -32,6 +32,9 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                 });
             }
         }
+        if (getCookie('XSRF-TOKEN')) {
+            req = req.clone({ setHeaders: { 'X-XSRF-TOKEN': getCookie('XSRF-TOKEN') }, withCredentials: true });
+        }
         return next.handle(req).pipe(
             catchError(error => {
                 if (error instanceof HttpErrorResponse) {

@@ -68,9 +68,21 @@ export class ProductDetailComponent implements OnInit {
                 })
             )
             .subscribe(next => {
+                if (next.skus.length === 1 && next.skus[0].attributesSales[0] === '') {
+                    this.cartItem = {
+                        finalPrice: next.lowestPrice + "",
+                        selectedOptions: [],
+                        attributesSales: [],
+                        imageUrlSmall: next.imageUrlSmall,
+                        productId: next.id,
+                        name: next.name,
+                        attrIdMap: {},
+                        id: ''
+                    }
+                }
                 const popupEl = document.createElement('mt-wc-product');
                 (popupEl as any).productDetail = next;
-                (popupEl as any).locale = locale.replace('-','');
+                (popupEl as any).locale = locale.replace('-', '');
                 (popupEl as any).imgSize = '100vw';
                 this.productDetail = next;
                 popupEl.addEventListener('valueChanged', (e) => {

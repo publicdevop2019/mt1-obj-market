@@ -23,7 +23,8 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
   }
   confirmPayment() {
     const orderId = this.extractOrderIdFromPaymentLink(this.orderSvc.paymentLink);
-    this.orderSvc.httpProxy.confirmOrder(+orderId).subscribe(next => {
+    console.dir(orderId)
+    this.orderSvc.httpProxy.confirmOrder(orderId).subscribe(next => {
       if (next.paymentStatus === true) {
         this.router.navigate(['/order-complete']);
       } else {

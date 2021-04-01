@@ -3,7 +3,7 @@ import { IAddress } from 'src/app/modules/account/addresses/addresses.component'
 import { ICartItem } from 'src/app/pages/cart/cart.component';
 import { CONSTANT_I18N } from 'src/locale/constant';
 export interface IOrder {
-    id: number;
+    id: string;
     paymentAmt:number;
     orderState:string;
     productList: ICartItem[];

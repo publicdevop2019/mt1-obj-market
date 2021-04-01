@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { switchMap } from 'rxjs/operators';
+import { delay, switchMap } from 'rxjs/operators';
 import { IAddress } from 'src/app/modules/account/addresses/addresses.component';
 import { AddressService } from 'src/app/services/address.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -32,10 +32,12 @@ export class BottomSheetAddressPickerComponent implements OnInit {
         if (this.orderBottomSheet.context === 'new') {
             this.orderSvc.order.address = address;
         } else {
+            //disable http cache
             this.orderSvc.httpProxy.updateOrderAddress(this.orderSvc.order, address)
-            .pipe(switchMap(e => this.orderSvc.httpProxy.getOrderById(this.orderSvc.order.id))).subscribe(next => {
-                this.orderSvc.order = next;
-            })
+            .pipe(delay(1000))//wait for view update
+                .pipe(switchMap(e => this.orderSvc.httpProxy.getOrderById(this.orderSvc.order.id + "?" + new Date().getTime()))).subscribe(next => {
+                    this.orderSvc.order = next;
+                })
         }
         this.bottomSheetRef.dismiss();
         event.preventDefault();

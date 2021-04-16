@@ -13,7 +13,7 @@ export interface IProductSimple {
     description: string;
     lowestPrice: number;
     totalSales: number;
-    id: number;
+    id: string;
 }
 export interface IProductOptions {
     title: string;
@@ -27,6 +27,7 @@ export interface IProductSku {
     attributesSales: string[];
     price: number;
     storage: number;
+    skuId: string
 }
 export interface IProductDetail extends IProductSimple {
     imageUrlLarge?: string[];
@@ -77,7 +78,8 @@ export class ProductDetailComponent implements OnInit {
                         productId: next.id,
                         name: next.name,
                         attrIdMap: {},
-                        id: ''
+                        id: '',
+                        skuId: next.skus[0].skuId
                     }
                 }
                 const popupEl = document.createElement('mt-wc-product');

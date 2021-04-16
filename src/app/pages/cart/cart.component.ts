@@ -22,7 +22,8 @@ export interface ICartItem {
     attributesSales: string[]
     attrIdMap: { [key: number]: string }
     imageUrlSmall: string;
-    productId: number;
+    productId: string;
+    skuId: string;
     name: string;
 }
 @Component({

@@ -1,7 +1,7 @@
 import { IProductDetail } from 'src/app/pages/product-detail/product-detail.component';
 
 export const mockProductDetail: IProductDetail = {
-  id: 835606421200896,
+  id: '835606421200896',
   name: '【迪士尼合作款】ONE MORE2020夏季新款涂鸦薄上衣短袖T恤女',
   imageUrlSmall: 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i1/1652714638/O1CN01v4m3ta1k8FYY743F6_!!1652714638.jpg_430x430q90.jpg',
   imageUrlLarge: [
@@ -59,7 +59,8 @@ export const mockProductDetail: IProductDetail = {
         '835604723556352:玫红'
       ],
       storage: 0,
-      price: 179
+      price: 179,
+      skuId:'abc'
     },
     {
       attributesSales: [
@@ -67,7 +68,8 @@ export const mockProductDetail: IProductDetail = {
         '835604663263232:160/84A/S'
       ],
       storage: 0,
-      price: 179
+      price: 179,
+      skuId:'abc'
     },
     {
       attributesSales: [
@@ -75,7 +77,8 @@ export const mockProductDetail: IProductDetail = {
         '835604663263232:165/88/A/M'
       ],
       storage: 0,
-      price: 179
+      price: 179,
+      skuId:'abc'
     },
     {
       attributesSales: [
@@ -83,7 +86,8 @@ export const mockProductDetail: IProductDetail = {
         '835604723556352:白色'
       ],
       storage: 0,
-      price: 179.9
+      price: 179.9,
+      skuId:'abc'
     }
   ],
   attrIdMap: {

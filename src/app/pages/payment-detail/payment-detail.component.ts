@@ -22,7 +22,8 @@ export class PaymentDetailComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
   confirmPayment() {
-    const orderId = this.extractOrderIdFromPaymentLink(this.orderSvc.paymentLink);
+    const orderId = this.orderSvc.paymentLink;
+    // const orderId = this.extractOrderIdFromPaymentLink(this.orderSvc.paymentLink);
     console.dir(orderId)
     this.orderSvc.httpProxy.confirmOrder(orderId).subscribe(next => {
       if (next.paymentStatus === true) {

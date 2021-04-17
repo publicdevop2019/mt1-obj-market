@@ -40,7 +40,7 @@ export class OrderDetailComponent implements OnInit {
                             productList: this.cartSvc.cart,
                             address: this.orderSvc.order.address,
                             paymentType: this.orderSvc.order.paymentType,
-                            orderState: 'NOT_PAID',
+                            orderState: 'DRAFT',
                             id: this.orderSvc.order.id,
                         } as IOrder);
                     } else {
@@ -55,7 +55,7 @@ export class OrderDetailComponent implements OnInit {
             )
             .subscribe(next => {
                 this.orderSvc.order = next;
-                if (this.orderSvc.order.orderState.indexOf('NOT_PAID') > -1) {
+                if (this.orderSvc.order.orderState.indexOf('DRAFT') > -1) {
                     this.editable = true;
                 }
             });

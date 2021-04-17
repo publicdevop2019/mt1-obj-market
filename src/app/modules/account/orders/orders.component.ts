@@ -17,8 +17,8 @@ export class OrdersComponent implements OnInit {
         this.titleSvc.setTitle(CONSTANT_I18N.docTitle + ' ' + CONSTANT_I18N.account + ' ' + CONSTANT_I18N.orders)
         this.httpProxy.getOrders().subscribe(next => {
             this.orderTotal = next.data;
-            this.paiedOrders = this.orderTotal.filter(e => e.orderState.indexOf('NOT_PAID') === -1);
-            this.unpaiedOrders = this.orderTotal.filter(e => e.orderState.indexOf('NOT_PAID') > -1);
+            this.paiedOrders = this.orderTotal.filter(e => e.paid);
+            this.unpaiedOrders = this.orderTotal.filter(e => !e.paid);
         });
     }
 

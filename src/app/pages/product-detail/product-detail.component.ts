@@ -79,7 +79,8 @@ export class ProductDetailComponent implements OnInit {
                         name: next.name,
                         attrIdMap: {},
                         id: '',
-                        skuId: next.skus[0].skuId
+                        skuId: next.skus[0].skuId,
+                        amount: 1,
                     }
                 }
                 const popupEl = document.createElement('mt-wc-product');

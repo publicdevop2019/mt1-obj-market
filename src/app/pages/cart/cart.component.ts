@@ -25,6 +25,7 @@ export interface ICartItem {
     productId: string;
     skuId: string;
     name: string;
+    amount: number;
 }
 @Component({
     selector: 'app-cart',
